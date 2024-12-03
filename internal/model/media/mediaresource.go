@@ -10,8 +10,8 @@ import (
 type MediaResource struct {
 	powermodel.PowerUUIDModel
 
-	TenantUUID    uuid.UUID `gorm:"type:uuid;foreignKey:TenantUUID;references:UUID"`
-	CreatedUserBy uuid.UUID `gorm:"type:uuid;foreignKey:CreatedUserBy;references:UUID;"`
+	TenantUUID    uuid.UUID `gorm:"type:uuid;foreignKey:TenantUUID;references:UUID" json:"tenantUUID"`
+	CreatedUserBy uuid.UUID `gorm:"type:uuid;foreignKey:CreatedUserBy;references:UUID;" json:"createdUserBy"`
 	CustomerId    int64     `gorm:"comment:客户Id; index" json:"customerId"`
 	Filename      string    `gorm:"comment:名称" json:"filename"`
 	Size          int64     `gorm:"comment:尺寸" json:"size"`
@@ -22,6 +22,7 @@ type MediaResource struct {
 	IsLocalStored bool      `gorm:"comment:是否本地存储" json:"isLocalStored"`
 	ContentType   string    `gorm:"comment:内容类型" json:"contentType"`
 	ResourceType  string    `gorm:"comment:媒体类型" json:"mediaType"`
+	SortIndex     int       `gorm:"comment:排序索引" json:"sortIndex"`
 }
 
 type MediaSet struct {
