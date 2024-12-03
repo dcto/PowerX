@@ -11,7 +11,7 @@ type MediaResource struct {
 	powermodel.PowerUUIDModel
 
 	TenantUUID    uuid.UUID `gorm:"type:uuid;foreignKey:TenantUUID;references:UUID"`
-	CreatedUserBy uuid.UUID `gorm:"type:uuid;foreignKey:CreatedUserBy;references:UUID;not null"`
+	CreatedUserBy uuid.UUID `gorm:"type:uuid;foreignKey:CreatedUserBy;references:UUID;"`
 	CustomerId    int64     `gorm:"comment:客户Id; index" json:"customerId"`
 	Filename      string    `gorm:"comment:名称" json:"filename"`
 	Size          int64     `gorm:"comment:尺寸" json:"size"`
