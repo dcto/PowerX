@@ -34,16 +34,17 @@ JWT:
 OpenAPI:
   platforms:
     # 访问PowerX OpenAPI的restful 配置
-    brain_x:
-      access_key: "key_power_x"
-      secret_key: "123456789"
+    BrainX:
+      AccessKey: "key_power_x"
+      SecretKey: "123456789"
 
   providers:
     # 访问BrainX OpenAPI的restful 配置
-    brain_x:
-      base_url: "http://127.0.0.1:8000/openapi/v1"
-      access_key: "key_brain_x"
-      secret_key: '987654321'
+    BrainX:
+      BaseUrl: "http://127.0.0.1:8000/openapi/v1"
+      AccessKey: "key_brain_x"
+      SecretKey: '987654321'
+      ProviderName: 'powerx'
 
 Casbin:
   SelfHosted: true           # 是否使用自己的Casbin服务
