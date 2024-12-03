@@ -52,6 +52,7 @@ func (mdl *User) GetTableName(needFull bool) string {
 
 func (mdl *User) HashPassword() (err error) {
 	if mdl.Password != "" {
+		// 创建员工，前端密码是plain格式传入
 		// 先encode一下plain的密码
 		mdl.Password = securityx.EncodePassword(mdl.Password)
 		// hash编码过的密码
