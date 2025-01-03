@@ -45,7 +45,7 @@ func isZeroValue(v reflect.Value) bool {
 	return v.IsZero()
 }
 
-func MapUpdatesFromObject(obj any) {
+func MapUpdatesFromObject(obj any) map[string]interface{} {
 	updates := make(map[string]interface{})
 
 	// 获取 struct 的值和字段
@@ -62,4 +62,5 @@ func MapUpdatesFromObject(obj any) {
 			updates[fieldName] = field.Interface()
 		}
 	}
+	return updates
 }
