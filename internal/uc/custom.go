@@ -2,10 +2,11 @@ package uc
 
 import (
 	"PowerX/internal/config"
-	"fmt"
-	"github.com/golang-module/carbon/v2"
-	"gorm.io/gorm"
 	"time"
+
+	"github.com/golang-module/carbon/v2"
+	"github.com/zeromicro/go-zero/core/logx"
+	"gorm.io/gorm"
 )
 
 type CustomUseCase struct {
@@ -34,9 +35,9 @@ func (uc *CustomUseCase) CheckSystemTimeZone() {
 
 	// carbon 的timezone
 	carbonTimezone := carbon.Now().Timezone()
-	fmt.Printf("check carbon datetime: timezone- %s\n", carbonTimezone)
+	logx.Infof("check carbon datetime: timezone- %s\n", carbonTimezone)
 
 	// 输出系统默认时区
 	defaultTimezone := time.Now().Location()
-	fmt.Printf("check system datetime: timezone- %s\n", defaultTimezone.String())
+	logx.Infof("check system datetime: timezone- %s\n", defaultTimezone.String())
 }

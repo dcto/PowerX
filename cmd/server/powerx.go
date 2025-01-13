@@ -4,13 +4,16 @@ import (
 	"PowerX/internal/middleware/recovery"
 	"PowerX/internal/model"
 	"PowerX/pkg/pluginx"
-	"PowerX/pkg/zerox"
+	"PowerX/pkg/zerox/log"
+	"os"
+
 	"context"
 	"flag"
 	"fmt"
+	"path/filepath"
+
 	"github.com/zeromicro/go-zero/rest"
 	"github.com/zeromicro/go-zero/rest/httpx"
-	"path/filepath"
 
 	"PowerX/internal/config"
 	"PowerX/internal/handler"
@@ -20,6 +23,7 @@ import (
 	zgin "github.com/zeromicro/zero-contrib/router/gin"
 
 	"github.com/zeromicro/go-zero/core/conf"
+	"github.com/zeromicro/go-zero/core/logx"
 )
 
 // 定义了一个全局变量 configFile，用于指定配置文件的路径，默认为 etc/powerx.yaml。
@@ -34,6 +38,23 @@ func main() {
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 
+	// ---------- 设置日志 ----------
+	if c.Log.Loki.Enabled {
+		c.Log.Loki.Labels = map[string]string{
+			"project":      c.Server.Name,
+			"host":         c.Server.Host,
+			"env":          c.Env,
+			"region":       c.Region,
+			"version":      c.Version,
+			"filename":     c.Log.Logx.Path,
+			"job":          "WebServer",
+			"node_id":      fmt.Sprintf("node_%d", os.Getpid()),
+			"service_name": c.Log.Logx.ServiceName,
+			"level":        c.Log.Logx.Level,
+		}
+	}
+	log.MustSetupLog(&c.Log)
+
 	// 设置配置文件目录
 	c.EtcDir = filepath.Dir(*configFile)
 	model.PowerXSchema = c.PowerXDatabase.Schema
@@ -44,8 +65,8 @@ func main() {
 	r := zgin.NewRouter()
 
 	// 创建 Go-Zero REST 服务器实例
-	server := rest.MustNewServer(c.Server, rest.WithRouter(r))
-
+	// server := rest.MustNewServer(c.Server, rest.WithRouter(r))
+	var server *rest.Server
 	// 设置跨域配置
 	runOpt := config.SetupCors(&c)
 	if runOpt == nil {
@@ -55,9 +76,6 @@ func main() {
 	}
 	// 确保服务器关闭
 	defer server.Stop()
-
-	// ---------- 设置日志 ----------
-	zerox.MustSetupLog(c.Log)
 
 	// ---------- 创建插件管理器实例 ----------
 	plugin := pluginx.NewManager(context.Background(), r, fmt.Sprintf("%s:%d", "127.0.0.1", c.Server.Port))
@@ -87,6 +105,6 @@ func main() {
 	httpx.SetErrorHandlerCtx(handler.ErrorHandleCtx)
 
 	// ---------- 启动服务器 ----------
-	fmt.Printf("Starting server at %s:%d...\n", c.Server.Host, c.Server.Port)
+	logx.Infof("Starting server at %s:%d...\n", c.Server.Host, c.Server.Port)
 	server.Start()
 }
