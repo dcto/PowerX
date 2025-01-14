@@ -19,7 +19,7 @@
             "name": "powerxctl.go api-gen",
             "type": "go",
             "request": "launch",
-            "mode": "exec",
+            "mode": "auto",
             "program": "${workspaceFolder}/cmd/ctl/powerxctl.go",
             "args": [
                 "api-gen"
