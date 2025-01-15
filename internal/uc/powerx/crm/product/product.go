@@ -5,26 +5,30 @@ import (
 	model "PowerX/internal/model/crm/product"
 	"PowerX/internal/model/media"
 	"PowerX/internal/model/powermodel"
+	"PowerX/internal/repository"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
 	"PowerX/pkg/datetime/carbonx"
 	"PowerX/pkg/slicex"
+	"PowerX/pkg/zerox"
 	"context"
 	"encoding/json"
+	"time"
+
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
-	"strings"
-	"time"
 )
 
 type ProductUseCase struct {
-	db *gorm.DB
+	*repository.BaseRepository[model.Product] `inject:""`
+	db                                        *gorm.DB
 }
 
 func NewProductUseCase(db *gorm.DB) *ProductUseCase {
 	return &ProductUseCase{
-		db: db,
+		BaseRepository: repository.NewBaseRepository[model.Product](db),
+		db:             db,
 	}
 }
 
@@ -154,15 +158,18 @@ func (uc *ProductUseCase) FindManyProducts(ctx context.Context, opt *FindManyPro
 
 func (uc *ProductUseCase) CreateProduct(ctx context.Context, product *model.Product) error {
 
-	if err := uc.db.WithContext(ctx).
-		//Debug().
-		Create(&product).Error; err != nil {
-		if strings.Contains(err.Error(), "duplicate key value violates unique constraint") {
-			return errorx.WithCause(errorx.ErrDuplicatedInsert, "该对象不能重复创建")
-		}
-		panic(err)
-	}
-	return nil
+	// if err := uc.db.WithContext(ctx).
+	// 	//Debug().
+	// 	Create(&product).Error; err != nil {
+	// 	if strings.Contains(err.Error(), "duplicate key value violates unique constraint") {
+	// 		return errorx.WithCause(errorx.ErrDuplicatedInsert, "该对象不能重复创建")
+	// 	}
+	// 	panic(err)
+	// }
+	// return nil
+
+	_, err := uc.Create(ctx, product)
+	return err
 }
 
 func (uc *ProductUseCase) UpsertProduct(ctx context.Context, product *model.Product) (*model.Product, error) {
@@ -211,20 +218,9 @@ func (uc *ProductUseCase) PatchProduct(ctx context.Context, id int64, product in
 }
 
 func (uc *ProductUseCase) GetProduct(ctx context.Context, id int64) (*model.Product, error) {
-	var product = &model.Product{}
-
-	db := uc.db.WithContext(ctx)
-	db = uc.PreloadItems(db)
-	if err := db.
-		//Debug().
-		First(product, id).Error; err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			return nil, errorx.WithCause(errorx.ErrBadRequest, "未找到产品")
-		}
-		panic(err)
-	}
-
-	return product, nil
+	ctx = context.WithValue(ctx, zerox.DebugKey, true)
+	product, err := uc.GetByID(ctx, id, uc.PreloadItems)
+	return product, err
 }
 
 func (uc *ProductUseCase) DeleteProduct(ctx context.Context, id int64) error {
