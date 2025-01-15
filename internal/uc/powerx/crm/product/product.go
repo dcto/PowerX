@@ -10,7 +10,6 @@ import (
 	"PowerX/internal/types/errorx"
 	"PowerX/pkg/datetime/carbonx"
 	"PowerX/pkg/slicex"
-	"PowerX/pkg/zerox"
 	"context"
 	"encoding/json"
 	"time"
@@ -218,7 +217,7 @@ func (uc *ProductUseCase) PatchProduct(ctx context.Context, id int64, product in
 }
 
 func (uc *ProductUseCase) GetProduct(ctx context.Context, id int64) (*model.Product, error) {
-	ctx = context.WithValue(ctx, zerox.DebugKey, true)
+	// ctx = context.WithValue(ctx, zerox.DebugKey, true)
 	product, err := uc.GetByID(ctx, id, uc.PreloadItems)
 	return product, err
 }
