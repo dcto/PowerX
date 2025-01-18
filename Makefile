@@ -70,7 +70,7 @@ app-build-macos:
 # ------
 
 build-goctl-powerx-apis:
-	goctl api go -api ./api/powerx.api -dir .
+	goctl api go -api ./api/powerx.api -dir . --style=goZero
 
 
 
