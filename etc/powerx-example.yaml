@@ -1,6 +1,8 @@
 Version: v1.0.0            # 版本
+Env: develop               # 环境
+Region: global
 Server:
-  Name: PowerX后台系统        # 服务器名称
+  Name: PowerX后台系统       # 服务器名称
   Host: 0.0.0.0             # 服务器地址
   Port: 8888                # 服务器端口
   Timeout: 30000            # 超时时间
@@ -13,13 +15,29 @@ Cors:
 #    - api.powerx.cn
 
 Log:
-  Path: logs
-  Split:
-    - error
-  Level: info
-  KeepDays: 30
   Console: true
-  Stat: false
+  Logx:
+    ServiceName: powerx
+    Mode: file
+    Encoding: plain
+    TimeFormat: "2006-01-02 15:04:05"
+    Path: logs
+    Level: info
+    MaxContentLength: 10485760
+    Compress: false
+    Stat: false
+    KeepDays: 30
+    StackCooldownMillis: 100
+    MaxBackups: 0
+    MaxSize: 0
+    Rotation: daily   # `json:",default=daily,options=[daily,size]"`
+
+  Loki:
+    Enabled: true
+    URL: http://localhost:3100/loki/api/v1/push
+    Labels:
+      app: powerx
+      env: develop
 
 Root:
   Account: root             # 管理员账号
@@ -34,16 +52,17 @@ JWT:
 OpenAPI:
   platforms:
     # 访问PowerX OpenAPI的restful 配置
-    brain_x:
-      access_key: "key_power_x"
-      secret_key: "123456789"
+    BrainX:
+      AccessKey: "key_power_x"
+      SecretKey: "123456789"
 
   providers:
     # 访问BrainX OpenAPI的restful 配置
-    brain_x:
-      base_url: "http://127.0.0.1:8000/openapi/v1"
-      access_key: "key_brain_x"
-      secret_key: '987654321'
+    BrainX:
+      BaseUrl: "http://127.0.0.1:8000/openapi/v1"
+      AccessKey: "key_brain_x"
+      SecretKey: '987654321'
+      ProviderName: 'powerx'
 
 Casbin:
   SelfHosted: true           # 是否使用自己的Casbin服务

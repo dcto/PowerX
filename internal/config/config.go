@@ -1,7 +1,8 @@
 package config
 
 import (
-	"PowerX/pkg/zerox"
+	"PowerX/pkg/zerox/log"
+
 	"github.com/zeromicro/go-zero/rest"
 )
 
@@ -16,9 +17,11 @@ type Root struct {
 
 type Config struct {
 	Version string
+	Env     string
+	Region  string
 	Server  rest.RestConf
 	EtcDir  string `json:",optional"`
-	Log     zerox.LogConf
+	Log     log.LogConf
 	Cors    Cors
 	JWT     struct {
 		JWTSecret    string
