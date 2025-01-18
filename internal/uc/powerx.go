@@ -11,6 +11,7 @@ import (
 	tradeUC "PowerX/internal/uc/powerx/crm/trade"
 	"PowerX/internal/uc/powerx/scrm"
 	"PowerX/internal/uc/powerx/wechat"
+
 	"github.com/ArtisanCloud/PowerLibs/v3/cache"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel"
 	"github.com/pkg/errors"
@@ -34,6 +35,7 @@ type PowerXUseCase struct {
 	Tag      *infoorganization.TagUseCase
 	Category *infoorganization.CategoryUseCase
 
+	// CRM
 	CustomerAuthorization *customerDomainUC.AuthorizationCustomerDomainUseCase
 	Customer              *customerDomainUC.CustomerUseCase
 	Lead                  *customerDomainUC.LeadUseCase
@@ -56,13 +58,20 @@ type PowerXUseCase struct {
 	Logistics             *tradeUC.LogisticsUseCase
 	RefundOrder           *tradeUC.RefundOrderUseCase
 	Token                 *tradeUC.TokenUseCase
-	WechatMP              *wechat.WechatMiniProgramUseCase
-	WechatOA              *wechat.WechatOfficialAccountUseCase
+
+	// SCRM
+	WechatMP *wechat.WechatMiniProgramUseCase
+	WechatOA *wechat.WechatOfficialAccountUseCase
 	//WeWork                *powerx.WeWorkUseCase
 	SCRM          *scrm.SCRMUseCase
 	MediaResource *powerx.MediaResourceUseCase
-	Media         *market.MediaUseCase
-	Scene         *scrm.SceneUseCase
+
+	// Media
+	Media *market.MediaUseCase
+	Scene *scrm.SceneUseCase
+
+	// chatbot
+	Chatbot *chatbot.ChatbotUseCase
 }
 
 func NewPowerXUseCase(conf *config.Config) (uc *PowerXUseCase, clean func()) {
