@@ -2,9 +2,10 @@ package uc
 
 import (
 	"PowerX/internal/config"
+	"PowerX/internal/uc/ai"
 	"PowerX/internal/uc/powerx"
 	customerDomainUC "PowerX/internal/uc/powerx/crm/customerdomain"
-	"PowerX/internal/uc/powerx/crm/infoorganization"
+	"PowerX/internal/uc/powerx/crm/infoOrganization"
 	"PowerX/internal/uc/powerx/crm/market"
 	"PowerX/internal/uc/powerx/crm/operation"
 	productUC "PowerX/internal/uc/powerx/crm/product"
@@ -31,9 +32,9 @@ type PowerXUseCase struct {
 
 	Organization *powerx.OrganizationUseCase
 
-	Label    *infoorganization.LabelUseCase
-	Tag      *infoorganization.TagUseCase
-	Category *infoorganization.CategoryUseCase
+	Label    *infoOrganization.LabelUseCase
+	Tag      *infoOrganization.TagUseCase
+	Category *infoOrganization.CategoryUseCase
 
 	// CRM
 	CustomerAuthorization *customerDomainUC.AuthorizationCustomerDomainUseCase
@@ -70,8 +71,8 @@ type PowerXUseCase struct {
 	Media *market.MediaUseCase
 	Scene *scrm.SceneUseCase
 
-	// chatbot
-	Chatbot *chatbot.ChatbotUseCase
+	// chatBot
+	ChatBot *ai.ChatBotUseCase
 }
 
 func NewPowerXUseCase(conf *config.Config) (uc *PowerXUseCase, clean func()) {
@@ -123,9 +124,9 @@ func NewPowerXUseCase(conf *config.Config) (uc *PowerXUseCase, clean func()) {
 	uc.AdminAuthorization = powerx.NewAdminPermsUseCase(conf, db, uc.Organization)
 
 	// 加载信息组织UseCase
-	uc.Label = infoorganization.NewLabelUseCase(db)
-	uc.Tag = infoorganization.NewTagUseCase(db)
-	uc.Category = infoorganization.NewCategoryUseCase(db)
+	uc.Label = infoOrganization.NewLabelUseCase(db)
+	uc.Tag = infoOrganization.NewTagUseCase(db)
+	uc.Category = infoOrganization.NewCategoryUseCase(db)
 
 	// 加载客域UseCase
 	uc.CustomerAuthorization = customerDomainUC.NewAuthorizationCustomerDomainUseCase(db)
@@ -176,6 +177,9 @@ func NewPowerXUseCase(conf *config.Config) (uc *PowerXUseCase, clean func()) {
 
 	// 加载Scene
 	uc.Scene = scrm.NewSceneUseCase(db, uc.redis)
+
+	// 加载Chatbot UseCase
+	uc.ChatBot = ai.NewChatBotUseCase(conf, db)
 
 	return uc, func() {
 		_ = sqlDB.Close()

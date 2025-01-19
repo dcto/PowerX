@@ -53,6 +53,7 @@ func GenAPICsv(files []*os.File) {
 		}
 
 		if !re.MatchString(string(apiText)) {
+			log.Printf("api text %s", string(apiText))
 			log.Printf("文件 %s 不是一个有效的 .api 文件, 跳过", file.Name())
 			continue
 		}

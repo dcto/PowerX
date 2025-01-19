@@ -1,7 +1,7 @@
 package media
 
 import (
-	"PowerX/internal/logic/admin/mediaresource"
+	"PowerX/internal/logic/admin/mediaResource"
 	"PowerX/internal/model/crm/market"
 	"PowerX/internal/model/media"
 	"context"
@@ -43,8 +43,8 @@ func TransformMediaToReply(mdlMedia *market.Media) (mediaReply *types.Media) {
 		Description:    mdlMedia.Description,
 		MediaType:      mdlMedia.MediaType,
 		ViewedCount:    mdlMedia.ViewedCount,
-		CoverImage:     mediaresource.TransformMediaResourceToReply(mdlMedia.CoverImage),
+		CoverImage:     mediaResource.TransformMediaResourceToReply(mdlMedia.CoverImage),
 		DetailImageIds: arrayDetailImageIds,
-		DetailImages:   mediaresource.TransformMediaResourcesToReply(mdlMedia.PivotDetailImages),
+		DetailImages:   mediaResource.TransformMediaResourcesToReply(mdlMedia.PivotDetailImages),
 	}
 }

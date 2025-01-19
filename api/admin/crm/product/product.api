@@ -8,7 +8,6 @@ info(
     version: "v1"
 )
 
-import "../../mediaresource.api"
 import "./productcategory.api"
 import "./productspecific.api"
 import "./sku.api"

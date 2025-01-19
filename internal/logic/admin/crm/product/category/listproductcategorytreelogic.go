@@ -1,7 +1,7 @@
 package category
 
 import (
-	"PowerX/internal/logic/admin/mediaresource"
+	"PowerX/internal/logic/admin/mediaResource"
 	"PowerX/internal/model/crm/product"
 	product2 "PowerX/internal/uc/powerx/crm/product"
 	"context"
@@ -76,7 +76,7 @@ func TransformProductCategoryToReply(category *product.ProductCategory) *types.P
 		Description:  category.Description,
 		CreatedAt:    category.CreatedAt.String(),
 		CoverImageId: category.CoverImageId,
-		CoverImage:   mediaresource.TransformMediaResourceToReply(category.CoverImage),
+		CoverImage:   mediaResource.TransformMediaResourceToReply(category.CoverImage),
 		ImageAbleInfo: types.ImageAbleInfo{
 			Icon:            category.Icon,
 			BackgroundColor: category.BackgroundColor,

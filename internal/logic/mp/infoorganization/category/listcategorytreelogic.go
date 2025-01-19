@@ -1,9 +1,9 @@
 package category
 
 import (
-	"PowerX/internal/logic/admin/infoorganization/category"
-	infoorganizatoin "PowerX/internal/model/infoorganization"
-	"PowerX/internal/uc/powerx/crm/infoorganization"
+	"PowerX/internal/logic/admin/infoOrganization/category"
+	infoorganizatoin "PowerX/internal/model/infoOrganization"
+	"PowerX/internal/uc/powerx/crm/infoOrganization"
 	"context"
 
 	"PowerX/internal/svc"
@@ -27,7 +27,7 @@ func NewListCategoryTreeLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 }
 
 func (l *ListCategoryTreeLogic) ListCategoryTree(req *types.ListCategoryTreeRequest) (resp *types.ListCategoryTreeReply, err error) {
-	option := infoorganization.FindCategoryOption{
+	option := infoOrganization.FindCategoryOption{
 		Names:   req.Names,
 		OrderBy: req.OrderBy,
 	}

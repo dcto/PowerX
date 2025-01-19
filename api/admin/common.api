@@ -108,3 +108,11 @@ type (
 )
 
 
+type(
+    ImageAbleInfo {
+        Icon string `json:"icon"`
+        BackgroundColor string `json:"backgroundColor"`
+
+    }
+)
+

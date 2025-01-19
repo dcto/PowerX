@@ -45,11 +45,6 @@ service PowerX {
 }
 
 type (
-    ImageAbleInfo {
-        Icon string `json:"icon"`
-        BackgroundColor string `json:"backgroundColor"`
-
-    }
 
 //    CategoryImage {
 //        Id int64 `json:"id,optional"`

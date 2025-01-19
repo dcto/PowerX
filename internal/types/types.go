@@ -317,6 +317,14 @@ type Category struct {
 	Children     []*Category    `json:"children,optional"`
 }
 
+type ChatRequest struct {
+	Llm              string    `json:"llm,optional"`
+	ConversationUUID string    `json:"conversationUUID,optional"`
+	AppUUID          string    `json:"appUUID,optional"`
+	Messages         []Message `json:"messages,optional"`
+	Images           []string  `json:"images,optional"`
+}
+
 type ClearCartItemsReply struct {
 	Message string `json:"message"`
 }
@@ -2381,6 +2389,13 @@ type Membership struct {
 type MenuRoles struct {
 	MenuName       string   `json:"menuName"`
 	AllowRoleCodes []string `json:"allowRoleCodes"`
+}
+
+type Message struct {
+	ReplyToMessageUuid string `json:"reply_to_message_uuid,optional"`
+	Content            string `json:"content,optional"`
+	Role               string `json:"role,optional"`
+	Type               string `json:"type,optional"`
 }
 
 type ModifyPasswordReqeust struct {

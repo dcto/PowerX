@@ -1,7 +1,7 @@
 package artisan
 
 import (
-	"PowerX/internal/logic/admin/mediaresource"
+	"PowerX/internal/logic/admin/mediaResource"
 	"PowerX/internal/model/crm/product"
 	"PowerX/internal/model/media"
 	product3 "PowerX/internal/uc/powerx/crm/product"
@@ -78,9 +78,9 @@ func TransformArtisanToReply(artisan *product.Artisan) *types.Artisan {
 		Address:        artisan.Address,
 		CreatedAt:      artisan.CreatedAt.String(),
 		CoverImageId:   artisan.CoverImageId,
-		CoverImage:     mediaresource.TransformMediaResourceToReply(artisan.CoverImage),
+		CoverImage:     mediaResource.TransformMediaResourceToReply(artisan.CoverImage),
 		DetailImageIds: arrayDetailImageIds,
-		DetailImages:   mediaresource.TransformMediaResourcesToReply(artisan.PivotDetailImages),
+		DetailImages:   mediaResource.TransformMediaResourcesToReply(artisan.PivotDetailImages),
 		StoreIds:       product.GetStoreIds(artisan.PivotStoreToArtisans),
 	}
 }

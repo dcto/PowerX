@@ -1,13 +1,14 @@
-package infoorganization
+package infoOrganization
 
 import (
-	infoorganizatoin "PowerX/internal/model/infoorganization"
+	infoOrganization2 "PowerX/internal/model/infoOrganization"
 	"PowerX/internal/model/powermodel"
 	"PowerX/internal/types/errorx"
 	"context"
+	"strings"
+
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
-	"strings"
 )
 
 type CategoryUseCase struct {
@@ -55,14 +56,14 @@ func (uc *CategoryUseCase) PreloadItems(db *gorm.DB) *gorm.DB {
 	return db
 }
 
-func (uc *CategoryUseCase) ListCategoryTree(ctx context.Context, opt *FindCategoryOption, pId int64) []*infoorganizatoin.Category {
+func (uc *CategoryUseCase) ListCategoryTree(ctx context.Context, opt *FindCategoryOption, pId int64) []*infoOrganization2.Category {
 	if pId < 0 {
 		panic(errors.New("find categories pId invalid"))
 	}
 
-	var categories []*infoorganizatoin.Category
+	var categories []*infoOrganization2.Category
 
-	query := uc.db.WithContext(ctx).Model(&infoorganizatoin.Category{})
+	query := uc.db.WithContext(ctx).Model(&infoOrganization2.Category{})
 	query = uc.buildFindQueryNoPage(query, opt)
 
 	query = uc.PreloadItems(query)
@@ -74,7 +75,7 @@ func (uc *CategoryUseCase) ListCategoryTree(ctx context.Context, opt *FindCatego
 	if err != nil {
 		panic(errors.Wrap(err, "find all categories failed"))
 	}
-	var children []*infoorganizatoin.Category
+	var children []*infoOrganization2.Category
 	for i, category := range categories {
 
 		children = uc.ListCategoryTree(ctx, opt, category.Id)
@@ -86,13 +87,13 @@ func (uc *CategoryUseCase) ListCategoryTree(ctx context.Context, opt *FindCatego
 	return categories
 }
 
-func (uc *CategoryUseCase) FindCategoriesByParentId(ctx context.Context, opt *FindCategoryOption) []*infoorganizatoin.Category {
+func (uc *CategoryUseCase) FindCategoriesByParentId(ctx context.Context, opt *FindCategoryOption) []*infoOrganization2.Category {
 	if opt.CategoryPId < 0 {
 		panic(errors.New("find categories pId invalid"))
 	}
 
-	var categories []*infoorganizatoin.Category
-	query := uc.db.WithContext(ctx).Model(&infoorganizatoin.Category{})
+	var categories []*infoOrganization2.Category
+	query := uc.db.WithContext(ctx).Model(&infoOrganization2.Category{})
 
 	query = uc.buildFindQueryNoPage(query, opt)
 
@@ -105,10 +106,10 @@ func (uc *CategoryUseCase) FindCategoriesByParentId(ctx context.Context, opt *Fi
 	return categories
 }
 
-func (uc *CategoryUseCase) FindAllCategories(ctx context.Context, opt *FindCategoryOption) []*infoorganizatoin.Category {
+func (uc *CategoryUseCase) FindAllCategories(ctx context.Context, opt *FindCategoryOption) []*infoOrganization2.Category {
 
-	var categories []*infoorganizatoin.Category
-	query := uc.db.WithContext(ctx).Model(&infoorganizatoin.Category{})
+	var categories []*infoOrganization2.Category
+	query := uc.db.WithContext(ctx).Model(&infoOrganization2.Category{})
 
 	query = uc.buildFindQueryNoPage(query, opt)
 
@@ -120,9 +121,9 @@ func (uc *CategoryUseCase) FindAllCategories(ctx context.Context, opt *FindCateg
 	return categories
 }
 
-func (uc *CategoryUseCase) FindOneCategory(ctx context.Context, opt *FindCategoryOption) (*infoorganizatoin.Category, error) {
-	var mpCustomer *infoorganizatoin.Category
-	query := uc.db.WithContext(ctx).Model(&infoorganizatoin.Category{})
+func (uc *CategoryUseCase) FindOneCategory(ctx context.Context, opt *FindCategoryOption) (*infoOrganization2.Category, error) {
+	var mpCustomer *infoOrganization2.Category
+	query := uc.db.WithContext(ctx).Model(&infoOrganization2.Category{})
 
 	query = uc.buildFindQueryNoPage(query, opt)
 	if err := query.First(&mpCustomer).Error; err != nil {
@@ -131,7 +132,7 @@ func (uc *CategoryUseCase) FindOneCategory(ctx context.Context, opt *FindCategor
 	return mpCustomer, nil
 }
 
-func (uc *CategoryUseCase) CreateCategory(ctx context.Context, category *infoorganizatoin.Category) error {
+func (uc *CategoryUseCase) CreateCategory(ctx context.Context, category *infoOrganization2.Category) error {
 	if err := uc.db.WithContext(ctx).Create(&category).Error; err != nil {
 		if strings.Contains(err.Error(), "duplicate key value violates unique constraint") {
 			return errorx.WithCause(errorx.ErrDuplicatedInsert, "该对象不能重复创建")
@@ -141,11 +142,11 @@ func (uc *CategoryUseCase) CreateCategory(ctx context.Context, category *infoorg
 	return nil
 }
 
-func (uc *CategoryUseCase) UpsertCategory(ctx context.Context, category *infoorganizatoin.Category) (*infoorganizatoin.Category, error) {
+func (uc *CategoryUseCase) UpsertCategory(ctx context.Context, category *infoOrganization2.Category) (*infoOrganization2.Category, error) {
 
 	// 查询父节点
 	if category.PId > 0 {
-		var pCategory *infoorganizatoin.Category
+		var pCategory *infoOrganization2.Category
 		err := uc.db.WithContext(ctx).
 			Where(category.PId).First(&pCategory).Error
 		if err != nil {
@@ -158,7 +159,7 @@ func (uc *CategoryUseCase) UpsertCategory(ctx context.Context, category *infoorg
 		panic(errors.New("query parent product category in invalid"))
 	}
 
-	categories := []*infoorganizatoin.Category{category}
+	categories := []*infoOrganization2.Category{category}
 
 	_, err := uc.UpsertCategories(ctx, categories)
 	if err != nil {
@@ -168,9 +169,9 @@ func (uc *CategoryUseCase) UpsertCategory(ctx context.Context, category *infoorg
 	return category, err
 }
 
-func (uc *CategoryUseCase) UpsertCategories(ctx context.Context, categories []*infoorganizatoin.Category) ([]*infoorganizatoin.Category, error) {
+func (uc *CategoryUseCase) UpsertCategories(ctx context.Context, categories []*infoOrganization2.Category) ([]*infoOrganization2.Category, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &infoorganizatoin.Category{}, infoorganizatoin.CategoryUniqueId, categories, nil, false)
+	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &infoOrganization2.Category{}, infoOrganization2.CategoryUniqueId, categories, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert product categories failed"))
@@ -179,14 +180,14 @@ func (uc *CategoryUseCase) UpsertCategories(ctx context.Context, categories []*i
 	return categories, err
 }
 
-func (uc *CategoryUseCase) PatchCategory(ctx context.Context, id int64, category *infoorganizatoin.Category) {
-	if err := uc.db.WithContext(ctx).Model(&infoorganizatoin.Category{}).Where(id).Updates(category).Error; err != nil {
+func (uc *CategoryUseCase) PatchCategory(ctx context.Context, id int64, category *infoOrganization2.Category) {
+	if err := uc.db.WithContext(ctx).Model(&infoOrganization2.Category{}).Where(id).Updates(category).Error; err != nil {
 		panic(err)
 	}
 }
 
-func (uc *CategoryUseCase) GetCategory(ctx context.Context, id int64) (*infoorganizatoin.Category, error) {
-	var category infoorganizatoin.Category
+func (uc *CategoryUseCase) GetCategory(ctx context.Context, id int64) (*infoOrganization2.Category, error) {
+	var category infoOrganization2.Category
 	db := uc.db.WithContext(ctx)
 	db = uc.PreloadItems(db)
 	if err := db.
@@ -204,7 +205,7 @@ func (uc *CategoryUseCase) GetCategory(ctx context.Context, id int64) (*infoorga
 }
 
 func (uc *CategoryUseCase) DeleteCategory(ctx context.Context, id int64) error {
-	result := uc.db.WithContext(ctx).Delete(&infoorganizatoin.Category{}, id)
+	result := uc.db.WithContext(ctx).Delete(&infoOrganization2.Category{}, id)
 	if err := result.Error; err != nil {
 		panic(err)
 	}
@@ -214,12 +215,12 @@ func (uc *CategoryUseCase) DeleteCategory(ctx context.Context, id int64) error {
 	return nil
 }
 
-func (uc *CategoryUseCase) UpsertCategoriesToObjectByObject(ctx context.Context, obj powermodel.ModelInterface, categories []*infoorganizatoin.Category) error {
+func (uc *CategoryUseCase) UpsertCategoriesToObjectByObject(ctx context.Context, obj powermodel.ModelInterface, categories []*infoOrganization2.Category) error {
 
 	err := uc.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
 
 		// 创建Pivot
-		pivotCategoryToObjects, err := (&infoorganizatoin.PivotCategoryToObject{}).MakeMorphPivotsFromObjectToCategories(obj, categories)
+		pivotCategoryToObjects, err := (&infoOrganization2.PivotCategoryToObject{}).MakeMorphPivotsFromObjectToCategories(obj, categories)
 		if err != nil {
 			return err
 		}
@@ -227,7 +228,7 @@ func (uc *CategoryUseCase) UpsertCategoriesToObjectByObject(ctx context.Context,
 		// 清除之前的Pivot
 		err = tx.
 			//Debug().
-			Delete(&infoorganizatoin.PivotCategoryToObject{}, "object_type = ? and object_id = ?", obj.GetTableName(false), obj.GetForeignReferValue()).Error
+			Delete(&infoOrganization2.PivotCategoryToObject{}, "object_type = ? and object_id = ?", obj.GetTableName(false), obj.GetForeignReferValue()).Error
 		if err != nil {
 			return err
 		}

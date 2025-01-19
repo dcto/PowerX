@@ -10,7 +10,7 @@ info(
 
 
 @server(
-    group: admin/infoorganization/category
+    group: admin/infoOrganization/category
     prefix: /api/v1/admin/info-organization
     middleware: UserJWTAuth
 )

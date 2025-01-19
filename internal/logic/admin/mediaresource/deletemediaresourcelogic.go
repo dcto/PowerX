@@ -1,4 +1,4 @@
-package mediaresource
+package mediaResource
 
 import (
 	"context"

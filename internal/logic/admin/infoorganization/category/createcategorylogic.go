@@ -2,7 +2,7 @@ package category
 
 import (
 	"PowerX/internal/model"
-	infoorganizatoin "PowerX/internal/model/infoorganization"
+	infoorganizatoin "PowerX/internal/model/infoOrganization"
 	"context"
 
 	"PowerX/internal/svc"

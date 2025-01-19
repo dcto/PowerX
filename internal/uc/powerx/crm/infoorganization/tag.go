@@ -1,13 +1,14 @@
-package infoorganization
+package infoOrganization
 
 import (
-	infoorganizatoin "PowerX/internal/model/infoorganization"
+	infoorganizatoin "PowerX/internal/model/infoOrganization"
 	"PowerX/internal/model/powermodel"
 	"PowerX/internal/types/errorx"
 	"context"
+	"strings"
+
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
-	"strings"
 )
 
 type TagUseCase struct {

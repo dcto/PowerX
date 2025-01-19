@@ -9,7 +9,7 @@ info(
 )
 
 @server(
-    group: mp/infoorganization/category
+    group: mp/infoOrganization/category
     prefix: /api/v1/mp/info-organization
 )
 

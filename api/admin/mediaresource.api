@@ -9,7 +9,7 @@ info(
 )
 
 @server(
-    group: admin/mediaresource
+    group: admin/mediaResource
     prefix: /api/v1/admin/media
     middleware: UserJWTAuth
 )

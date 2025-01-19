@@ -1,8 +1,8 @@
 package category
 
 import (
-	"PowerX/internal/logic/admin/mediaresource"
-	infoorganizatoin "PowerX/internal/model/infoorganization"
+	"PowerX/internal/logic/admin/mediaResource"
+	infoorganizatoin "PowerX/internal/model/infoOrganization"
 	"context"
 
 	"PowerX/internal/svc"
@@ -51,7 +51,7 @@ func TransformCategoryToReplyForWeb(category *infoorganizatoin.Category) *types.
 		ViceName:    category.ViceName,
 		Description: category.Description,
 		CreatedAt:   category.CreatedAt.String(),
-		CoverImage:  mediaresource.TransformMediaResourceToReply(category.CoverImage),
+		CoverImage:  mediaResource.TransformMediaResourceToReply(category.CoverImage),
 		ImageAbleInfo: types.ImageAbleInfo{
 			Icon:            category.Icon,
 			BackgroundColor: category.BackgroundColor,

@@ -10,7 +10,7 @@ import (
 	"PowerX/internal/model/crm/operation"
 	"PowerX/internal/model/crm/product"
 	"PowerX/internal/model/crm/trade"
-	infoorganizatoin "PowerX/internal/model/infoorganization"
+	infoOrganization2 "PowerX/internal/model/infoOrganization"
 	"PowerX/internal/model/media"
 	"PowerX/internal/model/organization"
 	"PowerX/internal/model/permission"
@@ -80,8 +80,8 @@ func (m *PowerMigrator) AutoMigrate() {
 	_ = m.db.AutoMigrate(&permission.UserCasbinPolicy{}, permission.AdminRole{}, permission.AdminRoleMenuName{}, permission.AdminAPI{})
 
 	// info organization
-	_ = m.db.AutoMigrate(&infoorganizatoin.Category{}, &infoorganizatoin.Label{}, &infoorganizatoin.Tag{})
-	_ = m.db.AutoMigrate(&infoorganizatoin.PivotCategoryToObject{})
+	_ = m.db.AutoMigrate(&infoOrganization2.Category{}, &infoOrganization2.Label{}, &infoOrganization2.Tag{})
+	_ = m.db.AutoMigrate(&infoOrganization2.PivotCategoryToObject{})
 
 	// customer domain
 	_ = m.db.AutoMigrate(

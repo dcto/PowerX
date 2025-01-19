@@ -1,7 +1,7 @@
 package store
 
 import (
-	"PowerX/internal/logic/admin/mediaresource"
+	"PowerX/internal/logic/admin/mediaResource"
 	product2 "PowerX/internal/model/crm/market"
 	"PowerX/internal/model/media"
 	"PowerX/internal/uc/powerx/crm/market"
@@ -75,9 +75,9 @@ func TransformStoreToReply(store *product2.Store) *types.Store {
 		EndWork:        store.EndWork.String(),
 		CreatedAt:      store.CreatedAt.String(),
 		CoverImageId:   store.CoverImageId,
-		CoverImage:     mediaresource.TransformMediaResourceToReply(store.CoverImage),
+		CoverImage:     mediaResource.TransformMediaResourceToReply(store.CoverImage),
 		DetailImageIds: arrayDetailImageIds,
-		DetailImages:   mediaresource.TransformMediaResourcesToReply(store.PivotDetailImages),
+		DetailImages:   mediaResource.TransformMediaResourcesToReply(store.PivotDetailImages),
 		Artisans:       TransformArtisansToShopArtisans(store.Artisans),
 	}
 }

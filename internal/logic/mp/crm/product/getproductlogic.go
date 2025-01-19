@@ -2,7 +2,7 @@ package product
 
 import (
 	"PowerX/internal/logic/admin/crm/product/pricebookentry"
-	"PowerX/internal/logic/mp/mediaresource"
+	"PowerX/internal/logic/mp/mediaResource"
 	"PowerX/internal/model"
 	"PowerX/internal/model/crm/product"
 	"PowerX/internal/model/media"
@@ -10,6 +10,7 @@ import (
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
 	"context"
+
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -94,8 +95,8 @@ func TransformProductToReplyForMP(mdlProduct *product.Product) (productReply *ty
 		},
 		//CoverImageIds:          getImageIds(mdlProduct.PivotCoverImages),
 		//DetailImageIds:         getImageIds(mdlProduct.PivotDetailImages),
-		CoverImages:  mediaresource.TransformResourceMediasToReplyForMP(mdlProduct.PivotCoverImages),
-		DetailImages: mediaresource.TransformResourceMediasToReplyForMP(mdlProduct.PivotDetailImages),
+		CoverImages:  mediaResource.TransformResourceMediasToReplyForMP(mdlProduct.PivotCoverImages),
+		DetailImages: mediaResource.TransformResourceMediasToReplyForMP(mdlProduct.PivotDetailImages),
 	}
 
 }

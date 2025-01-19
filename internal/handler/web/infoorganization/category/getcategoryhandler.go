@@ -3,9 +3,10 @@ package category
 import (
 	"net/http"
 
-	"PowerX/internal/logic/web/infoorganization/category"
+	"PowerX/internal/logic/web/infoOrganization/category"
 	"PowerX/internal/svc"
 	"PowerX/internal/types"
+
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 

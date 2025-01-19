@@ -1,4 +1,4 @@
-package mediaresource
+package mediaResource
 
 import (
 	"PowerX/internal/model/media"

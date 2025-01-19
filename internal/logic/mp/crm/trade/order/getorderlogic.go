@@ -1,7 +1,7 @@
 package order
 
 import (
-	"PowerX/internal/logic/admin/mediaresource"
+	"PowerX/internal/logic/admin/mediaResource"
 	"PowerX/internal/model/crm/trade"
 	"PowerX/internal/types/errorx"
 	"context"
@@ -88,7 +88,7 @@ func TransformOrderItemToReplyForMP(orderItem *trade.OrderItem) (orderItemReply 
 		Quantity:         orderItem.Quantity,
 		UnitPrice:        orderItem.UnitPrice,
 		ListPrice:        orderItem.ListPrice,
-		CoverImage:       mediaresource.TransformMediaResourceToReply(orderItem.CoverImage),
+		CoverImage:       mediaResource.TransformMediaResourceToReply(orderItem.CoverImage),
 		ProductName:      orderItem.ProductName,
 		SkuNo:            orderItem.SkuNo,
 	}

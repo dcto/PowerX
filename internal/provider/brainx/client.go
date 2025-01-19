@@ -186,3 +186,89 @@ func (sp *BrainXProviderClient) HTTPPost(ctx context.Context, uri string, jsonDa
 
 	return sp.doRequest(ctx, req, useAuth)
 }
+
+// 从 BrainX 获取 SSE 数据流并将其转发到前端
+// 通用的 POST 请求流式传输方法
+func (sp *BrainXProviderClient) StreamPOST(ctx context.Context, uri string, jsonData interface{}, w http.ResponseWriter, headers map[string]string) error {
+	// 获取访问令牌
+	token, err := sp.GetAccessToken(ctx)
+	if err != nil {
+		return fmt.Errorf("failed to get access token: %v", err)
+	}
+
+	// 将 jsonData 转换为 JSON 格式的字节流
+	body, err := json.Marshal(jsonData)
+	if err != nil {
+		return fmt.Errorf("failed to marshal JSON data: %v", err)
+	}
+
+	// 创建请求
+	url := sp.BaseURL + uri
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(body))
+	if err != nil {
+		return fmt.Errorf("failed to create request: %v", err)
+	}
+	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", token))
+	req.Header.Set("Content-Type", "application/json")
+
+	// 添加自定义头部
+	for key, value := range headers {
+		req.Header.Set(key, value)
+	}
+
+	// 发送请求
+	resp, err := sp.httpClient.Do(req)
+	if err != nil {
+		return fmt.Errorf("failed to send request: %v", err)
+	}
+	defer resp.Body.Close()
+
+	// 检查响应状态码
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("failed to fetch SSE stream, status code: %d", resp.StatusCode)
+	}
+
+	// 设置响应头为 SSE
+	w.Header().Set("Content-Type", "text/event-stream")
+	w.Header().Set("Cache-Control", "no-cache")
+	w.Header().Set("Connection", "keep-alive")
+
+	// 使用不超时的连接
+	flusher, ok := w.(http.Flusher)
+	if !ok {
+		return errors.New("failed to cast response writer to http.Flusher")
+	}
+
+	// 逐字流式处理响应数据并即时推送到客户端
+	buf := make([]byte, 1024)
+	for {
+		select {
+		case <-ctx.Done():
+			return errors.New("request timed out")
+		default:
+			n, err := resp.Body.Read(buf)
+			if err != nil && err != io.EOF {
+				return fmt.Errorf("failed to read response body: %v", err)
+			}
+			if n == 0 {
+				break
+			}
+
+			// 每次读取到数据立即发送到客户端
+			_, err = w.Write(buf[:n])
+			if err != nil {
+				return fmt.Errorf("failed to write to response: %v", err)
+			}
+
+			// 刷新输出缓冲区，确保数据立即推送
+			flusher.Flush()
+
+			// 如果已经读取完所有数据，则结束
+			if err == io.EOF {
+				break
+			}
+		}
+	}
+
+	return nil
+}

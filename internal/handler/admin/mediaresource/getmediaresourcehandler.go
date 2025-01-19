@@ -1,11 +1,12 @@
-package mediaresource
+package mediaResource
 
 import (
 	"net/http"
 
-	"PowerX/internal/logic/admin/mediaresource"
+	"PowerX/internal/logic/admin/mediaResource"
 	"PowerX/internal/svc"
 	"PowerX/internal/types"
+
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 
@@ -17,7 +18,7 @@ func GetMediaResourceHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		l := mediaresource.NewGetMediaResourceLogic(r.Context(), svcCtx)
+		l := mediaResource.NewGetMediaResourceLogic(r.Context(), svcCtx)
 		resp, err := l.GetMediaResource(&req)
 		if err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)

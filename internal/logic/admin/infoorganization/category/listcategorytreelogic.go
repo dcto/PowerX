@@ -1,12 +1,13 @@
 package category
 
 import (
-	"PowerX/internal/logic/admin/mediaresource"
-	infoorganizatoin "PowerX/internal/model/infoorganization"
+	"PowerX/internal/logic/admin/mediaResource"
+	infoorganizatoin "PowerX/internal/model/infoOrganization"
 	"PowerX/internal/svc"
 	"PowerX/internal/types"
-	"PowerX/internal/uc/powerx/crm/infoorganization"
+	"PowerX/internal/uc/powerx/crm/infoOrganization"
 	"context"
+
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -25,7 +26,7 @@ func NewListCategoryTreeLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 }
 
 func (l *ListCategoryTreeLogic) ListCategoryTree(req *types.ListCategoryTreeRequest) (resp *types.ListCategoryTreeReply, err error) {
-	option := infoorganization.FindCategoryOption{
+	option := infoOrganization.FindCategoryOption{
 		Names:   req.Names,
 		OrderBy: req.OrderBy,
 	}
@@ -74,7 +75,7 @@ func TransformCategoryToReply(category *infoorganizatoin.Category) *types.Catego
 		Description:  category.Description,
 		CreatedAt:    category.CreatedAt.String(),
 		CoverImageId: category.CoverImageId,
-		CoverImage:   mediaresource.TransformMediaResourceToReply(category.CoverImage),
+		CoverImage:   mediaResource.TransformMediaResourceToReply(category.CoverImage),
 		ImageAbleInfo: types.ImageAbleInfo{
 			Icon:            category.Icon,
 			BackgroundColor: category.BackgroundColor,

@@ -1,18 +1,19 @@
 package media
 
 import (
-	"PowerX/internal/logic/admin/mediaresource"
+	"PowerX/internal/logic/admin/mediaResource"
 	"PowerX/internal/svc"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
 	"PowerX/pkg/filex"
 	"context"
-	"github.com/ArtisanCloud/PowerLibs/v3/object"
-	"github.com/ArtisanCloud/PowerWeChat/v3/src/officialAccount/material/response"
-	"github.com/zeromicro/go-zero/core/logx"
 	"io"
 	"net/http"
 	"os"
+
+	"github.com/ArtisanCloud/PowerLibs/v3/object"
+	"github.com/ArtisanCloud/PowerWeChat/v3/src/officialAccount/material/response"
+	"github.com/zeromicro/go-zero/core/logx"
 )
 
 type UploadOAMediaLogic struct {
@@ -32,7 +33,7 @@ func NewUploadOAMediaLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Upl
 func (l *UploadOAMediaLogic) UploadOAMedia(r *http.Request) (resp *types.CreateOAMediaReply, err error) {
 
 	// 解析表单数据
-	err = r.ParseMultipartForm(mediaresource.MaxFileSize)
+	err = r.ParseMultipartForm(mediaResource.MaxFileSize)
 	if err != nil {
 		return nil, errorx.WithCause(errorx.ErrBadRequest, err.Error())
 	}
