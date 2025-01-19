@@ -2,7 +2,7 @@ package category
 
 import (
 	"PowerX/internal/model"
-	infoorganizatoin "PowerX/internal/model/infoOrganization"
+	"PowerX/internal/model/infoOrganization"
 	"context"
 
 	"PowerX/internal/svc"
@@ -38,8 +38,8 @@ func (l *CreateCategoryLogic) CreateCategory(req *types.CreateCategoryRequest) (
 	}, nil
 }
 
-func TransformRequestToCategory(req *types.Category) *infoorganizatoin.Category {
-	return &infoorganizatoin.Category{
+func TransformRequestToCategory(req *types.Category) *infoOrganizatoin.Category {
+	return &infoOrganizatoin.Category{
 		PId:          req.PId,
 		Name:         req.Name,
 		Sort:         req.Sort,

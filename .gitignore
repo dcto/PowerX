@@ -14,7 +14,7 @@ etc/powerx-*
 etc/powerx.yaml
 .deploy/*
 .build
-powerx.go
+./powerx.go
 powerxctl
 powerx
 /data/*

@@ -1,7 +1,7 @@
 package infoOrganization
 
 import (
-	infoorganizatoin "PowerX/internal/model/infoOrganization"
+	"PowerX/internal/model/infoOrganization"
 	"PowerX/internal/model/powermodel"
 	"PowerX/internal/types/errorx"
 	"context"
@@ -56,14 +56,14 @@ func (uc *TagUseCase) PreloadItems(db *gorm.DB) *gorm.DB {
 	return db
 }
 
-func (uc *TagUseCase) ListTagTree(ctx context.Context, opt *FindTagOption, pId int64) []*infoorganizatoin.Tag {
+func (uc *TagUseCase) ListTagTree(ctx context.Context, opt *FindTagOption, pId int64) []*infoOrganizatoin.Tag {
 	if pId < 0 {
 		panic(errors.New("find tags pId invalid"))
 	}
 
-	var tags []*infoorganizatoin.Tag
+	var tags []*infoOrganizatoin.Tag
 
-	query := uc.db.WithContext(ctx).Model(&infoorganizatoin.Tag{})
+	query := uc.db.WithContext(ctx).Model(&infoOrganizatoin.Tag{})
 	query = uc.buildFindQueryNoPage(query, opt)
 
 	query = uc.PreloadItems(query)
@@ -75,7 +75,7 @@ func (uc *TagUseCase) ListTagTree(ctx context.Context, opt *FindTagOption, pId i
 	if err != nil {
 		panic(errors.Wrap(err, "find all tags failed"))
 	}
-	var children []*infoorganizatoin.Tag
+	var children []*infoOrganizatoin.Tag
 	for i, tag := range tags {
 
 		children = uc.ListTagTree(ctx, opt, tag.Id)
@@ -87,13 +87,13 @@ func (uc *TagUseCase) ListTagTree(ctx context.Context, opt *FindTagOption, pId i
 	return tags
 }
 
-func (uc *TagUseCase) FindTagsByParentId(ctx context.Context, opt *FindTagOption) []*infoorganizatoin.Tag {
+func (uc *TagUseCase) FindTagsByParentId(ctx context.Context, opt *FindTagOption) []*infoOrganizatoin.Tag {
 	if opt.TagPId < 0 {
 		panic(errors.New("find tags pId invalid"))
 	}
 
-	var tags []*infoorganizatoin.Tag
-	query := uc.db.WithContext(ctx).Model(&infoorganizatoin.Tag{})
+	var tags []*infoOrganizatoin.Tag
+	query := uc.db.WithContext(ctx).Model(&infoOrganizatoin.Tag{})
 
 	query = uc.buildFindQueryNoPage(query, opt)
 
@@ -106,10 +106,10 @@ func (uc *TagUseCase) FindTagsByParentId(ctx context.Context, opt *FindTagOption
 	return tags
 }
 
-func (uc *TagUseCase) FindAllTags(ctx context.Context, opt *FindTagOption) []*infoorganizatoin.Tag {
+func (uc *TagUseCase) FindAllTags(ctx context.Context, opt *FindTagOption) []*infoOrganizatoin.Tag {
 
-	var tags []*infoorganizatoin.Tag
-	query := uc.db.WithContext(ctx).Model(&infoorganizatoin.Tag{})
+	var tags []*infoOrganizatoin.Tag
+	query := uc.db.WithContext(ctx).Model(&infoOrganizatoin.Tag{})
 
 	query = uc.buildFindQueryNoPage(query, opt)
 
@@ -120,9 +120,9 @@ func (uc *TagUseCase) FindAllTags(ctx context.Context, opt *FindTagOption) []*in
 	return tags
 }
 
-func (uc *TagUseCase) FindOneTag(ctx context.Context, opt *FindTagOption) (*infoorganizatoin.Tag, error) {
-	var mpCustomer *infoorganizatoin.Tag
-	query := uc.db.WithContext(ctx).Model(&infoorganizatoin.Tag{})
+func (uc *TagUseCase) FindOneTag(ctx context.Context, opt *FindTagOption) (*infoOrganizatoin.Tag, error) {
+	var mpCustomer *infoOrganizatoin.Tag
+	query := uc.db.WithContext(ctx).Model(&infoOrganizatoin.Tag{})
 
 	query = uc.buildFindQueryNoPage(query, opt)
 	if err := query.First(&mpCustomer).Error; err != nil {
@@ -131,7 +131,7 @@ func (uc *TagUseCase) FindOneTag(ctx context.Context, opt *FindTagOption) (*info
 	return mpCustomer, nil
 }
 
-func (uc *TagUseCase) CreateTag(ctx context.Context, tag *infoorganizatoin.Tag) error {
+func (uc *TagUseCase) CreateTag(ctx context.Context, tag *infoOrganizatoin.Tag) error {
 	if err := uc.db.WithContext(ctx).Create(&tag).Error; err != nil {
 		if strings.Contains(err.Error(), "duplicate key value violates unique constraint") {
 			return errorx.WithCause(errorx.ErrDuplicatedInsert, "该对象不能重复创建")
@@ -141,11 +141,11 @@ func (uc *TagUseCase) CreateTag(ctx context.Context, tag *infoorganizatoin.Tag) 
 	return nil
 }
 
-func (uc *TagUseCase) UpsertTag(ctx context.Context, tag *infoorganizatoin.Tag) (*infoorganizatoin.Tag, error) {
+func (uc *TagUseCase) UpsertTag(ctx context.Context, tag *infoOrganizatoin.Tag) (*infoOrganizatoin.Tag, error) {
 
 	// 查询父节点
 	if tag.PId > 0 {
-		var pTag *infoorganizatoin.Tag
+		var pTag *infoOrganizatoin.Tag
 		err := uc.db.WithContext(ctx).
 			Where(tag.PId).First(&pTag).Error
 		if err != nil {
@@ -158,7 +158,7 @@ func (uc *TagUseCase) UpsertTag(ctx context.Context, tag *infoorganizatoin.Tag) 
 		panic(errors.New("query parent product tag in invalid"))
 	}
 
-	tags := []*infoorganizatoin.Tag{tag}
+	tags := []*infoOrganizatoin.Tag{tag}
 
 	_, err := uc.UpsertTags(ctx, tags)
 	if err != nil {
@@ -168,9 +168,9 @@ func (uc *TagUseCase) UpsertTag(ctx context.Context, tag *infoorganizatoin.Tag) 
 	return tag, err
 }
 
-func (uc *TagUseCase) UpsertTags(ctx context.Context, tags []*infoorganizatoin.Tag) ([]*infoorganizatoin.Tag, error) {
+func (uc *TagUseCase) UpsertTags(ctx context.Context, tags []*infoOrganizatoin.Tag) ([]*infoOrganizatoin.Tag, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &infoorganizatoin.Tag{}, infoorganizatoin.TagUniqueId, tags, nil, false)
+	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &infoOrganizatoin.Tag{}, infoOrganizatoin.TagUniqueId, tags, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert product tags failed"))
@@ -179,14 +179,14 @@ func (uc *TagUseCase) UpsertTags(ctx context.Context, tags []*infoorganizatoin.T
 	return tags, err
 }
 
-func (uc *TagUseCase) PatchTag(ctx context.Context, id int64, tag *infoorganizatoin.Tag) {
-	if err := uc.db.WithContext(ctx).Model(&infoorganizatoin.Tag{}).Where(id).Updates(tag).Error; err != nil {
+func (uc *TagUseCase) PatchTag(ctx context.Context, id int64, tag *infoOrganizatoin.Tag) {
+	if err := uc.db.WithContext(ctx).Model(&infoOrganizatoin.Tag{}).Where(id).Updates(tag).Error; err != nil {
 		panic(err)
 	}
 }
 
-func (uc *TagUseCase) GetTag(ctx context.Context, id int64) (*infoorganizatoin.Tag, error) {
-	var tag infoorganizatoin.Tag
+func (uc *TagUseCase) GetTag(ctx context.Context, id int64) (*infoOrganizatoin.Tag, error) {
+	var tag infoOrganizatoin.Tag
 	db := uc.db.WithContext(ctx)
 	db = uc.PreloadItems(db)
 	if err := db.
@@ -204,7 +204,7 @@ func (uc *TagUseCase) GetTag(ctx context.Context, id int64) (*infoorganizatoin.T
 }
 
 func (uc *TagUseCase) DeleteTag(ctx context.Context, id int64) error {
-	result := uc.db.WithContext(ctx).Delete(&infoorganizatoin.Tag{}, id)
+	result := uc.db.WithContext(ctx).Delete(&infoOrganizatoin.Tag{}, id)
 	if err := result.Error; err != nil {
 		panic(err)
 	}

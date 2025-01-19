@@ -2,7 +2,7 @@ package category
 
 import (
 	"PowerX/internal/logic/admin/mediaResource"
-	infoorganizatoin "PowerX/internal/model/infoOrganization"
+	"PowerX/internal/model/infoOrganization"
 	"context"
 
 	"PowerX/internal/svc"
@@ -40,7 +40,7 @@ func (l *GetCategoryLogic) GetCategory(req *types.GetCategoryRequest) (resp *typ
 	}, nil
 }
 
-func TransformCategoryToReplyForMP(category *infoorganizatoin.Category) *types.Category {
+func TransformCategoryToReplyForMP(category *infoOrganizatoin.Category) *types.Category {
 
 	node := &types.Category{
 		Id:          category.Id,

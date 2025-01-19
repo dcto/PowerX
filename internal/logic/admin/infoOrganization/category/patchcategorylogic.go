@@ -1,7 +1,7 @@
 package category
 
 import (
-	infoorganizatoin "PowerX/internal/model/infoOrganization"
+	"PowerX/internal/model/infoOrganization"
 	"PowerX/internal/model/powermodel"
 	"context"
 
@@ -27,7 +27,7 @@ func NewPatchCategoryLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Pat
 
 func (l *PatchCategoryLogic) PatchCategory(req *types.PatchCategoryRequest) (resp *types.PatchCategoryReply, err error) {
 
-	productCategory := &infoorganizatoin.Category{
+	productCategory := &infoOrganizatoin.Category{
 		PowerModel: powermodel.PowerModel{
 			Id: req.Id,
 		},
