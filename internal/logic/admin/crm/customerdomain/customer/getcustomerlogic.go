@@ -37,7 +37,7 @@ func (l *GetCustomerLogic) GetCustomer(req *types.GetCustomerRequest) (resp *typ
 	}, nil
 }
 
-func TransformCustomerToReply(svcCtx *svc.ServiceContext, mdlCustomer *customerdomain.Customer) (customerReply *types.Customer) {
+func TransformCustomerToReply(svcCtx *svc.ServiceContext, mdlCustomer *customerDomain.Customer) (customerReply *types.Customer) {
 
 	var inviter *types.CustomerInviter
 	if mdlCustomer.Inviter != nil {

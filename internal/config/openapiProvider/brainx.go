@@ -1,4 +1,4 @@
-package openapiprovider
+package openapiProvider
 
 type BrainX struct {
 	BaseUrl      string

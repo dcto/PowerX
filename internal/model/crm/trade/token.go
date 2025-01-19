@@ -28,7 +28,7 @@ func (mdl *TokenExchangeRatio) GetTableName(needFull bool) string {
 type TokenBalance struct {
 	powermodel.PowerModel
 
-	Customer *customerdomain.Customer `gorm:"foreignKey:CustomerId;references:Id" json:"customer"`
+	Customer *customerDomain.Customer `gorm:"foreignKey:CustomerId;references:Id" json:"customer"`
 
 	CustomerId int64   `gorm:"comment:客户Id; index" json:"customerId"`
 	Balance    float64 `gorm:"comment:代币余额" json:"balance"`

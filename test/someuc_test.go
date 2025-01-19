@@ -54,7 +54,7 @@ func TestConsumerCreateConsumer(t *testing.T) {
 		}
 	}()
 
-	err := svcCtx.PowerX.Customer.CreateCustomer(context.TODO(), &customerdomain.Customer{
+	err := svcCtx.PowerX.Customer.CreateCustomer(context.TODO(), &customerDomain.Customer{
 		Name:        gofakeit.Name(),
 		Mobile:      gofakeit.Phone(),
 		Email:       gofakeit.Email(),

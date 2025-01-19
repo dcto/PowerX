@@ -52,9 +52,9 @@ func (uc *LeadUseCase) buildFindQueryNoPage(db *gorm.DB, opt *FindManyLeadsOptio
 	return db
 }
 
-func (uc *LeadUseCase) FindManyLeads(ctx context.Context, opt *FindManyLeadsOption) (pageList types.Page[*customerdomain.Lead], err error) {
-	var leads []*customerdomain.Lead
-	db := uc.db.WithContext(ctx).Model(&customerdomain.Lead{})
+func (uc *LeadUseCase) FindManyLeads(ctx context.Context, opt *FindManyLeadsOption) (pageList types.Page[*customerDomain.Lead], err error) {
+	var leads []*customerDomain.Lead
+	db := uc.db.WithContext(ctx).Model(&customerDomain.Lead{})
 
 	db = uc.buildFindQueryNoPage(db, opt)
 
@@ -74,7 +74,7 @@ func (uc *LeadUseCase) FindManyLeads(ctx context.Context, opt *FindManyLeadsOpti
 		panic(err)
 	}
 
-	return types.Page[*customerdomain.Lead]{
+	return types.Page[*customerDomain.Lead]{
 		List:      leads,
 		PageIndex: opt.PageIndex,
 		PageSize:  opt.PageSize,
@@ -82,7 +82,7 @@ func (uc *LeadUseCase) FindManyLeads(ctx context.Context, opt *FindManyLeadsOpti
 	}, nil
 }
 
-func (uc *LeadUseCase) CreateLead(ctx context.Context, lead *customerdomain.Lead) error {
+func (uc *LeadUseCase) CreateLead(ctx context.Context, lead *customerDomain.Lead) error {
 	if err := uc.db.WithContext(ctx).Create(&lead).Error; err != nil {
 		if strings.Contains(err.Error(), "duplicate key value violates unique constraint") {
 			return errorx.WithCause(errorx.ErrDuplicatedInsert, "该对象不能重复创建")
@@ -92,9 +92,9 @@ func (uc *LeadUseCase) CreateLead(ctx context.Context, lead *customerdomain.Lead
 	return nil
 }
 
-func (uc *LeadUseCase) UpsertLead(ctx context.Context, lead *customerdomain.Lead) (*customerdomain.Lead, error) {
+func (uc *LeadUseCase) UpsertLead(ctx context.Context, lead *customerDomain.Lead) (*customerDomain.Lead, error) {
 
-	leads := []*customerdomain.Lead{lead}
+	leads := []*customerDomain.Lead{lead}
 
 	_, err := uc.UpsertLeads(ctx, leads)
 	if err != nil {
@@ -104,9 +104,9 @@ func (uc *LeadUseCase) UpsertLead(ctx context.Context, lead *customerdomain.Lead
 	return lead, err
 }
 
-func (uc *LeadUseCase) UpsertLeads(ctx context.Context, leads []*customerdomain.Lead) ([]*customerdomain.Lead, error) {
+func (uc *LeadUseCase) UpsertLeads(ctx context.Context, leads []*customerDomain.Lead) ([]*customerDomain.Lead, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &customerdomain.Lead{}, customerdomain.LeadUniqueId, leads, nil, false)
+	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &customerDomain.Lead{}, customerDomain.LeadUniqueId, leads, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert leads failed"))
@@ -115,8 +115,8 @@ func (uc *LeadUseCase) UpsertLeads(ctx context.Context, leads []*customerdomain.
 	return leads, err
 }
 
-func (uc *LeadUseCase) UpdateLead(ctx context.Context, id int64, lead *customerdomain.Lead) error {
-	if err := uc.db.WithContext(ctx).Model(&customerdomain.Lead{}).
+func (uc *LeadUseCase) UpdateLead(ctx context.Context, id int64, lead *customerDomain.Lead) error {
+	if err := uc.db.WithContext(ctx).Model(&customerDomain.Lead{}).
 		//Debug().
 		Where(id).Updates(&lead).Error; err != nil {
 		if strings.Contains(err.Error(), "duplicate key value violates unique constraint") {
@@ -127,8 +127,8 @@ func (uc *LeadUseCase) UpdateLead(ctx context.Context, id int64, lead *customerd
 	return nil
 }
 
-func (uc *LeadUseCase) GetLead(ctx context.Context, id int64) (*customerdomain.Lead, error) {
-	var lead customerdomain.Lead
+func (uc *LeadUseCase) GetLead(ctx context.Context, id int64) (*customerDomain.Lead, error) {
+	var lead customerDomain.Lead
 	if err := uc.db.WithContext(ctx).First(&lead, id).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil, errorx.WithCause(errorx.ErrBadRequest, "未找到线索")
@@ -139,7 +139,7 @@ func (uc *LeadUseCase) GetLead(ctx context.Context, id int64) (*customerdomain.L
 }
 
 func (uc *LeadUseCase) DeleteLead(ctx context.Context, id int64) error {
-	result := uc.db.WithContext(ctx).Delete(&customerdomain.Lead{}, id)
+	result := uc.db.WithContext(ctx).Delete(&customerDomain.Lead{}, id)
 	if err := result.Error; err != nil {
 		panic(err)
 	}

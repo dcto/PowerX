@@ -8,7 +8,7 @@ import (
 )
 
 type Membership struct {
-	Customer *customerdomain.Customer `gorm:"foreignKey:CustomerId;references:id"`
+	Customer *customerDomain.Customer `gorm:"foreignKey:CustomerId;references:id"`
 
 	MainMembership *Membership   `gorm:"foreignKey:MainMembershipId;references:id"`
 	SubMemberships []*Membership `gorm:"foreignKey:MainMembershipId;references:id"`

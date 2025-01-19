@@ -52,9 +52,9 @@ func (uc *RegisterCodeUseCase) buildFindQueryNoPage(db *gorm.DB, opt *FindManyRe
 	return db
 }
 
-func (uc *RegisterCodeUseCase) FindManyRegisterCodes(ctx context.Context, opt *FindManyRegisterCodesOption) (pageList types.Page[*customerdomain.RegisterCode], err error) {
-	var registerCodes []*customerdomain.RegisterCode
-	db := uc.db.WithContext(ctx).Model(&customerdomain.RegisterCode{})
+func (uc *RegisterCodeUseCase) FindManyRegisterCodes(ctx context.Context, opt *FindManyRegisterCodesOption) (pageList types.Page[*customerDomain.RegisterCode], err error) {
+	var registerCodes []*customerDomain.RegisterCode
+	db := uc.db.WithContext(ctx).Model(&customerDomain.RegisterCode{})
 
 	db = uc.buildFindQueryNoPage(db, opt)
 
@@ -74,7 +74,7 @@ func (uc *RegisterCodeUseCase) FindManyRegisterCodes(ctx context.Context, opt *F
 		panic(err)
 	}
 
-	return types.Page[*customerdomain.RegisterCode]{
+	return types.Page[*customerDomain.RegisterCode]{
 		List:      registerCodes,
 		PageIndex: opt.PageIndex,
 		PageSize:  opt.PageSize,
@@ -82,7 +82,7 @@ func (uc *RegisterCodeUseCase) FindManyRegisterCodes(ctx context.Context, opt *F
 	}, nil
 }
 
-func (uc *RegisterCodeUseCase) CreateRegisterCode(ctx context.Context, registerCode *customerdomain.RegisterCode) error {
+func (uc *RegisterCodeUseCase) CreateRegisterCode(ctx context.Context, registerCode *customerDomain.RegisterCode) error {
 	if err := uc.db.WithContext(ctx).Create(&registerCode).Error; err != nil {
 		if strings.Contains(err.Error(), "duplicate key value violates unique constraint") {
 			return errorx.WithCause(errorx.ErrDuplicatedInsert, "该对象不能重复创建")
@@ -92,9 +92,9 @@ func (uc *RegisterCodeUseCase) CreateRegisterCode(ctx context.Context, registerC
 	return nil
 }
 
-func (uc *RegisterCodeUseCase) UpsertRegisterCode(ctx context.Context, registerCode *customerdomain.RegisterCode) (*customerdomain.RegisterCode, error) {
+func (uc *RegisterCodeUseCase) UpsertRegisterCode(ctx context.Context, registerCode *customerDomain.RegisterCode) (*customerDomain.RegisterCode, error) {
 
-	registerCodes := []*customerdomain.RegisterCode{registerCode}
+	registerCodes := []*customerDomain.RegisterCode{registerCode}
 
 	_, err := uc.UpsertRegisterCodes(ctx, registerCodes)
 	if err != nil {
@@ -104,9 +104,9 @@ func (uc *RegisterCodeUseCase) UpsertRegisterCode(ctx context.Context, registerC
 	return registerCode, err
 }
 
-func (uc *RegisterCodeUseCase) UpsertRegisterCodes(ctx context.Context, registerCodes []*customerdomain.RegisterCode) ([]*customerdomain.RegisterCode, error) {
+func (uc *RegisterCodeUseCase) UpsertRegisterCodes(ctx context.Context, registerCodes []*customerDomain.RegisterCode) ([]*customerDomain.RegisterCode, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &customerdomain.RegisterCode{}, customerdomain.RegisterCodeUniqueId, registerCodes, nil, false)
+	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &customerDomain.RegisterCode{}, customerDomain.RegisterCodeUniqueId, registerCodes, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert registerCodes failed"))
@@ -115,8 +115,8 @@ func (uc *RegisterCodeUseCase) UpsertRegisterCodes(ctx context.Context, register
 	return registerCodes, err
 }
 
-func (uc *RegisterCodeUseCase) UpdateRegisterCode(ctx context.Context, id int64, registerCode *customerdomain.RegisterCode) error {
-	if err := uc.db.WithContext(ctx).Model(&customerdomain.RegisterCode{}).
+func (uc *RegisterCodeUseCase) UpdateRegisterCode(ctx context.Context, id int64, registerCode *customerDomain.RegisterCode) error {
+	if err := uc.db.WithContext(ctx).Model(&customerDomain.RegisterCode{}).
 		//Debug().
 		Where(id).Updates(&registerCode).Error; err != nil {
 		if strings.Contains(err.Error(), "duplicate key value violates unique constraint") {
@@ -127,8 +127,8 @@ func (uc *RegisterCodeUseCase) UpdateRegisterCode(ctx context.Context, id int64,
 	return nil
 }
 
-func (uc *RegisterCodeUseCase) GetRegisterCodeByCode(ctx context.Context, code string) (*customerdomain.RegisterCode, error) {
-	var registerCode customerdomain.RegisterCode
+func (uc *RegisterCodeUseCase) GetRegisterCodeByCode(ctx context.Context, code string) (*customerDomain.RegisterCode, error) {
+	var registerCode customerDomain.RegisterCode
 	if err := uc.db.WithContext(ctx).
 		//Debug().
 		Where("code", code).
@@ -143,8 +143,8 @@ func (uc *RegisterCodeUseCase) GetRegisterCodeByCode(ctx context.Context, code s
 	return &registerCode, nil
 }
 
-func (uc *RegisterCodeUseCase) GetRegisterCode(ctx context.Context, id int64) (*customerdomain.RegisterCode, error) {
-	var registerCode customerdomain.RegisterCode
+func (uc *RegisterCodeUseCase) GetRegisterCode(ctx context.Context, id int64) (*customerDomain.RegisterCode, error) {
+	var registerCode customerDomain.RegisterCode
 	if err := uc.db.WithContext(ctx).First(&registerCode, id).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil, errorx.WithCause(errorx.ErrBadRequest, "未找到注册码")
@@ -155,7 +155,7 @@ func (uc *RegisterCodeUseCase) GetRegisterCode(ctx context.Context, id int64) (*
 }
 
 func (uc *RegisterCodeUseCase) DeleteRegisterCode(ctx context.Context, id int64) error {
-	result := uc.db.WithContext(ctx).Delete(&customerdomain.RegisterCode{}, id)
+	result := uc.db.WithContext(ctx).Delete(&customerDomain.RegisterCode{}, id)
 	if err := result.Error; err != nil {
 		panic(err)
 	}

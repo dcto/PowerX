@@ -1,4 +1,4 @@
-package openapiplatform
+package openapiPlatform
 
 type BrainX struct {
 	AccessKey string

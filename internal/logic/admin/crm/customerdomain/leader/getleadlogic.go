@@ -38,7 +38,7 @@ func (l *GetLeadLogic) GetLead(req *types.GetLeadRequest) (resp *types.GetLeadRe
 	}, nil
 }
 
-func TransformLeadToReply(svcCtx *svc.ServiceContext, mdlLead *customerdomain.Lead) (leadReply *types.Lead) {
+func TransformLeadToReply(svcCtx *svc.ServiceContext, mdlLead *customerDomain.Lead) (leadReply *types.Lead) {
 
 	var inviter *types.LeadInviter
 	if mdlLead.Inviter != nil {

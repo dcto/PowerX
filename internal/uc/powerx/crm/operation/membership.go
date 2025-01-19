@@ -138,7 +138,7 @@ func (uc *MembershipUseCase) GetMembership(ctx context.Context, id int64) (*oper
 	return &membership, nil
 }
 
-func (uc *MembershipUseCase) GetMembershipBy(ctx context.Context, customer *customerdomain.Customer, membershipTypeId int64) (*operation.Membership, error) {
+func (uc *MembershipUseCase) GetMembershipBy(ctx context.Context, customer *customerDomain.Customer, membershipTypeId int64) (*operation.Membership, error) {
 	var membership operation.Membership
 	if err := uc.DB.WithContext(ctx).
 		Where("customer_id = ? and type =?", customer.Id, membershipTypeId).

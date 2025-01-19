@@ -314,7 +314,7 @@ func (uc *TokenUseCase) UpsertTokenBalances(ctx context.Context, records []*trad
 
 // -----------------------------//
 
-func (uc *TokenUseCase) CheckTokenBalanceIsEnough(ctx context.Context, customer *customerdomain.Customer) (*trade.TokenBalance, int64, error) {
+func (uc *TokenUseCase) CheckTokenBalanceIsEnough(ctx context.Context, customer *customerDomain.Customer) (*trade.TokenBalance, int64, error) {
 	// 当前余额
 	balance, err := uc.GetTokenBalance(ctx, customer.Id)
 	if err != nil {
@@ -385,7 +385,7 @@ func (uc *TokenUseCase) CreateReservedTokenByTicket(ctx context.Context,
 }
 
 func (uc *TokenUseCase) ReuseTicketForTask(ctx context.Context,
-	customer *customerdomain.Customer,
+	customer *customerDomain.Customer,
 	oldTicket *operation.TicketRecord, newTicket *operation.TicketRecord,
 	reservedToken *trade.TokenReservation, balance *trade.TokenBalance,
 ) error {

@@ -1,4 +1,4 @@
-package customerdomain
+package customerDomain
 
 import (
 	"PowerX/internal/model"

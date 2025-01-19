@@ -178,7 +178,7 @@ func (uc *MGMRuleUseCase) ClearAssociations(db *gorm.DB, media *model.MGMRule) (
 }
 
 func (uc *MGMRuleUseCase) CreateInviteRecord(ctx context.Context,
-	inviter *customerdomain.Customer, invitee *customerdomain.Customer,
+	inviter *customerDomain.Customer, invitee *customerDomain.Customer,
 	inviteCode string, sceneId int,
 ) (*model.InviteRecord, error) {
 	record := &model.InviteRecord{

@@ -25,7 +25,7 @@ func NewCreateCustomerLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Cr
 
 func (l *CreateCustomerLogic) CreateCustomer(req *types.CreateCustomerRequest) (resp *types.CreateCustomerReply, err error) {
 
-	customer := &customerdomain.Customer{
+	customer := &customerDomain.Customer{
 		Name:        req.Name,
 		Mobile:      req.Mobile,
 		Email:       req.Email,
@@ -44,9 +44,9 @@ func (l *CreateCustomerLogic) CreateCustomer(req *types.CreateCustomerRequest) (
 
 }
 
-func TransformRequestToCustomer(customerRequest *types.Customer) (mdlCustomer *customerdomain.Customer) {
+func TransformRequestToCustomer(customerRequest *types.Customer) (mdlCustomer *customerDomain.Customer) {
 
-	mdlCustomer = &customerdomain.Customer{
+	mdlCustomer = &customerDomain.Customer{
 		Name: customerRequest.Name,
 		//Mobile:      customerRequest.Mobile,
 		Email:       customerRequest.Email,

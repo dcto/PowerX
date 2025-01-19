@@ -25,7 +25,7 @@ func NewCreateLeadLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Create
 
 func (l *CreateLeadLogic) CreateLead(req *types.CreateLeadRequest) (resp *types.CreateLeadReply, err error) {
 
-	lead := &customerdomain.Lead{
+	lead := &customerDomain.Lead{
 		Name:        req.Name,
 		Mobile:      req.Mobile,
 		Email:       req.Email,
@@ -43,9 +43,9 @@ func (l *CreateLeadLogic) CreateLead(req *types.CreateLeadRequest) (resp *types.
 
 }
 
-func TransformRequestToLead(leadRequest *types.Lead) (mdlLead *customerdomain.Lead) {
+func TransformRequestToLead(leadRequest *types.Lead) (mdlLead *customerDomain.Lead) {
 
-	mdlLead = &customerdomain.Lead{
+	mdlLead = &customerDomain.Lead{
 		Name:        leadRequest.Name,
 		Mobile:      leadRequest.Mobile,
 		Email:       leadRequest.Email,
@@ -53,7 +53,7 @@ func TransformRequestToLead(leadRequest *types.Lead) (mdlLead *customerdomain.Le
 		Source:      leadRequest.Source,
 		Type:        leadRequest.Type,
 		IsActivated: leadRequest.IsActivated,
-		ExternalId: customerdomain.ExternalId{
+		ExternalId: customerDomain.ExternalId{
 			OpenIdInMiniProgram:           leadRequest.LeadExternalId.OpenIdInMiniProgram,
 			OpenIdInWeChatOfficialAccount: leadRequest.LeadExternalId.OpenIdInWeChatOfficialAccount,
 			OpenIdInWeCom:                 leadRequest.LeadExternalId.OpenIdInWeCom,

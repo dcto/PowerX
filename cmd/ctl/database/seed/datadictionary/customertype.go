@@ -9,21 +9,21 @@ func defaultCustomerTypeDataDictionary() *model.DataDictionaryType {
 	return &model.DataDictionaryType{
 		Items: []*model.DataDictionaryItem{
 			&model.DataDictionaryItem{
-				Key:   customerdomain.CustomerPersonal,
-				Type:  customerdomain.TypeCustomerType,
+				Key:   customerDomain.CustomerPersonal,
+				Type:  customerDomain.TypeCustomerType,
 				Name:  "个人",
-				Value: customerdomain.CustomerPersonal,
+				Value: customerDomain.CustomerPersonal,
 				Sort:  0,
 			},
 			&model.DataDictionaryItem{
-				Key:   customerdomain.CustomerCompany,
-				Type:  customerdomain.TypeCustomerType,
+				Key:   customerDomain.CustomerCompany,
+				Type:  customerDomain.TypeCustomerType,
 				Name:  "公司",
-				Value: customerdomain.CustomerCompany,
+				Value: customerDomain.CustomerCompany,
 				Sort:  0,
 			},
 		},
-		Type:        customerdomain.TypeCustomerType,
+		Type:        customerDomain.TypeCustomerType,
 		Name:        "客户类型",
 		Description: "客户类型分个人，公司",
 	}

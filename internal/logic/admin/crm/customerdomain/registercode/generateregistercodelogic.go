@@ -44,9 +44,9 @@ func (l *GenerateRegisterCodeLogic) GenerateRegisterCode(req *types.GenerateRegi
 	}, nil
 }
 
-func TransformRequestToBatchGenerateRegisterCode(batchCount int) []*customerdomain.RegisterCode {
+func TransformRequestToBatchGenerateRegisterCode(batchCount int) []*customerDomain.RegisterCode {
 	var wg sync.WaitGroup
-	batchRegisterCodes := make([]*customerdomain.RegisterCode, batchCount)
+	batchRegisterCodes := make([]*customerDomain.RegisterCode, batchCount)
 	codeChan := make(chan string, batchCount)
 
 	// 启动协程生成注册码
@@ -68,7 +68,7 @@ func TransformRequestToBatchGenerateRegisterCode(batchCount int) []*customerdoma
 	// 从通道中读取生成的注册码
 	for i := 0; i < batchCount; i++ {
 		code := <-codeChan
-		batchRegisterCodes[i] = &customerdomain.RegisterCode{Code: code}
+		batchRegisterCodes[i] = &customerDomain.RegisterCode{Code: code}
 	}
 
 	return batchRegisterCodes

@@ -85,8 +85,8 @@ func (m *PowerMigrator) AutoMigrate() {
 
 	// customer domain
 	_ = m.db.AutoMigrate(
-		&customerdomain.Lead{}, &customerdomain.Contact{}, customerdomain.RegisterCode{},
-		&customerdomain.Customer{},
+		&customerDomain.Lead{}, &customerDomain.Contact{}, customerDomain.RegisterCode{},
+		&customerDomain.Customer{},
 	)
 	// operation
 	_ = m.db.AutoMigrate(

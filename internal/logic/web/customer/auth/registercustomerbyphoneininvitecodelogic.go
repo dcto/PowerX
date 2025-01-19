@@ -45,12 +45,12 @@ func (l *RegisterCustomerByPhoneInInviteCodeLogic) RegisterCustomerByPhoneInInvi
 
 	// register customer by phone
 	customerSourceId := l.svcCtx.PowerX.DataDictionary.GetCachedDDId(l.ctx, model.TypeSourceChannel, model.ChannelDirect)
-	customerTypeId := l.svcCtx.PowerX.DataDictionary.GetCachedDDId(l.ctx, customerdomain.TypeCustomerType, customerdomain.CustomerPersonal)
+	customerTypeId := l.svcCtx.PowerX.DataDictionary.GetCachedDDId(l.ctx, customerDomain.TypeCustomerType, customerDomain.CustomerPersonal)
 
 	// upsert 客户
 	uuid := securityx.GenerateUUIDString()
 	inviteCode := securityx.GenerateInviteCode(uuid)
-	customer := &customerdomain.Customer{
+	customer := &customerDomain.Customer{
 		Mobile:      req.Phone,
 		Password:    hashedPassword,
 		Source:      customerSourceId,
@@ -87,8 +87,8 @@ func (l *RegisterCustomerByPhoneInInviteCodeLogic) RegisterCustomerByPhoneInInvi
 }
 
 func (l *RegisterCustomerByPhoneInInviteCodeLogic) BindCustomerByInviteCode(ctx context.Context,
-	inviteCode string, customer *customerdomain.Customer,
-) (*customerdomain.Customer, *market.InviteRecord, error) {
+	inviteCode string, customer *customerDomain.Customer,
+) (*customerDomain.Customer, *market.InviteRecord, error) {
 
 	// 通过邀请码，获取邀请人
 	inviter, err := l.svcCtx.PowerX.Customer.GetCustomerByInviteCode(ctx, inviteCode)

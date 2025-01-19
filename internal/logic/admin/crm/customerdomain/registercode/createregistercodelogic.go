@@ -37,9 +37,9 @@ func (l *CreateRegisterCodeLogic) CreateRegisterCode(req *types.CreateRegisterCo
 
 }
 
-func TransformRequestToRegisterCode(req *types.CreateRegisterCodeRequest) *customerdomain.RegisterCode {
+func TransformRequestToRegisterCode(req *types.CreateRegisterCodeRequest) *customerDomain.RegisterCode {
 	expiredAt := carbon.Parse(req.ExpiredAt).ToStdTime()
-	mdlRegisterCode := &customerdomain.RegisterCode{
+	mdlRegisterCode := &customerDomain.RegisterCode{
 		Code:               req.Code,
 		RegisterCustomerID: req.RegisterCustomerID,
 		ExpiredAt:          expiredAt,

@@ -26,7 +26,7 @@ func NewPatchLeadLogic(ctx context.Context, svcCtx *svc.ServiceContext) *PatchLe
 
 func (l *PatchLeadLogic) PatchLead(req *types.PatchLeadRequest) (resp *types.PatchLeadReply, err error) {
 
-	mdlLead := &customerdomain.Lead{
+	mdlLead := &customerDomain.Lead{
 		Name:        req.Name,
 		Email:       req.Email,
 		InviterId:   req.InviterId,

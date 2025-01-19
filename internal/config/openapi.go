@@ -7,9 +7,9 @@ import (
 
 type OpenAPI struct {
 	Platforms struct {
-		BrainX openapiplatform.BrainX
+		BrainX openapiPlatform.BrainX
 	}
 	Providers struct {
-		BrainX openapiprovider.BrainX
+		BrainX openapiProvider.BrainX
 	}
 }
