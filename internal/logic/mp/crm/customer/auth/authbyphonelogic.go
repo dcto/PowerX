@@ -2,14 +2,14 @@ package auth
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/crm/customerdomain"
+	"PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/crm/operation"
 	"PowerX/internal/model/crm/trade"
 	"PowerX/internal/model/wechat"
 	"PowerX/internal/svc"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
-	customerdomain2 "PowerX/internal/uc/powerx/crm/customerdomain"
+	customerDomain2 "PowerX/internal/uc/powerx/crm/customerDomain"
 	fmt2 "PowerX/pkg/printx"
 	"context"
 	"encoding/json"
@@ -154,7 +154,7 @@ func (l *AuthByPhoneLogic) AuthByPhone(req *types.MPCustomerAuthRequest) (resp *
 		Gender:      mpCustomer.Gender,
 		Token: types.MPToken{
 			TokenType:    token.TokenType,
-			ExpiresIn:    fmt.Sprintf("%d", customerdomain2.CustomerTokenExpiredDuration),
+			ExpiresIn:    fmt.Sprintf("%d", customerDomain2.CustomerTokenExpiredDuration),
 			AccessToken:  token.AccessToken,
 			RefreshToken: token.RefreshToken,
 		},

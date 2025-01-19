@@ -1,9 +1,9 @@
 package shipping
 
 import (
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/types/errorx"
-	"PowerX/internal/uc/powerx/crm/customerdomain"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
 	"context"
 
 	"PowerX/internal/svc"
@@ -27,8 +27,8 @@ func NewPatchShippingAddressLogic(ctx context.Context, svcCtx *svc.ServiceContex
 }
 
 func (l *PatchShippingAddressLogic) PatchShippingAddress(req *types.PatchShippingAddressRequest) (resp *types.PatchShippingAddressReply, err error) {
-	vAuthCustomer := l.ctx.Value(customerdomain.AuthCustomerKey)
-	authCustomer := vAuthCustomer.(*customerdomain2.Customer)
+	vAuthCustomer := l.ctx.Value(customerDomain.AuthCustomerKey)
+	authCustomer := vAuthCustomer.(*customerDomain2.Customer)
 
 	mdlShippingAddress, err := l.svcCtx.PowerX.ShippingAddress.GetShippingAddress(l.ctx, req.ShippingAddressId)
 	if err != nil {

@@ -1,7 +1,7 @@
 package test
 
 import (
-	"PowerX/internal/model/crm/customerdomain"
+	"PowerX/internal/model/crm/customerDomain"
 	"context"
 	"github.com/brianvoe/gofakeit/v6"
 	"testing"

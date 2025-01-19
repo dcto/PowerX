@@ -2,7 +2,7 @@ package wechat
 
 import (
 	"PowerX/internal/model"
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/powermodel"
 	"gorm.io/datatypes"
 )
@@ -13,7 +13,7 @@ import (
 type WechatOACustomer struct {
 	powermodel.PowerModel
 
-	Customer *customerdomain2.Customer `gorm:"foreignKey:OpenId;references:OpenIdInWeChatOfficialAccount" json:"customer"`
+	Customer *customerDomain2.Customer `gorm:"foreignKey:OpenId;references:OpenIdInWeChatOfficialAccount" json:"customer"`
 
 	Subscribe      int            `json:"subscribe"`
 	SessionKey     string         `json:"-"`

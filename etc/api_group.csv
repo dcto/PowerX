@@ -1,8 +1,8 @@
 admin/auth,/api/v1/admin/auth,公开接口-登录相关,公开接口-登录相关
 admin/common,/api/v1/admin/common,通用接口,通用接口
 admin/crm/business/opportunity,/api/v1/admin/business,商机管理,商机管理
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain,客户管理,客户管理
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain,线索管理,线索管理
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain,客户管理,客户管理
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain,线索管理,线索管理
 admin/crm/market/media,/api/v1/admin/market,媒体管理,媒体管理
 admin/crm/market/mgm,/api/v1/admin/market,MGMRule管理,MGMRule管理
 admin/crm/market/store,/api/v1/admin/market,门店,门店

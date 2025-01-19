@@ -1,10 +1,10 @@
 package shipping
 
 import (
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/crm/trade"
 	"PowerX/internal/types/errorx"
-	"PowerX/internal/uc/powerx/crm/customerdomain"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
 	"context"
 
 	"PowerX/internal/svc"
@@ -28,8 +28,8 @@ func NewCreateShippingAddressLogic(ctx context.Context, svcCtx *svc.ServiceConte
 }
 
 func (l *CreateShippingAddressLogic) CreateShippingAddress(req *types.CreateShippingAddressRequest) (resp *types.CreateShippingAddressReply, err error) {
-	vAuthCustomer := l.ctx.Value(customerdomain.AuthCustomerKey)
-	authCustomer := vAuthCustomer.(*customerdomain2.Customer)
+	vAuthCustomer := l.ctx.Value(customerDomain.AuthCustomerKey)
+	authCustomer := vAuthCustomer.(*customerDomain2.Customer)
 
 	shippingAddress := TransformRequestToShippingAddressForMP(req, authCustomer)
 
@@ -45,7 +45,7 @@ func (l *CreateShippingAddressLogic) CreateShippingAddress(req *types.CreateShip
 
 }
 
-func TransformRequestToShippingAddressForMP(req *types.CreateShippingAddressRequest, authCustomer *customerdomain2.Customer) *trade.ShippingAddress {
+func TransformRequestToShippingAddressForMP(req *types.CreateShippingAddressRequest, authCustomer *customerDomain2.Customer) *trade.ShippingAddress {
 
 	return &trade.ShippingAddress{
 		CustomerId:   authCustomer.Id,

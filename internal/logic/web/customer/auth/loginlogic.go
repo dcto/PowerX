@@ -2,7 +2,7 @@ package auth
 
 import (
 	"PowerX/internal/types/errorx"
-	customerdomain2 "PowerX/internal/uc/powerx/crm/customerdomain"
+	customerDomain2 "PowerX/internal/uc/powerx/crm/customerDomain"
 	"PowerX/pkg/securityx"
 	"context"
 	"fmt"
@@ -50,7 +50,7 @@ func (l *LoginLogic) Login(req *types.CustomerLoginRequest) (resp *types.Custome
 		NickName:    customer.Name,
 		Token: types.WebToken{
 			TokenType:    token.TokenType,
-			ExpiresIn:    fmt.Sprintf("%d", customerdomain2.CustomerTokenExpiredDuration),
+			ExpiresIn:    fmt.Sprintf("%d", customerDomain2.CustomerTokenExpiredDuration),
 			AccessToken:  token.AccessToken,
 			RefreshToken: token.RefreshToken,
 		},

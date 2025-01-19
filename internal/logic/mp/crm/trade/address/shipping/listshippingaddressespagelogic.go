@@ -1,9 +1,9 @@
 package shipping
 
 import (
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/crm/trade"
-	"PowerX/internal/uc/powerx/crm/customerdomain"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
 	tradeUC "PowerX/internal/uc/powerx/crm/trade"
 	"context"
 
@@ -28,8 +28,8 @@ func NewListShippingAddressesPageLogic(ctx context.Context, svcCtx *svc.ServiceC
 }
 
 func (l *ListShippingAddressesPageLogic) ListShippingAddressesPage(req *types.ListShippingAddressesPageRequest) (resp *types.ListShippingAddressesPageReply, err error) {
-	vAuthCustomer := l.ctx.Value(customerdomain.AuthCustomerKey)
-	authCustomer := vAuthCustomer.(*customerdomain2.Customer)
+	vAuthCustomer := l.ctx.Value(customerDomain.AuthCustomerKey)
+	authCustomer := vAuthCustomer.(*customerDomain2.Customer)
 
 	page, err := l.svcCtx.PowerX.ShippingAddress.FindManyShippingAddresses(l.ctx, &tradeUC.FindManyShippingAddressesOption{
 		CustomerId: authCustomer.Id,

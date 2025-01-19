@@ -9,9 +9,9 @@ import (
 	adminauth "PowerX/internal/handler/admin/auth"
 	admincommon "PowerX/internal/handler/admin/common"
 	admincrmbusinessopportunity "PowerX/internal/handler/admin/crm/business/opportunity"
-	admincrmcustomerdomaincustomer "PowerX/internal/handler/admin/crm/customerdomain/customer"
-	admincrmcustomerdomainleader "PowerX/internal/handler/admin/crm/customerdomain/leader"
-	admincrmcustomerdomainregistercode "PowerX/internal/handler/admin/crm/customerdomain/registercode"
+	admincrmcustomerDomaincustomer "PowerX/internal/handler/admin/crm/customerDomain/customer"
+	admincrmcustomerDomainleader "PowerX/internal/handler/admin/crm/customerDomain/leader"
+	admincrmcustomerDomainregisterCode "PowerX/internal/handler/admin/crm/customerDomain/registerCode"
 	admincrmmarketmedia "PowerX/internal/handler/admin/crm/market/media"
 	admincrmmarketmgm "PowerX/internal/handler/admin/crm/market/mgm"
 	admincrmmarketstore "PowerX/internal/handler/admin/crm/market/store"
@@ -191,47 +191,47 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					// 创建客户
 					Method:  http.MethodPost,
 					Path:    "/customers",
-					Handler: admincrmcustomerdomaincustomer.CreateCustomerHandler(serverCtx),
+					Handler: admincrmcustomerDomaincustomer.CreateCustomerHandler(serverCtx),
 				},
 				{
 					// 查询客户
 					Method:  http.MethodGet,
 					Path:    "/customers/:id",
-					Handler: admincrmcustomerdomaincustomer.GetCustomerHandler(serverCtx),
+					Handler: admincrmcustomerDomaincustomer.GetCustomerHandler(serverCtx),
 				},
 				{
 					// 全量客户
 					Method:  http.MethodPut,
 					Path:    "/customers/:id",
-					Handler: admincrmcustomerdomaincustomer.PutCustomerHandler(serverCtx),
+					Handler: admincrmcustomerDomaincustomer.PutCustomerHandler(serverCtx),
 				},
 				{
 					// 增量客户
 					Method:  http.MethodPatch,
 					Path:    "/customers/:id",
-					Handler: admincrmcustomerdomaincustomer.PatchCustomerHandler(serverCtx),
+					Handler: admincrmcustomerDomaincustomer.PatchCustomerHandler(serverCtx),
 				},
 				{
 					// 删除客户
 					Method:  http.MethodDelete,
 					Path:    "/customers/:id",
-					Handler: admincrmcustomerdomaincustomer.DeleteCustomerHandler(serverCtx),
+					Handler: admincrmcustomerDomaincustomer.DeleteCustomerHandler(serverCtx),
 				},
 				{
 					// 为客户分配员工
 					Method:  http.MethodPost,
 					Path:    "/customers/:id/actions/users",
-					Handler: admincrmcustomerdomaincustomer.AssignCustomerToUserHandler(serverCtx),
+					Handler: admincrmcustomerDomaincustomer.AssignCustomerToUserHandler(serverCtx),
 				},
 				{
 					// 获取客户分页列表
 					Method:  http.MethodGet,
 					Path:    "/customers/page-list",
-					Handler: admincrmcustomerdomaincustomer.ListCustomersPageHandler(serverCtx),
+					Handler: admincrmcustomerDomaincustomer.ListCustomersPageHandler(serverCtx),
 				},
 			}...,
 		),
-		rest.WithPrefix("/api/v1/admin/customerdomain"),
+		rest.WithPrefix("/api/v1/admin/customerDomain"),
 	)
 
 	server.AddRoutes(
@@ -242,47 +242,47 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					// 创建线索
 					Method:  http.MethodPost,
 					Path:    "/leads",
-					Handler: admincrmcustomerdomainleader.CreateLeadHandler(serverCtx),
+					Handler: admincrmcustomerDomainleader.CreateLeadHandler(serverCtx),
 				},
 				{
 					// 查询线索
 					Method:  http.MethodGet,
 					Path:    "/leads/:id",
-					Handler: admincrmcustomerdomainleader.GetLeadHandler(serverCtx),
+					Handler: admincrmcustomerDomainleader.GetLeadHandler(serverCtx),
 				},
 				{
 					// 全量线索
 					Method:  http.MethodPut,
 					Path:    "/leads/:id",
-					Handler: admincrmcustomerdomainleader.PutLeadHandler(serverCtx),
+					Handler: admincrmcustomerDomainleader.PutLeadHandler(serverCtx),
 				},
 				{
 					// 增量线索
 					Method:  http.MethodPatch,
 					Path:    "/leads/:id",
-					Handler: admincrmcustomerdomainleader.PatchLeadHandler(serverCtx),
+					Handler: admincrmcustomerDomainleader.PatchLeadHandler(serverCtx),
 				},
 				{
 					// 删除线索
 					Method:  http.MethodDelete,
 					Path:    "/leads/:id",
-					Handler: admincrmcustomerdomainleader.DeleteLeadHandler(serverCtx),
+					Handler: admincrmcustomerDomainleader.DeleteLeadHandler(serverCtx),
 				},
 				{
 					// 为线索分配员工
 					Method:  http.MethodPost,
 					Path:    "/leads/:id/actions/users",
-					Handler: admincrmcustomerdomainleader.AssignLeadToUserHandler(serverCtx),
+					Handler: admincrmcustomerDomainleader.AssignLeadToUserHandler(serverCtx),
 				},
 				{
 					// 获取线索分页列表
 					Method:  http.MethodGet,
 					Path:    "/leads/page-list",
-					Handler: admincrmcustomerdomainleader.ListLeadsPageHandler(serverCtx),
+					Handler: admincrmcustomerDomainleader.ListLeadsPageHandler(serverCtx),
 				},
 			}...,
 		),
-		rest.WithPrefix("/api/v1/admin/customerdomain"),
+		rest.WithPrefix("/api/v1/admin/customerDomain"),
 	)
 
 	server.AddRoutes(
@@ -293,47 +293,47 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					// 创建注册码
 					Method:  http.MethodPost,
 					Path:    "/register-codes",
-					Handler: admincrmcustomerdomainregistercode.CreateRegisterCodeHandler(serverCtx),
+					Handler: admincrmcustomerDomainregisterCode.CreateRegisterCodeHandler(serverCtx),
 				},
 				{
 					// 查询注册码
 					Method:  http.MethodGet,
 					Path:    "/register-codes/:id",
-					Handler: admincrmcustomerdomainregistercode.GetRegisterCodeHandler(serverCtx),
+					Handler: admincrmcustomerDomainregisterCode.GetRegisterCodeHandler(serverCtx),
 				},
 				{
 					// 全量注册码
 					Method:  http.MethodPut,
 					Path:    "/register-codes/:id",
-					Handler: admincrmcustomerdomainregistercode.PutRegisterCodeHandler(serverCtx),
+					Handler: admincrmcustomerDomainregisterCode.PutRegisterCodeHandler(serverCtx),
 				},
 				{
 					// 增量注册码
 					Method:  http.MethodPatch,
 					Path:    "/register-codes/:id",
-					Handler: admincrmcustomerdomainregistercode.PatchRegisterCodeHandler(serverCtx),
+					Handler: admincrmcustomerDomainregisterCode.PatchRegisterCodeHandler(serverCtx),
 				},
 				{
 					// 删除注册码
 					Method:  http.MethodDelete,
 					Path:    "/register-codes/:id",
-					Handler: admincrmcustomerdomainregistercode.DeleteRegisterCodeHandler(serverCtx),
+					Handler: admincrmcustomerDomainregisterCode.DeleteRegisterCodeHandler(serverCtx),
 				},
 				{
 					// 批量创建注册码
 					Method:  http.MethodPost,
 					Path:    "/register-codes/generate",
-					Handler: admincrmcustomerdomainregistercode.GenerateRegisterCodeHandler(serverCtx),
+					Handler: admincrmcustomerDomainregisterCode.GenerateRegisterCodeHandler(serverCtx),
 				},
 				{
 					// 获取注册码分页列表
 					Method:  http.MethodGet,
 					Path:    "/register-codes/page-list",
-					Handler: admincrmcustomerdomainregistercode.ListRegisterCodesPageHandler(serverCtx),
+					Handler: admincrmcustomerDomainregisterCode.ListRegisterCodesPageHandler(serverCtx),
 				},
 			}...,
 		),
-		rest.WithPrefix("/api/v1/admin/customerdomain"),
+		rest.WithPrefix("/api/v1/admin/customerDomain"),
 	)
 
 	server.AddRoutes(

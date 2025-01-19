@@ -1,8 +1,8 @@
 package config
 
 import (
-	"PowerX/internal/config/openapiplatform"
-	"PowerX/internal/config/openapiprovider"
+	"PowerX/internal/config/openapiPlatform"
+	"PowerX/internal/config/openapiProvider"
 )
 
 type OpenAPI struct {

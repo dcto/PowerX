@@ -4,7 +4,7 @@ import (
 	"PowerX/internal/config"
 	"PowerX/internal/uc/ai"
 	"PowerX/internal/uc/powerx"
-	customerDomainUC "PowerX/internal/uc/powerx/crm/customerdomain"
+	customerDomainUC "PowerX/internal/uc/powerx/crm/customerDomain"
 	"PowerX/internal/uc/powerx/crm/infoOrganization"
 	"PowerX/internal/uc/powerx/crm/market"
 	"PowerX/internal/uc/powerx/crm/operation"

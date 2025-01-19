@@ -9,27 +9,27 @@ admin/crm/business/opportunity,/api/v1/admin/business/opportunities,post,创建�
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id/assign-user,put,为商机分配员工
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,put,修改商机信息
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,delete,删除商机
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,get,查询客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/page-list,get,获取客户分页列表
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers,post,创建客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,put,全量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,patch,增量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,delete,删除客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id/actions/users,post,为客户分配员工
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,get,查询线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/page-list,get,获取线索分页列表
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads,post,创建线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,put,全量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,patch,增量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,delete,删除线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id/actions/users,post,为线索分配员工
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,get,查询注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/page-list,get,获取注册码分页列表
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes,post,创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/generate,post,批量创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,put,全量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,patch,增量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,delete,删除注册码
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,get,查询客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/page-list,get,获取客户分页列表
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers,post,创建客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,put,全量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,patch,增量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,delete,删除客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id/actions/users,post,为客户分配员工
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,get,查询线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/page-list,get,获取线索分页列表
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads,post,创建线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,put,全量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,patch,增量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,delete,删除线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id/actions/users,post,为线索分配员工
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,get,查询注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/page-list,get,获取注册码分页列表
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes,post,创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/generate,post,批量创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,put,全量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,patch,增量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,delete,删除注册码
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/page-list,get,查询品牌故事列表
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/:id,get,查询品牌故事详情
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories,post,创建品牌故事
@@ -406,426 +406,27 @@ admin/crm/business/opportunity,/api/v1/admin/business/opportunities,post,创建�
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id/assign-user,put,为商机分配员工
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,put,修改商机信息
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,delete,删除商机
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,get,查询客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/page-list,get,获取客户分页列表
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers,post,创建客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,put,全量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,patch,增量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,delete,删除客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id/actions/users,post,为客户分配员工
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,get,查询线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/page-list,get,获取线索分页列表
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads,post,创建线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,put,全量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,patch,增量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,delete,删除线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id/actions/users,post,为线索分配员工
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,get,查询注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/page-list,get,获取注册码分页列表
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes,post,创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/generate,post,批量创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,put,全量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,patch,增量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,delete,删除注册码
-admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/page-list,get,查询品牌故事列表
-admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/:id,get,查询品牌故事详情
-admin/crm/market/brandstory,/api/v1/admin/market/brand-stories,post,创建品牌故事
-admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/:id,put,全量品牌故事
-admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/:id,delete,删除品牌故事
-admin/crm/market/media,/api/v1/admin/market/medias/page-list,get,查询媒体列表
-admin/crm/market/media,/api/v1/admin/market/medias,post,请求媒体上传链接
-admin/crm/market/media,/api/v1/admin/market/medias/:id,put,创建或更新媒体
-admin/crm/market/media,/api/v1/admin/market/medias/:id,get,根据媒体key获取媒体
-admin/crm/market/media,/api/v1/admin/market/medias/:id,delete,删除媒体
-admin/crm/market/mgm,/api/v1/admin/market/mgms/page-list,get,查询MGMRule列表
-admin/crm/market/mgm,/api/v1/admin/market/mgms,post,请求MGMRule上传链接
-admin/crm/market/mgm,/api/v1/admin/market/mgms/:id,put,创建或更新MGMRule
-admin/crm/market/mgm,/api/v1/admin/market/mgms/:id,get,根据获取MGMRule
-admin/crm/market/mgm,/api/v1/admin/market/mgms/:id,delete,删除MGMRule
-admin/crm/market/store,/api/v1/admin/market/stores/page-list,get,查询门店列表
-admin/crm/market/store,/api/v1/admin/market/stores/:id,get,查询门店详情
-admin/crm/market/store,/api/v1/admin/market/stores,post,创建门店
-admin/crm/market/store,/api/v1/admin/market/stores/:id,put,全量门店
-admin/crm/market/store,/api/v1/admin/market/stores/:id,delete,删除门店
-admin/crm/market/store,/api/v1/admin/market/stores/:id/actions/assign-to-store-categroy,post,分配门店经理给门店
-admin/crm/membership,/api/v1/admin/membership/customers/:id,get,查询会籍
-admin/crm/product/artisan,/api/v1/admin/product/artisans/page-list,get,查询元匠列表
-admin/crm/product/artisan,/api/v1/admin/product/artisans/:id,get,查询元匠详情
-admin/crm/product/artisan,/api/v1/admin/product/artisans,post,创建元匠
-admin/crm/product/artisan,/api/v1/admin/product/artisans/:id,put,全量元匠
-admin/crm/product/artisan,/api/v1/admin/product/artisans/:id,delete,删除元匠
-admin/crm/product/artisan,/api/v1/admin/product/artisans/bind/stores,post,元匠绑定门店
-admin/crm/product/pricebook,/api/v1/admin/product/price-books/page-list,get,查询价格手册列表
-admin/crm/product/pricebook,/api/v1/admin/product/price-books/:id,get,查询价格手册详情
-admin/crm/product/pricebook,/api/v1/admin/product/price-books,post,创新价格手册
-admin/crm/product/pricebook,/api/v1/admin/product/price-books/:id,delete,删除价格手册
-admin/crm/product/pricebookentry,/api/v1/admin/product/price-book-entries/page-list,get,查询价格手册条目列表
-admin/crm/product/pricebookentry,/api/v1/admin/product/price-book-entries/:id,get,查询价格手册条目详情
-admin/crm/product/pricebookentry,/api/v1/admin/product/price-book-entries/config,post,配置价格手册条目条目
-admin/crm/product/pricebookentry,/api/v1/admin/product/price-book-entries/:id,post,配置价格手册条目条目
-admin/crm/product/pricebookentry,/api/v1/admin/product/price-book-entries/:id,delete,删除价格手册条目
-admin/crm/product,/api/v1/admin/product/products/page-list,get,查询产品列表
-admin/crm/product,/api/v1/admin/product/products/:id,get,查询产品详情
-admin/crm/product,/api/v1/admin/product/products,post,创建产品
-admin/crm/product,/api/v1/admin/product/products/:id,put,全量产品
-admin/crm/product,/api/v1/admin/product/products/:id,patch,增量产品
-admin/crm/product,/api/v1/admin/product/products/disable/:id,put,下架产品
-admin/crm/product,/api/v1/admin/product/products/:id,delete,删除产品
-admin/crm/product,/api/v1/admin/product/products/:id/actions/assign-to-product-categroy,post,分配产品品类给产品品类分类
-admin/crm/product/category,/api/v1/admin/product/product-category-tree,get,查询产品品类列表
-admin/crm/product/category,/api/v1/admin/product/product-categories/:id,get,查询产品品类详情
-admin/crm/product/category,/api/v1/admin/product/product-categories,post,创新产品品类
-admin/crm/product/category,/api/v1/admin/product/product-categories/:id,put,修改产品品类
-admin/crm/product/category,/api/v1/admin/product/product-categories/:id,patch,修改产品品类父级
-admin/crm/product/category,/api/v1/admin/product/product-categories/:id,delete,删除产品品类
-admin/crm/product/productspecific,/api/v1/admin/product/product-specifics/page-list,get,查询产品规格列表
-admin/crm/product/productspecific,/api/v1/admin/product/product-specifics/:id,get,查询产品规格详情
-admin/crm/product/productspecific,/api/v1/admin/product/product-specifics,post,创建产品规格
-admin/crm/product/productspecific,/api/v1/admin/product/product-specifics/config,post,配置产品规格
-admin/crm/product/productspecific,/api/v1/admin/product/product-specifics/:id,put,全量产品规格
-admin/crm/product/productspecific,/api/v1/admin/product/product-specifics/:id,patch,增量产品规格
-admin/crm/product/productspecific,/api/v1/admin/product/product-specifics/:id,delete,删除产品规格
-admin/crm/product/productstatistics,/api/v1/admin/product/product-statistics/page-list,get,查询产品统计列表
-admin/crm/product/productstatistics,/api/v1/admin/product/product-statistics/:id,get,查询产品统计详情
-admin/crm/product/productstatistics,/api/v1/admin/product/product-statistics/config,post,配置产品统计
-admin/crm/product/productstatistics,/api/v1/admin/product/product-statistics/:id,put,全量产品统计
-admin/crm/product/productstatistics,/api/v1/admin/product/product-statistics/:id,patch,增量产品统计
-admin/crm/product/sku,/api/v1/admin/product/skus/page-list,get,查询SKU列表
-admin/crm/product/sku,/api/v1/admin/product/skus/:id,get,查询SKU详情
-admin/crm/product/sku,/api/v1/admin/product/skus,post,创建SKU
-admin/crm/product/sku,/api/v1/admin/product/skus/config,post,配置SKU
-admin/crm/product/sku,/api/v1/admin/product/skus/:id,put,全量SKU
-admin/crm/product/sku,/api/v1/admin/product/skus/:id,patch,增量SKU
-admin/crm/product/sku,/api/v1/admin/product/skus/:id,delete,删除SKU
-admin/crm/trade/address/billing,/api/v1/admin/trade/address/billing/page-list,get,查询账单地址列表
-admin/crm/trade/address/billing,/api/v1/admin/trade/address/billing/:id,get,查询账单地址详情
-admin/crm/trade/address/billing,/api/v1/admin/trade/address/billing,post,创建账单地址
-admin/crm/trade/address/billing,/api/v1/admin/trade/address/billing/:id,put,更新账单地址
-admin/crm/trade/address/billing,/api/v1/admin/trade/address/billing/:id,patch,部分更新账单地址
-admin/crm/trade/address/billing,/api/v1/admin/trade/address/billing/:id,delete,删除账单地址
-admin/crm/trade/address/delivery,/api/v1/admin/trade/address/delivery/page-list,get,查询订单发货地址列表
-admin/crm/trade/address/delivery,/api/v1/admin/trade/address/delivery/:id,get,查询订单发货地址详情
-admin/crm/trade/address/delivery,/api/v1/admin/trade/address/delivery,post,创建订单发货地址
-admin/crm/trade/address/delivery,/api/v1/admin/trade/address/delivery/:id,put,更新订单发货地址
-admin/crm/trade/address/delivery,/api/v1/admin/trade/address/delivery/:id,patch,部分更新订单发货地址
-admin/crm/trade/address/delivery,/api/v1/admin/trade/address/delivery/:id,delete,删除订单发货地址
-admin/crm/trade/logistics,/api/v1/admin/trade/logisticses,get,查询物流列表
-admin/crm/trade/logistics,/api/v1/admin/trade/logisticses/:id,get,获取物流详情
-admin/crm/trade/logistics,/api/v1/admin/trade/logisticses,post,创建物流
-admin/crm/trade/logistics,/api/v1/admin/trade/logisticses/:id,put,更新物流
-admin/crm/trade/logistics,/api/v1/admin/trade/logisticses/:id,patch,部分更新物流
-admin/crm/trade/logistics,/api/v1/admin/trade/logisticses/:id,delete,删除物流
-admin/crm/trade/order,/api/v1/admin/trade/orders/page-list,get,查询订单列表
-admin/crm/trade/order,/api/v1/admin/trade/orders/:id,get,查询订单详情
-admin/crm/trade/order,/api/v1/admin/trade/orders,post,创建订单
-admin/crm/trade/order,/api/v1/admin/trade/orders/:id,put,更新订单
-admin/crm/trade/order,/api/v1/admin/trade/orders/:id,patch,部分更新订单
-admin/crm/trade/order,/api/v1/admin/trade/orders/:id,delete,删除订单
-admin/crm/trade/order,/api/v1/admin/trade/orders/export,get,导出订单
-admin/crm/trade/order,/api/v1/admin/trade/orders/import,post,导入订单
-admin/crm/trade/payment,/api/v1/admin/trade/payments/page-list,get,查询支付单列表
-admin/crm/trade/payment,/api/v1/admin/trade/payments/:id,get,查询支付单详情
-admin/crm/trade/payment,/api/v1/admin/trade/payments,post,创建支付单
-admin/crm/trade/payment,/api/v1/admin/trade/payments/:id,put,全量支付单
-admin/crm/trade/payment,/api/v1/admin/trade/payments/:id,patch,增量支付单
-admin/crm/trade/payment,/api/v1/admin/trade/payments/:id,delete,删除支付单
-admin/crm/trade/order,/api/v1/admin/trade/refund-order/page-list,get,查询退款单列表
-admin/crm/trade/order,/api/v1/admin/trade/refund-order/:id,get,查询退款单详情
-admin/crm/trade/order,/api/v1/admin/trade/refund-order,post,创建退款单
-admin/crm/trade/order,/api/v1/admin/trade/refund-order/:id,put,更新退款单
-admin/crm/trade/order,/api/v1/admin/trade/refund-order/:id,patch,部分更新退款单
-admin/crm/trade/order,/api/v1/admin/trade/refund-order/:id,delete,删除退款单
-admin/crm/trade/address/shipping,/api/v1/admin/trade/address/shipping/page-list,get,查询收货地址列表
-admin/crm/trade/address/shipping,/api/v1/admin/trade/address/shipping/:id,get,查询收货地址详情
-admin/crm/trade/address/shipping,/api/v1/admin/trade/address/shipping,post,创建收货地址
-admin/crm/trade/address/shipping,/api/v1/admin/trade/address/shipping/:id,put,更新收货地址
-admin/crm/trade/address/shipping,/api/v1/admin/trade/address/shipping/:id,patch,部分更新收货地址
-admin/crm/trade/address/shipping,/api/v1/admin/trade/address/shipping/:id,delete,删除收货地址
-admin/crm/trade/token,/api/v1/admin/trade/token/products/page-list,get,查询代币产品列表
-admin/crm/trade/token,/api/v1/admin/trade/token/products/:id,get,查询代币产品详情
-admin/crm/trade/token,/api/v1/admin/trade/token/products,post,创建代币产品
-admin/crm/trade/token,/api/v1/admin/trade/token/products/:id,put,全量代币产品
-admin/crm/trade/token,/api/v1/admin/trade/token/products/:id,patch,增量代币产品
-admin/crm/trade/token,/api/v1/admin/trade/token/products/:id,delete,删除代币产品
-admin/crm/trade/warehouse,/api/v1/admin/trade/warehouses,get,查询仓库列表
-admin/crm/trade/warehouse,/api/v1/admin/trade/warehouses/:id,get,获取仓库详情
-admin/crm/trade/warehouse,/api/v1/admin/trade/warehouses,post,创建仓库
-admin/crm/trade/warehouse,/api/v1/admin/trade/warehouses/:id,put,更新仓库
-admin/crm/trade/warehouse,/api/v1/admin/trade/warehouses/:id,patch,部分更新仓库
-admin/crm/trade/warehouse,/api/v1/admin/trade/warehouses/:id,delete,删除仓库
-admin/department,/api/v1/admin/department/department-tree/:depId,get,查询组织架构
-admin/department,/api/v1/admin/department/departments/:id,get,获取单个部门详情
-admin/department,/api/v1/admin/department/departments,post,创建新部门
-admin/department,/api/v1/admin/department/departments/:id,patch,更新部门信息(可选更新)
-admin/department,/api/v1/admin/department/departments/:id,delete,删除部门
-admin/dictionary,/api/v1/admin/dictionary/types/page-list,get,获取字典类型列表
-admin/dictionary,/api/v1/admin/dictionary/types,get,获取字典类型列表
-admin/dictionary,/api/v1/admin/dictionary/types/:type,get,获取字典类型
-admin/dictionary,/api/v1/admin/dictionary/types,post,创建字典类型
-admin/dictionary,/api/v1/admin/dictionary/types/:type,put,更新字典类型
-admin/dictionary,/api/v1/admin/dictionary/types/:type,delete,删除字典类型
-admin/dictionary,/api/v1/admin/dictionary/items,get,获取字典项列表
-admin/dictionary,/api/v1/admin/dictionary/items/:type/:key,get,获取字典项
-admin/dictionary,/api/v1/admin/dictionary/items,post,创建字典项
-admin/dictionary,/api/v1/admin/dictionary/items/:type/:key,put,更新字典项
-admin/dictionary,/api/v1/admin/dictionary/items/:type/:key,delete,删除字典项
-admin/infoOrganization/category,/api/v1/admin/info-organization/category-tree,get,查询类别列表
-admin/infoOrganization/category,/api/v1/admin/info-organization/categories/:id,get,查询类别详情
-admin/infoOrganization/category,/api/v1/admin/info-organization/categories,post,创新类别
-admin/infoOrganization/category,/api/v1/admin/info-organization/categories/:id,put,修改类别
-admin/infoOrganization/category,/api/v1/admin/info-organization/categories/:id,patch,修改类别父级
-admin/infoOrganization/category,/api/v1/admin/info-organization/categories/:id,delete,删除类别
-admin/infoOrganization/label,/api/v1/admin/info-organization/label-tree,get,查询框架标签列表
-admin/infoOrganization/label,/api/v1/admin/info-organization/labels/:id,get,查询框架标签详情
-admin/infoOrganization/label,/api/v1/admin/info-organization/labels,post,创新框架标签
-admin/infoOrganization/label,/api/v1/admin/info-organization/labels/:id,put,修改框架标签
-admin/infoOrganization/label,/api/v1/admin/info-organization/labels/:id,patch,修改框架标签父级
-admin/infoOrganization/label,/api/v1/admin/info-organization/labels/:id,delete,删除框架标签
-admin/infoOrganization/tag,/api/v1/admin/info-organization/tag-tree,get,查询碎片标签列表
-admin/infoOrganization/tag,/api/v1/admin/info-organization/tags/:id,get,查询碎片标签详情
-admin/infoOrganization/tag,/api/v1/admin/info-organization/tags,post,创新碎片标签
-admin/infoOrganization/tag,/api/v1/admin/info-organization/tags/:id,put,修改碎片标签
-admin/infoOrganization/tag,/api/v1/admin/info-organization/tags/:id,patch,修改碎片标签父级
-admin/infoOrganization/tag,/api/v1/admin/info-organization/tags/:id,delete,删除碎片标签
-admin/mediaResource,/api/v1/admin/media/resources/page-list,get,查询媒资列表
-admin/mediaResource,/api/v1/admin/media/resources,post,创建媒资
-admin/mediaResource,/api/v1/admin/media/resources/base64,post,创建媒资-Base64
-admin/mediaResource,/api/v1/admin/media/resources/:id,get,获取媒资详情
-admin/mediaResource,/api/v1/admin/media/resources/:id,delete,删除媒资
-admin/permission,/api/v1/admin/permission/roles,get,查询角色列表
-admin/permission,/api/v1/admin/permission/roles,post,创建角色
-admin/permission,/api/v1/admin/permission/roles/:roleCode,get,获取角色详情
-admin/permission,/api/v1/admin/permission/roles/:roleCode,patch,更新角色详情
-admin/permission,/api/v1/admin/permission/roles/:roleCode/users,get,获取角色的用户列表
-admin/permission,/api/v1/admin/permission/roles/:roleCode/actions/set-permissions,post,为角色授予API权限
-admin/permission,/api/v1/admin/permission/api-list,get,查询API列表
-admin/permission,/api/v1/admin/permission/roles/:roleCode/actions/set-users,post,为角色分配用户
-admin/permission,/api/v1/admin/permission/users/:userId/actions/set-roles,post,为用户授予角色
-admin/position,/api/v1/admin/position/positions,post,创建新职位
-admin/position,/api/v1/admin/position/positions/:id,patch,更新职位信息(可选更新)
-admin/position,/api/v1/admin/position/positions/:id,delete,删除职位
-admin/position,/api/v1/admin/position/positions,get,获取职位列表
-admin/position,/api/v1/admin/position/positions/:id,get,获取职位详情
-admin/scrm/app,/api/v1/admin/scrm/app/wechat/detail,get,App详情
-admin/scrm/app,/api/v1/admin/scrm/app/wechat/options,get,App列表/options
-admin/scrm/app,/api/v1/admin/scrm/app/wechat/message/articles,post,App发送图文信息
-admin/scrm/app,/api/v1/admin/scrm/app/wechat/group/list,get,App企业群列表/list
-admin/scrm/app,/api/v1/admin/scrm/app/wechat/group/create,post,App创建企业群
-admin/scrm/app,/api/v1/admin/scrm/app/wechat/group/message/articles,post,App企业群推送图文信息
-admin/scrm/bot,/api/v1/admin/scrm/bot/wechat/message/articles,post,机器人发送图文信息
-admin/scrm/contractway,/api/v1/admin/contract-way/group-tree,get,获取渠道活码分组树
-admin/scrm/contractway,/api/v1/admin/contract-way/groups,get,查询渠道活码分组列表
-admin/scrm/contractway,/api/v1/admin/contract-way,get,查询渠道活码
-admin/scrm/contractway,/api/v1/admin/contract-way,post,创建活码
-admin/scrm/contractway,/api/v1/admin/contract-way/:id,put,修改活码
-admin/scrm/contractway,/api/v1/admin/contract-way/:id,delete,删除活码
-admin/scrm/customer,/api/v1/admin/scrm/customer/wechat/sync,post,批量同步客户信息(根据员工ID同步/节流)
-admin/scrm/customer,/api/v1/admin/scrm/customer/wechat/page,post,所有客户列表/page
-admin/scrm/customer,/api/v1/admin/scrm/customer/wechat/group/list,post,客户群列表/limit
-admin/scrm/customer,/api/v1/admin/scrm/customer/wechat/group/message/template,post,客户群发信息
-admin/scrm/customer,/api/v1/admin/scrm/customer/customers/:id,get,查询客户详情
-admin/scrm/customer,/api/v1/admin/scrm/customer/customers,get,查询客户详情列表
-admin/scrm/customer,/api/v1/admin/scrm/customer/customers/:id,patch,修改客户信息
-admin/scrm/customer,/api/v1/admin/scrm/customer/customers/actions/sync,post,同步客户
-admin/scrm/organization,/api/v1/admin/scrm/organization/wechat/partment/page,post,部门列表/page
-admin/scrm/organization,/api/v1/admin/scrm/organization/wechat/user/page,post,员工列表/page
-admin/scrm/organization,/api/v1/admin/scrm/organization/wechat/sync,get,同步组织架构/department&user
-admin/scrm/qrcode,/api/v1/admin/scrm/qrcode/wechat/group/page,post,场景码列表/page
-admin/scrm/qrcode,/api/v1/admin/scrm/qrcode/wechat/group/create,post,创建场景码
-admin/scrm/qrcode,/api/v1/admin/scrm/qrcode/wechat/group/update/:qid,patch,更新场景码
-admin/scrm/qrcode,/api/v1/admin/scrm/qrcode/wechat/group/enable/:qid,patch,启用场景码
-admin/scrm/qrcode,/api/v1/admin/scrm/qrcode/wechat/group/disable/:qid,patch,禁用场景码
-admin/scrm/qrcode,/api/v1/admin/scrm/qrcode/wechat/group/:qid,delete,删除场景码
-admin/scrm/qrcode,/api/v1/admin/scrm/qrcode/wechat/qrcode/:qid,patch,下载场景码/upload
-admin/scrm/resource,/api/v1/admin/scrm/resource/wechat/image/upload,post,上传图片到微信
-admin/scrm/resource,/api/v1/admin/scrm/resource/wechat/image/page,post,微信素材库/page
-admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/group/option,get,标签组列表/option
-admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/group/page,post,标签组分页/page
-admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/corp/option,get,标签列表对象/key=>val
-admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/group/action,post,添加、删除标签组内的标签
-admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/corp/page,post,标签列表/page
-admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/sync,put,全量同步标签/sync
-admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/crop/create,post,创建企业标签
-admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/crop/update,patch,编辑企业标签
-admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/crop/delete,delete,批量删除企业标签
-admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/customer/action,delete,编辑/删除客户标签
-admin/tag,/api/v1/admin/tags/tag-tree,get,查询标签列表
-admin/tag,/api/v1/admin/tags/:id,get,查询标签详情
-admin/tag,/api/v1/admin/tags,post,创新标签
-admin/tag,/api/v1/admin/tags/:id,put,修改标签
-admin/tag,/api/v1/admin/tags/:id,patch,修改标签父级
-admin/tag,/api/v1/admin/tags/:id,delete,删除标签
-admin/user,/api/v1/admin/user/users/actions/sync,post,同步员工
-admin/user,/api/v1/admin/user/users/:uuid,get,查询员工
-admin/user,/api/v1/admin/user/users,get,List员工
-admin/user,/api/v1/admin/user/users,post,创建员工
-admin/user,/api/v1/admin/user/users/:uuid,patch,编辑员工信息
-admin/user,/api/v1/admin/user/users/:uuid,delete,删除员工
-admin/user,/api/v1/admin/user/users/actions/reset-password,post,重设密码
-admin/userinfo,/api/v1/admin/user-center/user-info,get,获取用户信息
-admin/userinfo,/api/v1/admin/user-center/menu-roles,get,获取用户可见菜单
-admin/userinfo,/api/v1/admin/user-center/users/actions/modify-password,post,修改密码
-admin/wechat/officialaccount/media,/api/v1/admin/wechat/official-account/medias/page-list,post,查询菜单列表
-admin/wechat/officialaccount/media,/api/v1/admin/wechat/official-account/media/news/list,get,查询菜单列表
-admin/wechat/officialaccount/media,/api/v1/admin/wechat/official-account/medias/:mediaId,get,请求菜单上传链接
-admin/wechat/officialaccount/media,/api/v1/admin/wechat/official-account/medias/video/:mediaId,get,根据媒体key获取媒体
-admin/wechat/officialaccount/media,/api/v1/admin/wechat/official-account/medias/upload,post,创建菜单
-admin/wechat/officialaccount/media,/api/v1/admin/wechat/official-account/medias,post,创建菜单
-admin/wechat/officialaccount/media,/api/v1/admin/wechat/official-account/medias/:mediaId,delete,删除菜单
-admin/wechat/officialaccount/menu,/api/v1/admin/wechat/official-account/menus-tree,get,查询菜单列表
-admin/wechat/officialaccount/menu,/api/v1/admin/wechat/official-account/menus/sync,post,请求菜单上传链接
-admin/wechat/officialaccount/menu,/api/v1/admin/wechat/official-account/menus,post,创建菜单
-admin/wechat/officialaccount/menu,/api/v1/admin/wechat/official-account/menus,delete,删除菜单
-system/health,/api/v1/system/health,get,健康检查接口
-mp/crm/customer/auth,/api/v1/mp/customer/validToken,get,微信小程序Token验证
-mp/crm/customer/auth,/api/v1/mp/customer/login,post,微信小程序登录
-mp/crm/customer/auth,/api/v1/mp/customer/authByPhone,post,客户手机授权
-mp/crm/customer/auth,/api/v1/mp/customer/authByProfile,post,客户信息授权
-mp/crm/customer,/api/v1/mp/customer/user-info,get,获取用户信息
-mp/dictionary,/api/v1/mp/dictionary/types/page-list,get,获取字典类型列表
-mp/dictionary,/api/v1/mp/dictionary/types/:type,get,获取字典类型
-mp/dictionary,/api/v1/mp/dictionary/items,get,获取字典项列表
-mp/dictionary,/api/v1/mp/dictionary/items/:type/:key,get,获取字典项
-mp/infoOrganization/category,/api/v1/mp/info-organization/category-tree,get,查询类别列表
-mp/infoOrganization/category,/api/v1/mp/info-organization/categories/:id,get,查询类别详情
-mp/infoOrganization/category,/api/v1/mp/info-organization/categories,post,创新类别
-mp/infoOrganization/category,/api/v1/mp/info-organization/categories/:id,put,修改类别
-mp/infoOrganization/category,/api/v1/mp/info-organization/categories/:id,patch,修改类别父级
-mp/infoOrganization/category,/api/v1/mp/info-organization/categories/:id,delete,删除类别
-web/infoOrganization/label,/api/v1/web/info-organization/label-tree,get,查询框架标签列表
-web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,get,查询框架标签详情
-web/infoOrganization/label,/api/v1/web/info-organization/labels,post,创新框架标签
-web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,put,修改框架标签
-web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,patch,修改框架标签父级
-web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,delete,删除框架标签
-web/infoOrganization/tag,/api/v1/web/info-organization/tag-tree,get,查询碎片标签列表
-web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,get,查询碎片标签详情
-web/infoOrganization/tag,/api/v1/web/info-organization/tags,post,创新碎片标签
-web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,put,修改碎片标签
-web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,patch,修改碎片标签父级
-web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,delete,删除碎片标签
-mp/crm/market/media,/api/v1/mp/market/medias/page-list,get,查询媒资列表
-mp/crm/market/store,/api/v1/mp/market/stores/page-list,get,店铺列表
-mp/crm/membership,/api/v1/mp/membership/customer,get,查询会籍
-mp/crm/membership,/api/v1/mp/membership/:id,get,查询会籍
-mp/crm/product/artisan,/api/v1/mp/product/artisans/page-list,get,查询元匠列表
-mp/crm/product/artisan,/api/v1/mp/product/artisans/:id,get,查询元匠详情
-mp/crm/product,/api/v1/mp/product/products/page-list,get,产品列表
-mp/crm/product,/api/v1/mp/product/products/:id,get,查询产品详情
-mp/crm/product,/api/v1/mp/product/product-category-tree,get,查询产品品类树形表
-mp/crm/product,/api/v1/mp/product/product-categories,get,查询产品品类列表
-mp/crm/product/productstatistics,/api/v1/mp/product/product-statistics/page-list,get,查询产品统计列表
-mp/crm/product/productstatistics,/api/v1/mp/product/product-statistics/:id,get,查询产品统计详情
-mp/crm/trade/address/billing,/api/v1/mp/trade/address/billing/page-list,get,查询账单地址列表
-mp/crm/trade/address/billing,/api/v1/mp/trade/address/billing/:id,get,查询账单地址详情
-mp/crm/trade/address/billing,/api/v1/mp/trade/address/billing,post,创建账单地址
-mp/crm/trade/address/billing,/api/v1/mp/trade/address/billing/:id,put,更新账单地址
-mp/crm/trade/address/billing,/api/v1/mp/trade/address/billing/:id,patch,部分更新账单地址
-mp/crm/trade/address/billing,/api/v1/mp/trade/address/billing/:id,delete,删除账单地址
-mp/crm/trade/cart,/api/v1/mp/trade/cart/items/page-list,get,查询购物车列表
-mp/crm/trade/cart,/api/v1/mp/trade/cart/:cartId,get,获取购物车详情
-mp/crm/trade/cart,/api/v1/mp/trade/cart/items,post,添加商品到购物车
-mp/crm/trade/cart,/api/v1/mp/trade/cart/items/:itemId,put,更新购物车商品数量
-mp/crm/trade/cart,/api/v1/mp/trade/cart/items/:itemId,delete,删除购物车商品
-mp/crm/trade/cart,/api/v1/mp/trade/cart/items/clear,delete,清空购物车
-mp/crm/trade/address/delivery,/api/v1/mp/trade/address/delivery/page-list,get,查询订单发货地址列表
-mp/crm/trade/address/delivery,/api/v1/mp/trade/address/delivery/:id,get,查询订单发货地址详情
-mp/crm/trade/address/delivery,/api/v1/mp/trade/address/delivery,post,创建订单发货地址
-mp/crm/trade/address/delivery,/api/v1/mp/trade/address/delivery/:id,put,更新订单发货地址
-mp/crm/trade/address/delivery,/api/v1/mp/trade/address/delivery/:id,patch,部分更新订单发货地址
-mp/crm/trade/address/delivery,/api/v1/mp/trade/address/delivery/:id,delete,删除订单发货地址
-mp/crm/trade/order,/api/v1/mp/trade/orders/page-list,get,查询订单列表
-mp/crm/trade/order,/api/v1/mp/trade/orders/:id,get,查询订单详情
-mp/crm/trade/order,/api/v1/mp/trade/orders/products,post,创建产品订单
-mp/crm/trade/order,/api/v1/mp/trade/orders/cart-items,post,创建购物车订单
-mp/crm/trade/order,/api/v1/mp/trade/orders/cancel/:id,put,取消订单
-mp/crm/trade/payment,/api/v1/mp/trade/payments/page-list,get,查询支付单列表
-mp/crm/trade/payment,/api/v1/mp/trade/payments/:id,get,查询支付单详情
-mp/crm/trade/payment,/api/v1/mp/trade/payments,post,创建支付单
-mp/crm/trade/payment,/api/v1/mp/trade/payments/:id,put,修改支付单
-mp/crm/trade/address/shipping,/api/v1/mp/trade/address/shipping/page-list,get,查询收货地址列表
-mp/crm/trade/address/shipping,/api/v1/mp/trade/address/shipping/:id,get,查询收货地址详情
-mp/crm/trade/address/shipping,/api/v1/mp/trade/address/shipping,post,创建收货地址
-mp/crm/trade/address/shipping,/api/v1/mp/trade/address/shipping/:id,put,更新收货地址
-mp/crm/trade/address/shipping,/api/v1/mp/trade/address/shipping/:id,patch,部分更新收货地址
-mp/crm/trade/address/shipping,/api/v1/mp/trade/address/shipping/:id,delete,删除收货地址
-mp/crm/trade/token,/api/v1/mp/trade/token/balance,get,查询代币
-openapi/auth,/openapi/v1/auth,post,Auth by platform
-openapi,/openapi/v1/version,get,Get the version of the API
-openapi,/openapi/v1/echo,post,Create a new echo message
-openapi/provider/brainx,/openapi/v1/provider/brainx/hello-world,get,hello world api for provider demo
-openapi/provider/brainx,/openapi/v1/provider/brainx/echo-long-time,post,timeout api for provider demo
-plugin,/api/v1/plugin/v1/plugins,post,插件接口
-plugin,/api/v1/plugin/v1/plugins,get,插件列表拉取
-plugin,/api/v1/plugin/v1/frontend-routes,get,插件路由拉取
-openapi/provider/brainx,/openapi/v1/provider/brainx/hello-world,get,hello world api for provider demo
-openapi/provider/brainx,/openapi/v1/provider/brainx/echo-long-time,post,timeout api for provider demo
-web/ai/chatBot,/api/v1/web/chatbot/chat,post,AI ChatBot对话
-web/ai/chatBot,/api/v1/web/chatbot/agent/chat,post,AI ChatBot Agent对话
-web/customer/auth,/api/v1/web/customer/login,post,微信Web登录
-web/customer/auth,/api/v1/web/customer/registerByPhone,post,客户手机注册
-web/customer/auth,/api/v1/web/customer/registerByPhone/invite/:code,post,客户手机注册，邀请码机制
-web/customer/auth,/api/v1/web/customer/registerByPhone/register/:code,post,客户手机注册，注册码机制
-web/customer/auth,/api/v1/web/customer/updateCustomerProfile/:id,post,客户信息更新
-web/customer/auth,/api/v1/web/customer/user-info,get,获取用户信息
-web/customer/auth/oa,/api/v1/web/customer/oa/login,post,微信公众号登录
-web/customer/auth/oa,/api/v1/web/customer/oa/authByPhone,post,客户手机授权
-web/customer/auth/oa,/api/v1/web/customer/oa/authByProfile,post,公众号客户信息授权
-mp/dictionary,/api/v1/web/dictionary/types/page-list,get,获取字典类型列表
-mp/dictionary,/api/v1/web/dictionary/types/:type,get,获取字典类型
-mp/dictionary,/api/v1/web/dictionary/items,get,获取字典项列表
-mp/dictionary,/api/v1/web/dictionary/items/:type/:key,get,获取字典项
-web/infoOrganization/category,/api/v1/web/info-organization/category-tree,get,查询类别列表
-web/infoOrganization/category,/api/v1/web/info-organization/categories/:id,get,查询类别详情
-web/infoOrganization/category,/api/v1/web/info-organization/categories,post,创新类别
-web/infoOrganization/category,/api/v1/web/info-organization/categories/:id,put,修改类别
-web/infoOrganization/category,/api/v1/web/info-organization/categories/:id,patch,修改类别父级
-web/infoOrganization/category,/api/v1/web/info-organization/categories/:id,delete,删除类别
-web/infoOrganization/label,/api/v1/web/info-organization/label-tree,get,查询框架标签列表
-web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,get,查询框架标签详情
-web/infoOrganization/label,/api/v1/web/info-organization/labels,post,创新框架标签
-web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,put,修改框架标签
-web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,patch,修改框架标签父级
-web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,delete,删除框架标签
-web/infoOrganization/tag,/api/v1/web/info-organization/tag-tree,get,查询碎片标签列表
-web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,get,查询碎片标签详情
-web/infoOrganization/tag,/api/v1/web/info-organization/tags,post,创新碎片标签
-web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,put,修改碎片标签
-web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,patch,修改碎片标签父级
-web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,delete,删除碎片标签
-web/scene,/api/v1/web/scene/qrcode/detail/:qid(SceneRequest),get,获取场景落地页详情
-admin/auth,/api/v1/admin/auth/access/actions/basic-login,post,登录
-admin/auth,/api/v1/admin/auth/access/actions/exchange-token,post,Exchange
-admin/common,/api/v1/admin/common/options/users,get,员工Options远程搜索
-admin/common,/api/v1/admin/common/options/user-query,get,查询员工过滤条件
-admin/common,/api/v1/admin/common/options/departments,get,部门Options远程搜索
-admin/common,/api/v1/admin/common/options,get,通用获取Options
-admin/crm/business/opportunity,/api/v1/admin/business/opportunities,get,查询商机列表
-admin/crm/business/opportunity,/api/v1/admin/business/opportunities,post,创建商机
-admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id/assign-user,put,为商机分配员工
-admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,put,修改商机信息
-admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,delete,删除商机
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,get,查询客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/page-list,get,获取客户分页列表
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers,post,创建客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,put,全量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,patch,增量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,delete,删除客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id/actions/users,post,为客户分配员工
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,get,查询线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/page-list,get,获取线索分页列表
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads,post,创建线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,put,全量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,patch,增量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,delete,删除线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id/actions/users,post,为线索分配员工
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,get,查询注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/page-list,get,获取注册码分页列表
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes,post,创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/generate,post,批量创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,put,全量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,patch,增量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,delete,删除注册码
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,get,查询客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/page-list,get,获取客户分页列表
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers,post,创建客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,put,全量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,patch,增量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,delete,删除客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id/actions/users,post,为客户分配员工
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,get,查询线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/page-list,get,获取线索分页列表
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads,post,创建线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,put,全量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,patch,增量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,delete,删除线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id/actions/users,post,为线索分配员工
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,get,查询注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/page-list,get,获取注册码分页列表
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes,post,创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/generate,post,批量创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,put,全量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,patch,增量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,delete,删除注册码
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/page-list,get,查询品牌故事列表
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/:id,get,查询品牌故事详情
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories,post,创建品牌故事
@@ -1204,27 +805,27 @@ admin/crm/business/opportunity,/api/v1/admin/business/opportunities,post,创建�
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id/assign-user,put,为商机分配员工
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,put,修改商机信息
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,delete,删除商机
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,get,查询客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/page-list,get,获取客户分页列表
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers,post,创建客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,put,全量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,patch,增量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,delete,删除客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id/actions/users,post,为客户分配员工
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,get,查询线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/page-list,get,获取线索分页列表
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads,post,创建线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,put,全量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,patch,增量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,delete,删除线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id/actions/users,post,为线索分配员工
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,get,查询注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/page-list,get,获取注册码分页列表
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes,post,创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/generate,post,批量创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,put,全量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,patch,增量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,delete,删除注册码
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,get,查询客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/page-list,get,获取客户分页列表
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers,post,创建客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,put,全量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,patch,增量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,delete,删除客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id/actions/users,post,为客户分配员工
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,get,查询线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/page-list,get,获取线索分页列表
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads,post,创建线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,put,全量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,patch,增量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,delete,删除线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id/actions/users,post,为线索分配员工
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,get,查询注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/page-list,get,获取注册码分页列表
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes,post,创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/generate,post,批量创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,put,全量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,patch,增量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,delete,删除注册码
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/page-list,get,查询品牌故事列表
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/:id,get,查询品牌故事详情
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories,post,创建品牌故事
@@ -1603,27 +1204,27 @@ admin/crm/business/opportunity,/api/v1/admin/business/opportunities,post,创建�
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id/assign-user,put,为商机分配员工
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,put,修改商机信息
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,delete,删除商机
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,get,查询客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/page-list,get,获取客户分页列表
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers,post,创建客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,put,全量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,patch,增量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,delete,删除客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id/actions/users,post,为客户分配员工
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,get,查询线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/page-list,get,获取线索分页列表
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads,post,创建线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,put,全量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,patch,增量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,delete,删除线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id/actions/users,post,为线索分配员工
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,get,查询注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/page-list,get,获取注册码分页列表
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes,post,创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/generate,post,批量创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,put,全量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,patch,增量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,delete,删除注册码
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,get,查询客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/page-list,get,获取客户分页列表
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers,post,创建客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,put,全量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,patch,增量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,delete,删除客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id/actions/users,post,为客户分配员工
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,get,查询线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/page-list,get,获取线索分页列表
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads,post,创建线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,put,全量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,patch,增量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,delete,删除线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id/actions/users,post,为线索分配员工
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,get,查询注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/page-list,get,获取注册码分页列表
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes,post,创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/generate,post,批量创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,put,全量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,patch,增量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,delete,删除注册码
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/page-list,get,查询品牌故事列表
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/:id,get,查询品牌故事详情
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories,post,创建品牌故事
@@ -2002,27 +1603,27 @@ admin/crm/business/opportunity,/api/v1/admin/business/opportunities,post,创建�
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id/assign-user,put,为商机分配员工
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,put,修改商机信息
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,delete,删除商机
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,get,查询客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/page-list,get,获取客户分页列表
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers,post,创建客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,put,全量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,patch,增量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,delete,删除客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id/actions/users,post,为客户分配员工
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,get,查询线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/page-list,get,获取线索分页列表
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads,post,创建线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,put,全量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,patch,增量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,delete,删除线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id/actions/users,post,为线索分配员工
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,get,查询注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/page-list,get,获取注册码分页列表
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes,post,创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/generate,post,批量创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,put,全量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,patch,增量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,delete,删除注册码
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,get,查询客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/page-list,get,获取客户分页列表
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers,post,创建客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,put,全量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,patch,增量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,delete,删除客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id/actions/users,post,为客户分配员工
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,get,查询线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/page-list,get,获取线索分页列表
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads,post,创建线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,put,全量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,patch,增量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,delete,删除线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id/actions/users,post,为线索分配员工
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,get,查询注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/page-list,get,获取注册码分页列表
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes,post,创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/generate,post,批量创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,put,全量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,patch,增量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,delete,删除注册码
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/page-list,get,查询品牌故事列表
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/:id,get,查询品牌故事详情
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories,post,创建品牌故事
@@ -2401,27 +2002,27 @@ admin/crm/business/opportunity,/api/v1/admin/business/opportunities,post,创建�
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id/assign-user,put,为商机分配员工
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,put,修改商机信息
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,delete,删除商机
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,get,查询客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/page-list,get,获取客户分页列表
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers,post,创建客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,put,全量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,patch,增量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,delete,删除客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id/actions/users,post,为客户分配员工
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,get,查询线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/page-list,get,获取线索分页列表
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads,post,创建线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,put,全量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,patch,增量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,delete,删除线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id/actions/users,post,为线索分配员工
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,get,查询注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/page-list,get,获取注册码分页列表
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes,post,创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/generate,post,批量创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,put,全量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,patch,增量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,delete,删除注册码
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,get,查询客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/page-list,get,获取客户分页列表
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers,post,创建客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,put,全量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,patch,增量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,delete,删除客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id/actions/users,post,为客户分配员工
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,get,查询线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/page-list,get,获取线索分页列表
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads,post,创建线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,put,全量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,patch,增量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,delete,删除线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id/actions/users,post,为线索分配员工
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,get,查询注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/page-list,get,获取注册码分页列表
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes,post,创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/generate,post,批量创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,put,全量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,patch,增量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,delete,删除注册码
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/page-list,get,查询品牌故事列表
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/:id,get,查询品牌故事详情
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories,post,创建品牌故事
@@ -2800,27 +2401,27 @@ admin/crm/business/opportunity,/api/v1/admin/business/opportunities,post,创建�
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id/assign-user,put,为商机分配员工
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,put,修改商机信息
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,delete,删除商机
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,get,查询客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/page-list,get,获取客户分页列表
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers,post,创建客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,put,全量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,patch,增量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,delete,删除客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id/actions/users,post,为客户分配员工
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,get,查询线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/page-list,get,获取线索分页列表
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads,post,创建线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,put,全量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,patch,增量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,delete,删除线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id/actions/users,post,为线索分配员工
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,get,查询注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/page-list,get,获取注册码分页列表
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes,post,创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/generate,post,批量创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,put,全量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,patch,增量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,delete,删除注册码
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,get,查询客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/page-list,get,获取客户分页列表
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers,post,创建客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,put,全量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,patch,增量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,delete,删除客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id/actions/users,post,为客户分配员工
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,get,查询线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/page-list,get,获取线索分页列表
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads,post,创建线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,put,全量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,patch,增量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,delete,删除线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id/actions/users,post,为线索分配员工
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,get,查询注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/page-list,get,获取注册码分页列表
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes,post,创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/generate,post,批量创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,put,全量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,patch,增量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,delete,删除注册码
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/page-list,get,查询品牌故事列表
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/:id,get,查询品牌故事详情
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories,post,创建品牌故事
@@ -3199,27 +2800,27 @@ admin/crm/business/opportunity,/api/v1/admin/business/opportunities,post,创建�
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id/assign-user,put,为商机分配员工
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,put,修改商机信息
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,delete,删除商机
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,get,查询客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/page-list,get,获取客户分页列表
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers,post,创建客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,put,全量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,patch,增量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,delete,删除客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id/actions/users,post,为客户分配员工
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,get,查询线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/page-list,get,获取线索分页列表
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads,post,创建线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,put,全量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,patch,增量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,delete,删除线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id/actions/users,post,为线索分配员工
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,get,查询注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/page-list,get,获取注册码分页列表
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes,post,创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/generate,post,批量创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,put,全量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,patch,增量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,delete,删除注册码
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,get,查询客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/page-list,get,获取客户分页列表
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers,post,创建客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,put,全量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,patch,增量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,delete,删除客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id/actions/users,post,为客户分配员工
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,get,查询线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/page-list,get,获取线索分页列表
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads,post,创建线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,put,全量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,patch,增量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,delete,删除线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id/actions/users,post,为线索分配员工
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,get,查询注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/page-list,get,获取注册码分页列表
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes,post,创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/generate,post,批量创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,put,全量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,patch,增量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,delete,删除注册码
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/page-list,get,查询品牌故事列表
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/:id,get,查询品牌故事详情
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories,post,创建品牌故事
@@ -3598,27 +3199,27 @@ admin/crm/business/opportunity,/api/v1/admin/business/opportunities,post,创建�
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id/assign-user,put,为商机分配员工
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,put,修改商机信息
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,delete,删除商机
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,get,查询客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/page-list,get,获取客户分页列表
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers,post,创建客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,put,全量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,patch,增量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,delete,删除客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id/actions/users,post,为客户分配员工
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,get,查询线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/page-list,get,获取线索分页列表
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads,post,创建线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,put,全量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,patch,增量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,delete,删除线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id/actions/users,post,为线索分配员工
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,get,查询注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/page-list,get,获取注册码分页列表
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes,post,创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/generate,post,批量创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,put,全量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,patch,增量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,delete,删除注册码
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,get,查询客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/page-list,get,获取客户分页列表
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers,post,创建客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,put,全量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,patch,增量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,delete,删除客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id/actions/users,post,为客户分配员工
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,get,查询线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/page-list,get,获取线索分页列表
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads,post,创建线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,put,全量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,patch,增量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,delete,删除线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id/actions/users,post,为线索分配员工
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,get,查询注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/page-list,get,获取注册码分页列表
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes,post,创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/generate,post,批量创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,put,全量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,patch,增量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,delete,删除注册码
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/page-list,get,查询品牌故事列表
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/:id,get,查询品牌故事详情
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories,post,创建品牌故事
@@ -3997,27 +3598,27 @@ admin/crm/business/opportunity,/api/v1/admin/business/opportunities,post,创建�
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id/assign-user,put,为商机分配员工
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,put,修改商机信息
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,delete,删除商机
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,get,查询客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/page-list,get,获取客户分页列表
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers,post,创建客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,put,全量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,patch,增量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,delete,删除客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id/actions/users,post,为客户分配员工
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,get,查询线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/page-list,get,获取线索分页列表
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads,post,创建线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,put,全量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,patch,增量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,delete,删除线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id/actions/users,post,为线索分配员工
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,get,查询注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/page-list,get,获取注册码分页列表
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes,post,创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/generate,post,批量创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,put,全量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,patch,增量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,delete,删除注册码
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,get,查询客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/page-list,get,获取客户分页列表
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers,post,创建客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,put,全量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,patch,增量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,delete,删除客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id/actions/users,post,为客户分配员工
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,get,查询线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/page-list,get,获取线索分页列表
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads,post,创建线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,put,全量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,patch,增量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,delete,删除线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id/actions/users,post,为线索分配员工
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,get,查询注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/page-list,get,获取注册码分页列表
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes,post,创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/generate,post,批量创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,put,全量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,patch,增量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,delete,删除注册码
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/page-list,get,查询品牌故事列表
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/:id,get,查询品牌故事详情
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories,post,创建品牌故事
@@ -4396,27 +3997,27 @@ admin/crm/business/opportunity,/api/v1/admin/business/opportunities,post,创建�
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id/assign-user,put,为商机分配员工
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,put,修改商机信息
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,delete,删除商机
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,get,查询客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/page-list,get,获取客户分页列表
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers,post,创建客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,put,全量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,patch,增量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,delete,删除客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id/actions/users,post,为客户分配员工
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,get,查询线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/page-list,get,获取线索分页列表
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads,post,创建线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,put,全量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,patch,增量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,delete,删除线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id/actions/users,post,为线索分配员工
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,get,查询注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/page-list,get,获取注册码分页列表
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes,post,创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/generate,post,批量创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,put,全量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,patch,增量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,delete,删除注册码
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,get,查询客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/page-list,get,获取客户分页列表
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers,post,创建客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,put,全量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,patch,增量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,delete,删除客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id/actions/users,post,为客户分配员工
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,get,查询线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/page-list,get,获取线索分页列表
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads,post,创建线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,put,全量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,patch,增量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,delete,删除线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id/actions/users,post,为线索分配员工
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,get,查询注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/page-list,get,获取注册码分页列表
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes,post,创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/generate,post,批量创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,put,全量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,patch,增量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,delete,删除注册码
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/page-list,get,查询品牌故事列表
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/:id,get,查询品牌故事详情
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories,post,创建品牌故事
@@ -4795,27 +4396,426 @@ admin/crm/business/opportunity,/api/v1/admin/business/opportunities,post,创建�
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id/assign-user,put,为商机分配员工
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,put,修改商机信息
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,delete,删除商机
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,get,查询客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/page-list,get,获取客户分页列表
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers,post,创建客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,put,全量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,patch,增量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,delete,删除客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id/actions/users,post,为客户分配员工
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,get,查询线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/page-list,get,获取线索分页列表
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads,post,创建线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,put,全量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,patch,增量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,delete,删除线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id/actions/users,post,为线索分配员工
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,get,查询注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/page-list,get,获取注册码分页列表
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes,post,创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/generate,post,批量创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,put,全量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,patch,增量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,delete,删除注册码
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,get,查询客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/page-list,get,获取客户分页列表
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers,post,创建客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,put,全量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,patch,增量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,delete,删除客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id/actions/users,post,为客户分配员工
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,get,查询线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/page-list,get,获取线索分页列表
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads,post,创建线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,put,全量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,patch,增量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,delete,删除线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id/actions/users,post,为线索分配员工
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,get,查询注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/page-list,get,获取注册码分页列表
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes,post,创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/generate,post,批量创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,put,全量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,patch,增量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,delete,删除注册码
+admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/page-list,get,查询品牌故事列表
+admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/:id,get,查询品牌故事详情
+admin/crm/market/brandstory,/api/v1/admin/market/brand-stories,post,创建品牌故事
+admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/:id,put,全量品牌故事
+admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/:id,delete,删除品牌故事
+admin/crm/market/media,/api/v1/admin/market/medias/page-list,get,查询媒体列表
+admin/crm/market/media,/api/v1/admin/market/medias,post,请求媒体上传链接
+admin/crm/market/media,/api/v1/admin/market/medias/:id,put,创建或更新媒体
+admin/crm/market/media,/api/v1/admin/market/medias/:id,get,根据媒体key获取媒体
+admin/crm/market/media,/api/v1/admin/market/medias/:id,delete,删除媒体
+admin/crm/market/mgm,/api/v1/admin/market/mgms/page-list,get,查询MGMRule列表
+admin/crm/market/mgm,/api/v1/admin/market/mgms,post,请求MGMRule上传链接
+admin/crm/market/mgm,/api/v1/admin/market/mgms/:id,put,创建或更新MGMRule
+admin/crm/market/mgm,/api/v1/admin/market/mgms/:id,get,根据获取MGMRule
+admin/crm/market/mgm,/api/v1/admin/market/mgms/:id,delete,删除MGMRule
+admin/crm/market/store,/api/v1/admin/market/stores/page-list,get,查询门店列表
+admin/crm/market/store,/api/v1/admin/market/stores/:id,get,查询门店详情
+admin/crm/market/store,/api/v1/admin/market/stores,post,创建门店
+admin/crm/market/store,/api/v1/admin/market/stores/:id,put,全量门店
+admin/crm/market/store,/api/v1/admin/market/stores/:id,delete,删除门店
+admin/crm/market/store,/api/v1/admin/market/stores/:id/actions/assign-to-store-categroy,post,分配门店经理给门店
+admin/crm/membership,/api/v1/admin/membership/customers/:id,get,查询会籍
+admin/crm/product/artisan,/api/v1/admin/product/artisans/page-list,get,查询元匠列表
+admin/crm/product/artisan,/api/v1/admin/product/artisans/:id,get,查询元匠详情
+admin/crm/product/artisan,/api/v1/admin/product/artisans,post,创建元匠
+admin/crm/product/artisan,/api/v1/admin/product/artisans/:id,put,全量元匠
+admin/crm/product/artisan,/api/v1/admin/product/artisans/:id,delete,删除元匠
+admin/crm/product/artisan,/api/v1/admin/product/artisans/bind/stores,post,元匠绑定门店
+admin/crm/product/pricebook,/api/v1/admin/product/price-books/page-list,get,查询价格手册列表
+admin/crm/product/pricebook,/api/v1/admin/product/price-books/:id,get,查询价格手册详情
+admin/crm/product/pricebook,/api/v1/admin/product/price-books,post,创新价格手册
+admin/crm/product/pricebook,/api/v1/admin/product/price-books/:id,delete,删除价格手册
+admin/crm/product/pricebookentry,/api/v1/admin/product/price-book-entries/page-list,get,查询价格手册条目列表
+admin/crm/product/pricebookentry,/api/v1/admin/product/price-book-entries/:id,get,查询价格手册条目详情
+admin/crm/product/pricebookentry,/api/v1/admin/product/price-book-entries/config,post,配置价格手册条目条目
+admin/crm/product/pricebookentry,/api/v1/admin/product/price-book-entries/:id,post,配置价格手册条目条目
+admin/crm/product/pricebookentry,/api/v1/admin/product/price-book-entries/:id,delete,删除价格手册条目
+admin/crm/product,/api/v1/admin/product/products/page-list,get,查询产品列表
+admin/crm/product,/api/v1/admin/product/products/:id,get,查询产品详情
+admin/crm/product,/api/v1/admin/product/products,post,创建产品
+admin/crm/product,/api/v1/admin/product/products/:id,put,全量产品
+admin/crm/product,/api/v1/admin/product/products/:id,patch,增量产品
+admin/crm/product,/api/v1/admin/product/products/disable/:id,put,下架产品
+admin/crm/product,/api/v1/admin/product/products/:id,delete,删除产品
+admin/crm/product,/api/v1/admin/product/products/:id/actions/assign-to-product-categroy,post,分配产品品类给产品品类分类
+admin/crm/product/category,/api/v1/admin/product/product-category-tree,get,查询产品品类列表
+admin/crm/product/category,/api/v1/admin/product/product-categories/:id,get,查询产品品类详情
+admin/crm/product/category,/api/v1/admin/product/product-categories,post,创新产品品类
+admin/crm/product/category,/api/v1/admin/product/product-categories/:id,put,修改产品品类
+admin/crm/product/category,/api/v1/admin/product/product-categories/:id,patch,修改产品品类父级
+admin/crm/product/category,/api/v1/admin/product/product-categories/:id,delete,删除产品品类
+admin/crm/product/productspecific,/api/v1/admin/product/product-specifics/page-list,get,查询产品规格列表
+admin/crm/product/productspecific,/api/v1/admin/product/product-specifics/:id,get,查询产品规格详情
+admin/crm/product/productspecific,/api/v1/admin/product/product-specifics,post,创建产品规格
+admin/crm/product/productspecific,/api/v1/admin/product/product-specifics/config,post,配置产品规格
+admin/crm/product/productspecific,/api/v1/admin/product/product-specifics/:id,put,全量产品规格
+admin/crm/product/productspecific,/api/v1/admin/product/product-specifics/:id,patch,增量产品规格
+admin/crm/product/productspecific,/api/v1/admin/product/product-specifics/:id,delete,删除产品规格
+admin/crm/product/productstatistics,/api/v1/admin/product/product-statistics/page-list,get,查询产品统计列表
+admin/crm/product/productstatistics,/api/v1/admin/product/product-statistics/:id,get,查询产品统计详情
+admin/crm/product/productstatistics,/api/v1/admin/product/product-statistics/config,post,配置产品统计
+admin/crm/product/productstatistics,/api/v1/admin/product/product-statistics/:id,put,全量产品统计
+admin/crm/product/productstatistics,/api/v1/admin/product/product-statistics/:id,patch,增量产品统计
+admin/crm/product/sku,/api/v1/admin/product/skus/page-list,get,查询SKU列表
+admin/crm/product/sku,/api/v1/admin/product/skus/:id,get,查询SKU详情
+admin/crm/product/sku,/api/v1/admin/product/skus,post,创建SKU
+admin/crm/product/sku,/api/v1/admin/product/skus/config,post,配置SKU
+admin/crm/product/sku,/api/v1/admin/product/skus/:id,put,全量SKU
+admin/crm/product/sku,/api/v1/admin/product/skus/:id,patch,增量SKU
+admin/crm/product/sku,/api/v1/admin/product/skus/:id,delete,删除SKU
+admin/crm/trade/address/billing,/api/v1/admin/trade/address/billing/page-list,get,查询账单地址列表
+admin/crm/trade/address/billing,/api/v1/admin/trade/address/billing/:id,get,查询账单地址详情
+admin/crm/trade/address/billing,/api/v1/admin/trade/address/billing,post,创建账单地址
+admin/crm/trade/address/billing,/api/v1/admin/trade/address/billing/:id,put,更新账单地址
+admin/crm/trade/address/billing,/api/v1/admin/trade/address/billing/:id,patch,部分更新账单地址
+admin/crm/trade/address/billing,/api/v1/admin/trade/address/billing/:id,delete,删除账单地址
+admin/crm/trade/address/delivery,/api/v1/admin/trade/address/delivery/page-list,get,查询订单发货地址列表
+admin/crm/trade/address/delivery,/api/v1/admin/trade/address/delivery/:id,get,查询订单发货地址详情
+admin/crm/trade/address/delivery,/api/v1/admin/trade/address/delivery,post,创建订单发货地址
+admin/crm/trade/address/delivery,/api/v1/admin/trade/address/delivery/:id,put,更新订单发货地址
+admin/crm/trade/address/delivery,/api/v1/admin/trade/address/delivery/:id,patch,部分更新订单发货地址
+admin/crm/trade/address/delivery,/api/v1/admin/trade/address/delivery/:id,delete,删除订单发货地址
+admin/crm/trade/logistics,/api/v1/admin/trade/logisticses,get,查询物流列表
+admin/crm/trade/logistics,/api/v1/admin/trade/logisticses/:id,get,获取物流详情
+admin/crm/trade/logistics,/api/v1/admin/trade/logisticses,post,创建物流
+admin/crm/trade/logistics,/api/v1/admin/trade/logisticses/:id,put,更新物流
+admin/crm/trade/logistics,/api/v1/admin/trade/logisticses/:id,patch,部分更新物流
+admin/crm/trade/logistics,/api/v1/admin/trade/logisticses/:id,delete,删除物流
+admin/crm/trade/order,/api/v1/admin/trade/orders/page-list,get,查询订单列表
+admin/crm/trade/order,/api/v1/admin/trade/orders/:id,get,查询订单详情
+admin/crm/trade/order,/api/v1/admin/trade/orders,post,创建订单
+admin/crm/trade/order,/api/v1/admin/trade/orders/:id,put,更新订单
+admin/crm/trade/order,/api/v1/admin/trade/orders/:id,patch,部分更新订单
+admin/crm/trade/order,/api/v1/admin/trade/orders/:id,delete,删除订单
+admin/crm/trade/order,/api/v1/admin/trade/orders/export,get,导出订单
+admin/crm/trade/order,/api/v1/admin/trade/orders/import,post,导入订单
+admin/crm/trade/payment,/api/v1/admin/trade/payments/page-list,get,查询支付单列表
+admin/crm/trade/payment,/api/v1/admin/trade/payments/:id,get,查询支付单详情
+admin/crm/trade/payment,/api/v1/admin/trade/payments,post,创建支付单
+admin/crm/trade/payment,/api/v1/admin/trade/payments/:id,put,全量支付单
+admin/crm/trade/payment,/api/v1/admin/trade/payments/:id,patch,增量支付单
+admin/crm/trade/payment,/api/v1/admin/trade/payments/:id,delete,删除支付单
+admin/crm/trade/order,/api/v1/admin/trade/refund-order/page-list,get,查询退款单列表
+admin/crm/trade/order,/api/v1/admin/trade/refund-order/:id,get,查询退款单详情
+admin/crm/trade/order,/api/v1/admin/trade/refund-order,post,创建退款单
+admin/crm/trade/order,/api/v1/admin/trade/refund-order/:id,put,更新退款单
+admin/crm/trade/order,/api/v1/admin/trade/refund-order/:id,patch,部分更新退款单
+admin/crm/trade/order,/api/v1/admin/trade/refund-order/:id,delete,删除退款单
+admin/crm/trade/address/shipping,/api/v1/admin/trade/address/shipping/page-list,get,查询收货地址列表
+admin/crm/trade/address/shipping,/api/v1/admin/trade/address/shipping/:id,get,查询收货地址详情
+admin/crm/trade/address/shipping,/api/v1/admin/trade/address/shipping,post,创建收货地址
+admin/crm/trade/address/shipping,/api/v1/admin/trade/address/shipping/:id,put,更新收货地址
+admin/crm/trade/address/shipping,/api/v1/admin/trade/address/shipping/:id,patch,部分更新收货地址
+admin/crm/trade/address/shipping,/api/v1/admin/trade/address/shipping/:id,delete,删除收货地址
+admin/crm/trade/token,/api/v1/admin/trade/token/products/page-list,get,查询代币产品列表
+admin/crm/trade/token,/api/v1/admin/trade/token/products/:id,get,查询代币产品详情
+admin/crm/trade/token,/api/v1/admin/trade/token/products,post,创建代币产品
+admin/crm/trade/token,/api/v1/admin/trade/token/products/:id,put,全量代币产品
+admin/crm/trade/token,/api/v1/admin/trade/token/products/:id,patch,增量代币产品
+admin/crm/trade/token,/api/v1/admin/trade/token/products/:id,delete,删除代币产品
+admin/crm/trade/warehouse,/api/v1/admin/trade/warehouses,get,查询仓库列表
+admin/crm/trade/warehouse,/api/v1/admin/trade/warehouses/:id,get,获取仓库详情
+admin/crm/trade/warehouse,/api/v1/admin/trade/warehouses,post,创建仓库
+admin/crm/trade/warehouse,/api/v1/admin/trade/warehouses/:id,put,更新仓库
+admin/crm/trade/warehouse,/api/v1/admin/trade/warehouses/:id,patch,部分更新仓库
+admin/crm/trade/warehouse,/api/v1/admin/trade/warehouses/:id,delete,删除仓库
+admin/department,/api/v1/admin/department/department-tree/:depId,get,查询组织架构
+admin/department,/api/v1/admin/department/departments/:id,get,获取单个部门详情
+admin/department,/api/v1/admin/department/departments,post,创建新部门
+admin/department,/api/v1/admin/department/departments/:id,patch,更新部门信息(可选更新)
+admin/department,/api/v1/admin/department/departments/:id,delete,删除部门
+admin/dictionary,/api/v1/admin/dictionary/types/page-list,get,获取字典类型列表
+admin/dictionary,/api/v1/admin/dictionary/types,get,获取字典类型列表
+admin/dictionary,/api/v1/admin/dictionary/types/:type,get,获取字典类型
+admin/dictionary,/api/v1/admin/dictionary/types,post,创建字典类型
+admin/dictionary,/api/v1/admin/dictionary/types/:type,put,更新字典类型
+admin/dictionary,/api/v1/admin/dictionary/types/:type,delete,删除字典类型
+admin/dictionary,/api/v1/admin/dictionary/items,get,获取字典项列表
+admin/dictionary,/api/v1/admin/dictionary/items/:type/:key,get,获取字典项
+admin/dictionary,/api/v1/admin/dictionary/items,post,创建字典项
+admin/dictionary,/api/v1/admin/dictionary/items/:type/:key,put,更新字典项
+admin/dictionary,/api/v1/admin/dictionary/items/:type/:key,delete,删除字典项
+admin/infoOrganization/category,/api/v1/admin/info-organization/category-tree,get,查询类别列表
+admin/infoOrganization/category,/api/v1/admin/info-organization/categories/:id,get,查询类别详情
+admin/infoOrganization/category,/api/v1/admin/info-organization/categories,post,创新类别
+admin/infoOrganization/category,/api/v1/admin/info-organization/categories/:id,put,修改类别
+admin/infoOrganization/category,/api/v1/admin/info-organization/categories/:id,patch,修改类别父级
+admin/infoOrganization/category,/api/v1/admin/info-organization/categories/:id,delete,删除类别
+admin/infoOrganization/label,/api/v1/admin/info-organization/label-tree,get,查询框架标签列表
+admin/infoOrganization/label,/api/v1/admin/info-organization/labels/:id,get,查询框架标签详情
+admin/infoOrganization/label,/api/v1/admin/info-organization/labels,post,创新框架标签
+admin/infoOrganization/label,/api/v1/admin/info-organization/labels/:id,put,修改框架标签
+admin/infoOrganization/label,/api/v1/admin/info-organization/labels/:id,patch,修改框架标签父级
+admin/infoOrganization/label,/api/v1/admin/info-organization/labels/:id,delete,删除框架标签
+admin/infoOrganization/tag,/api/v1/admin/info-organization/tag-tree,get,查询碎片标签列表
+admin/infoOrganization/tag,/api/v1/admin/info-organization/tags/:id,get,查询碎片标签详情
+admin/infoOrganization/tag,/api/v1/admin/info-organization/tags,post,创新碎片标签
+admin/infoOrganization/tag,/api/v1/admin/info-organization/tags/:id,put,修改碎片标签
+admin/infoOrganization/tag,/api/v1/admin/info-organization/tags/:id,patch,修改碎片标签父级
+admin/infoOrganization/tag,/api/v1/admin/info-organization/tags/:id,delete,删除碎片标签
+admin/mediaResource,/api/v1/admin/media/resources/page-list,get,查询媒资列表
+admin/mediaResource,/api/v1/admin/media/resources,post,创建媒资
+admin/mediaResource,/api/v1/admin/media/resources/base64,post,创建媒资-Base64
+admin/mediaResource,/api/v1/admin/media/resources/:id,get,获取媒资详情
+admin/mediaResource,/api/v1/admin/media/resources/:id,delete,删除媒资
+admin/permission,/api/v1/admin/permission/roles,get,查询角色列表
+admin/permission,/api/v1/admin/permission/roles,post,创建角色
+admin/permission,/api/v1/admin/permission/roles/:roleCode,get,获取角色详情
+admin/permission,/api/v1/admin/permission/roles/:roleCode,patch,更新角色详情
+admin/permission,/api/v1/admin/permission/roles/:roleCode/users,get,获取角色的用户列表
+admin/permission,/api/v1/admin/permission/roles/:roleCode/actions/set-permissions,post,为角色授予API权限
+admin/permission,/api/v1/admin/permission/api-list,get,查询API列表
+admin/permission,/api/v1/admin/permission/roles/:roleCode/actions/set-users,post,为角色分配用户
+admin/permission,/api/v1/admin/permission/users/:userId/actions/set-roles,post,为用户授予角色
+admin/position,/api/v1/admin/position/positions,post,创建新职位
+admin/position,/api/v1/admin/position/positions/:id,patch,更新职位信息(可选更新)
+admin/position,/api/v1/admin/position/positions/:id,delete,删除职位
+admin/position,/api/v1/admin/position/positions,get,获取职位列表
+admin/position,/api/v1/admin/position/positions/:id,get,获取职位详情
+admin/scrm/app,/api/v1/admin/scrm/app/wechat/detail,get,App详情
+admin/scrm/app,/api/v1/admin/scrm/app/wechat/options,get,App列表/options
+admin/scrm/app,/api/v1/admin/scrm/app/wechat/message/articles,post,App发送图文信息
+admin/scrm/app,/api/v1/admin/scrm/app/wechat/group/list,get,App企业群列表/list
+admin/scrm/app,/api/v1/admin/scrm/app/wechat/group/create,post,App创建企业群
+admin/scrm/app,/api/v1/admin/scrm/app/wechat/group/message/articles,post,App企业群推送图文信息
+admin/scrm/bot,/api/v1/admin/scrm/bot/wechat/message/articles,post,机器人发送图文信息
+admin/scrm/contractway,/api/v1/admin/contract-way/group-tree,get,获取渠道活码分组树
+admin/scrm/contractway,/api/v1/admin/contract-way/groups,get,查询渠道活码分组列表
+admin/scrm/contractway,/api/v1/admin/contract-way,get,查询渠道活码
+admin/scrm/contractway,/api/v1/admin/contract-way,post,创建活码
+admin/scrm/contractway,/api/v1/admin/contract-way/:id,put,修改活码
+admin/scrm/contractway,/api/v1/admin/contract-way/:id,delete,删除活码
+admin/scrm/customer,/api/v1/admin/scrm/customer/wechat/sync,post,批量同步客户信息(根据员工ID同步/节流)
+admin/scrm/customer,/api/v1/admin/scrm/customer/wechat/page,post,所有客户列表/page
+admin/scrm/customer,/api/v1/admin/scrm/customer/wechat/group/list,post,客户群列表/limit
+admin/scrm/customer,/api/v1/admin/scrm/customer/wechat/group/message/template,post,客户群发信息
+admin/scrm/customer,/api/v1/admin/scrm/customer/customers/:id,get,查询客户详情
+admin/scrm/customer,/api/v1/admin/scrm/customer/customers,get,查询客户详情列表
+admin/scrm/customer,/api/v1/admin/scrm/customer/customers/:id,patch,修改客户信息
+admin/scrm/customer,/api/v1/admin/scrm/customer/customers/actions/sync,post,同步客户
+admin/scrm/organization,/api/v1/admin/scrm/organization/wechat/partment/page,post,部门列表/page
+admin/scrm/organization,/api/v1/admin/scrm/organization/wechat/user/page,post,员工列表/page
+admin/scrm/organization,/api/v1/admin/scrm/organization/wechat/sync,get,同步组织架构/department&user
+admin/scrm/qrcode,/api/v1/admin/scrm/qrcode/wechat/group/page,post,场景码列表/page
+admin/scrm/qrcode,/api/v1/admin/scrm/qrcode/wechat/group/create,post,创建场景码
+admin/scrm/qrcode,/api/v1/admin/scrm/qrcode/wechat/group/update/:qid,patch,更新场景码
+admin/scrm/qrcode,/api/v1/admin/scrm/qrcode/wechat/group/enable/:qid,patch,启用场景码
+admin/scrm/qrcode,/api/v1/admin/scrm/qrcode/wechat/group/disable/:qid,patch,禁用场景码
+admin/scrm/qrcode,/api/v1/admin/scrm/qrcode/wechat/group/:qid,delete,删除场景码
+admin/scrm/qrcode,/api/v1/admin/scrm/qrcode/wechat/qrcode/:qid,patch,下载场景码/upload
+admin/scrm/resource,/api/v1/admin/scrm/resource/wechat/image/upload,post,上传图片到微信
+admin/scrm/resource,/api/v1/admin/scrm/resource/wechat/image/page,post,微信素材库/page
+admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/group/option,get,标签组列表/option
+admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/group/page,post,标签组分页/page
+admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/corp/option,get,标签列表对象/key=>val
+admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/group/action,post,添加、删除标签组内的标签
+admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/corp/page,post,标签列表/page
+admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/sync,put,全量同步标签/sync
+admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/crop/create,post,创建企业标签
+admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/crop/update,patch,编辑企业标签
+admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/crop/delete,delete,批量删除企业标签
+admin/scrm/tag,/api/v1/admin/scrm/tag/wechat/customer/action,delete,编辑/删除客户标签
+admin/tag,/api/v1/admin/tags/tag-tree,get,查询标签列表
+admin/tag,/api/v1/admin/tags/:id,get,查询标签详情
+admin/tag,/api/v1/admin/tags,post,创新标签
+admin/tag,/api/v1/admin/tags/:id,put,修改标签
+admin/tag,/api/v1/admin/tags/:id,patch,修改标签父级
+admin/tag,/api/v1/admin/tags/:id,delete,删除标签
+admin/user,/api/v1/admin/user/users/actions/sync,post,同步员工
+admin/user,/api/v1/admin/user/users/:uuid,get,查询员工
+admin/user,/api/v1/admin/user/users,get,List员工
+admin/user,/api/v1/admin/user/users,post,创建员工
+admin/user,/api/v1/admin/user/users/:uuid,patch,编辑员工信息
+admin/user,/api/v1/admin/user/users/:uuid,delete,删除员工
+admin/user,/api/v1/admin/user/users/actions/reset-password,post,重设密码
+admin/userinfo,/api/v1/admin/user-center/user-info,get,获取用户信息
+admin/userinfo,/api/v1/admin/user-center/menu-roles,get,获取用户可见菜单
+admin/userinfo,/api/v1/admin/user-center/users/actions/modify-password,post,修改密码
+admin/wechat/officialaccount/media,/api/v1/admin/wechat/official-account/medias/page-list,post,查询菜单列表
+admin/wechat/officialaccount/media,/api/v1/admin/wechat/official-account/media/news/list,get,查询菜单列表
+admin/wechat/officialaccount/media,/api/v1/admin/wechat/official-account/medias/:mediaId,get,请求菜单上传链接
+admin/wechat/officialaccount/media,/api/v1/admin/wechat/official-account/medias/video/:mediaId,get,根据媒体key获取媒体
+admin/wechat/officialaccount/media,/api/v1/admin/wechat/official-account/medias/upload,post,创建菜单
+admin/wechat/officialaccount/media,/api/v1/admin/wechat/official-account/medias,post,创建菜单
+admin/wechat/officialaccount/media,/api/v1/admin/wechat/official-account/medias/:mediaId,delete,删除菜单
+admin/wechat/officialaccount/menu,/api/v1/admin/wechat/official-account/menus-tree,get,查询菜单列表
+admin/wechat/officialaccount/menu,/api/v1/admin/wechat/official-account/menus/sync,post,请求菜单上传链接
+admin/wechat/officialaccount/menu,/api/v1/admin/wechat/official-account/menus,post,创建菜单
+admin/wechat/officialaccount/menu,/api/v1/admin/wechat/official-account/menus,delete,删除菜单
+system/health,/api/v1/system/health,get,健康检查接口
+mp/crm/customer/auth,/api/v1/mp/customer/validToken,get,微信小程序Token验证
+mp/crm/customer/auth,/api/v1/mp/customer/login,post,微信小程序登录
+mp/crm/customer/auth,/api/v1/mp/customer/authByPhone,post,客户手机授权
+mp/crm/customer/auth,/api/v1/mp/customer/authByProfile,post,客户信息授权
+mp/crm/customer,/api/v1/mp/customer/user-info,get,获取用户信息
+mp/dictionary,/api/v1/mp/dictionary/types/page-list,get,获取字典类型列表
+mp/dictionary,/api/v1/mp/dictionary/types/:type,get,获取字典类型
+mp/dictionary,/api/v1/mp/dictionary/items,get,获取字典项列表
+mp/dictionary,/api/v1/mp/dictionary/items/:type/:key,get,获取字典项
+mp/infoOrganization/category,/api/v1/mp/info-organization/category-tree,get,查询类别列表
+mp/infoOrganization/category,/api/v1/mp/info-organization/categories/:id,get,查询类别详情
+mp/infoOrganization/category,/api/v1/mp/info-organization/categories,post,创新类别
+mp/infoOrganization/category,/api/v1/mp/info-organization/categories/:id,put,修改类别
+mp/infoOrganization/category,/api/v1/mp/info-organization/categories/:id,patch,修改类别父级
+mp/infoOrganization/category,/api/v1/mp/info-organization/categories/:id,delete,删除类别
+web/infoOrganization/label,/api/v1/web/info-organization/label-tree,get,查询框架标签列表
+web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,get,查询框架标签详情
+web/infoOrganization/label,/api/v1/web/info-organization/labels,post,创新框架标签
+web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,put,修改框架标签
+web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,patch,修改框架标签父级
+web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,delete,删除框架标签
+web/infoOrganization/tag,/api/v1/web/info-organization/tag-tree,get,查询碎片标签列表
+web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,get,查询碎片标签详情
+web/infoOrganization/tag,/api/v1/web/info-organization/tags,post,创新碎片标签
+web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,put,修改碎片标签
+web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,patch,修改碎片标签父级
+web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,delete,删除碎片标签
+mp/crm/market/media,/api/v1/mp/market/medias/page-list,get,查询媒资列表
+mp/crm/market/store,/api/v1/mp/market/stores/page-list,get,店铺列表
+mp/crm/membership,/api/v1/mp/membership/customer,get,查询会籍
+mp/crm/membership,/api/v1/mp/membership/:id,get,查询会籍
+mp/crm/product/artisan,/api/v1/mp/product/artisans/page-list,get,查询元匠列表
+mp/crm/product/artisan,/api/v1/mp/product/artisans/:id,get,查询元匠详情
+mp/crm/product,/api/v1/mp/product/products/page-list,get,产品列表
+mp/crm/product,/api/v1/mp/product/products/:id,get,查询产品详情
+mp/crm/product,/api/v1/mp/product/product-category-tree,get,查询产品品类树形表
+mp/crm/product,/api/v1/mp/product/product-categories,get,查询产品品类列表
+mp/crm/product/productstatistics,/api/v1/mp/product/product-statistics/page-list,get,查询产品统计列表
+mp/crm/product/productstatistics,/api/v1/mp/product/product-statistics/:id,get,查询产品统计详情
+mp/crm/trade/address/billing,/api/v1/mp/trade/address/billing/page-list,get,查询账单地址列表
+mp/crm/trade/address/billing,/api/v1/mp/trade/address/billing/:id,get,查询账单地址详情
+mp/crm/trade/address/billing,/api/v1/mp/trade/address/billing,post,创建账单地址
+mp/crm/trade/address/billing,/api/v1/mp/trade/address/billing/:id,put,更新账单地址
+mp/crm/trade/address/billing,/api/v1/mp/trade/address/billing/:id,patch,部分更新账单地址
+mp/crm/trade/address/billing,/api/v1/mp/trade/address/billing/:id,delete,删除账单地址
+mp/crm/trade/cart,/api/v1/mp/trade/cart/items/page-list,get,查询购物车列表
+mp/crm/trade/cart,/api/v1/mp/trade/cart/:cartId,get,获取购物车详情
+mp/crm/trade/cart,/api/v1/mp/trade/cart/items,post,添加商品到购物车
+mp/crm/trade/cart,/api/v1/mp/trade/cart/items/:itemId,put,更新购物车商品数量
+mp/crm/trade/cart,/api/v1/mp/trade/cart/items/:itemId,delete,删除购物车商品
+mp/crm/trade/cart,/api/v1/mp/trade/cart/items/clear,delete,清空购物车
+mp/crm/trade/address/delivery,/api/v1/mp/trade/address/delivery/page-list,get,查询订单发货地址列表
+mp/crm/trade/address/delivery,/api/v1/mp/trade/address/delivery/:id,get,查询订单发货地址详情
+mp/crm/trade/address/delivery,/api/v1/mp/trade/address/delivery,post,创建订单发货地址
+mp/crm/trade/address/delivery,/api/v1/mp/trade/address/delivery/:id,put,更新订单发货地址
+mp/crm/trade/address/delivery,/api/v1/mp/trade/address/delivery/:id,patch,部分更新订单发货地址
+mp/crm/trade/address/delivery,/api/v1/mp/trade/address/delivery/:id,delete,删除订单发货地址
+mp/crm/trade/order,/api/v1/mp/trade/orders/page-list,get,查询订单列表
+mp/crm/trade/order,/api/v1/mp/trade/orders/:id,get,查询订单详情
+mp/crm/trade/order,/api/v1/mp/trade/orders/products,post,创建产品订单
+mp/crm/trade/order,/api/v1/mp/trade/orders/cart-items,post,创建购物车订单
+mp/crm/trade/order,/api/v1/mp/trade/orders/cancel/:id,put,取消订单
+mp/crm/trade/payment,/api/v1/mp/trade/payments/page-list,get,查询支付单列表
+mp/crm/trade/payment,/api/v1/mp/trade/payments/:id,get,查询支付单详情
+mp/crm/trade/payment,/api/v1/mp/trade/payments,post,创建支付单
+mp/crm/trade/payment,/api/v1/mp/trade/payments/:id,put,修改支付单
+mp/crm/trade/address/shipping,/api/v1/mp/trade/address/shipping/page-list,get,查询收货地址列表
+mp/crm/trade/address/shipping,/api/v1/mp/trade/address/shipping/:id,get,查询收货地址详情
+mp/crm/trade/address/shipping,/api/v1/mp/trade/address/shipping,post,创建收货地址
+mp/crm/trade/address/shipping,/api/v1/mp/trade/address/shipping/:id,put,更新收货地址
+mp/crm/trade/address/shipping,/api/v1/mp/trade/address/shipping/:id,patch,部分更新收货地址
+mp/crm/trade/address/shipping,/api/v1/mp/trade/address/shipping/:id,delete,删除收货地址
+mp/crm/trade/token,/api/v1/mp/trade/token/balance,get,查询代币
+openapi/auth,/openapi/v1/auth,post,Auth by platform
+openapi,/openapi/v1/version,get,Get the version of the API
+openapi,/openapi/v1/echo,post,Create a new echo message
+openapi/provider/brainx,/openapi/v1/provider/brainx/hello-world,get,hello world api for provider demo
+openapi/provider/brainx,/openapi/v1/provider/brainx/echo-long-time,post,timeout api for provider demo
+plugin,/api/v1/plugin/v1/plugins,post,插件接口
+plugin,/api/v1/plugin/v1/plugins,get,插件列表拉取
+plugin,/api/v1/plugin/v1/frontend-routes,get,插件路由拉取
+openapi/provider/brainx,/openapi/v1/provider/brainx/hello-world,get,hello world api for provider demo
+openapi/provider/brainx,/openapi/v1/provider/brainx/echo-long-time,post,timeout api for provider demo
+web/ai/chatBot,/api/v1/web/chatbot/chat,post,AI ChatBot对话
+web/ai/chatBot,/api/v1/web/chatbot/agent/chat,post,AI ChatBot Agent对话
+web/customer/auth,/api/v1/web/customer/login,post,微信Web登录
+web/customer/auth,/api/v1/web/customer/registerByPhone,post,客户手机注册
+web/customer/auth,/api/v1/web/customer/registerByPhone/invite/:code,post,客户手机注册，邀请码机制
+web/customer/auth,/api/v1/web/customer/registerByPhone/register/:code,post,客户手机注册，注册码机制
+web/customer/auth,/api/v1/web/customer/updateCustomerProfile/:id,post,客户信息更新
+web/customer/auth,/api/v1/web/customer/user-info,get,获取用户信息
+web/customer/auth/oa,/api/v1/web/customer/oa/login,post,微信公众号登录
+web/customer/auth/oa,/api/v1/web/customer/oa/authByPhone,post,客户手机授权
+web/customer/auth/oa,/api/v1/web/customer/oa/authByProfile,post,公众号客户信息授权
+mp/dictionary,/api/v1/web/dictionary/types/page-list,get,获取字典类型列表
+mp/dictionary,/api/v1/web/dictionary/types/:type,get,获取字典类型
+mp/dictionary,/api/v1/web/dictionary/items,get,获取字典项列表
+mp/dictionary,/api/v1/web/dictionary/items/:type/:key,get,获取字典项
+web/infoOrganization/category,/api/v1/web/info-organization/category-tree,get,查询类别列表
+web/infoOrganization/category,/api/v1/web/info-organization/categories/:id,get,查询类别详情
+web/infoOrganization/category,/api/v1/web/info-organization/categories,post,创新类别
+web/infoOrganization/category,/api/v1/web/info-organization/categories/:id,put,修改类别
+web/infoOrganization/category,/api/v1/web/info-organization/categories/:id,patch,修改类别父级
+web/infoOrganization/category,/api/v1/web/info-organization/categories/:id,delete,删除类别
+web/infoOrganization/label,/api/v1/web/info-organization/label-tree,get,查询框架标签列表
+web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,get,查询框架标签详情
+web/infoOrganization/label,/api/v1/web/info-organization/labels,post,创新框架标签
+web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,put,修改框架标签
+web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,patch,修改框架标签父级
+web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,delete,删除框架标签
+web/infoOrganization/tag,/api/v1/web/info-organization/tag-tree,get,查询碎片标签列表
+web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,get,查询碎片标签详情
+web/infoOrganization/tag,/api/v1/web/info-organization/tags,post,创新碎片标签
+web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,put,修改碎片标签
+web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,patch,修改碎片标签父级
+web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,delete,删除碎片标签
+web/scene,/api/v1/web/scene/qrcode/detail/:qid(SceneRequest),get,获取场景落地页详情
+admin/auth,/api/v1/admin/auth/access/actions/basic-login,post,登录
+admin/auth,/api/v1/admin/auth/access/actions/exchange-token,post,Exchange
+admin/common,/api/v1/admin/common/options/users,get,员工Options远程搜索
+admin/common,/api/v1/admin/common/options/user-query,get,查询员工过滤条件
+admin/common,/api/v1/admin/common/options/departments,get,部门Options远程搜索
+admin/common,/api/v1/admin/common/options,get,通用获取Options
+admin/crm/business/opportunity,/api/v1/admin/business/opportunities,get,查询商机列表
+admin/crm/business/opportunity,/api/v1/admin/business/opportunities,post,创建商机
+admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id/assign-user,put,为商机分配员工
+admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,put,修改商机信息
+admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,delete,删除商机
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,get,查询客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/page-list,get,获取客户分页列表
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers,post,创建客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,put,全量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,patch,增量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id,delete,删除客户
+admin/crm/customerDomain/customer,/api/v1/admin/customerDomain/customers/:id/actions/users,post,为客户分配员工
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,get,查询线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/page-list,get,获取线索分页列表
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads,post,创建线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,put,全量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,patch,增量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id,delete,删除线索
+admin/crm/customerDomain/leader,/api/v1/admin/customerDomain/leads/:id/actions/users,post,为线索分配员工
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,get,查询注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/page-list,get,获取注册码分页列表
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes,post,创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/generate,post,批量创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,put,全量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,patch,增量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customerDomain/register-codes/:id,delete,删除注册码
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/page-list,get,查询品牌故事列表
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/:id,get,查询品牌故事详情
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories,post,创建品牌故事

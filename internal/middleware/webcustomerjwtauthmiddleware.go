@@ -5,7 +5,7 @@ import (
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
 	"PowerX/internal/uc"
-	"PowerX/internal/uc/powerx/crm/customerdomain"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
 	"context"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/pkg/errors"
@@ -61,14 +61,14 @@ func (m *WebCustomerJWTAuthMiddleware) Handle(next http.HandlerFunc) http.Handle
 		}
 
 		// 获取公众号授权的openid
-		payload, err := customerdomain.GetPayloadFromToken(token.Raw)
+		payload, err := customerDomain.GetPayloadFromToken(token.Raw)
 		if err != nil {
 			logx.WithContext(request.Context()).Error(err)
 			httpx.Error(writer, errorx.WithCause(unAuth, "无效客户信息"))
 			return
 		}
 		customerId, _ := strconv.ParseInt(payload["sub"].(string), 10, 64)
-		ctx := context.WithValue(request.Context(), customerdomain.AuthCustomerIdKey, customerId)
+		ctx := context.WithValue(request.Context(), customerDomain.AuthCustomerIdKey, customerId)
 
 		// Pass through to next handler if need
 		next(writer, request.WithContext(ctx))

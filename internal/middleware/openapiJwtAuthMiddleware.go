@@ -6,7 +6,7 @@ import (
 	"PowerX/internal/types/errorx"
 	"PowerX/internal/uc"
 	"PowerX/internal/uc/openapi"
-	"PowerX/internal/uc/powerx/crm/customerdomain"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
 	"context"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/pkg/errors"
@@ -59,7 +59,7 @@ func (m *OpenAPIJWTAuthMiddleware) Handle(next http.HandlerFunc) http.HandlerFun
 		}
 
 		// 获取对接平台的platformId
-		payload, err := customerdomain.GetPayloadFromToken(token.Raw)
+		payload, err := customerDomain.GetPayloadFromToken(token.Raw)
 		if err != nil {
 			logx.WithContext(request.Context()).Error(err)
 			httpx.Error(writer, errorx.WithCause(unAuth, "无效客户信息"))

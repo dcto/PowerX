@@ -1,7 +1,7 @@
 package trade
 
 import (
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/crm/product"
 	"PowerX/internal/model/crm/trade"
 	"PowerX/internal/model/powermodel"
@@ -146,7 +146,7 @@ func (uc *OrderUseCase) CreateOrder(ctx context.Context, order *trade.Order) err
 }
 
 func (uc *OrderUseCase) CreateOrderByPriceBookEntries(ctx context.Context,
-	customer *customerdomain2.Customer,
+	customer *customerDomain2.Customer,
 	entries []*product.PriceBookEntry,
 	quantities []int,
 	shippingAddress *trade.ShippingAddress,
@@ -203,7 +203,7 @@ func (uc *OrderUseCase) CreateOrderByPriceBookEntries(ctx context.Context,
 	return order, err
 }
 func (uc *OrderUseCase) CreateOrderByCartItems(ctx context.Context,
-	customer *customerdomain2.Customer,
+	customer *customerDomain2.Customer,
 	cartItems []*trade.CartItem,
 	shippingAddress *trade.ShippingAddress,
 	comment string,
@@ -276,7 +276,7 @@ func (uc *OrderUseCase) CreateOrderByCartItems(ctx context.Context,
 
 func (uc *OrderUseCase) MakeOrderItemsFromEntries(
 	entries []*product.PriceBookEntry,
-	customer *customerdomain2.Customer,
+	customer *customerDomain2.Customer,
 	quantities []int,
 	orderType int,
 	orderStatus int,
@@ -297,7 +297,7 @@ func (uc *OrderUseCase) MakeOrderItemsFromEntries(
 func (uc *OrderUseCase) MakeOrderItemFromEntry(
 	index int,
 	entry *product.PriceBookEntry,
-	customer *customerdomain2.Customer,
+	customer *customerDomain2.Customer,
 	quantity int,
 	orderType int,
 	orderStatus int,

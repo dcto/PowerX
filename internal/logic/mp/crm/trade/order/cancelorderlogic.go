@@ -1,10 +1,10 @@
 package order
 
 import (
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/crm/trade"
 	"PowerX/internal/types/errorx"
-	"PowerX/internal/uc/powerx/crm/customerdomain"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
 	"context"
 
 	"PowerX/internal/svc"
@@ -28,8 +28,8 @@ func NewCancelOrderLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Cance
 }
 
 func (l *CancelOrderLogic) CancelOrder(req *types.CancelOrderRequest) (resp *types.CancelOrderReply, err error) {
-	vAuthCustomer := l.ctx.Value(customerdomain.AuthCustomerKey)
-	authCustomer := vAuthCustomer.(*customerdomain2.Customer)
+	vAuthCustomer := l.ctx.Value(customerDomain.AuthCustomerKey)
+	authCustomer := vAuthCustomer.(*customerDomain2.Customer)
 
 	// 找出相应的Cart Items
 	order, err := l.svcCtx.PowerX.Order.GetOrder(l.ctx, req.OrderId)

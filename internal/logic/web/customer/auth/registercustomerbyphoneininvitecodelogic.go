@@ -2,7 +2,7 @@ package auth
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/crm/customerdomain"
+	"PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/crm/market"
 	"PowerX/internal/types/errorx"
 	"PowerX/pkg/securityx"

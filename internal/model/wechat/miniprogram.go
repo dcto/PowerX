@@ -2,7 +2,7 @@ package wechat
 
 import (
 	"PowerX/internal/model"
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/powermodel"
 	"fmt"
 	"github.com/ArtisanCloud/PowerLibs/v3/security"
@@ -12,7 +12,7 @@ import (
 type WechatMPCustomer struct {
 	powermodel.PowerModel
 
-	Customer *customerdomain2.Customer `gorm:"foreignKey:OpenId;references:OpenIdInMiniProgram" json:"customer"`
+	Customer *customerDomain2.Customer `gorm:"foreignKey:OpenId;references:OpenIdInMiniProgram" json:"customer"`
 
 	UniqueID   string `gorm:"unique" json:"uniqueId"`
 	SessionKey string `json:"-"`

@@ -1,7 +1,7 @@
 package market
 
 import (
-	"PowerX/internal/model/crm/customerdomain"
+	"PowerX/internal/model/crm/customerDomain"
 	model "PowerX/internal/model/crm/market"
 	"PowerX/internal/model/powermodel"
 	"PowerX/internal/types"

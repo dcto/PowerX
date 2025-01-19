@@ -1,9 +1,9 @@
 package order
 
 import (
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/types/errorx"
-	"PowerX/internal/uc/powerx/crm/customerdomain"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
 	"PowerX/internal/uc/powerx/crm/trade"
 	"context"
 
@@ -28,8 +28,8 @@ func NewCreateOrderByCartItemsLogic(ctx context.Context, svcCtx *svc.ServiceCont
 }
 
 func (l *CreateOrderByCartItemsLogic) CreateOrderByCartItems(req *types.CreateOrderByCartItemsRequest) (resp *types.CreateOrderByCartItemsReply, err error) {
-	vAuthCustomer := l.ctx.Value(customerdomain.AuthCustomerKey)
-	authCustomer := vAuthCustomer.(*customerdomain2.Customer)
+	vAuthCustomer := l.ctx.Value(customerDomain.AuthCustomerKey)
+	authCustomer := vAuthCustomer.(*customerDomain2.Customer)
 
 	// 找出相应的Cart Items
 	cartItems, err := l.svcCtx.PowerX.Cart.FindAllCartItems(l.ctx, &trade.FindManyCartItemsOption{

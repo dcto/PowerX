@@ -1,7 +1,7 @@
 package trade
 
 import (
-	"PowerX/internal/model/crm/customerdomain"
+	"PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/crm/operation"
 	"PowerX/internal/model/crm/trade"
 	"PowerX/internal/model/powermodel"

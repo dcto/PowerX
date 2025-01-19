@@ -5,7 +5,7 @@ import (
 	migratePro "PowerX/cmd/ctl/database/pro/migrate"
 	"PowerX/internal/config"
 	"PowerX/internal/model"
-	"PowerX/internal/model/crm/customerdomain"
+	"PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/crm/market"
 	"PowerX/internal/model/crm/operation"
 	"PowerX/internal/model/crm/product"

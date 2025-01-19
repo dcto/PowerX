@@ -1,6 +1,6 @@
 import "mp/dictionary.api"
-import "mp/customerdomain/authCustomer.api"
-import "mp/customerdomain/customer.api"
+import "mp/customerDomain/authCustomer.api"
+import "mp/customerDomain/customer.api"
 import "mp/membership/membership.api"
 import "mp/market/store.api"
 import "mp/market/media.api"

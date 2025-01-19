@@ -5,7 +5,7 @@ import (
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
 	"PowerX/internal/uc"
-	"PowerX/internal/uc/powerx/crm/customerdomain"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
 	"context"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/pkg/errors"
@@ -58,14 +58,14 @@ func (m *MPCustomerJWTAuthMiddleware) Handle(next http.HandlerFunc) http.Handler
 		}
 
 		// 获取小程序授权的openid
-		payload, err := customerdomain.GetPayloadFromToken(token.Raw)
+		payload, err := customerDomain.GetPayloadFromToken(token.Raw)
 		if err != nil {
 			logx.WithContext(request.Context()).Error(err)
 			httpx.Error(writer, errorx.WithCause(unAuth, "无效客户信息"))
 			return
 		}
-		openId := payload[customerdomain.AuthCustomerOpenIdKey]
-		ctx := context.WithValue(request.Context(), customerdomain.AuthCustomerOpenIdKey, openId)
+		openId := payload[customerDomain.AuthCustomerOpenIdKey]
+		ctx := context.WithValue(request.Context(), customerDomain.AuthCustomerOpenIdKey, openId)
 
 		// Pass through to next handler if need
 		next(writer, request.WithContext(ctx))

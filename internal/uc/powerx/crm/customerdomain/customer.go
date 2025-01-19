@@ -1,7 +1,7 @@
-package customerdomain
+package customerDomain
 
 import (
-	"PowerX/internal/model/crm/customerdomain"
+	"PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/powermodel"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
@@ -123,7 +123,7 @@ func (uc *CustomerUseCase) UpsertCustomer(ctx context.Context, customer *custome
 		err := powermodel.UpsertModelsOnUniqueID(tx, &customerDomain.Customer{}, customerDomain.CustomerUniqueId, customers, nil, false)
 
 		if err != nil {
-			panic(errors.Wrap(err, "upsert customerdomain failed"))
+			panic(errors.Wrap(err, "upsert customerDomain failed"))
 		}
 		// 如果是新增用户，那么需要给一个唯一识别号
 		if customer.Uuid == "" {

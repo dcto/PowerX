@@ -1,7 +1,7 @@
-package customerdomain
+package customerDomain
 
 import (
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/wechat"
 	"fmt"
 	"github.com/golang-jwt/jwt/v4"
@@ -37,7 +37,7 @@ type CustomerJWTToken struct {
 	jwt.RegisteredClaims
 }
 
-func (uc *AuthorizationCustomerDomainUseCase) SignWebToken(customer *customerdomain2.Customer, jwtSecret string) oauth2.Token {
+func (uc *AuthorizationCustomerDomainUseCase) SignWebToken(customer *customerDomain2.Customer, jwtSecret string) oauth2.Token {
 	now := time.Now()
 	expiresAt := now.Add(CustomerTokenExpiredDuration)
 

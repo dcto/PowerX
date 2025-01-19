@@ -1,11 +1,11 @@
 package auth
 
 import (
-	"PowerX/internal/logic/admin/crm/customerdomain/customer"
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
+	"PowerX/internal/logic/admin/crm/customerDomain/customer"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/svc"
 	"PowerX/internal/types"
-	"PowerX/internal/uc/powerx/crm/customerdomain"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
 	"context"
 	"fmt"
 
@@ -28,8 +28,8 @@ func NewGetUserInfoLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetUs
 
 func (l *GetUserInfoLogic) GetUserInfo() (resp *types.GetUserInfoReplyForWeb, err error) {
 
-	vAuthCustomer := l.ctx.Value(customerdomain.AuthCustomerKey)
-	authCustomer := vAuthCustomer.(*customerdomain2.Customer)
+	vAuthCustomer := l.ctx.Value(customerDomain.AuthCustomerKey)
+	authCustomer := vAuthCustomer.(*customerDomain2.Customer)
 
 	customer := customer.TransformCustomerToReply(l.svcCtx, authCustomer)
 	customer.AccountId = fmt.Sprintf("%d", customer.Id)

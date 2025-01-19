@@ -4,7 +4,7 @@ import (
 	"PowerX/internal/config"
 	"PowerX/internal/types/errorx"
 	"PowerX/internal/uc"
-	"PowerX/internal/uc/powerx/crm/customerdomain"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
 	"context"
 	"github.com/zeromicro/go-zero/rest/httpx"
 	"net/http"
@@ -27,7 +27,7 @@ func (m *WebCustomerGetMiddleware) Handle(next http.HandlerFunc) http.HandlerFun
 
 		unAuth := errorx.ErrUnAuthorization.(*errorx.Error)
 
-		vCustomerId := r.Context().Value(customerdomain.AuthCustomerIdKey)
+		vCustomerId := r.Context().Value(customerDomain.AuthCustomerIdKey)
 		if vCustomerId == nil {
 			httpx.Error(w, errorx.WithCause(unAuth, "无效授权客户Id"))
 			return
@@ -59,7 +59,7 @@ func (m *WebCustomerGetMiddleware) Handle(next http.HandlerFunc) http.HandlerFun
 		//	return
 		//}
 
-		ctx := context.WithValue(r.Context(), customerdomain.AuthCustomerKey, authCustomer)
+		ctx := context.WithValue(r.Context(), customerDomain.AuthCustomerKey, authCustomer)
 
 		next(w, r.WithContext(ctx))
 	}
