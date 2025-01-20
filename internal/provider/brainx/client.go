@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"github.com/ArtisanCloud/PowerLibs/v3/cache"
 	"github.com/pkg/errors"
+	"github.com/zeromicro/go-zero/core/logx"
 	"io"
 	"net/http"
 	"time"
@@ -123,7 +124,7 @@ func (sp *BrainXProviderClient) doRequest(ctx context.Context, req *http.Request
 
 	// 发起 HTTP 请求
 	resp, err := sp.httpClient.Do(req)
-	print(resp)
+	logx.Info(resp)
 	if err != nil {
 		return nil, err
 	}
@@ -189,7 +190,11 @@ func (sp *BrainXProviderClient) HTTPPost(ctx context.Context, uri string, jsonDa
 
 // 从 BrainX 获取 SSE 数据流并将其转发到前端
 // 通用的 POST 请求流式传输方法
-func (sp *BrainXProviderClient) StreamPOST(ctx context.Context, uri string, jsonData interface{}, w http.ResponseWriter, headers map[string]string) error {
+func (sp *BrainXProviderClient) StreamPOST(
+	ctx context.Context, uri string, jsonData interface{},
+	w http.ResponseWriter, headers map[string]string,
+	commandCallback func(message *schema.SSEMessage) (*schema.SSEMessage, error),
+) error {
 	// 获取访问令牌
 	token, err := sp.GetAccessToken(ctx)
 	if err != nil {
@@ -247,15 +252,48 @@ func (sp *BrainXProviderClient) StreamPOST(ctx context.Context, uri string, json
 			return errors.New("request timed out")
 		default:
 			n, err := resp.Body.Read(buf)
-			if err != nil && err != io.EOF {
+			if err != nil {
+				if err == io.EOF {
+					break
+				}
 				return fmt.Errorf("failed to read response body: %v", err)
 			}
 			if n == 0 {
-				break
+				continue
 			}
 
+			bufMsg := buf[:n]
+
 			// 每次读取到数据立即发送到客户端
-			_, err = w.Write(buf[:n])
+			//fmt.Println(string(buf[:n]))
+			// 如果需要有回调指令嵌入
+			if commandCallback != nil {
+				// 先解析当前消息内容
+				msg, err := schema.ParseSSEMessage(string(bufMsg))
+				if err != nil {
+					return fmt.Errorf("failed to parse sse message: %v", err)
+				}
+
+				// 如果当前信息已经完成，则嵌入command指令给前端
+				if msg.Status == schema.StatusFinished {
+					msg, err = commandCallback(msg)
+					if err != nil {
+						// 如果不影响整体流程，可以继续而不是返回错误
+						logx.Errorf("command callback error: %v", err)
+						continue
+					}
+
+					strMsg, err := schema.BuildSSEMessage(msg)
+					if err != nil {
+						logx.Errorf("failed to build sse message: %v", err)
+						continue
+					}
+					bufMsg = []byte(strMsg)
+					//fmt2.Dump(bufMsg)
+				}
+			}
+
+			_, err = w.Write(bufMsg)
 			if err != nil {
 				return fmt.Errorf("failed to write to response: %v", err)
 			}
