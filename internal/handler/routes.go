@@ -231,7 +231,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				},
 			}...,
 		),
-		rest.WithPrefix("/api/v1/admin/customerDomain"),
+		rest.WithPrefix("/api/v1/admin/customer-domain"),
 	)
 
 	server.AddRoutes(
@@ -282,7 +282,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				},
 			}...,
 		),
-		rest.WithPrefix("/api/v1/admin/customerDomain"),
+		rest.WithPrefix("/api/v1/admin/customer-domain"),
 	)
 
 	server.AddRoutes(
@@ -333,7 +333,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				},
 			}...,
 		),
-		rest.WithPrefix("/api/v1/admin/customerDomain"),
+		rest.WithPrefix("/api/v1/admin/customer-domain"),
 	)
 
 	server.AddRoutes(
@@ -1586,16 +1586,10 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			[]rest.Middleware{serverCtx.UserJWTAuth},
 			[]rest.Route{
 				{
-					// 同步组织架构/department&user
-					Method:  http.MethodGet,
-					Path:    "/sync",
-					Handler: adminscrmorganization.SyncWeWorkUserHandler(serverCtx),
-				},
-				{
-					// 员工列表/page
+					// 部门列表/page
 					Method:  http.MethodPost,
-					Path:    "/user/page",
-					Handler: adminscrmorganization.ListWeWorkUserPageHandler(serverCtx),
+					Path:    "/partment/page",
+					Handler: adminscrmorganization.ListWeWorkDepartMentPageHandler(serverCtx),
 				},
 			}...,
 		),
@@ -1607,10 +1601,16 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			[]rest.Middleware{serverCtx.UserJWTAuth},
 			[]rest.Route{
 				{
-					// 部门列表/page
+					// 同步组织架构/department&user
+					Method:  http.MethodGet,
+					Path:    "/sync",
+					Handler: adminscrmorganization.SyncWeWorkUserHandler(serverCtx),
+				},
+				{
+					// 员工列表/page
 					Method:  http.MethodPost,
-					Path:    "/partment/page",
-					Handler: adminscrmorganization.ListWeWorkDepartMentPageHandler(serverCtx),
+					Path:    "/user/page",
+					Handler: adminscrmorganization.ListWeWorkUserPageHandler(serverCtx),
 				},
 			}...,
 		),

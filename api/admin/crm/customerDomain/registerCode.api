@@ -10,7 +10,7 @@ info(
 
 @server(
     group: admin/crm/customerDomain/registerCode
-    prefix: /api/v1/admin/customerDomain
+    prefix: /api/v1/admin/customer-domain
     middleware: UserJWTAuth
 )
 
