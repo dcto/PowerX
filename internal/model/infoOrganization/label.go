@@ -27,7 +27,7 @@ type Label struct {
 const LabelUniqueId = powermodel.UniqueId
 
 func (mdl *Label) TableName() string {
-	return model.PowerXSchema + "." + model.TableNameLabel
+	return "public." + model.TableNameLabel
 }
 
 func (mdl *Label) GetTableName(needFull bool) string {

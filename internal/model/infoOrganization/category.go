@@ -15,7 +15,9 @@ type Category struct {
 	Children   []*Category          `gorm:"foreignKey:PId;references:Id" json:"children"`
 
 	PId          int64  `gorm:"comment:上级品类" json:"pId"`
-	Name         string `gorm:"comment:品类名称" json:"name"`
+	Name         string `gorm:"comment:品类名称;uniqueIndex:idx_scene_name" json:"name"`
+	Scene        string `gorm:"comment:使用场景;uniqueIndex:idx_scene_name" json:"scene"`
+	CustomerId   int64  `gorm:"comment:客户Id;uniqueIndex:idx_scene_name;default:0" json:"customerId"`
 	Sort         int    `gorm:"comment:排序" json:"sort"`
 	ViceName     string `gorm:"comment:副标题" json:"viceName"`
 	Description  string `gorm:"comment:描述" json:"description"`
@@ -27,7 +29,7 @@ type Category struct {
 const CategoryUniqueId = powermodel.UniqueId
 
 func (mdl *Category) TableName() string {
-	return model.PowerXSchema + "." + model.TableNameCategory
+	return "public." + model.TableNameCategory
 }
 
 func (mdl *Category) GetTableName(needFull bool) string {

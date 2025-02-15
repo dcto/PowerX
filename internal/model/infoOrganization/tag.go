@@ -27,7 +27,7 @@ type Tag struct {
 const TagUniqueId = powermodel.UniqueId
 
 func (mdl *Tag) TableName() string {
-	return model.PowerXSchema + "." + model.TableNameTag
+	return "public." + model.TableNameTag
 }
 
 func (mdl *Tag) GetTableName(needFull bool) string {

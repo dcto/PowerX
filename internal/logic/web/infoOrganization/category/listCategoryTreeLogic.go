@@ -2,7 +2,6 @@ package category
 
 import (
 	"PowerX/internal/logic/admin/infoOrganization/category"
-	"PowerX/internal/model/infoOrganization"
 	"PowerX/internal/uc/powerx/crm/infoOrganization"
 	"context"
 
@@ -41,23 +40,4 @@ func (l *ListCategoryTreeLogic) ListCategoryTree(req *types.ListCategoryTreeRequ
 	return &types.ListCategoryTreeReply{
 		ProductCategories: productCategoryReplyList,
 	}, nil
-}
-
-func TransformCategoriesToReplyForWeb(productCategoryList []*infoOrganizatoin.Category) []*types.Category {
-	uniqueIds := make(map[int64]bool)
-	var productCategoryReplyList []*types.Category
-	for _, category := range productCategoryList {
-		if !uniqueIds[category.Id] {
-			node := TransformCategoryToReplyForWeb(category)
-			if len(category.Children) > 0 {
-				node.Children = TransformCategoriesToReplyForWeb(category.Children)
-			}
-
-			productCategoryReplyList = append(productCategoryReplyList, node)
-			uniqueIds[category.Id] = true
-
-		}
-	}
-
-	return productCategoryReplyList
 }

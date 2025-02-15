@@ -3,6 +3,7 @@ package infoOrganization
 import (
 	infoOrganization2 "PowerX/internal/model/infoOrganization"
 	"PowerX/internal/model/powermodel"
+	"PowerX/internal/repository"
 	"PowerX/internal/types/errorx"
 	"context"
 	"strings"
@@ -12,12 +13,14 @@ import (
 )
 
 type CategoryUseCase struct {
-	db *gorm.DB
+	*repository.BaseRepository[infoOrganization2.Category] `inject:""`
+	db                                                     *gorm.DB
 }
 
 func NewCategoryUseCase(db *gorm.DB) *CategoryUseCase {
 	return &CategoryUseCase{
-		db: db,
+		BaseRepository: repository.NewBaseRepository[infoOrganization2.Category](db),
+		db:             db,
 	}
 }
 

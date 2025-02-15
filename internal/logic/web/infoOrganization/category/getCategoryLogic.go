@@ -1,8 +1,6 @@
 package category
 
 import (
-	"PowerX/internal/logic/admin/mediaResource"
-	"PowerX/internal/model/infoOrganization"
 	"context"
 
 	"PowerX/internal/svc"
@@ -39,29 +37,4 @@ func (l *GetCategoryLogic) GetCategory(req *types.GetCategoryRequest) (resp *typ
 	return &types.GetCategoryReply{
 		Category: categoryReply,
 	}, nil
-}
-
-func TransformCategoryToReplyForWeb(category *infoOrganizatoin.Category) *types.Category {
-
-	node := &types.Category{
-		Id:          category.Id,
-		PId:         category.PId,
-		Name:        category.Name,
-		Sort:        category.Sort,
-		ViceName:    category.ViceName,
-		Description: category.Description,
-		CreatedAt:   category.CreatedAt.String(),
-		CoverImage:  mediaResource.TransformMediaResourceToReply(category.CoverImage),
-		ImageAbleInfo: types.ImageAbleInfo{
-			Icon:            category.Icon,
-			BackgroundColor: category.BackgroundColor,
-		},
-		Children: nil,
-	}
-	if len(category.Children) > 0 {
-		node.Children = TransformCategoriesToReplyForWeb(category.Children)
-
-	}
-
-	return node
 }

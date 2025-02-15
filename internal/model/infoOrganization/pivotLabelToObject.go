@@ -28,7 +28,7 @@ const PivotLabelToObjectForeignKey = "object_id"
 const PivotLabelToObjectJoinKey = "label_id"
 
 func (mdl *PivotLabelToObject) TableName() string {
-	return model.PowerXSchema + "." + model.TableNamePivotLabelToObject
+	return "public." + model.TableNamePivotLabelToObject
 }
 
 func (mdl *PivotLabelToObject) GetTableName(needFull bool) string {
