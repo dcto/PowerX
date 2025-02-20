@@ -28,7 +28,7 @@ const PivotTagToObjectForeignKey = "object_id"
 const PivotTagToObjectJoinKey = "tag_id"
 
 func (mdl *PivotTagToObject) TableName() string {
-	return model.PowerXSchema + "." + model.TableNamePivotTagToObject
+	return "public." + model.TableNamePivotTagToObject
 }
 
 func (mdl *PivotTagToObject) GetTableName(needFull bool) string {

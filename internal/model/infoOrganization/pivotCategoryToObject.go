@@ -30,7 +30,7 @@ const PivotCategoryToObjectForeignKey = "object_id"
 const PivotCategoryToObjectJoinKey = "category_id"
 
 func (mdl *PivotCategoryToObject) TableName() string {
-	return model.PowerXSchema + "." + model.TableNamePivotCategoryToObject
+	return "public." + model.TableNamePivotCategoryToObject
 }
 
 func (mdl *PivotCategoryToObject) GetTableName(needFull bool) string {
