@@ -5,6 +5,7 @@ import (
 	"PowerX/pkg/zerox"
 	"context"
 	"errors"
+	"github.com/zeromicro/go-zero/core/logx"
 
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
@@ -32,7 +33,8 @@ func (r *BaseRepository[T]) Create(ctx context.Context, obj *T) (*T, error) {
 
 	result := query.Create(obj)
 	if result.Error != nil {
-		return nil, result.Error
+		logx.Error(result.Error.Error())
+		return nil, errors.New("inner db error, pls check the log")
 	}
 	return obj, nil
 }
@@ -155,7 +157,7 @@ func (r *BaseRepository[T]) FindByCondition(
 	callback func(db *gorm.DB, opt interface{}) *gorm.DB,
 	opt interface{},
 ) (*types.Page[*T], error) {
-	var results []*T
+	var objects []*T
 	var obj T
 
 	// 构造查询条件
@@ -184,13 +186,13 @@ func (r *BaseRepository[T]) FindByCondition(
 
 	// 分页查询
 	query = query.Limit(pageSize).Offset((page - 1) * pageSize)
-	result := query.Find(&results)
+	result := query.Find(&objects)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 
 	return &types.Page[*T]{
-		List:      results,
+		List:      objects,
 		PageIndex: page,
 		PageSize:  pageSize,
 		Total:     totalCount,
@@ -291,3 +293,51 @@ func (r *BaseRepository[T]) GetByCondition(ctx context.Context, conditions map[s
 
 	return &obj, nil
 }
+
+//func (r *BaseRepository[T]) ListTree(
+//	ctx context.Context, conditions map[string]interface{}, pId int64,
+//	callback func(db *gorm.DB, opt interface{}) *gorm.DB, opt interface{},
+//) ([]*T, error) {
+//	if pId < 0 {
+//		panic(errors.New("find object pId invalid"))
+//	}
+//	var obj T
+//	var objects []*T
+//
+//	query := r.db.WithContext(ctx)
+//	for key, value := range conditions {
+//		query = query.Where(key, value)
+//	}
+//
+//	// 调用回调函数，让调用方自定义查询逻辑
+//	if callback != nil {
+//		query = callback(query, opt)
+//	}
+//
+//	debug, ok := ctx.Value(zerox.DebugKey).(bool)
+//	// print(debug, ok)
+//	if ok && debug {
+//		query = query.Debug()
+//	}
+//
+//	err := query.Model(&obj).
+//		Where("p_id", pId).
+//		//Debug().
+//		Find(objects).
+//		Error
+//	if err != nil {
+//		return nil, err
+//	}
+//	var children []*T
+//	for i, object := range objects {
+//
+//		children, err = r.ListTree(ctx, conditions, object.Id, callback, opt, opt)
+//		if err != nil {
+//			return nil, err
+//		}
+//		if len(children) > 0 {
+//			objects[i].Children = children
+//		}
+//	}
+//	return objects, nil
+//}

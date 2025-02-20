@@ -32,7 +32,7 @@ func (l *CreateCategoryLogic) CreateCategory(req *types.CreateCategoryRequest) (
 	// Web端创建用户的客户分类
 	category := TransformCategoryRequestToCategory(req)
 	category.CustomerId = authCustomer.Id
-	res, err := l.svcCtx.PowerX.Category.BaseRepository.Create(l.ctx, category)
+	res, err := l.svcCtx.PowerX.Category.CategoryRepository.Create(l.ctx, category)
 	if err != nil {
 		return nil, err
 	}

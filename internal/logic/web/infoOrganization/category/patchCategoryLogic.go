@@ -24,7 +24,6 @@ func NewPatchCategoryLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Pat
 }
 
 func (l *PatchCategoryLogic) PatchCategory(req *types.PatchCategoryRequest) (resp *types.PatchCategoryReply, err error) {
-	// todo: add your logic here and delete this line
 
 	return
 }

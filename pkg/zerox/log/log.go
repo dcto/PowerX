@@ -14,9 +14,8 @@ type LokiConf struct {
 }
 
 type LogConf struct {
-	Console bool
-	Logx    logx.LogConf `json:",optional"`
-	Loki    LokiConf     `json:",optional"`
+	Logx logx.LogConf `json:",optional"`
+	Loki LokiConf     `json:",optional"`
 }
 
 func MustSetupLog(conf *LogConf) {

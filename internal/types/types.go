@@ -1690,8 +1690,8 @@ type Image struct {
 }
 
 type ImageAbleInfo struct {
-	Icon            string `json:"icon"`
-	BackgroundColor string `json:"backgroundColor"`
+	Icon            string `json:"icon,optional"`
+	BackgroundColor string `json:"backgroundColor,optional"`
 }
 
 type ImportOrdersReply struct {

@@ -29,3 +29,4 @@ var ErrOneStandardPriceBookOnly = NewError(400, "STANDARD_PRICE_BOOK_ONLY_ONE", 
 var ErrCanNotDeleteStandardPrice = NewError(400, "CAN_NOT_DELETE_STANDARD_PRICE_BOOK", "不能删除标准价格手册")
 var ErrNotEnoughBalance = NewError(400, "NOT_ENOUGH_BALANCE", "余额不足，请充值")
 var ErrNotEnoughTicket = NewError(400, "NOT_ENOUGH_TICKET", "没有多余券，请充值购买")
+var ErrCustomerNotMatch = NewError(400, "NOT_MATCH_CUSTOMER", "该客户不能匹配使用该资源")

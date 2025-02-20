@@ -13,14 +13,14 @@ import (
 )
 
 type CategoryUseCase struct {
-	*repository.BaseRepository[infoOrganization2.Category] `inject:""`
-	db                                                     *gorm.DB
+	CategoryRepository *repository.BaseRepository[infoOrganization2.Category] `inject:""`
+	db                 *gorm.DB
 }
 
 func NewCategoryUseCase(db *gorm.DB) *CategoryUseCase {
 	return &CategoryUseCase{
-		BaseRepository: repository.NewBaseRepository[infoOrganization2.Category](db),
-		db:             db,
+		CategoryRepository: repository.NewBaseRepository[infoOrganization2.Category](db),
+		db:                 db,
 	}
 }
 

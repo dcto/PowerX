@@ -110,8 +110,8 @@ type (
 
 type(
     ImageAbleInfo {
-        Icon string `json:"icon"`
-        BackgroundColor string `json:"backgroundColor"`
+        Icon string `json:"icon,optional"`
+        BackgroundColor string `json:"backgroundColor,optional"`
 
     }
 )
