@@ -41,29 +41,6 @@ service PowerX {
     delete /refund-order/:id (DeleteRefundOrderRequest) returns (DeleteRefundOrderReply)
 }
 
-type RefundOrderItem {
-    ID int64 `json:"id,optional"`
-
-    RefundOrderId int64 `json:"refundorderid,optional"`
-    RefundNumber string `json:"refundnumber,optional"`
-    RefundStatus int `json:"refundstatus,optional"`
-    RefundAmount float64 `json:"refundamount,optional"`
-    RefundDate string `json:"refunddate,optional"`
-}
-
-type RefundOrder {
-    ID int64 `json:"id,optional"`
-    CustomerId int64 `json:"customerId,optional"`
-    OrderId int64 `json:"orderId,optional"`
-    RefundNumber string `json:"refundNumber,optional"`
-    RefundStatus int `json:"refundStatus,optional,omitempty"`
-    RefundAmount float64 `json:"refundAmount,optional,omitempty"`
-    RefundReason string `json:"refundReason,optional,omitempty"`
-    RefundApproved bool `json:"refundApproved,optional,omitempty"`
-    RefundDate string `json:"refundDate,optional,omitempty"`
-    RefundOrderItems []RefundOrderItem `json:"orderItems,optional,omitempty"`
-    CreatedAt string `json:"createdAt,optional,omitempty"`
-}
 
 type ListRefundOrdersPageRequest {
     keys []string `form:"keys,omitempty"`

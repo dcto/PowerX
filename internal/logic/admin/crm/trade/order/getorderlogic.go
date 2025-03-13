@@ -86,12 +86,12 @@ func TransformOrderItemToReply(orderItem *trade.OrderItem) (orderItemReply *type
 	}
 }
 
-func TransformLogisticsToReply(logistics *trade.Logistics) *types.Logistics {
+func TransformLogisticsToReply(logistics *trade.Logistics) *types.LogisticsTracking {
 	if logistics == nil {
 		return nil
 	}
 
-	return &types.Logistics{
+	return &types.LogisticsTracking{
 		OrderId:               logistics.OrderId,
 		Status:                string(logistics.Status),
 		TrackingCode:          logistics.TrackingCode,

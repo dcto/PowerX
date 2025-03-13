@@ -47,16 +47,6 @@ service PowerX {
 
 
 type (
-    RegisterCode {
-        Id int64 `json:"id,optional"`
-        Code string `json:"code,optional"`
-        RegisterCustomerID int64 `json:"registerCustomerID,optional"`
-        ExpiredAt string `json:"expiredAt,optional"`
-        CreatedAt string `json:"createdAt,optional"`
-    }
-)
-
-type (
     GetRegisterCodeRequest {
         Id int64 `path:"id"`
     }

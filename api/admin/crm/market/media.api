@@ -44,21 +44,7 @@ type (
         PageSize int `form:"pageSize,optional"`
     }
 
-    Media {
-        Id int64 `json:"id,optional"`
 
-        Title string `json:"title,optional"`
-        SubTitle string `json:"subTitle,optional"`
-        CoverImageId int64 `json:"coverImageId,optional"`
-        ResourceUrl string `json:"resourceUrl,optional"`
-        Description string `json:"description,optional"`
-        MediaType int `json:"mediaType,optional"`
-        ViewedCount int `json:"viewedCount,optional"`
-
-        CoverImage *MediaResource `json:"coverImage,optional"`
-        DetailImageIds []int64 `json:"detailImageIds,optional"`
-        DetailImages []*MediaResource `json:"detailImages,optional"`
-    }
 
     ListMediasPageReply {
         List []*Media `json:"list"`

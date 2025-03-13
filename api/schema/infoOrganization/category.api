@@ -1,13 +1,3 @@
-syntax = "v1"
-
-info(
-    title: "通用对象"
-    desc: "通用对象"
-    author: "MichaelHu"
-    email: "matrix-x@artisan-cloud.com"
-    version: "v1"
-)
-
 type(
     Category {
         Id int64 `json:"id,optional"`

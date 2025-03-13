@@ -1,0 +1,229 @@
+
+type (
+
+    Artisan {
+        Id int64 `json:"id,optional"`
+        UserId int64 `json:"userId,optional"`
+        Name string `json:"name,optional"`
+        Level int8 `json:"level"`
+        Gender bool `json:"gender,optional"`
+        Birthday string `json:"birthday,optional"`
+        PhoneNumber string `json:"phoneNumber,optional"`
+        WorkNo string `json:"workNo"`
+        Email string `json:"email,optional"`
+        Experience string `json:"experience,optional"`
+        Specialty string `json:"specialty,optional"`
+        Certificate string `json:"certificate,optional"`
+        Address string `json:"address,optional"`
+        CreatedAt string `json:"createdAt,optional"`
+
+        CoverImageId int64 `json:"coverImageId,optional"`
+        CoverImage *MediaResource `json:"coverImage,optional"`
+        DetailImageIds []int64 `json:"detailImageIds,optional"`
+        DetailImages []*MediaResource `json:"detailIOmages,optional"`
+        StoreIds []int64 `json:"storeIds,optional"`
+    }
+)
+
+
+type (
+
+
+    PriceBook {
+        Id int64 `json:"id,optional"`
+        IsStandard bool `json:"isStandard,optional"`
+        Name string `json:"name"`
+        Description string `json:"description,optional"`
+        StoreId int64 `json:"storeId,optional"`
+        CreatedAt string `json:"createdAt,optional"`
+    }
+)
+
+
+type (
+
+    PriceConfig {
+        Discount float32 `json:"discount,optional"`
+        Price float64 `json:"price,optional"`
+        Days int8 `json:"days,optional"`
+        Type int8 `json:"type,optional"`
+        PriceBookEntryId int64 `json:"priceBookEntryId,optional"`
+        StartDate string `json:"startDate,optional"`
+        EndDate string `json:"endDate,optional"`
+    }
+
+
+
+    PriceBookEntrySpecific {
+        Inventory int16 `json:"inventory,optional"`
+        Weight float32 `json:"weight,optional"`
+        Volume float32 `json:"volume,optional"`
+        Encode string `json:"encode,optional"`
+        BarCode string `json:"barCode,optional"`
+        Extra string `json:"extra,optional"`
+    }
+
+    PriceBookEntry {
+        Id int64 `json:"id,optional"`
+        UniqueID string `json:"uniqueID,optional"`
+        PriceBookId int64 `json:"priceBookId"`
+        ProductId int64 `json:"productId"`
+        SkuId int64 `json:"skuId,optional"`
+        UnitPrice float64 `json:"unitPrice"`
+        ListPrice float64 `json:"listPrice,optional"`
+        IsActive bool `json:"isActive, optional"`
+        PriceConfigs []*PriceConfig `json:"priceConfigs, optional"`
+
+        SKUEntries []*PriceBookEntry `json:"skuEntries, optional"`
+
+        PriceBookName string `json:"priceBookName,optional"`
+        ProductName string `json:"productName,optional"`
+        SPU string `json:"spu,optional"`
+
+        Discount float32 `json:"discount,optional"`
+    }
+)
+
+
+type (
+
+    PivotDataDictionaryToObject {
+        DataDictionaryType string `json:"dataDictionaryType,optional"`
+        DataDictionaryKey string `json:"dataDictionaryKey,optional"`
+    }
+
+
+    ActivePriceEntry {
+        Id int64 `json:"id,optional"`
+        UnitPrice float64 `json:"unitPrice,optional"`
+        ListPrice float64 `json:"listPrice,optional"`
+        Discount float32 `json:"discount,optional"`
+    }
+
+    ProductAttribute {
+        Id int64 `json:"id,optional"`
+        Inventory int16 `json:"inventory,optional"`
+        SoldAmount int16 `json:"soldAmount,optional"`
+        Weight float32 `json:"weight,optional"`
+        Volume float32 `json:"volume,optional"`
+        Encode string `json:"encode,optional"`
+        BarCode string `json:"barCode,optional"`
+        Extra string `json:"extra,optional"`
+    }
+
+    Product {
+        Id int64 `json:"id,optional"`
+
+        Name string `json:"name"`
+        SPU string `json:"spu"`
+        Type int `json:"type"`
+        Plan int `json:"plan"`
+        AccountingCategory string `json:"accountingCategory"`
+        CanSellOnline bool `json:"canSellOnline,optional"`
+        CanUseForDeduct bool `json:"canUseForDeduct,optional"`
+        Description string `json:"description,optional"`
+        AllowedSellQuantity int `json:"allowedSellQuantity,optional"`
+        ValidityPeriodDays int `json:"validityPeriodDays,optional"`
+        SaleStartDate string `json:"saleStartDate,optional"`
+        SaleEndDate string `json:"saleEndDate,optional"`
+        ApprovalStatus int `json:"approvalStatus,optional"`
+        IsActivated bool `json:"isActivated,optional,omitempty"`
+        Sort int `json:"sort,optional,omitempty"`
+        CreatedAt string `json:"createdAt,optional"`
+
+        ProductSpecifics []*ProductSpecific `json:"productSpecifics,optional"`
+        PivotSalesChannels []*PivotDataDictionaryToObject `json:"pivotSalesChannels,optional"`
+        PivotPromoteChannels []*PivotDataDictionaryToObject `json:"pivotPromoteChannels,optional"`
+        ProductCategories []*ProductCategory `json:"productCategories,optional"`
+        SalesChannelsItemIds []int64 `json:"salesChannelsItemIds,optional"`
+        PromoteChannelsItemIds []int64 `json:"promoteChannelsItemIds,optional"`
+        CategoryIds []int64 `json:"categoryIds,optional"`
+        CoverImageIds []int64 `json:"coverImageIds,optional"`
+        CoverImages []*MediaResource `json:"coverImages,optional"`
+        CoverImageIdSortIndexs []*SortIdItem `json:"coverImageIdSortIndexes,optional"`
+        DetailImageIds []int64 `json:"detailImageIds,optional"`
+        DetailImages []*MediaResource `json:"detailImages,optional"`
+        DetailImageIdSortIndexs []*SortIdItem `json:"detailImageIdSortIndexes,optional"`
+        ActivePriceEntry *ActivePriceEntry `json:"activePriceBookEntry,optional"`
+        PriceBookEntries []*PriceBookEntry `json:"priceBookEntries,optional"`
+        SKUs []*SKU `json:"skus,optional"`
+        *ProductAttribute
+        ViewedCount int `json:"viewedCount,optional"`
+    }
+)
+
+
+type (
+
+    //    CategoryImage {
+    //        Id int64 `json:"id,optional"`
+    //        Filename string `json:"filename,optional"`
+    //        Size int64 `json:"size,optional"`
+    //        Url string `json:"url,optional"`
+    //        BucketName string `json:"bucketName,optional"`
+    //        IsLocalStored bool `json:"isLocalStored,optional"`
+    //        ContentType string `json:"contentType,optional"`
+    //        ResourceType string `json:"resourceType,optional"`
+    //    }
+
+    ProductCategory {
+        Id int64 `json:"id,optional"`
+        PId int64 `json:"pId"`
+        Name string `json:"name"`
+        Sort int `json:"sort"`
+        ViceName string `json:"viceName"`
+        Description string `json:"description"`
+        CreatedAt string `json:"createdAt,optional"`
+        ImageAbleInfo
+        CoverImageId int64 `json:"coverImageId,optional"`
+        CoverImage *MediaResource `json:"coverImage,optional"`
+        Children []*ProductCategory `json:"children,optional"`
+    }
+)
+
+
+type (
+    ProductSpecific {
+        Id int64 `json:"id,optional"`
+        ProductId int64 `json:"productId"`
+        Name string `json:"name"`
+        SpecificOptions []*SpecificOption `json:"specificOptions,optional"`
+    }
+    SpecificOption {
+        Id int64 `json:"id,optional"`
+        ProductSpecificId int64 `json:"ProductSpecificId,optional"`
+        Name string `json:"name,optional"`
+        IsActivated bool `json:"isActivated,optional"`
+    }
+
+)
+
+
+
+type (
+    ProductStatistics {
+        Id int64 `json:"id,optional"`
+        ProductId int64 `json:"productId"`
+        SoldAmount int64 `json:"soldAmount,optional"`
+        InventoryQuantity int64 `json:"inventoryQuantity,optional"`
+        ViewCount int64 `json:"viewCount,optional"`
+        BaseSoldAmount int64 `json:"baseSoldAmount,optional"`
+        BaseInventoryQuantity int64 `json:"baseInventoryQuantity,optional"`
+        BaseViewCount int64 `json:"baseViewCount,optional"`
+    }
+)
+
+
+type (
+    SKU {
+        Id int64 `json:"id,optional"`
+        UniqueId string `json:"uniqueId,optional"`
+        SkuNo string `json:"skuNo,optional"`
+        ProductId int64 `json:"productId,optional"`
+        Inventory int `json:"inventory,optional"`
+        UnitPrice float64 `json:"unitPrice,optional"`
+        ListPrice float64 `json:"listPrice,optional"`
+        IsActive bool `json:"isActive,optional"`
+        OptionsIds []int64 `json:"optionsIds,optional"`
+    }
+)

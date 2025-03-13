@@ -41,23 +41,7 @@ service PowerX {
     delete /shipping/:id (DeleteShippingAddressRequest) returns (DeleteShippingAddressReply)
 }
 
-type (
-    ShippingAddress {
-        Id int64 `json:"id,optional"`
-        CustomerId int64 `json:"customerId,optional"`
-        Name string `json:"name,optional"`
-        Recipient string `json:"recipient,optional"`
-        AddressLine string `json:"addressLine,optional"`
-        AddressLine2 string `json:"addressLine2,optional"`
-        Street string `json:"street,optional"`
-        City string `json:"city,optional"`
-        Province string `json:"province,optional"`
-        PostalCode string `json:"postalCode,optional"`
-        Country string `json:"country,optional"`
-        PhoneNumber string `json:"phoneNumber,optional"`
-        IsDefault bool `json:"isDefault,optional"`
-    }
-)
+
 type (
     ListShippingAddressesPageRequest {
         NameLike []string `form:"nameLike,optional"`

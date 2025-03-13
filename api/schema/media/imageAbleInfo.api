@@ -1,0 +1,8 @@
+
+type(
+    ImageAbleInfo {
+        Icon string `json:"icon,optional"`
+        BackgroundColor string `json:"backgroundColor,optional"`
+
+    }
+)

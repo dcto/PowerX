@@ -2058,24 +2058,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
 			{
-				// 查询产品详情
-				Method:  http.MethodGet,
-				Path:    "/products/:id",
-				Handler: mpcrmproduct.GetProductHandler(serverCtx),
-			},
-			{
-				// 产品列表
-				Method:  http.MethodGet,
-				Path:    "/products/page-list",
-				Handler: mpcrmproduct.ListProductsPageHandler(serverCtx),
-			},
-		},
-		rest.WithPrefix("/api/v1/mp/product"),
-	)
-
-	server.AddRoutes(
-		[]rest.Route{
-			{
 				// 查询产品品类列表
 				Method:  http.MethodGet,
 				Path:    "/product-categories",
@@ -2086,6 +2068,24 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Method:  http.MethodGet,
 				Path:    "/product-category-tree",
 				Handler: mpcrmproduct.ListProductCategoryTreeHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/api/v1/mp/product"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				// 查询产品详情
+				Method:  http.MethodGet,
+				Path:    "/products/:id",
+				Handler: mpcrmproduct.GetProductHandler(serverCtx),
+			},
+			{
+				// 产品列表
+				Method:  http.MethodGet,
+				Path:    "/products/page-list",
+				Handler: mpcrmproduct.ListProductsPageHandler(serverCtx),
 			},
 		},
 		rest.WithPrefix("/api/v1/mp/product"),

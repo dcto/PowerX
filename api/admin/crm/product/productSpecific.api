@@ -48,22 +48,6 @@ service PowerX {
 }
 
 type (
-    ProductSpecific {
-        Id int64 `json:"id,optional"`
-        ProductId int64 `json:"productId"`
-        Name string `json:"name"`
-        SpecificOptions []*SpecificOption `json:"specificOptions,optional"`
-    }
-    SpecificOption {
-        Id int64 `json:"id,optional"`
-        ProductSpecificId int64 `json:"ProductSpecificId,optional"`
-        Name string `json:"name,optional"`
-        IsActivated bool `json:"isActivated,optional"`
-    }
-
-)
-
-type (
     ListProductSpecificPageRequest {
         LikeName string `form:"likeName,optional"`
         ProductId int64 `form:"productId"`

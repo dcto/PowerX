@@ -53,29 +53,6 @@ type (
 )
 
 type (
-    LeadInviter {
-        Id int64 `json:"id"`
-        Name string `json:"name,optional"`
-        Mobile string `json:"mobile,optional"`
-        Email string `json:"email,optional"`
-    }
-
-    Lead {
-        Id int64 `json:"id,optional"`
-        Name string `json:"name"`
-        Mobile string `json:"mobile"`
-        Email string `json:"email,optional"`
-        Inviter *LeadInviter `json:"inviter,optional"`
-        InviterId int64 `json:"inviter,optional"`
-        Source int `json:"source,optional"`
-        Type int `json:"type,optional"`
-        IsActivated bool `json:"isActivated,optional,omitempty"`
-        CreatedAt string `json:"createdAt,optional"`
-        *LeadExternalId
-    }
-)
-
-type (
     GetLeadRequest {
         Id int64 `path:"id"`
     }
