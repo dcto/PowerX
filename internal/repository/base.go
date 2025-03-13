@@ -6,6 +6,7 @@ import (
 	"context"
 	"errors"
 	"github.com/zeromicro/go-zero/core/logx"
+	"strings"
 
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
@@ -34,6 +35,9 @@ func (r *BaseRepository[T]) Create(ctx context.Context, obj *T) (*T, error) {
 	result := query.Create(obj)
 	if result.Error != nil {
 		logx.Error(result.Error.Error())
+		if strings.Contains(result.Error.Error(), "duplicated") {
+			return nil, errors.New("关键名称信息不能重复")
+		}
 		return nil, errors.New("inner db error, pls check the log")
 	}
 	return obj, nil
