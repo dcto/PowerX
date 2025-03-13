@@ -304,19 +304,19 @@ type CartItem struct {
 }
 
 type Category struct {
-	Id          int64  `json:"id,optional"`
-	PId         int64  `json:"pId"`
-	Name        string `json:"name"`
-	Scene       string `json:"scene,optional"`
-	CustomerId  int64  `json:"customerId,optional"`
-	Sort        int    `json:"sort"`
-	ViceName    string `json:"viceName"`
-	Description string `json:"description"`
-	CreatedAt   string `json:"createdAt,optional"`
+	Id          int64  `json:"id,omitempty,,optional"`
+	PId         int64  `json:"pId,omitempty,,optional"`
+	Name        string `json:"name,omitempty,,optional"`
+	Scene       string `json:"scene,omitempty,,optional"`
+	CustomerId  int64  `json:"customerId,omitempty,,optional"`
+	Sort        int    `json:"sort,omitempty,,optional"`
+	ViceName    string `json:"viceName,omitempty,,optional"`
+	Description string `json:"description,omitempty,,optional"`
+	CreatedAt   string `json:"createdAt,omitempty,,optional,omitempty,"`
 	ImageAbleInfo
-	CoverImageId int64          `json:"coverImageId,optional"`
-	CoverImage   *MediaResource `json:"coverImage,optional"`
-	Children     []*Category    `json:"children,optional"`
+	CoverImageId int64          `json:"coverImageId,omitempty,,optional"`
+	CoverImage   *MediaResource `json:"coverImage,omitempty,,optional"`
+	Children     []*Category    `json:"children,omitempty,,optional"`
 }
 
 type ChatRequest struct {
@@ -2539,7 +2539,7 @@ type PatchBillingAddressRequest struct {
 }
 
 type PatchCategoryReply struct {
-	Category
+	*Category
 }
 
 type PatchCategoryRequest struct {

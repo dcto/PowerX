@@ -114,7 +114,7 @@ func (r *BaseRepository[T]) Update(ctx context.Context, obj *T) (*T, error) {
 }
 
 // Patch 部分更新记录
-func (r *BaseRepository[T]) Patch(ctx context.Context, uuid string, fields map[string]interface{}) (*T, error) {
+func (r *BaseRepository[T]) Patch(ctx context.Context, where map[string]interface{}, fields map[string]interface{}) (*T, error) {
 	var obj T
 	query := r.db.WithContext(ctx).Model(&obj)
 
@@ -124,29 +124,49 @@ func (r *BaseRepository[T]) Patch(ctx context.Context, uuid string, fields map[s
 		query = query.Debug()
 	}
 
-	result := query.Where("uuid = ?", uuid).Updates(fields)
+	for key, value := range where {
+		query = query.Where(key+" = ?", value)
+	}
+
+	result := query.Updates(fields)
 	if result.RowsAffected == 0 {
 		return nil, errors.New("record not found")
 	}
 	return &obj, result.Error
 }
 
-// Delete 删除记录，并返回删除的对象
-func (r *BaseRepository[T]) Delete(ctx context.Context, obj *T) (*T, error) {
-	query := r.db.WithContext(ctx)
+// Delete 删除记录，支持传入查询条件或对象，并返回删除的对象
+func (r *BaseRepository[T]) Delete(ctx context.Context, where map[string]interface{}, obj *T) (*T, error) {
+	var mdl T
+	query := r.db.WithContext(ctx).Model(&mdl)
 
-	debug, ok := ctx.Value(zerox.DebugKey).(bool)
-	// print(debug, ok)
-	if ok && debug {
+	// 启用 Debug 模式
+	if debug, ok := ctx.Value(zerox.DebugKey).(bool); ok && debug {
 		query = query.Debug()
 	}
 
-	result := query.Delete(obj)
-
-	if result.RowsAffected == 0 {
-		return nil, errors.New("record not found")
+	// 如果 `where` 不为空，则按条件删除
+	if where != nil {
+		for key, value := range where {
+			query = query.Where(key+" = ?", value)
+		}
+		result := query.Delete(&mdl)
+		if result.RowsAffected == 0 {
+			return nil, errors.New("record not found")
+		}
+		return nil, result.Error
 	}
-	return obj, result.Error
+
+	// 直接删除传入的 obj
+	if obj != nil {
+		result := query.Delete(obj)
+		if result.RowsAffected == 0 {
+			return nil, errors.New("record not found")
+		}
+		return obj, result.Error
+	}
+
+	return nil, errors.New("no delete condition provided")
 }
 
 // FindByCondition 根据条件查询并返回分页结果（指针数组）

@@ -4,7 +4,7 @@ import (
 	customerDomain2 "PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/types/errorx"
 	"PowerX/internal/uc/powerx/crm/customerDomain"
-	fmt "PowerX/pkg/printx"
+	"PowerX/pkg/mapx"
 	"context"
 
 	"PowerX/internal/svc"
@@ -43,9 +43,17 @@ func (l *PatchCategoryLogic) PatchCategory(req *types.PatchCategoryRequest) (res
 	if existedItem.CustomerId != authCustomer.Id {
 		return nil, errorx.ErrCustomerNotMatch
 	}
+	updateValues := mapx.MapUpdatesFromObject(req.Category)
 
-	fmt.Dump(req)
-	fmt.Dump(existedItem)
+	existedItem, err = l.svcCtx.PowerX.Category.CategoryRepository.Patch(l.ctx, map[string]interface{}{
+		"id": req.Id,
+	}, updateValues)
 
-	return nil, nil
+	if err != nil {
+		return nil, err
+	}
+
+	return &types.PatchCategoryReply{
+		TransformCategoryToReplyForWeb(existedItem),
+	}, nil
 }

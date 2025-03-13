@@ -37,7 +37,7 @@ func (l *PatchCategoryLogic) PatchCategory(req *types.PatchCategoryRequest) (res
 	l.svcCtx.PowerX.Category.PatchCategory(l.ctx, req.Id, productCategory)
 
 	return &types.PatchCategoryReply{
-		Category: types.Category{
+		Category: &types.Category{
 			Id:          productCategory.Id,
 			PId:         productCategory.PId,
 			Name:        productCategory.Name,
