@@ -32,7 +32,7 @@ func (l *UpdateCategoryLogic) UpdateCategory(req *types.UpdateCategoryRequest) (
 	category, err = l.svcCtx.PowerX.Category.UpsertCategory(l.ctx, category)
 
 	if err != nil {
-
+		return nil, err
 	}
 
 	return &types.UpdateCategoryReply{

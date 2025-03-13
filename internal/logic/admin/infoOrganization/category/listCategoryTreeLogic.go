@@ -2,7 +2,7 @@ package category
 
 import (
 	"PowerX/internal/logic/admin/mediaResource"
-	"PowerX/internal/model/infoOrganization"
+	infoOrganization2 "PowerX/internal/model/infoOrganization"
 	"PowerX/internal/svc"
 	"PowerX/internal/types"
 	"PowerX/internal/uc/powerx/crm/infoOrganization"
@@ -43,7 +43,7 @@ func (l *ListCategoryTreeLogic) ListCategoryTree(req *types.ListCategoryTreeRequ
 
 }
 
-func TransformProductCategoriesToReply(productCategoryList []*infoOrganizatoin.Category) []*types.Category {
+func TransformProductCategoriesToReply(productCategoryList []*infoOrganization2.Category) []*types.Category {
 	uniqueIds := make(map[int64]bool)
 	var productCategoryReplyList []*types.Category
 	for _, category := range productCategoryList {
@@ -62,7 +62,7 @@ func TransformProductCategoriesToReply(productCategoryList []*infoOrganizatoin.C
 	return productCategoryReplyList
 }
 
-func TransformCategoryToReply(category *infoOrganizatoin.Category) *types.Category {
+func TransformCategoryToReply(category *infoOrganization2.Category) *types.Category {
 	if category == nil {
 		return nil
 	}

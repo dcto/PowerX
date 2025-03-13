@@ -45,24 +45,6 @@ service PowerX {
 }
 
 type (
-
-    Category {
-        Id int64 `json:"id,optional"`
-        PId int64 `json:"pId"`
-        Name string `json:"name"`
-        Scene        string `json:"scene,optional"`
-        CustomerId   int64  `json:"customerId,optional"`
-        Sort int `json:"sort"`
-        ViceName string `json:"viceName"`
-        Description string `json:"description"`
-        CreatedAt string `json:"createdAt,optional"`
-        ImageAbleInfo
-        CoverImageId int64 `json:"coverImageId,optional"`
-        CoverImage *MediaResource `json:"coverImage,optional"`
-        Children []*Category `json:"children,optional"`
-    }
-)
-type (
     ListCategoryTreeRequest {
         CategoryPId int `form:"categoryPId,optional"`
         NeedChildren bool `form:"needChildren,optional"`
@@ -102,7 +84,7 @@ type (
 type (
     PatchCategoryRequest {
         Id int64 `path:"id"`
-        PId int64 `json:"pId"`
+        Category
     }
 
     PatchCategoryReply {

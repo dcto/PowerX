@@ -27,7 +27,7 @@ func NewPatchCategoryLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Pat
 
 func (l *PatchCategoryLogic) PatchCategory(req *types.PatchCategoryRequest) (resp *types.PatchCategoryReply, err error) {
 
-	productCategory := &infoOrganizatoin.Category{
+	productCategory := &infoOrganization.Category{
 		PowerModel: powermodel.PowerModel{
 			Id: req.Id,
 		},

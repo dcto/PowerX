@@ -1,4 +1,4 @@
-package infoOrganizatoin
+package infoOrganization
 
 import (
 	"PowerX/internal/model"

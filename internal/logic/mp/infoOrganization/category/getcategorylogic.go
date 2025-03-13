@@ -40,7 +40,7 @@ func (l *GetCategoryLogic) GetCategory(req *types.GetCategoryRequest) (resp *typ
 	}, nil
 }
 
-func TransformCategoryToReplyForMP(category *infoOrganizatoin.Category) *types.Category {
+func TransformCategoryToReplyForMP(category *infoOrganization.Category) *types.Category {
 
 	node := &types.Category{
 		Id:          category.Id,

@@ -1,6 +1,10 @@
 package category
 
 import (
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
+	"PowerX/internal/types/errorx"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
+	fmt "PowerX/pkg/printx"
 	"context"
 
 	"PowerX/internal/svc"
@@ -24,6 +28,24 @@ func NewPatchCategoryLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Pat
 }
 
 func (l *PatchCategoryLogic) PatchCategory(req *types.PatchCategoryRequest) (resp *types.PatchCategoryReply, err error) {
+	vAuthCustomer := l.ctx.Value(customerDomain.AuthCustomerKey)
+	authCustomer := vAuthCustomer.(*customerDomain2.Customer)
 
-	return
+	existedItem, err := l.svcCtx.PowerX.Category.CategoryRepository.GetByID(l.ctx, req.Id, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	if existedItem == nil {
+		return nil, errorx.ErrNotFoundObject
+	}
+
+	if existedItem.CustomerId != authCustomer.Id {
+		return nil, errorx.ErrCustomerNotMatch
+	}
+
+	fmt.Dump(req)
+	fmt.Dump(existedItem)
+
+	return nil, nil
 }

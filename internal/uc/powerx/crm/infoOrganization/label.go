@@ -56,14 +56,14 @@ func (uc *LabelUseCase) PreloadItems(db *gorm.DB) *gorm.DB {
 	return db
 }
 
-func (uc *LabelUseCase) ListLabelTree(ctx context.Context, opt *FindLabelOption, pId int64) []*infoOrganizatoin.Label {
+func (uc *LabelUseCase) ListLabelTree(ctx context.Context, opt *FindLabelOption, pId int64) []*infoOrganization.Label {
 	if pId < 0 {
 		panic(errors.New("find labels pId invalid"))
 	}
 
-	var labels []*infoOrganizatoin.Label
+	var labels []*infoOrganization.Label
 
-	query := uc.db.WithContext(ctx).Model(&infoOrganizatoin.Label{})
+	query := uc.db.WithContext(ctx).Model(&infoOrganization.Label{})
 	query = uc.buildFindQueryNoPage(query, opt)
 
 	query = uc.PreloadItems(query)
@@ -75,7 +75,7 @@ func (uc *LabelUseCase) ListLabelTree(ctx context.Context, opt *FindLabelOption,
 	if err != nil {
 		panic(errors.Wrap(err, "find all labels failed"))
 	}
-	var children []*infoOrganizatoin.Label
+	var children []*infoOrganization.Label
 	for i, label := range labels {
 
 		children = uc.ListLabelTree(ctx, opt, label.Id)
@@ -87,13 +87,13 @@ func (uc *LabelUseCase) ListLabelTree(ctx context.Context, opt *FindLabelOption,
 	return labels
 }
 
-func (uc *LabelUseCase) FindLabelsByParentId(ctx context.Context, opt *FindLabelOption) []*infoOrganizatoin.Label {
+func (uc *LabelUseCase) FindLabelsByParentId(ctx context.Context, opt *FindLabelOption) []*infoOrganization.Label {
 	if opt.LabelPId < 0 {
 		panic(errors.New("find labels pId invalid"))
 	}
 
-	var labels []*infoOrganizatoin.Label
-	query := uc.db.WithContext(ctx).Model(&infoOrganizatoin.Label{})
+	var labels []*infoOrganization.Label
+	query := uc.db.WithContext(ctx).Model(&infoOrganization.Label{})
 
 	query = uc.buildFindQueryNoPage(query, opt)
 
@@ -106,10 +106,10 @@ func (uc *LabelUseCase) FindLabelsByParentId(ctx context.Context, opt *FindLabel
 	return labels
 }
 
-func (uc *LabelUseCase) FindAllLabels(ctx context.Context, opt *FindLabelOption) []*infoOrganizatoin.Label {
+func (uc *LabelUseCase) FindAllLabels(ctx context.Context, opt *FindLabelOption) []*infoOrganization.Label {
 
-	var labels []*infoOrganizatoin.Label
-	query := uc.db.WithContext(ctx).Model(&infoOrganizatoin.Label{})
+	var labels []*infoOrganization.Label
+	query := uc.db.WithContext(ctx).Model(&infoOrganization.Label{})
 
 	query = uc.buildFindQueryNoPage(query, opt)
 
@@ -120,9 +120,9 @@ func (uc *LabelUseCase) FindAllLabels(ctx context.Context, opt *FindLabelOption)
 	return labels
 }
 
-func (uc *LabelUseCase) FindOneLabel(ctx context.Context, opt *FindLabelOption) (*infoOrganizatoin.Label, error) {
-	var mpCustomer *infoOrganizatoin.Label
-	query := uc.db.WithContext(ctx).Model(&infoOrganizatoin.Label{})
+func (uc *LabelUseCase) FindOneLabel(ctx context.Context, opt *FindLabelOption) (*infoOrganization.Label, error) {
+	var mpCustomer *infoOrganization.Label
+	query := uc.db.WithContext(ctx).Model(&infoOrganization.Label{})
 
 	query = uc.buildFindQueryNoPage(query, opt)
 	if err := query.First(&mpCustomer).Error; err != nil {
@@ -131,7 +131,7 @@ func (uc *LabelUseCase) FindOneLabel(ctx context.Context, opt *FindLabelOption) 
 	return mpCustomer, nil
 }
 
-func (uc *LabelUseCase) CreateLabel(ctx context.Context, label *infoOrganizatoin.Label) error {
+func (uc *LabelUseCase) CreateLabel(ctx context.Context, label *infoOrganization.Label) error {
 	if err := uc.db.WithContext(ctx).Create(&label).Error; err != nil {
 		if strings.Contains(err.Error(), "duplicate key value violates unique constraint") {
 			return errorx.WithCause(errorx.ErrDuplicatedInsert, "该对象不能重复创建")
@@ -141,11 +141,11 @@ func (uc *LabelUseCase) CreateLabel(ctx context.Context, label *infoOrganizatoin
 	return nil
 }
 
-func (uc *LabelUseCase) UpsertLabel(ctx context.Context, label *infoOrganizatoin.Label) (*infoOrganizatoin.Label, error) {
+func (uc *LabelUseCase) UpsertLabel(ctx context.Context, label *infoOrganization.Label) (*infoOrganization.Label, error) {
 
 	// 查询父节点
 	if label.PId > 0 {
-		var pLabel *infoOrganizatoin.Label
+		var pLabel *infoOrganization.Label
 		err := uc.db.WithContext(ctx).
 			Where(label.PId).First(&pLabel).Error
 		if err != nil {
@@ -158,7 +158,7 @@ func (uc *LabelUseCase) UpsertLabel(ctx context.Context, label *infoOrganizatoin
 		panic(errors.New("query parent product label in invalid"))
 	}
 
-	labels := []*infoOrganizatoin.Label{label}
+	labels := []*infoOrganization.Label{label}
 
 	_, err := uc.UpsertLabels(ctx, labels)
 	if err != nil {
@@ -168,9 +168,9 @@ func (uc *LabelUseCase) UpsertLabel(ctx context.Context, label *infoOrganizatoin
 	return label, err
 }
 
-func (uc *LabelUseCase) UpsertLabels(ctx context.Context, labels []*infoOrganizatoin.Label) ([]*infoOrganizatoin.Label, error) {
+func (uc *LabelUseCase) UpsertLabels(ctx context.Context, labels []*infoOrganization.Label) ([]*infoOrganization.Label, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &infoOrganizatoin.Label{}, infoOrganizatoin.LabelUniqueId, labels, nil, false)
+	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &infoOrganization.Label{}, infoOrganization.LabelUniqueId, labels, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert product labels failed"))
@@ -179,14 +179,14 @@ func (uc *LabelUseCase) UpsertLabels(ctx context.Context, labels []*infoOrganiza
 	return labels, err
 }
 
-func (uc *LabelUseCase) PatchLabel(ctx context.Context, id int64, label *infoOrganizatoin.Label) {
-	if err := uc.db.WithContext(ctx).Model(&infoOrganizatoin.Label{}).Where(id).Updates(label).Error; err != nil {
+func (uc *LabelUseCase) PatchLabel(ctx context.Context, id int64, label *infoOrganization.Label) {
+	if err := uc.db.WithContext(ctx).Model(&infoOrganization.Label{}).Where(id).Updates(label).Error; err != nil {
 		panic(err)
 	}
 }
 
-func (uc *LabelUseCase) GetLabel(ctx context.Context, id int64) (*infoOrganizatoin.Label, error) {
-	var label infoOrganizatoin.Label
+func (uc *LabelUseCase) GetLabel(ctx context.Context, id int64) (*infoOrganization.Label, error) {
+	var label infoOrganization.Label
 	db := uc.db.WithContext(ctx)
 	db = uc.PreloadItems(db)
 	if err := db.
@@ -204,7 +204,7 @@ func (uc *LabelUseCase) GetLabel(ctx context.Context, id int64) (*infoOrganizato
 }
 
 func (uc *LabelUseCase) DeleteLabel(ctx context.Context, id int64) error {
-	result := uc.db.WithContext(ctx).Delete(&infoOrganizatoin.Label{}, id)
+	result := uc.db.WithContext(ctx).Delete(&infoOrganization.Label{}, id)
 	if err := result.Error; err != nil {
 		panic(err)
 	}

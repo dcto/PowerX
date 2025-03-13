@@ -38,8 +38,8 @@ func (l *CreateCategoryLogic) CreateCategory(req *types.CreateCategoryRequest) (
 	}, nil
 }
 
-func TransformRequestToCategory(req *types.Category) *infoOrganizatoin.Category {
-	return &infoOrganizatoin.Category{
+func TransformRequestToCategory(req *types.Category) *infoOrganization.Category {
+	return &infoOrganization.Category{
 		PId:          req.PId,
 		Name:         req.Name,
 		Sort:         req.Sort,

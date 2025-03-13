@@ -2,11 +2,11 @@ package category
 
 import (
 	"PowerX/internal/logic/admin/mediaResource"
-	infoOrganizatoin "PowerX/internal/model/infoOrganization"
+	infoOrganization "PowerX/internal/model/infoOrganization"
 	"PowerX/internal/types"
 )
 
-func TransformCategoryToReplyForWeb(category *infoOrganizatoin.Category) *types.Category {
+func TransformCategoryToReplyForWeb(category *infoOrganization.Category) *types.Category {
 
 	node := &types.Category{
 		Id:          category.Id,
@@ -31,7 +31,7 @@ func TransformCategoryToReplyForWeb(category *infoOrganizatoin.Category) *types.
 	return node
 }
 
-func TransformCategoriesToReplyForWeb(productCategoryList []*infoOrganizatoin.Category) []*types.Category {
+func TransformCategoriesToReplyForWeb(productCategoryList []*infoOrganization.Category) []*types.Category {
 	uniqueIds := make(map[int64]bool)
 	var productCategoryReplyList []*types.Category
 	for _, c := range productCategoryList {

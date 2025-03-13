@@ -1,12 +1,12 @@
 package category
 
 import (
-	infoOrganizatoin "PowerX/internal/model/infoOrganization"
+	infoOrganization "PowerX/internal/model/infoOrganization"
 	"PowerX/internal/types"
 )
 
-func TransformCategoryRequestToCategory(req *types.CreateCategoryRequest) *infoOrganizatoin.Category {
-	return &infoOrganizatoin.Category{
+func TransformCategoryRequestToCategory(req *types.CreateCategoryRequest) *infoOrganization.Category {
+	return &infoOrganization.Category{
 		PId:          req.PId,
 		Name:         req.Name,
 		Scene:        req.Scene,

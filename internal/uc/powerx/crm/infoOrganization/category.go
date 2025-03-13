@@ -27,6 +27,7 @@ func NewCategoryUseCase(db *gorm.DB) *CategoryUseCase {
 type FindCategoryOption struct {
 	OrderBy     string
 	CategoryPId int
+	CustomerId  int64
 	Limit       int
 	Ids         []int64
 	Names       []string
@@ -70,6 +71,11 @@ func (uc *CategoryUseCase) ListCategoryTree(ctx context.Context, opt *FindCatego
 	query = uc.buildFindQueryNoPage(query, opt)
 
 	query = uc.PreloadItems(query)
+
+	if opt.CustomerId > 0 {
+		query = query.Where("customer_id", opt.CustomerId)
+	}
+
 	err := query.
 		Where("p_id", pId).
 		//Debug().
@@ -148,19 +154,19 @@ func (uc *CategoryUseCase) CreateCategory(ctx context.Context, category *infoOrg
 func (uc *CategoryUseCase) UpsertCategory(ctx context.Context, category *infoOrganization2.Category) (*infoOrganization2.Category, error) {
 
 	// 查询父节点
-	if category.PId > 0 {
-		var pCategory *infoOrganization2.Category
-		err := uc.db.WithContext(ctx).
-			Where(category.PId).First(&pCategory).Error
-		if err != nil {
-			if errors.Is(err, gorm.ErrRecordNotFound) {
-				return nil, errorx.WithCause(errorx.ErrBadRequest, "父类别不存在")
-			}
-			panic(errors.Wrap(err, "query parent product category failed"))
-		}
-	} else if category.PId < 0 {
-		panic(errors.New("query parent product category in invalid"))
-	}
+	//if category.PId > 0 {
+	//	var pCategory *infoOrganization2.Category
+	//	err := uc.db.WithContext(ctx).
+	//		Where(category.PId).First(&pCategory).Error
+	//	if err != nil {
+	//		if errors.Is(err, gorm.ErrRecordNotFound) {
+	//			return nil, errorx.WithCause(errorx.ErrBadRequest, "父类别不存在")
+	//		}
+	//		panic(errors.Wrap(err, "query parent category failed"))
+	//	}
+	//} else if category.PId < 0 {
+	//	panic(errors.New("query parent category in invalid"))
+	//}
 
 	categories := []*infoOrganization2.Category{category}
 
@@ -197,7 +203,7 @@ func (uc *CategoryUseCase) GetCategory(ctx context.Context, id int64) (*infoOrga
 		//Debug().
 		First(&category, id).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			return nil, errorx.WithCause(errorx.ErrBadRequest, "未找到产品类别")
+			return nil, errorx.WithCause(errorx.ErrBadRequest, "未找到类别")
 		}
 		panic(err)
 	}

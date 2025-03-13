@@ -14,8 +14,9 @@ type LokiConf struct {
 }
 
 type LogConf struct {
-	Logx logx.LogConf `json:",optional"`
-	Loki LokiConf     `json:",optional"`
+	Console bool
+	Logx    logx.LogConf `json:",optional"`
+	Loki    LokiConf     `json:",optional"`
 }
 
 func MustSetupLog(conf *LogConf) {
@@ -46,6 +47,11 @@ func MustSetupLog(conf *LogConf) {
 		lokiWriter := NewLokiWriter(conf.Loki)
 		// writers = append(writers, lokiWriter)
 		logx.SetWriter(lokiWriter)
+	}
+
+	// 终端输出
+	if conf.Console {
+		logx.SetWriter(logx.NewWriter(os.Stdout))
 	}
 
 	// // 如果有额外 writer，则组合为 MultiWriter

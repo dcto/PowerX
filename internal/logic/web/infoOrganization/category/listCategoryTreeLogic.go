@@ -1,7 +1,8 @@
 package category
 
 import (
-	"PowerX/internal/logic/admin/infoOrganization/category"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
 	"PowerX/internal/uc/powerx/crm/infoOrganization"
 	"context"
 
@@ -26,16 +27,20 @@ func NewListCategoryTreeLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 }
 
 func (l *ListCategoryTreeLogic) ListCategoryTree(req *types.ListCategoryTreeRequest) (resp *types.ListCategoryTreeReply, err error) {
+	vAuthCustomer := l.ctx.Value(customerDomain.AuthCustomerKey)
+	authCustomer := vAuthCustomer.(*customerDomain2.Customer)
+
 	option := infoOrganization.FindCategoryOption{
-		Names:   req.Names,
-		OrderBy: req.OrderBy,
+		Names:      req.Names,
+		OrderBy:    req.OrderBy,
+		CustomerId: authCustomer.Id,
 	}
 
 	// 获取模型类型的列表
 	productCategoryTree := l.svcCtx.PowerX.Category.ListCategoryTree(l.ctx, &option, 0)
 
 	// 转化返回类型的列表
-	productCategoryReplyList := category.TransformProductCategoriesToReply(productCategoryTree)
+	productCategoryReplyList := TransformCategoriesToReplyForWeb(productCategoryTree)
 
 	return &types.ListCategoryTreeReply{
 		ProductCategories: productCategoryReplyList,
