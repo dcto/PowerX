@@ -45,7 +45,7 @@ func (l *DeleteCategoryLogic) DeleteCategory(req *types.DeleteCategoryRequest) (
 
 	_, err = l.svcCtx.PowerX.Category.CategoryRepository.Delete(l.ctx, map[string]interface{}{
 		"id": req.Id,
-	}, existedItem)
+	}, existedItem, false)
 
 	if err != nil {
 		return nil, err

@@ -140,7 +140,7 @@ func (r *BaseRepository[T]) Patch(ctx context.Context, where map[string]interfac
 }
 
 // Delete 删除记录，支持传入查询条件或对象，并返回删除的对象
-func (r *BaseRepository[T]) Delete(ctx context.Context, where map[string]interface{}, obj *T) (*T, error) {
+func (r *BaseRepository[T]) Delete(ctx context.Context, where map[string]interface{}, obj *T, softDelete bool) (*T, error) {
 	var mdl T
 	query := r.db.WithContext(ctx).Model(&mdl)
 
@@ -154,6 +154,9 @@ func (r *BaseRepository[T]) Delete(ctx context.Context, where map[string]interfa
 		for key, value := range where {
 			query = query.Where(key+" = ?", value)
 		}
+		if !softDelete {
+			query = query.Unscoped()
+		}
 		result := query.Delete(&mdl)
 		if result.RowsAffected == 0 {
 			return nil, errors.New("record not found")
@@ -163,6 +166,9 @@ func (r *BaseRepository[T]) Delete(ctx context.Context, where map[string]interfa
 
 	// 直接删除传入的 obj
 	if obj != nil {
+		if !softDelete {
+			query = query.Unscoped()
+		}
 		result := query.Delete(obj)
 		if result.RowsAffected == 0 {
 			return nil, errors.New("record not found")
