@@ -1,4 +1,9 @@
-CURRENT_DIR := $(shell pwd)
+ifeq ($(OS),Windows_NT)
+	CURRENT_DIR := $(shell cd)
+else
+	CURRENT_DIR := $(shell pwd)
+endif
+
 CONFIG_FILE := $(CURRENT_DIR)/etc/powerx.yaml
 
 # 设定需要编译的go文件目录
