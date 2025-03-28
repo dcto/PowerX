@@ -113,7 +113,7 @@ func (this *wechatUseCase) FindWeWorkResourceListFromLocalPage(opt *types.ListWe
 		opt.PageIndex = 1
 	}
 	if opt.PageSize == 0 {
-		opt.PageSize = powermodel.PageDefaultSize
+		opt.PageSize = powerModel.PageDefaultSize
 	}
 	if v := opt.ResourceType; v != `` {
 		query.Where(`resource_type = ?`, v)

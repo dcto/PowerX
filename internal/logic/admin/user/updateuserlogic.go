@@ -34,7 +34,7 @@ func (l *UpdateUserLogic) UpdateUser(req *types.UpdateUserRequest) (resp *types.
 		return nil, err
 	}
 	user := organization.User{
-		PowerUUIDModel: powermodel.PowerUUIDModel{
+		PowerUUIDModel: powerModel.PowerUUIDModel{
 			UUID: userUuid,
 		},
 		Name:          req.Name,

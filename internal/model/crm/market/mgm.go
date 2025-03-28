@@ -6,7 +6,7 @@ import (
 )
 
 type MGMRule struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	Name            string  `gorm:"comment:规则名字" json:"name"`
 	CommissionRate1 float32 `gorm:"type:decimal(10,2); comment:分佣率1" json:"commissionRate1"`
@@ -15,7 +15,7 @@ type MGMRule struct {
 	Description     string  `gorm:"comment:场景描述" json:"description"`
 }
 
-const MGMRuleUniqueId = powermodel.UniqueId
+const MGMRuleUniqueId = powerModel.UniqueId
 
 func (mdl *MGMRule) TableName() string {
 	return model.PowerXSchema + "." + model.TableNameMGMRule
@@ -49,7 +49,7 @@ const (
 )
 
 type CustomerChannel struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	CustomerID int64  `gorm:"comment:客户ID" json:"customerId"`
 	ChannelID  int    `gorm:"comment:渠道ID" json:"channelId"`
@@ -70,7 +70,7 @@ func (mdl *CustomerChannel) GetTableName(needFull bool) string {
 
 // InviteRecord 表示会员邀请记录
 type InviteRecord struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	InviterID      int64  `gorm:"comment:邀请人ID" json:"inviterId"`
 	InviteeID      int64  `gorm:"comment:被邀请人ID" json:"inviteeId"`
@@ -92,7 +92,7 @@ func (mdl *InviteRecord) GetTableName(needFull bool) string {
 
 // CommissionRecord 表示分佣记录
 type CommissionRecord struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	InviterID     int64   `gorm:"comment:邀请人ID" json:"inviterId"`
 	InviteeID     int64   `gorm:"comment:被邀请人ID" json:"inviteeId"`
@@ -115,7 +115,7 @@ func (mdl *CommissionRecord) GetTableName(needFull bool) string {
 
 // RewardRecord 表示奖励记录
 type RewardRecord struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	CustomerID    int64   `gorm:"comment:会员ID" json:"customerId"`
 	Amount        float64 `gorm:"comment:奖励金额" json:"amount"`

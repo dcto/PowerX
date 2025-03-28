@@ -170,7 +170,7 @@ func (uc *TagUseCase) UpsertTag(ctx context.Context, tag *infoOrganization.Tag) 
 
 func (uc *TagUseCase) UpsertTags(ctx context.Context, tags []*infoOrganization.Tag) ([]*infoOrganization.Tag, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &infoOrganization.Tag{}, infoOrganization.TagUniqueId, tags, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &infoOrganization.Tag{}, infoOrganization.TagUniqueId, tags, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert product tags failed"))

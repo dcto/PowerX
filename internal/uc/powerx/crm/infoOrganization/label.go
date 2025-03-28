@@ -170,7 +170,7 @@ func (uc *LabelUseCase) UpsertLabel(ctx context.Context, label *infoOrganization
 
 func (uc *LabelUseCase) UpsertLabels(ctx context.Context, labels []*infoOrganization.Label) ([]*infoOrganization.Label, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &infoOrganization.Label{}, infoOrganization.LabelUniqueId, labels, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &infoOrganization.Label{}, infoOrganization.LabelUniqueId, labels, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert product labels failed"))

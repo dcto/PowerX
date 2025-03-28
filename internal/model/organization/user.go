@@ -12,7 +12,7 @@ import (
 )
 
 type User struct {
-	powermodel.PowerUUIDModel
+	powerModel.PowerUUIDModel
 
 	TenantOwnerUUID uuid.UUID `gorm:"type:uuid;foreignKey:TenantOwnerUUID;references:UUID"  json:"tenant_owner_uuid"`
 	Account         string    `gorm:"comment:账户;column:account;unique;type:varchar" json:"account"`

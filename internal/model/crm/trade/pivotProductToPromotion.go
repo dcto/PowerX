@@ -7,7 +7,7 @@ import (
 )
 
 type PivotOrderToInventoryLog struct {
-	*powermodel.PowerPivot
+	*powerModel.PowerPivot
 
 	OrderId             int64     `gorm:"comment:订单Id; not null;index:idx_order_id" json:"orderId"`
 	OrderItemId         int64     `gorm:"comment:订单项Id; not null;index:idx_order_item_id" json:"orderItemId"`

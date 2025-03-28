@@ -109,7 +109,7 @@ func (uc *OrganizationUseCase) FindManyUsersPage(ctx context.Context, opt *optio
 		opt.PageIndex = 1
 	}
 	if opt.PageSize == 0 {
-		opt.PageSize = powermodel.PageDefaultSize
+		opt.PageSize = powerModel.PageDefaultSize
 	}
 
 	if opt.PageIndex != 0 && opt.PageSize != 0 {
@@ -181,7 +181,7 @@ func (uc *OrganizationUseCase) UpdateUserByUuid(ctx context.Context, user *organ
 		return err
 	}
 	whereCase := organization.User{
-		PowerUUIDModel: powermodel.PowerUUIDModel{
+		PowerUUIDModel: powerModel.PowerUUIDModel{
 			UUID: userUuid,
 		},
 		IsReserved: false,

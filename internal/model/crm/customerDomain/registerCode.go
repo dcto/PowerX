@@ -7,7 +7,7 @@ import (
 )
 
 type RegisterCode struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	Code               string    `gorm:"comment:邀请码;unique;index" json:"code"`
 	RegisterCustomerID int64     `gorm:"comment:注册客户ID" json:"registerCustomerID"`

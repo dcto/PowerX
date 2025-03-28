@@ -46,7 +46,7 @@ func (l *UpdateCategoryLogic) UpdateCategory(req *types.UpdateCategoryRequest) (
 	}
 
 	category := category2.TransformRequestToCategory(&req.Category)
-	category.PowerModel = powermodel.PowerModel{
+	category.PowerModel = powerModel.PowerModel{
 		Id: req.Id,
 	}
 	category.CustomerId = authCustomer.Id

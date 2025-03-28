@@ -16,7 +16,7 @@ const OperationResultCancel = 3
 
 // PowerOperationLog 数据表结构
 type PowerOperationLog struct {
-	*powermodel.PowerModel
+	*powerModel.PowerModel
 
 	OperatorName  *string `gorm:"column:operatorName" json:"operatorName"`
 	OperatorTable *string `gorm:"column:operatorTable" json:"operatorTable"`
@@ -30,7 +30,7 @@ type PowerOperationLog struct {
 	Result        *int8   `gorm:"column:result" json:"result"`
 }
 
-const OperationLogUniqueId = powermodel.UniqueId
+const OperationLogUniqueId = powerModel.UniqueId
 
 func (mdl *PowerOperationLog) TableName() string {
 	return PowerXSchema + "." + TableNamePowerOperationLog
@@ -51,7 +51,7 @@ func NewPowerOperationLog(mapObject *object.Collection) *PowerOperationLog {
 	}
 
 	return &PowerOperationLog{
-		PowerModel:    powermodel.NewPowerModel(),
+		PowerModel:    powerModel.NewPowerModel(),
 		OperatorName:  mapObject.GetStringPointer("operatorName", ""),
 		OperatorTable: mapObject.GetStringPointer("operatorTable", ""),
 		OperatorId:    mapObject.GetInt64Pointer("operatorId", 0),
@@ -66,9 +66,9 @@ func NewPowerOperationLog(mapObject *object.Collection) *PowerOperationLog {
 }
 
 func (mdl *PowerOperationLog) SaveOps(db *gorm.DB,
-	operatorName string, operator powermodel.ModelInterface,
+	operatorName string, operator powerModel.ModelInterface,
 	module int16, operate string, event int8,
-	objectName string, object powermodel.ModelInterface,
+	objectName string, object powerModel.ModelInterface,
 	result int8,
 ) error {
 
@@ -86,7 +86,7 @@ func (mdl *PowerOperationLog) SaveOps(db *gorm.DB,
 	objectID := object.GetID()
 
 	ops := &PowerOperationLog{
-		PowerModel:    powermodel.NewPowerModel(),
+		PowerModel:    powerModel.NewPowerModel(),
 		OperatorName:  &operatorName,
 		OperatorTable: &operatorTable,
 		OperatorId:    &operatorID,

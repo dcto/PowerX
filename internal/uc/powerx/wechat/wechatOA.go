@@ -123,7 +123,7 @@ func (uc *WechatOfficialAccountUseCase) UpsertOACustomer(ctx context.Context, cu
 
 func (uc *WechatOfficialAccountUseCase) UpsertOACustomers(ctx context.Context, customers []*wechat.WechatOACustomer) ([]*wechat.WechatOACustomer, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &wechat.WechatOACustomer{}, wechat.WechatMpCustomerUniqueId, customers, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &wechat.WechatOACustomer{}, wechat.WechatMpCustomerUniqueId, customers, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert mp customers failed"))

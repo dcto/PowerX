@@ -11,7 +11,7 @@ import (
 
 // PriceBookEntry 数据表结构
 type PriceBookEntry struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	//belongsTo
 	Product      *Product       `gorm:"foreignKey:ProductId;references:Id" json:"product"`
@@ -55,7 +55,7 @@ func (mdl *PriceBookEntry) GetComposedUniqueID() object.NullString {
 func (mdl *PriceBookEntry) LoadProduct(db *gorm.DB, conditions *map[string]interface{}) (*Product, error) {
 	product := &Product{}
 
-	err := powermodel.AssociationRelationship(db, conditions, mdl, "Product", true).Find(&product)
+	err := powerModel.AssociationRelationship(db, conditions, mdl, "Product", true).Find(&product)
 	mdl.Product = product
 
 	return product, err

@@ -8,7 +8,7 @@ import (
 )
 
 type Label struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	CoverImage *media.MediaResource `gorm:"foreignKey:CoverImageId;references:Id" json:"coverImage"`
 	Parent     *Label               `gorm:"foreignKey:PId;references:Id" json:"parent"`
@@ -24,7 +24,7 @@ type Label struct {
 	model.ImageAbleInfo
 }
 
-const LabelUniqueId = powermodel.UniqueId
+const LabelUniqueId = powerModel.UniqueId
 
 func (mdl *Label) TableName() string {
 	return "public." + model.TableNameLabel
@@ -56,7 +56,7 @@ func GetLabelIds(categories []*Label) []int64 {
 func (mdl *Label) LoadChildren(db *gorm.DB, conditions *map[string]interface{}, withClauseAssociations bool) error {
 
 	mdl.Children = []*Label{}
-	err := powermodel.AssociationRelationship(db, conditions, mdl, "Children", false).Find(&mdl.Children)
+	err := powerModel.AssociationRelationship(db, conditions, mdl, "Children", false).Find(&mdl.Children)
 	//fmt.Dump(mdl.Artisans)
 	return err
 }

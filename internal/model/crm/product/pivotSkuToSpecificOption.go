@@ -10,7 +10,7 @@ import (
 
 // 数据表结构
 type PivotSkuToSpecificOption struct {
-	powermodel.PowerPivot
+	powerModel.PowerPivot
 
 	UniqueID         object.NullString `gorm:"index:idx_unique_id;index:idx_product_id;index:idx_sku_id;index:idx_sku_id;index:index_specific_id;index:index_specific_option_id;column:index_unique_id;unique;not null"`
 	ProductId        int64             `gorm:"comment:产品Id; column:product_id; not null;index:idx_product_id" json:"productId"`

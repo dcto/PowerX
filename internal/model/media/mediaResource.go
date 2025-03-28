@@ -8,7 +8,7 @@ import (
 )
 
 type MediaResource struct {
-	powermodel.PowerUUIDModel
+	powerModel.PowerUUIDModel
 
 	TenantUUID    uuid.UUID `gorm:"type:uuid;foreignKey:TenantUUID;references:UUID" json:"tenantUUID"`
 	CreatedUserBy uuid.UUID `gorm:"type:uuid;foreignKey:CreatedUserBy;references:UUID;" json:"createdUserBy"`

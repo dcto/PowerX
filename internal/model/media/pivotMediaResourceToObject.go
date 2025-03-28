@@ -11,7 +11,7 @@ import (
 
 // Pivot表
 type PivotMediaResourceToObject struct {
-	powermodel.PowerPivot
+	powerModel.PowerPivot
 
 	MediaResource *MediaResource `gorm:"foreignKey:MediaResourceId;references:Id" json:"mediaResource"`
 
@@ -82,7 +82,7 @@ func (mdl *PivotMediaResourceToObject) GetPivotComposedUniqueID() string {
 func (mdl *PivotMediaResourceToObject) GetMorphPivots(db *gorm.DB, where *map[string]interface{}) ([]*PivotMediaResourceToObject, error) {
 	pivots := []*PivotMediaResourceToObject{}
 
-	db = powermodel.SelectMorphPivot(db, mdl, where)
+	db = powerModel.SelectMorphPivot(db, mdl, where)
 
 	result := db.Find(&pivots)
 
@@ -91,7 +91,7 @@ func (mdl *PivotMediaResourceToObject) GetMorphPivots(db *gorm.DB, where *map[st
 }
 
 // --------------------------------------------------------------------
-func (mdl *PivotMediaResourceToObject) MakeMorphPivotsFromObjectToMediaResources(obj powermodel.ModelInterface, mediaResources []*MediaResource, mediaUsage string) ([]*PivotMediaResourceToObject, error) {
+func (mdl *PivotMediaResourceToObject) MakeMorphPivotsFromObjectToMediaResources(obj powerModel.ModelInterface, mediaResources []*MediaResource, mediaUsage string) ([]*PivotMediaResourceToObject, error) {
 	pivots := []*PivotMediaResourceToObject{}
 	for _, mediaResource := range mediaResources {
 		pivot := &PivotMediaResourceToObject{

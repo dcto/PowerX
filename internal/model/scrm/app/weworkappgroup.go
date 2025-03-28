@@ -8,7 +8,7 @@ import (
 )
 
 type WeWorkAppGroup struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	Name     string `gorm:"comment:群名称;column:name" json:"name"`
 	Owner    string `gorm:"comment:群主;column:owner" json:"owner"`

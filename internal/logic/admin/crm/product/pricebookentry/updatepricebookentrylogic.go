@@ -27,7 +27,7 @@ func NewUpdatePriceBookEntryLogic(ctx context.Context, svcCtx *svc.ServiceContex
 
 func (l *UpdatePriceBookEntryLogic) UpdatePriceBookEntry(req *types.UpdatePriceBookEntryRequest) (resp *types.UpdatePriceBookEntryReply, err error) {
 	priceBook := &product.PriceBookEntry{
-		PowerModel: powermodel.PowerModel{
+		PowerModel: powerModel.PowerModel{
 			Id: req.Id,
 		},
 		PriceBookId: req.PriceBookId,

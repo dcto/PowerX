@@ -118,7 +118,7 @@ func (uc *ProductStatisticsUseCase) UpsertProductStatistics(ctx context.Context,
 
 func (uc *ProductStatisticsUseCase) UpsertProductStatisticses(ctx context.Context, productStatisticses []*product.ProductStatistics) ([]*product.ProductStatistics, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &product.ProductStatistics{}, product.ProductStatisticsUniqueId, productStatisticses, nil, true)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &product.ProductStatistics{}, product.ProductStatisticsUniqueId, productStatisticses, nil, true)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert productStatistics failed"))

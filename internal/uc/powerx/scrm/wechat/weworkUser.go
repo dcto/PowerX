@@ -240,7 +240,7 @@ func (this *wechatUseCase) FindManyWechatUsersPage(ctx context.Context, opt *typ
 		opt.PageIndex = 1
 	}
 	if opt.PageSize == 0 {
-		opt.PageSize = powermodel.PageDefaultSize
+		opt.PageSize = powerModel.PageDefaultSize
 	}
 	query = buildFindManyUsersQueryNoPage(query, &opt.Option)
 

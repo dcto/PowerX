@@ -33,7 +33,7 @@ func (l *ResetPasswordLogic) ResetPassword(req *types.ResetPasswordRequest) (res
 		return nil, err
 	}
 	user := organization.User{
-		PowerUUIDModel: powermodel.PowerUUIDModel{
+		PowerUUIDModel: powerModel.PowerUUIDModel{
 			UUID: userUuid,
 		},
 		Password: "123456",

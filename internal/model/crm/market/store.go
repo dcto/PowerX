@@ -10,7 +10,7 @@ import (
 )
 
 type Store struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	Artisans          []*product.Artisan                  `gorm:"many2many:pivot_store_to_artisan;foreignKey:Id;joinForeignKey:StoreId;References:Id;JoinReferences:ArtisanId" json:"priceBooks"`
 	PivotDetailImages []*media.PivotMediaResourceToObject `gorm:"polymorphic:Object;polymorphicValue:stores" json:"pivotDetailImages"`
@@ -29,7 +29,7 @@ type Store struct {
 	EndWork       time.Time `gorm:"comment:结束工作时间" json:"endWork"`
 }
 
-const StoreUniqueId = powermodel.UniqueId
+const StoreUniqueId = powerModel.UniqueId
 
 func (mdl *Store) TableName() string {
 	return model.PowerXSchema + "." + model.TableNameStore
@@ -46,7 +46,7 @@ func (mdl *Store) GetTableName(needFull bool) string {
 func (mdl *Store) LoadArtisans(db *gorm.DB, conditions *map[string]interface{}, withClauseAssociations bool) error {
 
 	mdl.Artisans = []*product.Artisan{}
-	err := powermodel.AssociationRelationship(db, conditions, mdl, "Artisans", false).Find(&mdl.Artisans)
+	err := powerModel.AssociationRelationship(db, conditions, mdl, "Artisans", false).Find(&mdl.Artisans)
 	//fmt.Dump(mdl.Artisans)
 	return err
 }
@@ -69,7 +69,7 @@ func (mdl *Store) LoadPivotDetailImages(db *gorm.DB, conditions *map[string]inte
 	(*conditions)[media.PivotMediaResourceToObjectOwnerKey] = model.TableNameStore
 	(*conditions)[media.PivotMediaResourceToObjectForeignKey] = mdl.Id
 
-	err := powermodel.SelectMorphPivots(db, &media.PivotMediaResourceToObject{}, false, false, conditions).
+	err := powerModel.SelectMorphPivots(db, &media.PivotMediaResourceToObject{}, false, false, conditions).
 		Preload("MediaResource").
 		Find(&items).Error
 
@@ -80,7 +80,7 @@ func (mdl *Store) ClearPivotDetailImages(db *gorm.DB) error {
 	conditions := &map[string]interface{}{}
 	(*conditions)[media.PivotMediaResourceToObjectOwnerKey] = model.TableNameStore
 	(*conditions)[media.PivotMediaResourceToObjectForeignKey] = mdl.Id
-	return powermodel.ClearMorphPivots(db, &media.PivotMediaResourceToObject{}, false, false, conditions)
+	return powerModel.ClearMorphPivots(db, &media.PivotMediaResourceToObject{}, false, false, conditions)
 }
 
 func MakePivotsFromArtisansToStores(artisans []*product.Artisan, stores []*Store) []*product.PivotStoreToArtisan {

@@ -180,7 +180,7 @@ func (uc *CategoryUseCase) UpsertCategory(ctx context.Context, category *infoOrg
 
 func (uc *CategoryUseCase) UpsertCategories(ctx context.Context, categories []*infoOrganization2.Category) ([]*infoOrganization2.Category, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &infoOrganization2.Category{}, infoOrganization2.CategoryUniqueId, categories, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &infoOrganization2.Category{}, infoOrganization2.CategoryUniqueId, categories, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert product categories failed"))
@@ -224,7 +224,7 @@ func (uc *CategoryUseCase) DeleteCategory(ctx context.Context, id int64) error {
 	return nil
 }
 
-func (uc *CategoryUseCase) UpsertCategoriesToObjectByObject(ctx context.Context, obj powermodel.ModelInterface, categories []*infoOrganization2.Category) error {
+func (uc *CategoryUseCase) UpsertCategoriesToObjectByObject(ctx context.Context, obj powerModel.ModelInterface, categories []*infoOrganization2.Category) error {
 
 	err := uc.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
 

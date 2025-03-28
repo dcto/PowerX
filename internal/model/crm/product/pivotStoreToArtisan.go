@@ -7,7 +7,7 @@ import (
 
 // 数据表结构
 type PivotStoreToArtisan struct {
-	powermodel.PowerPivot
+	powerModel.PowerPivot
 
 	StoreId   int64 `gorm:"column:store_id; not null;index:idx_store_id" json:"storeId"`
 	ArtisanId int64 `gorm:"column:artisan_id; not null;index:idx_artisan_id" json:"artisanId"`

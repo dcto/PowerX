@@ -106,7 +106,7 @@ func (uc *LeadUseCase) UpsertLead(ctx context.Context, lead *customerDomain.Lead
 
 func (uc *LeadUseCase) UpsertLeads(ctx context.Context, leads []*customerDomain.Lead) ([]*customerDomain.Lead, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &customerDomain.Lead{}, customerDomain.LeadUniqueId, leads, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &customerDomain.Lead{}, customerDomain.LeadUniqueId, leads, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert leads failed"))

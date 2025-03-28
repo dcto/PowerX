@@ -39,7 +39,7 @@ const ChannelAlipay = "_alipay"      // 支付宝
 
 // 数据字典数据项
 type DataDictionaryItem struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	DataDictionaryType *DataDictionaryType `gorm:"foreignKey:Type;references:Type" json:"dataDictionaryType"`
 
@@ -51,7 +51,7 @@ type DataDictionaryItem struct {
 	Description string `gorm:"comment:数据描述"`
 }
 
-const DataDictionaryItemUniqueId = powermodel.UniqueId
+const DataDictionaryItemUniqueId = powerModel.UniqueId
 
 func (mdl *DataDictionaryItem) TableName() string {
 	return PowerXSchema + "." + TableNameDataDictionaryItem
@@ -67,7 +67,7 @@ func (mdl *DataDictionaryItem) GetTableName(needFull bool) string {
 
 // 数据字典类型，聚合数据字典
 type DataDictionaryType struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	Items []*DataDictionaryItem `gorm:"foreignKey:Type;references:Type" json:"items"`
 
@@ -76,7 +76,7 @@ type DataDictionaryType struct {
 	Description string `gorm:"comment:数据类型描述"`
 }
 
-const DataDictionaryTypeUniqueId = powermodel.UniqueId
+const DataDictionaryTypeUniqueId = powerModel.UniqueId
 
 func (mdl *DataDictionaryType) TableName() string {
 	return PowerXSchema + "." + TableNameDataDictionaryType
@@ -93,7 +93,7 @@ func (mdl *DataDictionaryType) GetTableName(needFull bool) string {
 // 数据表结构
 // Pivot表
 type PivotDataDictionaryToObject struct {
-	powermodel.PowerPivot
+	powerModel.PowerPivot
 
 	DataDictionaryItem *DataDictionaryItem `gorm:"foreignKey:DataDictionaryType,DataDictionaryKey;references:Type,Key" json:"dataDictionaryItem"`
 
@@ -150,7 +150,7 @@ func (mdl *PivotDataDictionaryToObject) GetPivotComposedUniqueID() string {
 func (mdl *PivotDataDictionaryToObject) GetMorphPivots(db *gorm.DB, where *map[string]interface{}) ([]*PivotDataDictionaryToObject, error) {
 	pivots := []*PivotDataDictionaryToObject{}
 
-	db = powermodel.SelectMorphPivot(db, mdl, where)
+	db = powerModel.SelectMorphPivot(db, mdl, where)
 
 	result := db.Find(&pivots)
 
@@ -159,7 +159,7 @@ func (mdl *PivotDataDictionaryToObject) GetMorphPivots(db *gorm.DB, where *map[s
 }
 
 // --------------------------------------------------------------------
-func (mdl *PivotDataDictionaryToObject) MakeMorphPivotsFromObjectToDDs(obj powermodel.ModelInterface, dds []*DataDictionaryItem) ([]*PivotDataDictionaryToObject, error) {
+func (mdl *PivotDataDictionaryToObject) MakeMorphPivotsFromObjectToDDs(obj powerModel.ModelInterface, dds []*DataDictionaryItem) ([]*PivotDataDictionaryToObject, error) {
 	pivots := []*PivotDataDictionaryToObject{}
 	for _, dd := range dds {
 		pivot := &PivotDataDictionaryToObject{

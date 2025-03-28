@@ -151,7 +151,7 @@ func (uc *StoreUseCase) UpsertStore(ctx context.Context, store *model.Store) (*m
 
 func (uc *StoreUseCase) UpsertStores(ctx context.Context, stores []*model.Store) ([]*model.Store, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &model.Store{}, model.StoreUniqueId, stores, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &model.Store{}, model.StoreUniqueId, stores, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert stores failed"))

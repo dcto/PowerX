@@ -9,7 +9,7 @@ import (
 )
 
 type Artisan struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	// 如果要对元匠对象做特殊扩展开发，请在 /internal/model/custom/artisanspecific.go 中额外开发
 	// 为了避免import Cycle，可以理解Artisan是一个标准的功能模块，基本上要扩展或者二开，是在外部对象去调用该标准对象，所以可以在custom里的model去引用标准对象
@@ -34,7 +34,7 @@ type Artisan struct {
 	Address      string    `gorm:"comment:工作地址" json:"address"`
 }
 
-const ArtisanUniqueId = powermodel.UniqueId
+const ArtisanUniqueId = powerModel.UniqueId
 
 func (mdl *Artisan) TableName() string {
 	return model.PowerXSchema + "." + model.TableNameArtisan
@@ -63,7 +63,7 @@ func (mdl *Artisan) LoadPivotDetailImages(db *gorm.DB, conditions *map[string]in
 	(*conditions)[media.PivotMediaResourceToObjectOwnerKey] = model.TableNameArtisan
 	(*conditions)[media.PivotMediaResourceToObjectForeignKey] = mdl.Id
 
-	err := powermodel.SelectMorphPivots(db, &media.PivotMediaResourceToObject{}, false, false, conditions).
+	err := powerModel.SelectMorphPivots(db, &media.PivotMediaResourceToObject{}, false, false, conditions).
 		Preload("MediaResource").
 		Find(&items).Error
 
@@ -74,11 +74,11 @@ func (mdl *Artisan) ClearPivotDetailImages(db *gorm.DB) error {
 	conditions := &map[string]interface{}{}
 	(*conditions)[media.PivotMediaResourceToObjectOwnerKey] = model.TableNameArtisan
 	(*conditions)[media.PivotMediaResourceToObjectForeignKey] = mdl.Id
-	return powermodel.ClearMorphPivots(db, &media.PivotMediaResourceToObject{}, false, false, conditions)
+	return powerModel.ClearMorphPivots(db, &media.PivotMediaResourceToObject{}, false, false, conditions)
 }
 
 func (mdl *Artisan) ClearPivotStores(db *gorm.DB) error {
 	conditions := &map[string]interface{}{}
 	(*conditions)[PivotStoreToArtisanJoinKey] = mdl.Id
-	return powermodel.ClearPivots(db, &PivotStoreToArtisan{}, false, false, conditions)
+	return powerModel.ClearPivots(db, &PivotStoreToArtisan{}, false, false, conditions)
 }

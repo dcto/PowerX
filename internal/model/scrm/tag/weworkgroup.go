@@ -8,7 +8,7 @@ import (
 )
 
 type WeWorkTagGroup struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	WeWorkGroupTags []*WeWorkTag `gorm:"foreignKey:GroupId;references:group_id" json:"WeWorkGroupTags"`
 	AgentId         int          `gorm:"comment:应用ID;column:agent_id" json:"agent_id"`

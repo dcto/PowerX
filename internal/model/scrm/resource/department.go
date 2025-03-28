@@ -8,7 +8,7 @@ import (
 )
 
 type WeWorkResource struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	Url          string `gorm:"comment:微信地址;column:url" json:"url"`
 	FileName     string `gorm:"unique;comment:文件名;column:file_name" json:"file_name"`

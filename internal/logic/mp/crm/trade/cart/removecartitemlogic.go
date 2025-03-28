@@ -35,7 +35,7 @@ func (l *RemoveCartItemLogic) RemoveCartItem(req *types.RemoveCartItemRequest) (
 
 	mdlCartItems := []*trade.CartItem{
 		{
-			PowerModel: &powermodel.PowerModel{
+			PowerModel: &powerModel.PowerModel{
 				Id: req.ItemId,
 			},
 			CustomerId: authCustomer.Id,

@@ -6,7 +6,7 @@ import (
 )
 
 type ProductStatistics struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	ProductId             int64 `gorm:"comment:产品Id; unique" json:"productId"`
 	SoldAmount            int64 `gorm:"comment:销量" json:"soldAmount"`

@@ -6,7 +6,7 @@ import (
 )
 
 type Lead struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	Inviter *Customer `gorm:"foreignKey:InviterId;references:Id" json:"inviter"`
 

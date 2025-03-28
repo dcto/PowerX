@@ -140,7 +140,7 @@ func (uc *TokenUseCase) UpsertTokenExchangeRecord(ctx context.Context, record *t
 
 func (uc *TokenUseCase) UpsertTokenExchangeRecords(ctx context.Context, records []*trade.TokenExchangeRecord) ([]*trade.TokenExchangeRecord, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &trade.TokenExchangeRecord{}, trade.TokenExchangeRecordId, records, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &trade.TokenExchangeRecord{}, trade.TokenExchangeRecordId, records, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert tokens failed"))
@@ -299,7 +299,7 @@ func (uc *TokenUseCase) UpsertTokenBalance(ctx context.Context, record *trade.To
 
 func (uc *TokenUseCase) UpsertTokenBalances(ctx context.Context, records []*trade.TokenExchangeRecord) ([]*trade.TokenExchangeRecord, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &trade.TokenExchangeRecord{}, trade.TokenBalanceUniqueId, records, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &trade.TokenExchangeRecord{}, trade.TokenBalanceUniqueId, records, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert tokens failed"))

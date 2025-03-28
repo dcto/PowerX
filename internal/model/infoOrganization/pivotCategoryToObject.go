@@ -11,7 +11,7 @@ import (
 
 // Pivot表
 type PivotCategoryToObject struct {
-	powermodel.PowerPivot
+	powerModel.PowerPivot
 
 	Category *Category `gorm:"foreignKey:CategoryId;references:Id" json:"category"`
 
@@ -80,7 +80,7 @@ func (mdl *PivotCategoryToObject) GetPivotComposedUniqueID() string {
 func (mdl *PivotCategoryToObject) GetMorphPivots(db *gorm.DB, where *map[string]interface{}) ([]*PivotCategoryToObject, error) {
 	pivots := []*PivotCategoryToObject{}
 
-	db = powermodel.SelectMorphPivot(db, mdl, where)
+	db = powerModel.SelectMorphPivot(db, mdl, where)
 
 	result := db.Find(&pivots)
 
@@ -89,7 +89,7 @@ func (mdl *PivotCategoryToObject) GetMorphPivots(db *gorm.DB, where *map[string]
 }
 
 // --------------------------------------------------------------------
-func (mdl *PivotCategoryToObject) MakeMorphPivotsFromObjectToCategories(obj powermodel.ModelInterface, categories []*Category) ([]*PivotCategoryToObject, error) {
+func (mdl *PivotCategoryToObject) MakeMorphPivotsFromObjectToCategories(obj powerModel.ModelInterface, categories []*Category) ([]*PivotCategoryToObject, error) {
 	pivots := []*PivotCategoryToObject{}
 	for _, category := range categories {
 		pivot := &PivotCategoryToObject{

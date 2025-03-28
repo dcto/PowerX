@@ -7,7 +7,7 @@ import (
 )
 
 type TokenExchangeRatio struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	FromCategory int     `gorm:"comment:要兑换的代币种类" json:"fromCategory"`
 	Ratio        float64 `gorm:"comment:兑换比例" json:"ratio"`
@@ -26,7 +26,7 @@ func (mdl *TokenExchangeRatio) GetTableName(needFull bool) string {
 }
 
 type TokenBalance struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	Customer *customerDomain.Customer `gorm:"foreignKey:CustomerId;references:Id" json:"customer"`
 
@@ -35,8 +35,8 @@ type TokenBalance struct {
 	Usage      float64 `gorm:"comment:使用代币 " json:"usage"`
 }
 
-const TokenBalanceUniqueId = powermodel.UniqueId
-const TokenExchangeRecordId = powermodel.UniqueId
+const TokenBalanceUniqueId = powerModel.UniqueId
+const TokenExchangeRecordId = powerModel.UniqueId
 
 func (mdl *TokenBalance) TableName() string {
 	return model.PowerXSchema + "." + model.TableNameTokenBalance
@@ -51,7 +51,7 @@ func (mdl *TokenBalance) GetTableName(needFull bool) string {
 }
 
 type TokenExchangeRecord struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	CustomerId     int64   `gorm:"comment:客户Id; index" json:"customerId"`
 	ProductId      int64   `gorm:"comment:产品Id" json:"productId"`
@@ -91,7 +91,7 @@ const (
 
 // 定义预扣记录对象
 type TokenReservation struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 	CustomerId  int64   `gorm:"comment:客户ID; index" json:"customerId"`
 	Amount      float64 `gorm:"comment:预扣金额" json:"amount"`
 	SourceType  string  `gorm:"column:source_type; not null;index:idx_src_type;comment:来源对象表名称" json:"sourceOwner"`
@@ -113,7 +113,7 @@ func (mdl *TokenReservation) GetTableName(needFull bool) string {
 
 // 定义交易记录对象
 type TokenTransaction struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	CustomerId int64   `gorm:"comment:客户ID; index" json:"customerId"`
 	Amount     float64 `gorm:"comment:交易金额" json:"amount"`
@@ -134,7 +134,7 @@ func (mdl *TokenTransaction) GetTableName(needFull bool) string {
 	return tableName
 }
 
-const TokenTransactionId = powermodel.UniqueId
+const TokenTransactionId = powerModel.UniqueId
 
 const TypeTokenTransactionType = "_token_transaction_type"
 

@@ -8,7 +8,7 @@ import (
 )
 
 type WeWorkUser struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	WeWorkUserId           string `gorm:"comment:员工ID;column:we_work_user_id;unique" json:"we_work_user_id"`
 	Name                   string `gorm:"comment:员工名称;column:name" json:"name"`

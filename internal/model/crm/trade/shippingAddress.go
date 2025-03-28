@@ -7,7 +7,7 @@ import (
 
 // 用户发货地址
 type ShippingAddress struct {
-	*powermodel.PowerModel
+	*powerModel.PowerModel
 
 	CustomerId   int64  `gorm:"comment:客户Id; index" json:"customerId"`
 	Recipient    string `gorm:"comment:收件人姓名" json:"recipient"`
@@ -23,7 +23,7 @@ type ShippingAddress struct {
 	IsDefault    bool   `gorm:"comment:是否默认地址" json:"isDefault"`
 }
 
-const ShippingAddressUniqueId = powermodel.UniqueId
+const ShippingAddressUniqueId = powerModel.UniqueId
 
 func (mdl *ShippingAddress) TableName() string {
 	return model.PowerXSchema + "." + model.TableNameShippingAddress

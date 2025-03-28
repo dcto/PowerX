@@ -8,7 +8,7 @@ import (
 )
 
 type ProductCategory struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	CoverImage *media.MediaResource `gorm:"foreignKey:CoverImageId;references:Id" json:"coverImage"`
 	Parent     *ProductCategory     `gorm:"foreignKey:PId;references:Id" json:"parent"`
@@ -24,7 +24,7 @@ type ProductCategory struct {
 	model.ImageAbleInfo
 }
 
-const ProductCategoryUniqueId = powermodel.UniqueId
+const ProductCategoryUniqueId = powerModel.UniqueId
 
 func (mdl *ProductCategory) TableName() string {
 	return model.PowerXSchema + "." + model.TableNameProductCategory
@@ -56,7 +56,7 @@ func (mdl *ProductCategory) GetCategoryIds(categories []*ProductCategory) []int6
 func (mdl *ProductCategory) LoadChildren(db *gorm.DB, conditions *map[string]interface{}, withClauseAssociations bool) error {
 
 	mdl.Children = []*ProductCategory{}
-	err := powermodel.AssociationRelationship(db, conditions, mdl, "Children", false).Find(&mdl.Children)
+	err := powerModel.AssociationRelationship(db, conditions, mdl, "Children", false).Find(&mdl.Children)
 	//fmt.Dump(mdl.Artisans)
 	return err
 }

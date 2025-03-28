@@ -16,7 +16,7 @@ const CustomerUniqueId = "mobile"
 type Customer struct {
 	Inviter *Customer `gorm:"foreignKey:InviterId;references:Id" json:"inviter"`
 
-	powermodel.PowerModel
+	powerModel.PowerModel
 	Name        string `gorm:"comment:客户名称" json:"name"`
 	Mobile      string `gorm:"unique;not null;comment:店长Id" json:"mobile"`
 	Uuid        string `gorm:"comment:识别码;index" json:"uuid"`

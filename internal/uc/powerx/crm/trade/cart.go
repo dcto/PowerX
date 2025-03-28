@@ -170,7 +170,7 @@ func (uc *CartUseCase) UpsertCart(ctx context.Context, cart *trade.Cart) (*trade
 
 func (uc *CartUseCase) UpsertCarts(ctx context.Context, carts []*trade.Cart) ([]*trade.Cart, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &trade.Cart{}, trade.CartUniqueId, carts, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &trade.Cart{}, trade.CartUniqueId, carts, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert carts failed"))
@@ -352,7 +352,7 @@ func (uc *CartUseCase) UpsertCartItem(ctx context.Context, cartItem *trade.CartI
 
 func (uc *CartUseCase) UpsertCartItems(ctx context.Context, cartItems []*trade.CartItem, fieldsToUpdate []string) ([]*trade.CartItem, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &trade.CartItem{}, trade.CartUniqueId, cartItems, fieldsToUpdate, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &trade.CartItem{}, trade.CartUniqueId, cartItems, fieldsToUpdate, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert cart items failed"))

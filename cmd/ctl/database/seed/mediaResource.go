@@ -49,7 +49,7 @@ func ProductCoverImage(url string, name string) []*media.MediaResource {
 	imageUrl, _ := httpx.AppendURIs(url, fmt.Sprintf("%s/0.png", name))
 	return []*media.MediaResource{
 		{
-			PowerUUIDModel: powermodel.PowerUUIDModel{
+			PowerUUIDModel: powerModel.PowerUUIDModel{
 				UUID: securityx.GenerateUUID(),
 			},
 			Url:           imageUrl,
@@ -64,7 +64,7 @@ func ProductDetailImages(url string, path string) []*media.MediaResource {
 		imageUrl, _ := httpx.AppendURIs(url, path, fmt.Sprintf("%d.png", i+1))
 
 		urls = append(urls, &media.MediaResource{
-			PowerUUIDModel: powermodel.PowerUUIDModel{
+			PowerUUIDModel: powerModel.PowerUUIDModel{
 				UUID: securityx.GenerateUUID(),
 			},
 			Url:           imageUrl,

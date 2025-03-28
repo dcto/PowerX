@@ -25,7 +25,7 @@ func NewUpdateCategoryLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Up
 
 func (l *UpdateCategoryLogic) UpdateCategory(req *types.UpdateCategoryRequest) (resp *types.UpdateCategoryReply, err error) {
 	category := TransformRequestToCategory(&req.Category)
-	category.PowerModel = powermodel.PowerModel{
+	category.PowerModel = powerModel.PowerModel{
 		Id: req.Id,
 	}
 

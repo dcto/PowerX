@@ -10,7 +10,7 @@ import (
 
 // 小程序客户信息
 type WechatMPCustomer struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	Customer *customerDomain2.Customer `gorm:"foreignKey:OpenId;references:OpenIdInMiniProgram" json:"customer"`
 

@@ -163,7 +163,7 @@ func (uc *AdminPermsUseCase) Init() {
 			rooName = "超级管理员"
 		}
 		root := organization.User{
-			PowerUUIDModel: powermodel.PowerUUIDModel{
+			PowerUUIDModel: powerModel.PowerUUIDModel{
 				UUID: uuid.New(),
 			},
 			Account:    rooAccount,

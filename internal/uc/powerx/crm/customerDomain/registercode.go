@@ -106,7 +106,7 @@ func (uc *RegisterCodeUseCase) UpsertRegisterCode(ctx context.Context, registerC
 
 func (uc *RegisterCodeUseCase) UpsertRegisterCodes(ctx context.Context, registerCodes []*customerDomain.RegisterCode) ([]*customerDomain.RegisterCode, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &customerDomain.RegisterCode{}, customerDomain.RegisterCodeUniqueId, registerCodes, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &customerDomain.RegisterCode{}, customerDomain.RegisterCodeUniqueId, registerCodes, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert registerCodes failed"))

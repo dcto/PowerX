@@ -11,7 +11,7 @@ import (
 
 // Pivot表
 type PivotTagToObject struct {
-	powermodel.PowerPivot
+	powerModel.PowerPivot
 
 	// 所属键 owner key and value
 	ObjectType string `gorm:"column:object_type; not null;index:idx_obj_type;comment:对象表名称" json:"objectOwner"`
@@ -78,7 +78,7 @@ func (mdl *PivotTagToObject) GetPivotComposedUniqueID() string {
 func (mdl *PivotTagToObject) GetMorphPivots(db *gorm.DB, where *map[string]interface{}) ([]*PivotTagToObject, error) {
 	pivots := []*PivotTagToObject{}
 
-	db = powermodel.SelectMorphPivot(db, mdl, where)
+	db = powerModel.SelectMorphPivot(db, mdl, where)
 
 	result := db.Find(&pivots)
 
@@ -87,7 +87,7 @@ func (mdl *PivotTagToObject) GetMorphPivots(db *gorm.DB, where *map[string]inter
 }
 
 // --------------------------------------------------------------------
-func (mdl *PivotTagToObject) MakeMorphPivotsFromObjectToTags(obj powermodel.ModelInterface, tags []*Tag) ([]*PivotTagToObject, error) {
+func (mdl *PivotTagToObject) MakeMorphPivotsFromObjectToTags(obj powerModel.ModelInterface, tags []*Tag) ([]*PivotTagToObject, error) {
 	pivots := []*PivotTagToObject{}
 	for _, tag := range tags {
 		pivot := &PivotTagToObject{

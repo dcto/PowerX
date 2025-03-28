@@ -95,7 +95,7 @@ func (uc *MembershipUseCase) UpsertMembership(ctx context.Context, m *operation.
 	arrayMembership := []*operation.Membership{m}
 
 	err := uc.DB.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
-		err := powermodel.UpsertModelsOnUniqueID(tx, &operation.Membership{}, operation.MembershipUniqueId, arrayMembership, nil, false)
+		err := powerModel.UpsertModelsOnUniqueID(tx, &operation.Membership{}, operation.MembershipUniqueId, arrayMembership, nil, false)
 
 		if err != nil {
 			panic(errors.Wrap(err, "upsert membershipdomain failed"))
@@ -109,7 +109,7 @@ func (uc *MembershipUseCase) UpsertMembership(ctx context.Context, m *operation.
 
 func (uc *MembershipUseCase) UpsertMemberships(ctx context.Context, memberships []*operation.Membership) ([]*operation.Membership, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.DB.WithContext(ctx), &operation.Membership{}, operation.MembershipUniqueId, memberships, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.DB.WithContext(ctx), &operation.Membership{}, operation.MembershipUniqueId, memberships, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert memberships failed"))

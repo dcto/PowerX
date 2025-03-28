@@ -36,7 +36,7 @@ func (l *UpsertPriceBookLogic) UpsertPriceBook(req *types.UpsertPriceBookRequest
 	}
 
 	priceBook := &product.PriceBook{
-		PowerModel: powermodel.PowerModel{
+		PowerModel: powerModel.PowerModel{
 			Id: req.Id,
 		},
 		IsStandard:  req.IsStandard,

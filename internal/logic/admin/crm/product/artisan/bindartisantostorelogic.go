@@ -37,7 +37,7 @@ func (l *BindArtisanToStoreLogic) BindArtisanToStore(req *types.BindArtisansToSt
 	resArtisans, err := l.svcCtx.PowerX.Artisan.FindManyArtisans(l.ctx, &product2.FindManyArtisanOption{
 		Ids: req.ArtisanIds,
 		PageEmbedOption: types.PageEmbedOption{
-			PageSize: powermodel.MaxPageSize,
+			PageSize: powerModel.MaxPageSize,
 		},
 	})
 	if err != nil {
@@ -51,7 +51,7 @@ func (l *BindArtisanToStoreLogic) BindArtisanToStore(req *types.BindArtisansToSt
 	resStores, err := l.svcCtx.PowerX.Store.FindManyStores(l.ctx, &market.FindManyStoresOption{
 		Ids: req.StoreId,
 		PageEmbedOption: types.PageEmbedOption{
-			PageSize: powermodel.MaxPageSize,
+			PageSize: powerModel.MaxPageSize,
 		},
 	})
 	if err != nil {

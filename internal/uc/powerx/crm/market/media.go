@@ -123,7 +123,7 @@ func (uc *MediaUseCase) UpsertMedia(ctx context.Context, m *model.Media) (*model
 
 func (uc *MediaUseCase) UpsertMedias(ctx context.Context, medias []*model.Media) ([]*model.Media, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &model.Media{}, model.MediaUniqueId, medias, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &model.Media{}, model.MediaUniqueId, medias, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert medias failed"))

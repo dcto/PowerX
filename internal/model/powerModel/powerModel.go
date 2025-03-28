@@ -1,4 +1,4 @@
-package powermodel
+package powerModel
 
 import (
 	"PowerX/pkg/securityx"

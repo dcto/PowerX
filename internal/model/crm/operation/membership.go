@@ -13,7 +13,7 @@ type Membership struct {
 	MainMembership *Membership   `gorm:"foreignKey:MainMembershipId;references:id"`
 	SubMemberships []*Membership `gorm:"foreignKey:MainMembershipId;references:id"`
 
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	Name             string    `gorm:"comment:会籍名称" json:"name"`
 	MainMembershipId int64     `gorm:"comment:主会籍Id" json:"mainMembershipId"`
@@ -29,7 +29,7 @@ type Membership struct {
 	Plan             int       `gorm:"comment:计划" json:"plan"`
 }
 
-const MembershipUniqueId = powermodel.UniqueId
+const MembershipUniqueId = powerModel.UniqueId
 
 func (mdl *Membership) TableName() string {
 	return model.PowerXSchema + "." + model.TableNameMembership

@@ -8,7 +8,7 @@ import (
 
 // Position 职位
 type Position struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	Name  string                  `gorm:"comment:职位名称;column:name" json:"name"`
 	Desc  string                  `gorm:"comment:描述;column:desc" json:"desc"`

@@ -120,7 +120,7 @@ func (uc *CustomerUseCase) UpsertCustomer(ctx context.Context, customer *custome
 	customers := []*customerDomain.Customer{customer}
 
 	err := uc.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
-		err := powermodel.UpsertModelsOnUniqueID(tx, &customerDomain.Customer{}, customerDomain.CustomerUniqueId, customers, nil, false)
+		err := powerModel.UpsertModelsOnUniqueID(tx, &customerDomain.Customer{}, customerDomain.CustomerUniqueId, customers, nil, false)
 
 		if err != nil {
 			panic(errors.Wrap(err, "upsert customerDomain failed"))
@@ -128,7 +128,7 @@ func (uc *CustomerUseCase) UpsertCustomer(ctx context.Context, customer *custome
 		// 如果是新增用户，那么需要给一个唯一识别号
 		if customer.Uuid == "" {
 			customer.Uuid = securityx.GenerateUUIDString()
-			err = powermodel.UpsertModelsOnUniqueID(tx, &customerDomain.Customer{}, customerDomain.CustomerUniqueId, customer, []string{"uuid"}, false)
+			err = powerModel.UpsertModelsOnUniqueID(tx, &customerDomain.Customer{}, customerDomain.CustomerUniqueId, customer, []string{"uuid"}, false)
 			if err != nil {
 				return err
 			}
@@ -141,7 +141,7 @@ func (uc *CustomerUseCase) UpsertCustomer(ctx context.Context, customer *custome
 
 func (uc *CustomerUseCase) UpsertCustomers(ctx context.Context, customers []*customerDomain.Customer) ([]*customerDomain.Customer, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &customerDomain.Customer{}, customerDomain.CustomerUniqueId, customers, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &customerDomain.Customer{}, customerDomain.CustomerUniqueId, customers, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert customers failed"))

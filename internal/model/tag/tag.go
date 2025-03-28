@@ -8,7 +8,7 @@ import (
 )
 
 type Tag struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	CoverImage *media.MediaResource `gorm:"foreignKey:CoverImageId;references:Id" json:"coverImage"`
 	Parent     *Tag                 `gorm:"foreignKey:PId;references:Id" json:"parent"`
@@ -24,7 +24,7 @@ type Tag struct {
 	model.ImageAbleInfo
 }
 
-const TagUniqueId = powermodel.UniqueId
+const TagUniqueId = powerModel.UniqueId
 
 func (mdl *Tag) TableName() string {
 	return model.PowerXSchema + "." + model.TableNameTag
@@ -55,7 +55,7 @@ func GetTagIds(tags []*Tag) []int64 {
 func (mdl *Tag) LoadChildren(db *gorm.DB, conditions *map[string]interface{}, withClauseAssociations bool) error {
 
 	mdl.Children = []*Tag{}
-	err := powermodel.AssociationRelationship(db, conditions, mdl, "Children", false).Find(&mdl.Children)
+	err := powerModel.AssociationRelationship(db, conditions, mdl, "Children", false).Find(&mdl.Children)
 	//fmt.Dump(mdl.Artisans)
 	return err
 }

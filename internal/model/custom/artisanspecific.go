@@ -6,12 +6,12 @@ import (
 )
 
 type ArtisanSpecific struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	ArtisanId int64 `gorm:"comment:ArtisanId"`
 }
 
-const ArtisanSpecificUniqueId = powermodel.UniqueId
+const ArtisanSpecificUniqueId = powerModel.UniqueId
 
 func (mdl *ArtisanSpecific) TableName() string {
 	return model.PowerXSchema + "." + model.TableNameArtisanSpecific

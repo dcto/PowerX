@@ -38,7 +38,7 @@ func (l *ClearCartItemsLogic) ClearCartItems(req *types.ClearCartItemsRequest) (
 		CartIds:    []int64{0},
 		PageEmbedOption: types.PageEmbedOption{
 			PageIndex: 0,
-			PageSize:  powermodel.MaxPageSize,
+			PageSize:  powerModel.MaxPageSize,
 		},
 	})
 

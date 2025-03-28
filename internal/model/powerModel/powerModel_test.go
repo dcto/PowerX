@@ -1,4 +1,4 @@
-package powermodel
+package powerModel
 
 import (
 	fmt "PowerX/pkg/printx"

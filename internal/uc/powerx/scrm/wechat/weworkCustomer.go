@@ -40,7 +40,7 @@ func (this wechatUseCase) FindManyWeWorkCustomerPage(ctx context.Context, opt *t
 		opt.PageIndex = 1
 	}
 	if opt.PageSize == 0 {
-		opt.PageSize = powermodel.PageDefaultSize
+		opt.PageSize = powerModel.PageDefaultSize
 	}
 	query = buildFindManyCustomerQueryNoPage(query, &opt.Option)
 

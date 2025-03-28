@@ -380,7 +380,7 @@ func (uc *OrderUseCase) UpsertOrderWithLogistic(ctx context.Context, order *trad
 			return errors.Wrap(err, "upsert order failed")
 		}
 
-		err = powermodel.UpsertModelsOnUniqueID(tx, &trade.Logistics{}, trade.LogisticsUniqueId, order.Logistics, nil, false)
+		err = powerModel.UpsertModelsOnUniqueID(tx, &trade.Logistics{}, trade.LogisticsUniqueId, order.Logistics, nil, false)
 
 		return err
 	})
@@ -413,7 +413,7 @@ func (uc *OrderUseCase) UpsertOrder(ctx context.Context, order *trade.Order) (*t
 
 func (uc *OrderUseCase) UpsertOrders(ctx context.Context, orders []*trade.Order) ([]*trade.Order, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.DB.WithContext(ctx), &trade.Order{}, trade.OrderUniqueId, orders, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.DB.WithContext(ctx), &trade.Order{}, trade.OrderUniqueId, orders, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert orders failed"))

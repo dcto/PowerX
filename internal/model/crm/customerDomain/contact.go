@@ -6,7 +6,7 @@ import (
 )
 
 type Contact struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	Name   string
 	Mobile string

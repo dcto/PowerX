@@ -34,7 +34,7 @@ type Product struct {
 	PromoteChannelsItemIds []int64                              `gorm:"-"`
 	//Coupons          []*Coupon         `gorm:"many2many:r_product_to_coupon;foreignKey:Id;joinForeignKey:ProductId;References:Id;JoinReferences:CouponId" json:"coupons"`
 
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	Name                string    `gorm:"comment:产品名称"`
 	SPU                 string    `gorm:"comment:产品货号"`
@@ -54,7 +54,7 @@ type Product struct {
 	ProductAttribute
 }
 
-const ProductUniqueId = powermodel.UniqueId
+const ProductUniqueId = powerModel.UniqueId
 
 func (mdl *Product) TableName() string {
 	return model.PowerXSchema + "." + model.TableNameProduct
@@ -94,7 +94,7 @@ func (mdl *Product) LoadPivotSalesChannels(db *gorm.DB, conditions *map[string]i
 	(*conditions)[model.PivotDataDictionaryToObjectForeignKey] = mdl.Id
 	(*conditions)["data_dictionary_type"] = model.TypeSalesChannel
 
-	err := powermodel.SelectMorphPivots(db, &model.PivotDataDictionaryToObject{}, false, false, conditions).
+	err := powerModel.SelectMorphPivots(db, &model.PivotDataDictionaryToObject{}, false, false, conditions).
 		Preload("DataDictionaryItem").
 		Find(&items).Error
 
@@ -108,7 +108,7 @@ func (mdl *Product) ClearPivotSalesChannels(db *gorm.DB) error {
 	(*conditions)[model.PivotDataDictionaryToObjectForeignKey] = mdl.Id
 	(*conditions)["data_dictionary_type"] = model.TypeSalesChannel
 
-	return powermodel.ClearMorphPivots(db, &model.PivotDataDictionaryToObject{}, false, false, conditions)
+	return powerModel.ClearMorphPivots(db, &model.PivotDataDictionaryToObject{}, false, false, conditions)
 }
 
 func (mdl *Product) LoadPromoteChannels(db *gorm.DB, conditions *map[string]interface{}, withClauseAssociations bool) ([]*model.PivotDataDictionaryToObject, error) {
@@ -121,7 +121,7 @@ func (mdl *Product) LoadPromoteChannels(db *gorm.DB, conditions *map[string]inte
 	(*conditions)[model.PivotDataDictionaryToObjectForeignKey] = mdl.Id
 	(*conditions)["data_dictionary_type"] = model.TypePromoteChannel
 
-	err := powermodel.SelectMorphPivots(db, &model.PivotDataDictionaryToObject{}, false, false, conditions).
+	err := powerModel.SelectMorphPivots(db, &model.PivotDataDictionaryToObject{}, false, false, conditions).
 		Preload("DataDictionaryItem").
 		Find(&items).Error
 
@@ -134,7 +134,7 @@ func (mdl *Product) ClearPivotPromoteChannels(db *gorm.DB) error {
 	(*conditions)[model.PivotDataDictionaryToObjectForeignKey] = mdl.Id
 	(*conditions)["data_dictionary_type"] = model.TypePromoteChannel
 
-	return powermodel.ClearMorphPivots(db, &model.PivotDataDictionaryToObject{}, false, false, conditions)
+	return powerModel.ClearMorphPivots(db, &model.PivotDataDictionaryToObject{}, false, false, conditions)
 }
 
 // -- Product Category
@@ -146,7 +146,7 @@ func (mdl *Product) LoadProductCategories(db *gorm.DB, conditions *map[string]in
 	}
 	(*conditions)[model.TableNamePivotProductToProductCategory+".deleted_at"] = nil
 
-	err := powermodel.AssociationRelationship(db, conditions, mdl, "ProductCategories", false).Find(&mdl.ProductCategories)
+	err := powerModel.AssociationRelationship(db, conditions, mdl, "ProductCategories", false).Find(&mdl.ProductCategories)
 	if err != nil {
 		panic(err)
 	}
@@ -156,7 +156,7 @@ func (mdl *Product) LoadProductCategories(db *gorm.DB, conditions *map[string]in
 func (mdl *Product) ClearProductCategories(db *gorm.DB) error {
 	conditions := &map[string]interface{}{}
 	(*conditions)[PivotProductToCategoryForeignKey] = mdl.Id
-	return powermodel.ClearMorphPivots(db, &PivotProductToProductCategory{}, false, false, conditions)
+	return powerModel.ClearMorphPivots(db, &PivotProductToProductCategory{}, false, false, conditions)
 }
 
 func (mdl *Product) LoadPivotCoverImages(db *gorm.DB, conditions *map[string]interface{}) ([]*media.PivotMediaResourceToObject, error) {
@@ -168,7 +168,7 @@ func (mdl *Product) LoadPivotCoverImages(db *gorm.DB, conditions *map[string]int
 	(*conditions)[media.PivotMediaResourceToObjectOwnerKey] = model.TableNameProduct
 	(*conditions)[media.PivotMediaResourceToObjectForeignKey] = mdl.Id
 
-	err := powermodel.SelectMorphPivots(db, &media.PivotMediaResourceToObject{}, false, false, conditions).
+	err := powerModel.SelectMorphPivots(db, &media.PivotMediaResourceToObject{}, false, false, conditions).
 		Preload("MediaResource").
 		Where("media_usage", media.MediaUsageCover).
 		Find(&items).Error
@@ -182,7 +182,7 @@ func (mdl *Product) ClearPivotCoverImages(db *gorm.DB) error {
 	(*conditions)[media.PivotMediaResourceToObjectForeignKey] = mdl.Id
 	(*conditions)["media_usage"] = media.MediaUsageCover
 
-	return powermodel.ClearMorphPivots(db, &media.PivotMediaResourceToObject{}, false, false, conditions)
+	return powerModel.ClearMorphPivots(db, &media.PivotMediaResourceToObject{}, false, false, conditions)
 }
 
 func (mdl *Product) LoadPivotDetailImages(db *gorm.DB, conditions *map[string]interface{}) ([]*media.PivotMediaResourceToObject, error) {
@@ -194,7 +194,7 @@ func (mdl *Product) LoadPivotDetailImages(db *gorm.DB, conditions *map[string]in
 	(*conditions)[media.PivotMediaResourceToObjectOwnerKey] = model.TableNameProduct
 	(*conditions)[media.PivotMediaResourceToObjectForeignKey] = mdl.Id
 
-	err := powermodel.SelectMorphPivots(db, &media.PivotMediaResourceToObject{}, false, false, conditions).
+	err := powerModel.SelectMorphPivots(db, &media.PivotMediaResourceToObject{}, false, false, conditions).
 		Preload("MediaResource").
 		Where("media_usage", media.MediaUsageDetail).
 		Find(&items).Error
@@ -208,13 +208,13 @@ func (mdl *Product) ClearPivotDetailImages(db *gorm.DB) error {
 	(*conditions)[media.PivotMediaResourceToObjectForeignKey] = mdl.Id
 	(*conditions)["media_usage"] = media.MediaUsageDetail
 
-	return powermodel.ClearMorphPivots(db, &media.PivotMediaResourceToObject{}, false, false, conditions)
+	return powerModel.ClearMorphPivots(db, &media.PivotMediaResourceToObject{}, false, false, conditions)
 }
 
 // -- PriceBookEntries
 func (mdl *Product) LoadPriceBookEntries(db *gorm.DB, conditions *map[string]interface{}) ([]*PriceBookEntry, error) {
 	mdl.PriceBookEntries = []*PriceBookEntry{}
-	err := powermodel.AssociationRelationship(db, conditions, mdl, "PriceBookEntries", false).Find(&mdl.PriceBookEntries)
+	err := powerModel.AssociationRelationship(db, conditions, mdl, "PriceBookEntries", false).Find(&mdl.PriceBookEntries)
 	if err != nil {
 		panic(err)
 	}

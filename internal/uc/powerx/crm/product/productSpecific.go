@@ -151,7 +151,7 @@ func (uc *ProductSpecificUseCase) UpsertProductSpecific(ctx context.Context, pro
 
 func (uc *ProductSpecificUseCase) UpsertProductSpecifics(ctx context.Context, productSpecifics []*product.ProductSpecific) ([]*product.ProductSpecific, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &product.ProductSpecific{}, product.ProductSpecificUniqueId, productSpecifics, nil, true)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &product.ProductSpecific{}, product.ProductSpecificUniqueId, productSpecifics, nil, true)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert productSpecific failed"))

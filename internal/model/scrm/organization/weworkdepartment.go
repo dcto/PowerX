@@ -8,7 +8,7 @@ import (
 )
 
 type WeWorkDepartment struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	// Leader         *WeWorkUser `gorm:"foreignKey:LeaderId"`
 	WeWorkDepId      int    `gorm:"comment:部门ID;column:we_work_dep_id;unique" json:"we_work_dep_id"`

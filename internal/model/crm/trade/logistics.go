@@ -7,7 +7,7 @@ import (
 )
 
 type Logistics struct {
-	*powermodel.PowerModel
+	*powerModel.PowerModel
 
 	OrderId               int64           `gorm:"comment:订单Id" json:"orderId"`
 	Status                LogisticsStatus `gorm:"comment:物流状态" json:"status"`
@@ -40,4 +40,4 @@ const (
 	LogisticsStatusReturned  LogisticsStatus = "returned"   // 已退回
 )
 
-const LogisticsUniqueId = powermodel.UniqueId
+const LogisticsUniqueId = powerModel.UniqueId

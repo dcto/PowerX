@@ -8,7 +8,7 @@ import (
 )
 
 type Department struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	PDep        *Department   `gorm:"foreignKey:PId"`
 	Leader      *User         `gorm:"foreignKey:LeaderUuid"`

@@ -11,7 +11,7 @@ import (
 
 // SKU 数据表结构
 type SKU struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	PivotSkuToSpecificOptions []*PivotSkuToSpecificOption `gorm:"foreignKey:SkuId;references:Id" json:"pivotSkuToSpecificOptions"`
 	PriceBookEntry            *PriceBookEntry             `gorm:"foreignKey:SkuId;references:Id" json:"priceBookEntry"`

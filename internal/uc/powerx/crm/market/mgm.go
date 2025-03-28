@@ -122,7 +122,7 @@ func (uc *MGMRuleUseCase) UpsertMGMRule(ctx context.Context, m *model.MGMRule) (
 
 func (uc *MGMRuleUseCase) UpsertMGMRules(ctx context.Context, medias []*model.MGMRule) ([]*model.MGMRule, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &model.MGMRule{}, model.MGMRuleUniqueId, medias, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &model.MGMRule{}, model.MGMRuleUniqueId, medias, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert medias failed"))

@@ -8,7 +8,7 @@ import (
 )
 
 type WeWorkExternalContactFollow struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	ExternalUserId string `gorm:"comment:客户ID;column:external_user_id;unique" json:"external_user_id"`
 	UserId         string `gorm:"comment:员工ID;column:user_id" json:"user_id"`

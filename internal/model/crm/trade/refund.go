@@ -9,7 +9,7 @@ import (
 
 // 记录客户当次退款行为
 type RefundOrder struct {
-	*powermodel.PowerModel
+	*powerModel.PowerModel
 
 	Customer         *customerDomain.Customer `gorm:"foreignKey:CustomerId;references:Id" json:"customer"`
 	RefundOrderItems []*RefundOrderItem       `gorm:"foreignKey:RefundOrderId;references:Id" json:"refundOrderItems"`
@@ -39,7 +39,7 @@ func (mdl *RefundOrder) GetTableName(needFull bool) string {
 
 type RefundStatus int
 
-const RefundOrderUniqueId = powermodel.UniqueId
+const RefundOrderUniqueId = powerModel.UniqueId
 
 const (
 	RefundStatusPending   RefundStatus = 0 // 待退款
@@ -50,7 +50,7 @@ const (
 
 // 退款订单项
 type RefundOrderItem struct {
-	*powermodel.PowerModel
+	*powerModel.PowerModel
 
 	RefundOrder *RefundOrder `gorm:"foreignKey:RefundOrderId;references:Id" json:"order"`
 
