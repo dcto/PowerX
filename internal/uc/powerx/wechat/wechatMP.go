@@ -2,7 +2,7 @@ package wechat
 
 import (
 	"PowerX/internal/config"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/model/wechat"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"

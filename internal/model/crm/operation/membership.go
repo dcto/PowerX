@@ -3,7 +3,7 @@ package operation
 import (
 	"PowerX/internal/model"
 	"PowerX/internal/model/crm/customerDomain"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"time"
 )
 

@@ -1,7 +1,7 @@
 package category
 
 import (
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"context"
 
 	"PowerX/internal/svc"

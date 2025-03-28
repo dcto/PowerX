@@ -2,7 +2,7 @@ package tag
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/pkg/securityx"
 	"fmt"
 	"gorm.io/gorm"

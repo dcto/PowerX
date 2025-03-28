@@ -3,7 +3,7 @@ package tag
 import (
 	"PowerX/internal/model"
 	"PowerX/internal/model/media"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"gorm.io/gorm"
 )
 

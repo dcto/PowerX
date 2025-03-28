@@ -1,7 +1,7 @@
 package model
 
 import (
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/pkg/securityx"
 	"fmt"
 	"gorm.io/gorm"

@@ -1,7 +1,7 @@
 package artisan
 
 import (
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types/errorx"
 	"PowerX/internal/uc/powerx/crm/market"
 	product2 "PowerX/internal/uc/powerx/crm/product"

@@ -2,7 +2,7 @@ package organization
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/pkg/securityx"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"

@@ -3,7 +3,7 @@ package market
 import (
 	"PowerX/internal/model/crm/customerDomain"
 	model "PowerX/internal/model/crm/market"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
 	"context"

@@ -2,7 +2,7 @@ package market
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 )
 
 type MGMRule struct {

@@ -1,7 +1,7 @@
 package types
 
 import (
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 )
 
 type PageOption[T any] struct {

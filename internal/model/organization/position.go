@@ -3,7 +3,7 @@ package organization
 import (
 	"PowerX/internal/model"
 	"PowerX/internal/model/permission"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 )
 
 // Position 职位

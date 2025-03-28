@@ -2,7 +2,7 @@ package infoOrganization
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types"
 	"PowerX/pkg/securityx"
 	"fmt"

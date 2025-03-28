@@ -2,7 +2,7 @@ package category
 
 import (
 	"PowerX/internal/model/crm/product"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"context"
 
 	"PowerX/internal/svc"

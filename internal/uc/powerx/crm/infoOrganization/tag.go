@@ -2,7 +2,7 @@ package infoOrganization
 
 import (
 	"PowerX/internal/model/infoOrganization"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types/errorx"
 	"context"
 	"strings"

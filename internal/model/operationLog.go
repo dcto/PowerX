@@ -1,7 +1,7 @@
 package model
 
 import (
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"github.com/ArtisanCloud/PowerLibs/v3/object"
 	"gorm.io/gorm"
 )

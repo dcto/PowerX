@@ -3,7 +3,7 @@ package wechat
 import (
 	"PowerX/internal/model"
 	customerDomain2 "PowerX/internal/model/crm/customerDomain"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"fmt"
 	"github.com/ArtisanCloud/PowerLibs/v3/security"
 )

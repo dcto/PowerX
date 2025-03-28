@@ -2,7 +2,7 @@ package user
 
 import (
 	"PowerX/internal/model/organization"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types"
 	"context"
 	"github.com/google/uuid"

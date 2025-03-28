@@ -2,7 +2,7 @@ package product
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/pkg/securityx"
 	"fmt"
 	"github.com/ArtisanCloud/PowerLibs/v3/object"

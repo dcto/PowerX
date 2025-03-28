@@ -4,7 +4,7 @@ import (
 	model2 "PowerX/internal/model"
 	model "PowerX/internal/model/crm/product"
 	"PowerX/internal/model/media"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/repository"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"

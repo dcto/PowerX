@@ -3,7 +3,7 @@ package category
 import (
 	category2 "PowerX/internal/logic/admin/infoOrganization/category"
 	customerDomain2 "PowerX/internal/model/crm/customerDomain"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types/errorx"
 	"PowerX/internal/uc/powerx/crm/customerDomain"
 	"context"

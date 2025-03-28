@@ -2,7 +2,7 @@ package trade
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"github.com/ArtisanCloud/PowerLibs/v3/object"
 	"github.com/golang-module/carbon/v2"
 	"time"

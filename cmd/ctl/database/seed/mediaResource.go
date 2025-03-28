@@ -3,7 +3,7 @@ package seed
 import (
 	"PowerX/internal/config"
 	"PowerX/internal/model/media"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/uc/powerx"
 	"PowerX/pkg/httpx"
 	"PowerX/pkg/securityx"

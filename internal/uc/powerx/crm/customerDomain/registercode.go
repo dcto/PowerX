@@ -2,7 +2,7 @@ package customerDomain
 
 import (
 	"PowerX/internal/model/crm/customerDomain"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
 	"context"

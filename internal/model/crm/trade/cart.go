@@ -3,7 +3,7 @@ package trade
 import (
 	"PowerX/internal/model"
 	"PowerX/internal/model/crm/product"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 )
 
 type Cart struct {

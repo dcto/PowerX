@@ -2,7 +2,7 @@ package media
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types"
 	"github.com/google/uuid"
 )

@@ -2,7 +2,7 @@ package wechat
 
 import (
 	organization2 "PowerX/internal/model/organization"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/model/scrm/organization"
 	"PowerX/internal/types"
 	"context"

@@ -2,7 +2,7 @@ package infoOrganization
 
 import (
 	infoOrganization2 "PowerX/internal/model/infoOrganization"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/repository"
 	"PowerX/internal/types/errorx"
 	"context"

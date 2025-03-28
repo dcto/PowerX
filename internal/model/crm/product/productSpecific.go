@@ -2,7 +2,7 @@ package product
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 )
 
 type ProductSpecific struct {

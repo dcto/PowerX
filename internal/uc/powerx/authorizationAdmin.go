@@ -4,7 +4,7 @@ import (
 	"PowerX/internal/config"
 	"PowerX/internal/model/organization"
 	"PowerX/internal/model/permission"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types/errorx"
 	"PowerX/pkg/mapx"
 	"PowerX/pkg/slicex"

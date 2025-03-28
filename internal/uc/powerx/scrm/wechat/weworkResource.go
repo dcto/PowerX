@@ -1,7 +1,7 @@
 package wechat
 
 import (
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/model/scrm/resource"
 	"PowerX/internal/types"
 	"bytes"

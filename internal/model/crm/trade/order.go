@@ -5,7 +5,7 @@ import (
 	"PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/crm/product"
 	"PowerX/internal/model/media"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"github.com/golang-module/carbon/v2"
 	"github.com/zeromicro/go-zero/core/stringx"
 	"time"

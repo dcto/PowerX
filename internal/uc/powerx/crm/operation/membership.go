@@ -3,7 +3,7 @@ package operation
 import (
 	"PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/crm/operation"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
 	"context"
