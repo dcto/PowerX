@@ -1,10 +1,10 @@
 package cart
 
 import (
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
-	"PowerX/internal/model/powermodel"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types/errorx"
-	"PowerX/internal/uc/powerx/crm/customerdomain"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
 	trade2 "PowerX/internal/uc/powerx/crm/trade"
 	"context"
 	"fmt"
@@ -30,15 +30,15 @@ func NewClearCartItemsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Cl
 }
 
 func (l *ClearCartItemsLogic) ClearCartItems(req *types.ClearCartItemsRequest) (resp *types.ClearCartItemsReply, err error) {
-	vAuthCustomer := l.ctx.Value(customerdomain.AuthCustomerKey)
-	authCustomer := vAuthCustomer.(*customerdomain2.Customer)
+	vAuthCustomer := l.ctx.Value(customerDomain.AuthCustomerKey)
+	authCustomer := vAuthCustomer.(*customerDomain2.Customer)
 
 	page, err := l.svcCtx.PowerX.Cart.FindManyCartItems(l.ctx, &trade2.FindManyCartItemsOption{
 		CustomerId: authCustomer.Id,
 		CartIds:    []int64{0},
 		PageEmbedOption: types.PageEmbedOption{
 			PageIndex: 0,
-			PageSize:  powermodel.MaxPageSize,
+			PageSize:  powerModel.MaxPageSize,
 		},
 	})
 

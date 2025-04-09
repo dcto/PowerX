@@ -4,7 +4,7 @@ import (
 	model2 "PowerX/internal/model"
 	model "PowerX/internal/model/crm/product"
 	"PowerX/internal/model/media"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/repository"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
@@ -196,7 +196,7 @@ func (uc *ProductUseCase) UpsertProduct(ctx context.Context, product *model.Prod
 
 func (uc *ProductUseCase) UpsertProducts(ctx context.Context, products []*model.Product) ([]*model.Product, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &model.Product{}, model.ProductUniqueId, products, nil, true)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &model.Product{}, model.ProductUniqueId, products, nil, true)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert products failed"))
@@ -321,7 +321,7 @@ func (uc *ProductUseCase) ReFactSKUs(ctx context.Context, product *model.Product
 				//Debug().
 				Clauses(clause.OnConflict{
 					Columns:   []clause.Column{{Name: model.SkuUniqueId}},
-					DoUpdates: clause.AssignmentColumns(powermodel.GetModelFields(&model.SKU{})),
+					DoUpdates: clause.AssignmentColumns(powerModel.GetModelFields(&model.SKU{})),
 				}).
 				Create(&skus).Error
 			if err != nil {
@@ -336,7 +336,7 @@ func (uc *ProductUseCase) ReFactSKUs(ctx context.Context, product *model.Product
 				//Debug().
 				Clauses(clause.OnConflict{
 					Columns:   []clause.Column{{Name: model.PivotPivotSkuToSpecificOptionsUniqueId}},
-					DoUpdates: clause.AssignmentColumns(powermodel.GetModelFields(&model.PivotSkuToSpecificOption{})),
+					DoUpdates: clause.AssignmentColumns(powerModel.GetModelFields(&model.PivotSkuToSpecificOption{})),
 				}).Create(&pivots).Error
 			if err != nil {
 				panic(errors.Wrap(err, "init sku pivots failed"))

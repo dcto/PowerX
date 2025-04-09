@@ -1,0 +1,114 @@
+syntax = "v1"
+
+info(
+    title: "产品品类"
+    desc: "产品品类"
+    author: "MichaelHu"
+    email: "matrix-x@artisan-cloud.com"
+    version: "v1"
+)
+
+
+@server(
+    group: admin/crm/product/category
+    prefix: /api/v1/admin/product
+    middleware: UserJWTAuth
+)
+
+service PowerX {
+    @doc "查询产品品类列表"
+    @handler ListProductCategoryTree
+    get /product-category-tree (ListProductCategoryTreeRequest) returns (ListProductCategoryTreeReply)
+
+    @doc "查询产品品类详情"
+    @handler GetProductCategory
+    get /product-categories/:id (GetProductCategoryRequest) returns (GetProductCategoryReply)
+
+
+    @doc "创新产品品类"
+    @handler CreateProductCategory
+    post /product-categories (CreateProductCategoryRequest) returns (CreateProductCategoryReply)
+
+    @doc "修改产品品类"
+    @handler UpdateProductCategory
+    put /product-categories/:id (UpdateProductCategoryRequest) returns (UpdateProductCategoryReply)
+
+
+    @doc "修改产品品类父级"
+    @handler PatchProductCategory
+    patch /product-categories/:id (PatchProductCategoryRequest) returns (PatchProductCategoryReply)
+
+
+    @doc "删除产品品类"
+    @handler DeleteProductCategory
+    delete /product-categories/:id (DeleteProductCategoryRequest) returns (DeleteProductCategoryReply)
+}
+
+type (
+    ListProductCategoryTreeRequest {
+        CategoryPId int `form:"categoryPId,optional"`
+        NeedChildren bool `form:"needChildren,optional"`
+        Names []string `form:"name,optional"`
+        OrderBy string `form:"orderBy,optional"`
+    }
+
+
+    ListProductCategoryTreeReply {
+        ProductCategories []*ProductCategory `json:"tree"`
+    }
+)
+
+
+type (
+    CreateProductCategoryRequest {
+        ProductCategory
+    }
+
+    CreateProductCategoryReply {
+        *ProductCategory
+    }
+)
+
+type (
+    UpdateProductCategoryRequest {
+        Id int64 `path:"id"`
+        ProductCategory
+    }
+    UpdateProductCategoryReply {
+        Id int64 `json:"id"`
+    }
+)
+
+type (
+    PatchProductCategoryRequest {
+        Id int64 `path:"id"`
+        PId int64 `json:"pId"`
+    }
+
+    PatchProductCategoryReply {
+        ProductCategory
+    }
+)
+
+type (
+    GetProductCategoryRequest {
+        ProductCategoryId int64 `path:"id"`
+    }
+
+    GetProductCategoryReply {
+        *ProductCategory
+    }
+)
+
+
+type (
+    DeleteProductCategoryRequest {
+        Id int64 `path:"id"`
+    }
+
+    DeleteProductCategoryReply {
+        Id int64 `json:"id"`
+    }
+)
+
+

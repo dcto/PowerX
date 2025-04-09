@@ -1,10 +1,10 @@
 package trade
 
 import (
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/crm/product"
 	"PowerX/internal/model/crm/trade"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
 	"PowerX/internal/uc/powerx"
@@ -146,7 +146,7 @@ func (uc *OrderUseCase) CreateOrder(ctx context.Context, order *trade.Order) err
 }
 
 func (uc *OrderUseCase) CreateOrderByPriceBookEntries(ctx context.Context,
-	customer *customerdomain2.Customer,
+	customer *customerDomain2.Customer,
 	entries []*product.PriceBookEntry,
 	quantities []int,
 	shippingAddress *trade.ShippingAddress,
@@ -203,7 +203,7 @@ func (uc *OrderUseCase) CreateOrderByPriceBookEntries(ctx context.Context,
 	return order, err
 }
 func (uc *OrderUseCase) CreateOrderByCartItems(ctx context.Context,
-	customer *customerdomain2.Customer,
+	customer *customerDomain2.Customer,
 	cartItems []*trade.CartItem,
 	shippingAddress *trade.ShippingAddress,
 	comment string,
@@ -276,7 +276,7 @@ func (uc *OrderUseCase) CreateOrderByCartItems(ctx context.Context,
 
 func (uc *OrderUseCase) MakeOrderItemsFromEntries(
 	entries []*product.PriceBookEntry,
-	customer *customerdomain2.Customer,
+	customer *customerDomain2.Customer,
 	quantities []int,
 	orderType int,
 	orderStatus int,
@@ -297,7 +297,7 @@ func (uc *OrderUseCase) MakeOrderItemsFromEntries(
 func (uc *OrderUseCase) MakeOrderItemFromEntry(
 	index int,
 	entry *product.PriceBookEntry,
-	customer *customerdomain2.Customer,
+	customer *customerDomain2.Customer,
 	quantity int,
 	orderType int,
 	orderStatus int,
@@ -380,7 +380,7 @@ func (uc *OrderUseCase) UpsertOrderWithLogistic(ctx context.Context, order *trad
 			return errors.Wrap(err, "upsert order failed")
 		}
 
-		err = powermodel.UpsertModelsOnUniqueID(tx, &trade.Logistics{}, trade.LogisticsUniqueId, order.Logistics, nil, false)
+		err = powerModel.UpsertModelsOnUniqueID(tx, &trade.Logistics{}, trade.LogisticsUniqueId, order.Logistics, nil, false)
 
 		return err
 	})
@@ -413,7 +413,7 @@ func (uc *OrderUseCase) UpsertOrder(ctx context.Context, order *trade.Order) (*t
 
 func (uc *OrderUseCase) UpsertOrders(ctx context.Context, orders []*trade.Order) ([]*trade.Order, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.DB.WithContext(ctx), &trade.Order{}, trade.OrderUniqueId, orders, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.DB.WithContext(ctx), &trade.Order{}, trade.OrderUniqueId, orders, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert orders failed"))

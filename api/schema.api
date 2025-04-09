@@ -1,0 +1,11 @@
+
+import "schema/infoOrganization/category.api"
+import "schema/media/imageAbleInfo.api"
+import "schema/crm/business/opportunity.api"
+import "schema/crm/customerDomain/customer.api"
+import "schema/crm/customerDomain/lead.api"
+import "schema/crm/market.api"
+import "schema/crm/membership.api"
+import "schema/crm/product.api"
+import "schema/crm/trade.api"
+

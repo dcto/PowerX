@@ -2,10 +2,10 @@ package trade
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/crm/customerdomain"
+	"PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/crm/product"
 	"PowerX/internal/model/media"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"github.com/golang-module/carbon/v2"
 	"github.com/zeromicro/go-zero/core/stringx"
 	"time"
@@ -13,9 +13,9 @@ import (
 
 // 记录客户当次购买行为的消费信息
 type Order struct {
-	*powermodel.PowerModel
+	*powerModel.PowerModel
 
-	Customer        *customerdomain.Customer `gorm:"foreignKey:CustomerId;references:Id" json:"customer"`
+	Customer        *customerDomain.Customer `gorm:"foreignKey:CustomerId;references:Id" json:"customer"`
 	Items           []*OrderItem             `gorm:"foreignKey:OrderId;references:Id" json:"items"`
 	Payments        []*Payment               `gorm:"foreignKey:OrderId;references:Id" json:"payments"`
 	DeliveryAddress *DeliveryAddress         `gorm:"foreignKey:OrderId;references:Id" json:"deliveryAddresses"`
@@ -45,7 +45,7 @@ type Order struct {
 const TypeOrderType = "_order_type"
 const TypeOrderStatus = "_order_status"
 
-const OrderUniqueId = powermodel.UniqueId
+const OrderUniqueId = powerModel.UniqueId
 
 func (mdl *Order) TableName() string {
 	return model.PowerXSchema + "." + model.TableNameOrder
@@ -91,7 +91,7 @@ const (
 
 // 订单项，记录订单中，针对每个产品以及SKU的实际订单详情
 type OrderItem struct {
-	*powermodel.PowerModel
+	*powerModel.PowerModel
 
 	Order            *Order                  `gorm:"foreignKey:OrderId;references:Id" json:"order"`
 	ProductBookEntry *product.PriceBookEntry `gorm:"foreignKey:PriceBookEntryId;references:Id" json:"priceBook"`
@@ -127,7 +127,7 @@ func (mdl *OrderItem) GetTableName(needFull bool) string {
 }
 
 type OrderStatusTransition struct {
-	*powermodel.PowerModel
+	*powerModel.PowerModel
 
 	OrderId        int64     `gorm:"comment:订单Id; index" json:"orderId"`
 	FromStatus     int       `gorm:"comment:原状态" json:"fromStatus"`

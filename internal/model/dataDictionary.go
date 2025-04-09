@@ -1,0 +1,191 @@
+package model
+
+import (
+	"PowerX/internal/model/powerModel"
+	"PowerX/pkg/securityx"
+	"fmt"
+	"gorm.io/gorm"
+)
+
+// System
+const TypeObjectStatus = "_object_status"
+
+const StatusDraft = "_draft"
+const StatusActive = "_active"
+const StatusCanceled = "_canceled"
+const StatusPending = "_pending"
+const StatusInactive = "_inactive"
+
+const TypeApprovalStatus = "_approval_status"
+
+const ApprovalStatusApply = "_apply"
+const ApprovalStatusReject = "_reject"
+const ApprovalStatusSuccess = "_success"
+
+// Business
+const TypePromoteChannel = "_promote_channel"
+const TypeSalesChannel = "_sales_channel"
+const TypeSourceChannel = "_source_channel"
+
+const ChannelDirect = "_direct"      // 品牌自营
+const ChannelWechat = "_wechat"      // 微信
+const ChannelTaoBao = "_tao_bao"     // 淘宝
+const ChannelJD = "_jd"              // 京东
+const ChannelDianPing = "_dian_ping" // 点评
+const ChannelMeiTuan = "_mei_tuan"   // 美团
+const ChannelDingDing = "_ding_ding" // 钉钉
+const ChannelDouYin = "_dou_yin"     // 抖音
+const ChannelAlipay = "_alipay"      // 支付宝
+
+// 数据字典数据项
+type DataDictionaryItem struct {
+	powerModel.PowerModel
+
+	DataDictionaryType *DataDictionaryType `gorm:"foreignKey:Type;references:Type" json:"dataDictionaryType"`
+
+	Key         string `gorm:"index:idx_key_type;comment:数据唯一标识key"`
+	Type        string `gorm:"index:idx_key_type;comment:数据类型标识"`
+	Name        string `gorm:"comment:数据显示名字"`
+	Value       string `gorm:"comment:数据计算值"`
+	Sort        int    `gorm:"default:0;comment:排序"`
+	Description string `gorm:"comment:数据描述"`
+}
+
+const DataDictionaryItemUniqueId = powerModel.UniqueId
+
+func (mdl *DataDictionaryItem) TableName() string {
+	return PowerXSchema + "." + TableNameDataDictionaryItem
+}
+
+func (mdl *DataDictionaryItem) GetTableName(needFull bool) string {
+	tableName := TableNameDataDictionaryItem
+	if needFull {
+		tableName = mdl.TableName()
+	}
+	return tableName
+}
+
+// 数据字典类型，聚合数据字典
+type DataDictionaryType struct {
+	powerModel.PowerModel
+
+	Items []*DataDictionaryItem `gorm:"foreignKey:Type;references:Type" json:"items"`
+
+	Type        string `gorm:"unique;comment:数据聚合类型标识key"`
+	Name        string `gorm:"comment:数据类型显示名字"`
+	Description string `gorm:"comment:数据类型描述"`
+}
+
+const DataDictionaryTypeUniqueId = powerModel.UniqueId
+
+func (mdl *DataDictionaryType) TableName() string {
+	return PowerXSchema + "." + TableNameDataDictionaryType
+}
+
+func (mdl *DataDictionaryType) GetTableName(needFull bool) string {
+	tableName := TableNameDataDictionaryType
+	if needFull {
+		tableName = mdl.TableName()
+	}
+	return tableName
+}
+
+// 数据表结构
+// Pivot表
+type PivotDataDictionaryToObject struct {
+	powerModel.PowerPivot
+
+	DataDictionaryItem *DataDictionaryItem `gorm:"foreignKey:DataDictionaryType,DataDictionaryKey;references:Type,Key" json:"dataDictionaryItem"`
+
+	ObjectType         string `gorm:"column:object_type; not null;index:idx_obj_type;comment:对象表名称" json:"objectOwner"`
+	ObjectID           int64  `gorm:"column:object_id; not null;index:idx_obj_id;comment:对象Id" json:"objectId"`
+	DataDictionaryType string `gorm:"column:data_dictionary_type; not null;index:idx_dd_type;comment:数据字典数据项type" json:"dataDictionaryType"`
+	DataDictionaryKey  string `gorm:"column:data_dictionary_key; not null;index:idx_dd_key;comment:数据字典数据项key" json:"dataDictionaryKey"`
+}
+
+const PivotDataDictionaryToObjectOwnerKey = "object_type"
+const PivotDataDictionaryToObjectForeignKey = "object_id"
+
+func (mdl *PivotDataDictionaryToObject) TableName() string {
+	return PowerXSchema + "." + TableNamePivotDataDictionaryToObject
+}
+
+func (mdl *PivotDataDictionaryToObject) GetTableName(needFull bool) string {
+	tableName := TableNamePivotDataDictionaryToObject
+	if needFull {
+		tableName = mdl.TableName()
+	}
+	return tableName
+}
+
+func (mdl *PivotDataDictionaryToObject) GetOwnerKey() string {
+	// 因为是morphy类型，所以外键是Owner
+	return PivotDataDictionaryToObjectOwnerKey
+}
+func (mdl *PivotDataDictionaryToObject) GetOwnerValue() string {
+	return mdl.ObjectType
+}
+
+func (mdl *PivotDataDictionaryToObject) GetForeignKey() string {
+	return PivotDataDictionaryToObjectForeignKey
+}
+func (mdl *PivotDataDictionaryToObject) GetForeignValue() int64 {
+	return mdl.ObjectID
+}
+
+func (mdl *PivotDataDictionaryToObject) GetPivotComposedUniqueID() string {
+	key := fmt.Sprintf("%s-%s-%s-%s",
+		mdl.GetOwnerKey(),
+		mdl.GetOwnerValue(),
+		mdl.DataDictionaryType,
+		mdl.DataDictionaryKey,
+	)
+	hashedId := securityx.HashStringData(key)
+
+	return hashedId
+}
+
+//--------------------------------------------------------------------
+
+func (mdl *PivotDataDictionaryToObject) GetMorphPivots(db *gorm.DB, where *map[string]interface{}) ([]*PivotDataDictionaryToObject, error) {
+	pivots := []*PivotDataDictionaryToObject{}
+
+	db = powerModel.SelectMorphPivot(db, mdl, where)
+
+	result := db.Find(&pivots)
+
+	return pivots, result.Error
+
+}
+
+// --------------------------------------------------------------------
+func (mdl *PivotDataDictionaryToObject) MakeMorphPivotsFromObjectToDDs(obj powerModel.ModelInterface, dds []*DataDictionaryItem) ([]*PivotDataDictionaryToObject, error) {
+	pivots := []*PivotDataDictionaryToObject{}
+	for _, dd := range dds {
+		pivot := &PivotDataDictionaryToObject{
+			ObjectType:         obj.GetTableName(false),
+			ObjectID:           obj.GetForeignReferValue(),
+			DataDictionaryType: dd.Type,
+			DataDictionaryKey:  dd.Key,
+		}
+		//pivot.UniqueID = pivot.GetPivotComposedUniqueID()
+
+		pivots = append(pivots, pivot)
+	}
+	return pivots, nil
+}
+
+func GetItemIds(items []*PivotDataDictionaryToObject) []int64 {
+	uniqueIds := make(map[int64]bool)
+	arrayIds := []int64{}
+	if len(items) <= 0 {
+		return arrayIds
+	}
+	for _, item := range items {
+		if item.DataDictionaryItem != nil && !uniqueIds[item.DataDictionaryItem.Id] {
+			arrayIds = append(arrayIds, item.DataDictionaryItem.Id)
+			uniqueIds[item.DataDictionaryItem.Id] = true
+		}
+	}
+	return arrayIds
+}

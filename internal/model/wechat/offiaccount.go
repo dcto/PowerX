@@ -2,8 +2,8 @@ package wechat
 
 import (
 	"PowerX/internal/model"
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
-	"PowerX/internal/model/powermodel"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
+	"PowerX/internal/model/powerModel"
 	"gorm.io/datatypes"
 )
 
@@ -11,9 +11,9 @@ import (
 // 公众号的客户信息
 // https://developers.weixin.qq.com/doc/offiaccount/User_Management/Get_users_basic_information_UnionId.html#UinonId
 type WechatOACustomer struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
-	Customer *customerdomain2.Customer `gorm:"foreignKey:OpenId;references:OpenIdInWeChatOfficialAccount" json:"customer"`
+	Customer *customerDomain2.Customer `gorm:"foreignKey:OpenId;references:OpenIdInWeChatOfficialAccount" json:"customer"`
 
 	Subscribe      int            `json:"subscribe"`
 	SessionKey     string         `json:"-"`

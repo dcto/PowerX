@@ -2,7 +2,7 @@ package product
 
 import (
 	"PowerX/internal/model/crm/product"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
 	"context"
@@ -141,7 +141,7 @@ func (uc *SKUUseCase) UpsertSKU(ctx context.Context, productSpecific *product.SK
 
 func (uc *SKUUseCase) UpsertSKUs(ctx context.Context, productSpecifics []*product.SKU) ([]*product.SKU, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &product.SKU{}, product.SkuUniqueId, productSpecifics, nil, true)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &product.SKU{}, product.SkuUniqueId, productSpecifics, nil, true)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert productSpecific failed"))

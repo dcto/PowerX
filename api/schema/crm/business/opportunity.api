@@ -1,0 +1,17 @@
+
+type(
+    Opportunity {
+        Id int64 `json:"id"`
+        Name string `json:"name"`
+        Requirement string `json:"requirement"`
+        CustomerId int64 `json:"customerId"`
+        Probability float32 `json:"probability"`
+        Source string `json:"source"`
+        Type string `json:"type"`
+        UserId int64 `json:"userId"`
+        Stage string `json:"stage"`
+        ClosedDate string `json:"closedDate"`
+        CreatedAt string `json:"createdAt"`
+        UpdatedAt string `json:"updatedAt"`
+    }
+)

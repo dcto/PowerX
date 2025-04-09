@@ -4,7 +4,7 @@ import (
 	"PowerX/internal/model/crm/market"
 	"PowerX/internal/model/crm/product"
 	"PowerX/internal/model/media"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
 	"context"
@@ -155,7 +155,7 @@ func (uc *ArtisanUseCase) UpsertArtisan(ctx context.Context, artisan *product.Ar
 
 func (uc *ArtisanUseCase) UpsertArtisans(ctx context.Context, productCategories []*product.Artisan) ([]*product.Artisan, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &product.Artisan{}, product.ArtisanUniqueId, productCategories, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &product.Artisan{}, product.ArtisanUniqueId, productCategories, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert product categories failed"))

@@ -304,17 +304,27 @@ type CartItem struct {
 }
 
 type Category struct {
-	Id          int64  `json:"id,optional"`
-	PId         int64  `json:"pId"`
-	Name        string `json:"name"`
-	Sort        int    `json:"sort"`
-	ViceName    string `json:"viceName"`
-	Description string `json:"description"`
-	CreatedAt   string `json:"createdAt,optional"`
+	Id          int64  `json:"id,omitempty,,optional"`
+	PId         int64  `json:"pId,omitempty,,optional"`
+	Name        string `json:"name,omitempty,,optional"`
+	Scene       string `json:"scene,omitempty,,optional"`
+	CustomerId  int64  `json:"customerId,omitempty,,optional"`
+	Sort        int    `json:"sort,omitempty,,optional"`
+	ViceName    string `json:"viceName,omitempty,,optional"`
+	Description string `json:"description,omitempty,,optional"`
+	CreatedAt   string `json:"createdAt,omitempty,,optional,omitempty,"`
 	ImageAbleInfo
-	CoverImageId int64          `json:"coverImageId,optional"`
-	CoverImage   *MediaResource `json:"coverImage,optional"`
-	Children     []*Category    `json:"children,optional"`
+	CoverImageId int64          `json:"coverImageId,omitempty,,optional"`
+	CoverImage   *MediaResource `json:"coverImage,omitempty,,optional"`
+	Children     []*Category    `json:"children,omitempty,,optional"`
+}
+
+type ChatRequest struct {
+	Llm              string    `json:"llm,optional"`
+	ConversationUUID string    `json:"conversationUUID,optional"`
+	AppUUID          string    `json:"appUUID,optional"`
+	Messages         []Message `json:"messages,optional"`
+	Images           []string  `json:"images,optional"`
 }
 
 type ClearCartItemsReply struct {
@@ -1680,8 +1690,8 @@ type Image struct {
 }
 
 type ImageAbleInfo struct {
-	Icon            string `json:"icon"`
-	BackgroundColor string `json:"backgroundColor"`
+	Icon            string `json:"icon,optional"`
+	BackgroundColor string `json:"backgroundColor,optional"`
 }
 
 type ImportOrdersReply struct {
@@ -1787,6 +1797,8 @@ type ListCategoryTreeReply struct {
 type ListCategoryTreeRequest struct {
 	CategoryPId  int      `form:"categoryPId,optional"`
 	NeedChildren bool     `form:"needChildren,optional"`
+	Scene        string   `form:"scene,optional"`
+	CustomerId   int64    `form:"customerId,optional"`
 	Names        []string `form:"name,optional"`
 	OrderBy      string   `form:"orderBy,optional"`
 }
@@ -2273,6 +2285,19 @@ type LoginRequest struct {
 }
 
 type Logistics struct {
+	Id            int64  `json:"id"`
+	Name          string `json:"name"`
+	Address       string `json:"address"`
+	City          string `json:"city"`
+	Region        string `json:"region"`
+	Type          string `json:"type"`
+	Capacity      int64  `json:"capacity"`
+	ContactPerson string `json:"contactPerson"`
+	ContactPhone  string `json:"contactPhone"`
+	IsActive      bool   `json:"isActive, omitempty"`
+}
+
+type LogisticsTracking struct {
 	OrderId               int64  `json:"orderId,optional"`
 	Status                string `json:"status,optional"`
 	TrackingCode          string `json:"trackingCode,optional"`
@@ -2383,6 +2408,13 @@ type MenuRoles struct {
 	AllowRoleCodes []string `json:"allowRoleCodes"`
 }
 
+type Message struct {
+	ReplyToMessageUuid string `json:"reply_to_message_uuid,optional"`
+	Content            string `json:"content,optional"`
+	Role               string `json:"role,optional"`
+	Type               string `json:"type,optional"`
+}
+
 type ModifyPasswordReqeust struct {
 	Password string `json:"password"`
 }
@@ -2457,24 +2489,24 @@ type Opportunity struct {
 }
 
 type Order struct {
-	Id             int64        `json:"id,optional"`
-	CustomerId     int64        `json:"customerId,optional"`
-	CartId         int64        `json:"cartId,optional"`
-	PaymentType    int          `json:"paymentType,optional"`
-	Type           int          `json:"type,optional"`
-	Status         int          `json:"status,optional"`
-	OrderNumber    string       `json:"orderNumber,optional"`
-	Discount       float64      `json:"discount,optional"`
-	ListPrice      float64      `json:"listPrice,optional"`
-	UnitPrice      float64      `json:"unitPrice,optional"`
-	Comment        string       `json:"comment,optional"`
-	CompletedAt    string       `json:"completedAt,optional,omitempty"`
-	CancelledAt    string       `json:"cancelledAt,optional,omitempty"`
-	ShippingMethod string       `json:"shippingMethod,optional,omitempty"`
-	CreatedAt      string       `json:"createdAt,optional,omitempty"`
-	OrderItems     []*OrderItem `json:"orderItems,optional"`
-	Payments       []*Payment   `json:"payments,optional"`
-	Logistics      *Logistics   `json:"logistics,optional"`
+	Id             int64              `json:"id,optional"`
+	CustomerId     int64              `json:"customerId,optional"`
+	CartId         int64              `json:"cartId,optional"`
+	PaymentType    int                `json:"paymentType,optional"`
+	Type           int                `json:"type,optional"`
+	Status         int                `json:"status,optional"`
+	OrderNumber    string             `json:"orderNumber,optional"`
+	Discount       float64            `json:"discount,optional"`
+	ListPrice      float64            `json:"listPrice,optional"`
+	UnitPrice      float64            `json:"unitPrice,optional"`
+	Comment        string             `json:"comment,optional"`
+	CompletedAt    string             `json:"completedAt,optional,omitempty"`
+	CancelledAt    string             `json:"cancelledAt,optional,omitempty"`
+	ShippingMethod string             `json:"shippingMethod,optional,omitempty"`
+	CreatedAt      string             `json:"createdAt,optional,omitempty"`
+	OrderItems     []*OrderItem       `json:"orderItems,optional"`
+	Payments       []*Payment         `json:"payments,optional"`
+	Logistics      *LogisticsTracking `json:"logisticsTracking,optional"`
 }
 
 type OrderItem struct {
@@ -2507,12 +2539,12 @@ type PatchBillingAddressRequest struct {
 }
 
 type PatchCategoryReply struct {
-	Category
+	*Category
 }
 
 type PatchCategoryRequest struct {
-	Id  int64 `path:"id"`
-	PId int64 `json:"pId"`
+	Id int64 `path:"id"`
+	Category
 }
 
 type PatchCustomerReply struct {
@@ -3030,6 +3062,29 @@ type QueryMenusReply struct {
 	MatchRule interface{} `json:"matchrule"`
 }
 
+type RefundOrder struct {
+	ID               int64             `json:"id,optional"`
+	CustomerId       int64             `json:"customerId,optional"`
+	OrderId          int64             `json:"orderId,optional"`
+	RefundNumber     string            `json:"refundNumber,optional"`
+	RefundStatus     int               `json:"refundStatus,optional,omitempty"`
+	RefundAmount     float64           `json:"refundAmount,optional,omitempty"`
+	RefundReason     string            `json:"refundReason,optional,omitempty"`
+	RefundApproved   bool              `json:"refundApproved,optional,omitempty"`
+	RefundDate       string            `json:"refundDate,optional,omitempty"`
+	RefundOrderItems []RefundOrderItem `json:"orderItems,optional,omitempty"`
+	CreatedAt        string            `json:"createdAt,optional,omitempty"`
+}
+
+type RefundOrderItem struct {
+	ID            int64   `json:"id,optional"`
+	RefundOrderId int64   `json:"refundorderid,optional"`
+	RefundNumber  string  `json:"refundnumber,optional"`
+	RefundStatus  int     `json:"refundstatus,optional"`
+	RefundAmount  float64 `json:"refundamount,optional"`
+	RefundDate    string  `json:"refunddate,optional"`
+}
+
 type RegisterCode struct {
 	Id                 int64  `json:"id,optional"`
 	Code               string `json:"code,optional"`
@@ -3492,6 +3547,19 @@ type UserQueryDepartmentOption struct {
 type UserQueryRoleOption struct {
 	RoleCode string `json:"roleCode"`
 	RoleName string `json:"roleName"`
+}
+
+type Warehouse struct {
+	Id            int64  `json:"id"`
+	Name          string `json:"name"`
+	Address       string `json:"address"`
+	City          string `json:"city"`
+	Region        string `json:"region"`
+	Type          string `json:"type"`
+	Capacity      int64  `json:"capacity"`
+	ContactPerson string `json:"contactPerson"`
+	ContactPhone  string `json:"contactPhone"`
+	IsActive      bool   `json:"isActive, omitempty"`
 }
 
 type WeWorkAddMsgTemplateRequest struct {

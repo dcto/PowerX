@@ -1,10 +1,10 @@
 package trade
 
 import (
-	"PowerX/internal/model/crm/customerdomain"
+	"PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/crm/operation"
 	"PowerX/internal/model/crm/trade"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
 	"context"
@@ -140,7 +140,7 @@ func (uc *TokenUseCase) UpsertTokenExchangeRecord(ctx context.Context, record *t
 
 func (uc *TokenUseCase) UpsertTokenExchangeRecords(ctx context.Context, records []*trade.TokenExchangeRecord) ([]*trade.TokenExchangeRecord, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &trade.TokenExchangeRecord{}, trade.TokenExchangeRecordId, records, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &trade.TokenExchangeRecord{}, trade.TokenExchangeRecordId, records, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert tokens failed"))
@@ -299,7 +299,7 @@ func (uc *TokenUseCase) UpsertTokenBalance(ctx context.Context, record *trade.To
 
 func (uc *TokenUseCase) UpsertTokenBalances(ctx context.Context, records []*trade.TokenExchangeRecord) ([]*trade.TokenExchangeRecord, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &trade.TokenExchangeRecord{}, trade.TokenBalanceUniqueId, records, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &trade.TokenExchangeRecord{}, trade.TokenBalanceUniqueId, records, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert tokens failed"))
@@ -314,7 +314,7 @@ func (uc *TokenUseCase) UpsertTokenBalances(ctx context.Context, records []*trad
 
 // -----------------------------//
 
-func (uc *TokenUseCase) CheckTokenBalanceIsEnough(ctx context.Context, customer *customerdomain.Customer) (*trade.TokenBalance, int64, error) {
+func (uc *TokenUseCase) CheckTokenBalanceIsEnough(ctx context.Context, customer *customerDomain.Customer) (*trade.TokenBalance, int64, error) {
 	// 当前余额
 	balance, err := uc.GetTokenBalance(ctx, customer.Id)
 	if err != nil {
@@ -385,7 +385,7 @@ func (uc *TokenUseCase) CreateReservedTokenByTicket(ctx context.Context,
 }
 
 func (uc *TokenUseCase) ReuseTicketForTask(ctx context.Context,
-	customer *customerdomain.Customer,
+	customer *customerDomain.Customer,
 	oldTicket *operation.TicketRecord, newTicket *operation.TicketRecord,
 	reservedToken *trade.TokenReservation, balance *trade.TokenBalance,
 ) error {

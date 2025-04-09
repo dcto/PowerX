@@ -2,12 +2,12 @@ package trade
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 )
 
 // 仓库
 type Warehouse struct {
-	*powermodel.PowerModel
+	*powerModel.PowerModel
 
 	Name          string `gorm:"comment:仓库名称" json:"name"`
 	Address       string `gorm:"comment:仓库地址" json:"address"`

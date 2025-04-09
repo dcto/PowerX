@@ -2,13 +2,13 @@ package scene
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
 
 type SceneQRCode struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 	QId                string `gorm:"comment:唯一标识;unique;column:qid" json:"qid"`
 	Name               string `gorm:"comment:活码名称;column:name" json:"name"`
 	Desc               string `gorm:"comment:描述;column:desc" json:"desc"`

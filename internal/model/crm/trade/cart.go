@@ -3,18 +3,18 @@ package trade
 import (
 	"PowerX/internal/model"
 	"PowerX/internal/model/crm/product"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 )
 
 type Cart struct {
-	*powermodel.PowerModel
+	*powerModel.PowerModel
 	Items []*CartItem `gorm:"foreignKey:CartId" json:"items"`
 
 	CustomerId int64      `gorm:"comment:客户Id" json:"customerId"`
 	Status     CartStatus `gorm:"comment:购物车状态" json:"status"`
 }
 
-const CartUniqueId = powermodel.UniqueId
+const CartUniqueId = powerModel.UniqueId
 
 func (mdl *Cart) TableName() string {
 	return model.PowerXSchema + "." + model.TableNameCart
@@ -29,7 +29,7 @@ func (mdl *Cart) GetTableName(needFull bool) string {
 }
 
 type CartItem struct {
-	*powermodel.PowerModel
+	*powerModel.PowerModel
 
 	SKU     *product.SKU     `gorm:"foreignKey:SkuId" json:"sku"`
 	Product *product.Product `gorm:"foreignKey:ProductId" json:"product"`

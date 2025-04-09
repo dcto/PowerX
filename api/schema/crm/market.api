@@ -1,0 +1,75 @@
+
+type (
+    StoreArtisanSpecific {
+        ArtisanId int64 `json:"artisanId,optional"`
+    }
+
+
+
+    StoreArtisan {
+        UserId int64 `json:"userId,optional"`
+        Name string `json:"name,optional"`
+        Level int8 `json:"level,optional"`
+        Gender bool `json:"gender,optional"`
+        birthday string `json:"birthday,optional"`
+        PhoneNumber string `json:"phoneNumber,optional"`
+        CoverURL string `json:"coverURL,optional"`
+        WorkNo string `json:"workNo,optional"`
+        Email string `json:"email,optional"`
+        Experience string `json:"experience,optional"`
+        Specialty string `json:"specialty,optional"`
+        Certificate string `json:"certificate,optional"`
+        Address string `json:"address,optional"`
+        ArtisanSpecific StoreArtisanSpecific `json:"artisanSpecific,optional"`
+    }
+
+    Store {
+        Id int64 `json:"id,optional"`
+        Name string `json:"name"`
+        StoreUserId int64 `json:"storeUserId,optional"`
+        ContactNumber string `json:"contactNumber"`
+        Email string `json:"email,optional"`
+        Address string `json:"address"`
+        Description string `json:"description,optional"`
+        Longitude float32 `json:"longitude,optional"`
+        Latitude float32 `json:"latitude,optional"`
+        StartWork string `json:"startWork,optional"`
+        EndWork string `json:"endWork,optional"`
+        Artisans []*StoreArtisan `json:"artisans,optional"`
+        CreatedAt string `json:"createdAt,optional"`
+
+        CoverImageId int64 `json:"coverImageId,optional"`
+        CoverImage *MediaResource `json:"coverImage,optional"`
+        DetailImageIds []int64 `json:"detailImageIds,optional"`
+        DetailImages []*MediaResource `json:"detailImages,optional"`
+    }
+)
+
+
+
+type(
+    MGMRule {
+        Id int64 `json:"id,optional"`
+
+        Name string `json:"name,optional"`
+        CommissionRate1 float32 `json:"commissionRate1,optional"`
+        CommissionRate2 float32 `json:"commissionRate2,optional"`
+        Scene int `json:"scene,optional"`
+        Description string `json:"description,optional"`
+    }
+    Media {
+        Id int64 `json:"id,optional"`
+
+        Title string `json:"title,optional"`
+        SubTitle string `json:"subTitle,optional"`
+        CoverImageId int64 `json:"coverImageId,optional"`
+        ResourceUrl string `json:"resourceUrl,optional"`
+        Description string `json:"description,optional"`
+        MediaType int `json:"mediaType,optional"`
+        ViewedCount int `json:"viewedCount,optional"`
+
+        CoverImage *MediaResource `json:"coverImage,optional"`
+        DetailImageIds []int64 `json:"detailImageIds,optional"`
+        DetailImages []*MediaResource `json:"detailImages,optional"`
+    }
+)

@@ -3,7 +3,7 @@ package product
 import (
 	"PowerX/internal/logic/admin/crm/product/category"
 	"PowerX/internal/logic/admin/crm/product/pricebookentry"
-	"PowerX/internal/logic/admin/mediaresource"
+	"PowerX/internal/logic/admin/mediaResource"
 	"PowerX/internal/model"
 	"PowerX/internal/model/crm/product"
 	"PowerX/internal/model/media"
@@ -13,6 +13,7 @@ import (
 	product2 "PowerX/internal/uc/powerx/crm/product"
 	"context"
 	"encoding/json"
+
 	"github.com/golang-module/carbon/v2"
 	"gorm.io/datatypes"
 
@@ -167,8 +168,8 @@ func TransformProductToReply(mdlProduct *product.Product) (productReply *types.P
 		DetailImageIds:          arrayDetailImageIds,
 		CoverImageIdSortIndexs:  arrayCoverImageIdSortIndexs,
 		DetailImageIdSortIndexs: arrayDetailImageIdSortIndexs,
-		CoverImages:             mediaresource.TransformMediaResourcesToReply(mdlProduct.PivotCoverImages),
-		DetailImages:            mediaresource.TransformMediaResourcesToReply(mdlProduct.PivotDetailImages),
+		CoverImages:             mediaResource.TransformMediaResourcesToReply(mdlProduct.PivotCoverImages),
+		DetailImages:            mediaResource.TransformMediaResourcesToReply(mdlProduct.PivotDetailImages),
 	}
 
 }

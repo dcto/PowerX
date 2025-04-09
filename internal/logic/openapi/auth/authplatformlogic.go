@@ -2,7 +2,7 @@ package auth
 
 import (
 	"PowerX/internal/types/errorx"
-	customerdomain2 "PowerX/internal/uc/powerx/crm/customerdomain"
+	customerDomain2 "PowerX/internal/uc/powerx/crm/customerDomain"
 	"context"
 	"fmt"
 
@@ -42,7 +42,7 @@ func (l *AuthPlatformLogic) AuthPlatform(req *types.PlatformAuthRequest) (resp *
 
 	return &types.PlatformAuthResponse{
 		TokenType:    token.TokenType,
-		ExpiresIn:    fmt.Sprintf("%d", customerdomain2.CustomerTokenExpiredDuration),
+		ExpiresIn:    fmt.Sprintf("%d", customerDomain2.CustomerTokenExpiredDuration),
 		AccessToken:  token.AccessToken,
 		RefreshToken: token.RefreshToken,
 	}, err

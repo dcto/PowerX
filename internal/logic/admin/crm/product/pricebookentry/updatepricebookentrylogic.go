@@ -2,7 +2,7 @@ package pricebookentry
 
 import (
 	"PowerX/internal/model/crm/product"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"context"
 
 	"PowerX/internal/svc"
@@ -27,7 +27,7 @@ func NewUpdatePriceBookEntryLogic(ctx context.Context, svcCtx *svc.ServiceContex
 
 func (l *UpdatePriceBookEntryLogic) UpdatePriceBookEntry(req *types.UpdatePriceBookEntryRequest) (resp *types.UpdatePriceBookEntryReply, err error) {
 	priceBook := &product.PriceBookEntry{
-		PowerModel: powermodel.PowerModel{
+		PowerModel: powerModel.PowerModel{
 			Id: req.Id,
 		},
 		PriceBookId: req.PriceBookId,

@@ -1,10 +1,10 @@
 package order
 
 import (
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
 	product2 "PowerX/internal/model/crm/product"
 	"PowerX/internal/types/errorx"
-	"PowerX/internal/uc/powerx/crm/customerdomain"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
 	"PowerX/internal/uc/powerx/crm/product"
 	"context"
 
@@ -29,8 +29,8 @@ func NewCreateOrderByProductsLogic(ctx context.Context, svcCtx *svc.ServiceConte
 }
 
 func (l *CreateOrderByProductsLogic) CreateOrderByProducts(req *types.CreateOrderByProductsRequest) (resp *types.CreateOrderByProductsReply, err error) {
-	vAuthCustomer := l.ctx.Value(customerdomain.AuthCustomerKey)
-	authCustomer := vAuthCustomer.(*customerdomain2.Customer)
+	vAuthCustomer := l.ctx.Value(customerDomain.AuthCustomerKey)
+	authCustomer := vAuthCustomer.(*customerDomain2.Customer)
 
 	if req.PriceBookId <= 0 {
 		standardBook, err := l.svcCtx.PowerX.PriceBook.GetStandardPriceBook(l.ctx)

@@ -8,6 +8,7 @@ info (
 	version: "v1"
 )
 
+import "schema.api"
 import "admin.api"
 import "admin.crm.api"
 import "admin.scrm.api"

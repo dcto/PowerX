@@ -4,7 +4,7 @@ import (
 	"PowerX/internal/svc"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
-	"PowerX/internal/uc/powerx/crm/customerdomain"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
 	"PowerX/internal/uc/powerx/wechat"
 	"context"
 	"fmt"
@@ -66,7 +66,7 @@ func (l *LoginLogic) Login(req *types.MPCustomerLoginRequest) (resp *types.MPCus
 		Gender:      mpCustomer.Gender,
 		Token: types.MPToken{
 			TokenType:    token.TokenType,
-			ExpiresIn:    fmt.Sprintf("%d", customerdomain.CustomerTokenExpiredDuration),
+			ExpiresIn:    fmt.Sprintf("%d", customerDomain.CustomerTokenExpiredDuration),
 			AccessToken:  token.AccessToken,
 			RefreshToken: token.RefreshToken,
 		},

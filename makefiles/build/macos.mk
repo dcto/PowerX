@@ -1,0 +1,17 @@
+# makefiles/build/macos.mk
+
+PATH_BUILD_MAC_OS := $(PATH_BUILD)/macos
+
+POWERX_EXE_PATH_MAC_OS := $(PATH_BUILD_MAC_OS)/powerx
+POWERX_CTL_PATH_MAC_OS := $(PATH_BUILD_MAC_OS)/powerxctl
+
+DEPLOY_POWERX_EXE_PATH:=$(CURRENT_DIR)/../PowerXDocker/powerx
+DEPLOY_POWERX_CTL_EXE_PATH:=$(CURRENT_DIR)/../PowerXDocker/powerxctl
+
+# ------
+app-build-macos:
+	CGO_ENABLED=0  GOOS=darwin  GOARCH=arm64 go build -o $(POWERX_EXE_PATH_MAC_OS) $(BUILD_EXE_PATH)
+	CGO_ENABLED=0  GOOS=darwin  GOARCH=arm64 go build -o $(POWERX_CTL_PATH_MAC_OS) $(BUILD_CTL_PATH)
+#	cp $(POWERX_EXE_PATH_MAC_OS) $(DEPLOY_POWERX_EXE_PATH)
+#	cp $(POWERX_CTL_PATH_MAC_OS) $(DEPLOY_POWERX_CTL_EXE_PATH)
+

@@ -2,7 +2,7 @@ package auth
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/crm/customerdomain"
+	"PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/types/errorx"
 	"PowerX/pkg/securityx"
 	"context"
@@ -52,12 +52,12 @@ func (l *RegisterCustomerByPhoneInRegisterCodeLogic) RegisterCustomerByPhoneInRe
 
 	// register customer by phone
 	customerSourceId := l.svcCtx.PowerX.DataDictionary.GetCachedDDId(l.ctx, model.TypeSourceChannel, model.ChannelDirect)
-	customerTypeId := l.svcCtx.PowerX.DataDictionary.GetCachedDDId(l.ctx, customerdomain.TypeCustomerType, customerdomain.CustomerPersonal)
+	customerTypeId := l.svcCtx.PowerX.DataDictionary.GetCachedDDId(l.ctx, customerDomain.TypeCustomerType, customerDomain.CustomerPersonal)
 
 	// upsert 客户
 	uuid := securityx.GenerateUUIDString()
 	inviteCode := securityx.GenerateInviteCode(uuid)
-	customer := &customerdomain.Customer{
+	customer := &customerDomain.Customer{
 		Mobile:      req.Phone,
 		Password:    hashedPassword,
 		Source:      customerSourceId,

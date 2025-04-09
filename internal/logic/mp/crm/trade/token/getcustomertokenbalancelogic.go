@@ -1,11 +1,11 @@
 package token
 
 import (
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/crm/trade"
 	"PowerX/internal/svc"
 	"PowerX/internal/types"
-	"PowerX/internal/uc/powerx/crm/customerdomain"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
 	"context"
 
 	"github.com/zeromicro/go-zero/core/logx"
@@ -26,8 +26,8 @@ func NewGetCustomerTokenBalanceLogic(ctx context.Context, svcCtx *svc.ServiceCon
 }
 
 func (l *GetCustomerTokenBalanceLogic) GetCustomerTokenBalance() (resp *types.GetCustomerBalanceReply, err error) {
-	vAuthCustomer := l.ctx.Value(customerdomain.AuthCustomerKey)
-	authCustomer := vAuthCustomer.(*customerdomain2.Customer)
+	vAuthCustomer := l.ctx.Value(customerDomain.AuthCustomerKey)
+	authCustomer := vAuthCustomer.(*customerDomain2.Customer)
 
 	balance, unusedTicketsCount, err := l.svcCtx.PowerX.Token.CheckTokenBalanceIsEnough(l.ctx, authCustomer)
 	if err != nil {

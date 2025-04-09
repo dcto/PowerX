@@ -2,14 +2,14 @@ package auth
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/crm/customerdomain"
+	"PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/crm/operation"
 	"PowerX/internal/model/crm/trade"
 	"PowerX/internal/model/wechat"
 	"PowerX/internal/svc"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
-	customerdomain2 "PowerX/internal/uc/powerx/crm/customerdomain"
+	customerDomain2 "PowerX/internal/uc/powerx/crm/customerDomain"
 	fmt2 "PowerX/pkg/printx"
 	"context"
 	"encoding/json"
@@ -77,16 +77,16 @@ func (l *AuthByPhoneLogic) AuthByPhone(req *types.MPCustomerAuthRequest) (resp *
 	}
 
 	source := l.svcCtx.PowerX.DataDictionary.GetCachedDDId(l.ctx, model.TypeSourceChannel, model.ChannelWechat)
-	personType := l.svcCtx.PowerX.DataDictionary.GetCachedDDId(l.ctx, customerdomain.TypeCustomerType, customerdomain.CustomerPersonal)
+	personType := l.svcCtx.PowerX.DataDictionary.GetCachedDDId(l.ctx, customerDomain.TypeCustomerType, customerDomain.CustomerPersonal)
 
 	// upsert 线索
-	lead := &customerdomain.Lead{
+	lead := &customerDomain.Lead{
 		Name:        mpCustomer.NickName,
 		Mobile:      mpCustomer.PhoneNumber,
 		Source:      source,
 		Type:        personType,
 		IsActivated: true,
-		ExternalId: customerdomain.ExternalId{
+		ExternalId: customerDomain.ExternalId{
 			OpenIdInMiniProgram: mpCustomer.OpenId,
 		},
 	}
@@ -96,13 +96,13 @@ func (l *AuthByPhoneLogic) AuthByPhone(req *types.MPCustomerAuthRequest) (resp *
 	}
 
 	// upsert 客户
-	customer := &customerdomain.Customer{
+	customer := &customerDomain.Customer{
 		Name:        mpCustomer.NickName,
 		Mobile:      mpCustomer.PhoneNumber,
 		Source:      source,
 		Type:        personType,
 		IsActivated: true,
-		ExternalId: customerdomain.ExternalId{
+		ExternalId: customerDomain.ExternalId{
 			OpenIdInMiniProgram: mpCustomer.OpenId,
 		},
 	}
@@ -154,7 +154,7 @@ func (l *AuthByPhoneLogic) AuthByPhone(req *types.MPCustomerAuthRequest) (resp *
 		Gender:      mpCustomer.Gender,
 		Token: types.MPToken{
 			TokenType:    token.TokenType,
-			ExpiresIn:    fmt.Sprintf("%d", customerdomain2.CustomerTokenExpiredDuration),
+			ExpiresIn:    fmt.Sprintf("%d", customerDomain2.CustomerTokenExpiredDuration),
 			AccessToken:  token.AccessToken,
 			RefreshToken: token.RefreshToken,
 		},

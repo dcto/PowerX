@@ -1,9 +1,9 @@
 package cart
 
 import (
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/crm/trade"
-	"PowerX/internal/uc/powerx/crm/customerdomain"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
 	tradeUC "PowerX/internal/uc/powerx/crm/trade"
 	"context"
 
@@ -29,8 +29,8 @@ func NewListCartItemsPageLogic(ctx context.Context, svcCtx *svc.ServiceContext) 
 
 func (l *ListCartItemsPageLogic) ListCartItemsPage(req *types.ListCartItemsPageRequest) (resp *types.ListCartItemsPageReply, err error) {
 
-	vAuthCustomer := l.ctx.Value(customerdomain.AuthCustomerKey)
-	authCustomer := vAuthCustomer.(*customerdomain2.Customer)
+	vAuthCustomer := l.ctx.Value(customerDomain.AuthCustomerKey)
+	authCustomer := vAuthCustomer.(*customerDomain2.Customer)
 
 	page, err := l.svcCtx.PowerX.Cart.FindManyCartItems(l.ctx, &tradeUC.FindManyCartItemsOption{
 		CustomerId: authCustomer.Id,

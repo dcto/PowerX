@@ -3,12 +3,12 @@ package market
 import (
 	"PowerX/internal/model"
 	"PowerX/internal/model/media"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"gorm.io/gorm"
 )
 
 type Media struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	PivotDetailImages []*media.PivotMediaResourceToObject `gorm:"polymorphic:Object;polymorphicValue:media" json:"pivotDetailImages"`
 	CoverImage        *media.MediaResource                `gorm:"foreignKey:CoverImageId;references:Id" json:"coverImage"`
@@ -22,7 +22,7 @@ type Media struct {
 	ViewedCount  int    `gorm:"comment:浏览次数" json:"viewedCount"`
 }
 
-const MediaUniqueId = powermodel.UniqueId
+const MediaUniqueId = powerModel.UniqueId
 
 func (mdl *Media) TableName() string {
 	return model.PowerXSchema + "." + model.TableNameMedia
@@ -55,5 +55,5 @@ func (mdl *Media) ClearPivotDetailImages(db *gorm.DB) error {
 	(*conditions)[media.PivotMediaResourceToObjectOwnerKey] = model.TableNameMedia
 	(*conditions)[media.PivotMediaResourceToObjectForeignKey] = mdl.Id
 
-	return powermodel.ClearMorphPivots(db, &media.PivotMediaResourceToObject{}, false, false, conditions)
+	return powerModel.ClearMorphPivots(db, &media.PivotMediaResourceToObject{}, false, false, conditions)
 }

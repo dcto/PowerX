@@ -2,18 +2,18 @@ package operation
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/crm/customerdomain"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/crm/customerDomain"
+	"PowerX/internal/model/powerModel"
 	"time"
 )
 
 type Membership struct {
-	Customer *customerdomain.Customer `gorm:"foreignKey:CustomerId;references:id"`
+	Customer *customerDomain.Customer `gorm:"foreignKey:CustomerId;references:id"`
 
 	MainMembership *Membership   `gorm:"foreignKey:MainMembershipId;references:id"`
 	SubMemberships []*Membership `gorm:"foreignKey:MainMembershipId;references:id"`
 
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	Name             string    `gorm:"comment:会籍名称" json:"name"`
 	MainMembershipId int64     `gorm:"comment:主会籍Id" json:"mainMembershipId"`
@@ -29,7 +29,7 @@ type Membership struct {
 	Plan             int       `gorm:"comment:计划" json:"plan"`
 }
 
-const MembershipUniqueId = powermodel.UniqueId
+const MembershipUniqueId = powerModel.UniqueId
 
 func (mdl *Membership) TableName() string {
 	return model.PowerXSchema + "." + model.TableNameMembership

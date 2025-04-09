@@ -1,7 +1,7 @@
 package artisan
 
 import (
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types/errorx"
 	"PowerX/internal/uc/powerx/crm/market"
 	product2 "PowerX/internal/uc/powerx/crm/product"
@@ -37,7 +37,7 @@ func (l *BindArtisanToStoreLogic) BindArtisanToStore(req *types.BindArtisansToSt
 	resArtisans, err := l.svcCtx.PowerX.Artisan.FindManyArtisans(l.ctx, &product2.FindManyArtisanOption{
 		Ids: req.ArtisanIds,
 		PageEmbedOption: types.PageEmbedOption{
-			PageSize: powermodel.MaxPageSize,
+			PageSize: powerModel.MaxPageSize,
 		},
 	})
 	if err != nil {
@@ -51,7 +51,7 @@ func (l *BindArtisanToStoreLogic) BindArtisanToStore(req *types.BindArtisansToSt
 	resStores, err := l.svcCtx.PowerX.Store.FindManyStores(l.ctx, &market.FindManyStoresOption{
 		Ids: req.StoreId,
 		PageEmbedOption: types.PageEmbedOption{
-			PageSize: powermodel.MaxPageSize,
+			PageSize: powerModel.MaxPageSize,
 		},
 	})
 	if err != nil {

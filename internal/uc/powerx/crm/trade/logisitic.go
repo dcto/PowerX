@@ -2,7 +2,7 @@ package trade
 
 import (
 	"PowerX/internal/model/crm/trade"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
 	"context"
@@ -119,7 +119,7 @@ func (uc *LogisticsUseCase) UpsertLogistic(ctx context.Context, order *trade.Log
 
 func (uc *LogisticsUseCase) UpsertLogistics(ctx context.Context, logistics []*trade.Logistics) ([]*trade.Logistics, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &trade.Logistics{}, trade.LogisticsUniqueId, logistics, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &trade.Logistics{}, trade.LogisticsUniqueId, logistics, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert logistics failed"))

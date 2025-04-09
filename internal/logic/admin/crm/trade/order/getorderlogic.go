@@ -2,7 +2,7 @@ package order
 
 import (
 	"PowerX/internal/logic/admin/crm/trade/payment"
-	"PowerX/internal/logic/admin/mediaresource"
+	"PowerX/internal/logic/admin/mediaResource"
 	"PowerX/internal/model/crm/trade"
 	"PowerX/internal/types/errorx"
 	"context"
@@ -82,16 +82,16 @@ func TransformOrderItemToReply(orderItem *trade.OrderItem) (orderItemReply *type
 		UnitPrice:   orderItem.UnitPrice,
 		ListPrice:   orderItem.ListPrice,
 		Quantity:    orderItem.Quantity,
-		CoverImage:  mediaresource.TransformMediaResourceToReply(orderItem.CoverImage),
+		CoverImage:  mediaResource.TransformMediaResourceToReply(orderItem.CoverImage),
 	}
 }
 
-func TransformLogisticsToReply(logistics *trade.Logistics) *types.Logistics {
+func TransformLogisticsToReply(logistics *trade.Logistics) *types.LogisticsTracking {
 	if logistics == nil {
 		return nil
 	}
 
-	return &types.Logistics{
+	return &types.LogisticsTracking{
 		OrderId:               logistics.OrderId,
 		Status:                string(logistics.Status),
 		TrackingCode:          logistics.TrackingCode,

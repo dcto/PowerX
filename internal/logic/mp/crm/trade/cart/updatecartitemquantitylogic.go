@@ -1,9 +1,9 @@
 package cart
 
 import (
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/types/errorx"
-	"PowerX/internal/uc/powerx/crm/customerdomain"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
 	"context"
 
 	"PowerX/internal/svc"
@@ -27,8 +27,8 @@ func NewUpdateCartItemQuantityLogic(ctx context.Context, svcCtx *svc.ServiceCont
 }
 
 func (l *UpdateCartItemQuantityLogic) UpdateCartItemQuantity(req *types.UpdateCartItemQuantityRequest) (resp *types.UpdateCartItemQuantityReply, err error) {
-	vAuthCustomer := l.ctx.Value(customerdomain.AuthCustomerKey)
-	authCustomer := vAuthCustomer.(*customerdomain2.Customer)
+	vAuthCustomer := l.ctx.Value(customerDomain.AuthCustomerKey)
+	authCustomer := vAuthCustomer.(*customerDomain2.Customer)
 
 	if req.Quantity <= 0 {
 		return nil, errorx.WithCause(errorx.ErrBadRequest, "修改数量必须大于0")

@@ -1,0 +1,17 @@
+type(
+    Category {
+        Id int64 `json:"id,omitempty,,optional"`
+        PId int64 `json:"pId,omitempty,,optional"`
+        Name string `json:"name,omitempty,,optional"`
+        Scene        string `json:"scene,omitempty,,optional"`
+        CustomerId   int64  `json:"customerId,omitempty,,optional"`
+        Sort int `json:"sort,omitempty,,optional"`
+        ViceName string `json:"viceName,omitempty,,optional"`
+        Description string `json:"description,omitempty,,optional"`
+        CreatedAt string `json:"createdAt,omitempty,,optional,omitempty,"`
+        ImageAbleInfo
+        CoverImageId int64 `json:"coverImageId,omitempty,,optional"`
+        CoverImage *MediaResource `json:"coverImage,omitempty,,optional"`
+        Children []*Category `json:"children,omitempty,,optional"`
+    }
+)

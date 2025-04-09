@@ -45,38 +45,6 @@ service PowerX {
 }
 
 type (
-    PaymentItem {
-        Id int64 `json:"id,optional"`
-
-        PaymentID int64 `json:"paymentID,optional"`
-        Quantity int `json:"quantity,optional"`
-        UnitPrice float64 `json:"unitPrice,optional"`
-        PaymentCustomerName string `json:"paymentCustomerName,optional"`
-        BankInformation string `json:"bankInformation,optional"`
-        BankResponseCode string `json:"bankResponseCode,optional"`
-        CarrierType string `json:"carrierType,optional"`
-        CreditCardNumber string `json:"creditCardNumber,optional"`
-        DeductMembershipId string `json:"deductMembershipId,optional"`
-        DeductionPoint int32 `json:"deductionPoint,optional"`
-        InvoiceCreateTime string `json:"invoiceCreateTime,optional"`
-        InvoiceNumber string `json:"invoiceNumber,optional"`
-        InvoiceTotalAmount float64 `json:"invoiceTotalAmount,optional"`
-        TaxIdNumber string `json:"taxIdNumber,optional"`
-    }
-    Payment {
-        Id int64 `json:"id,optional"`
-
-        OrderId int64 `json:"orderId,optional"`
-        PaymentDate string `json:"paymentDate,optional"`
-        PaymentType int `json:"paymentType,optional"`
-        PaidAmount float64 `json:"paidAmount,optional"`
-        PaymentNumber string `json:"paymentNumber,optional"`
-        ReferenceNumber string `json:"referenceNumber,optional"`
-        Status int `json:"status,optional"`
-        PaymentItems []*PaymentItem `json:"paymentItems,optional"`
-    }
-)
-type (
     ListPaymentsPageRequest {
         PaymentType string `form:"paymentType,optional"`
         Keys []string `form:"keys,optional"`

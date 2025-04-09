@@ -1,10 +1,10 @@
 package payment
 
 import (
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/crm/trade"
 	"PowerX/internal/types/errorx"
-	"PowerX/internal/uc/powerx/crm/customerdomain"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
 	"context"
 
 	"PowerX/internal/svc"
@@ -28,8 +28,8 @@ func NewCreatePaymentFromOrderLogic(ctx context.Context, svcCtx *svc.ServiceCont
 }
 
 func (l *CreatePaymentFromOrderLogic) CreatePaymentFromOrder(req *types.CreatePaymentFromOrderRequest) (resp *types.CreatePaymentFromOrderRequestReply, err error) {
-	vAuthCustomer := l.ctx.Value(customerdomain.AuthCustomerKey)
-	authCustomer := vAuthCustomer.(*customerdomain2.Customer)
+	vAuthCustomer := l.ctx.Value(customerDomain.AuthCustomerKey)
+	authCustomer := vAuthCustomer.(*customerDomain2.Customer)
 
 	order, err := l.svcCtx.PowerX.Order.GetOrder(l.ctx, req.OrderId)
 	if err != nil {

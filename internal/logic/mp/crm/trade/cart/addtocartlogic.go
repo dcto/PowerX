@@ -1,10 +1,10 @@
 package cart
 
 import (
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/crm/trade"
 	"PowerX/internal/types/errorx"
-	"PowerX/internal/uc/powerx/crm/customerdomain"
+	"PowerX/internal/uc/powerx/crm/customerDomain"
 	"context"
 
 	"PowerX/internal/svc"
@@ -29,8 +29,8 @@ func NewAddToCartLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AddToCa
 
 func (l *AddToCartLogic) AddToCart(req *types.AddToCartRequest) (resp *types.AddToCartReply, err error) {
 
-	vAuthCustomer := l.ctx.Value(customerdomain.AuthCustomerKey)
-	authCustomer := vAuthCustomer.(*customerdomain2.Customer)
+	vAuthCustomer := l.ctx.Value(customerDomain.AuthCustomerKey)
+	authCustomer := vAuthCustomer.(*customerDomain2.Customer)
 
 	cartItem := TransformRequestToCartItemForMP(req, authCustomer)
 
@@ -45,7 +45,7 @@ func (l *AddToCartLogic) AddToCart(req *types.AddToCartRequest) (resp *types.Add
 	}, nil
 }
 
-func TransformRequestToCartItemForMP(req *types.AddToCartRequest, customer *customerdomain2.Customer) *trade.CartItem {
+func TransformRequestToCartItemForMP(req *types.AddToCartRequest, customer *customerDomain2.Customer) *trade.CartItem {
 
 	item := &trade.CartItem{
 		CustomerId:     customer.Id,

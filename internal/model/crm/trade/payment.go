@@ -2,14 +2,14 @@ package trade
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"github.com/ArtisanCloud/PowerLibs/v3/object"
 	"github.com/golang-module/carbon/v2"
 	"time"
 )
 
 type Payment struct {
-	*powermodel.PowerModel
+	*powerModel.PowerModel
 
 	Order *Order         `gorm:"foreignKey:OrderId;references:Id" json:"order"`
 	Items []*PaymentItem `gorm:"foreignKey:PaymentID;references:Id" json:"items"`
@@ -55,7 +55,7 @@ const (
 )
 
 type PaymentItem struct {
-	*powermodel.PowerModel
+	*powerModel.PowerModel
 
 	PaymentID           int64     `gorm:"comment:支付记录ID" json:"paymentId"`
 	Quantity            int       `gorm:"comment:商品数量" json:"quantity"`
@@ -73,7 +73,7 @@ type PaymentItem struct {
 	TaxIdNumber         string    `gorm:"comment:税号" json:"taxIdNumber"`
 }
 
-const PaymentUniqueId = powermodel.UniqueId
+const PaymentUniqueId = powerModel.UniqueId
 
 func (mdl *PaymentItem) TableName() string {
 	return model.PowerXSchema + "." + model.TableNamePaymentItem

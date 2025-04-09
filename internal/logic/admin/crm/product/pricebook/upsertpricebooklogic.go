@@ -2,7 +2,7 @@ package pricebook
 
 import (
 	"PowerX/internal/model/crm/product"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/svc"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
@@ -36,7 +36,7 @@ func (l *UpsertPriceBookLogic) UpsertPriceBook(req *types.UpsertPriceBookRequest
 	}
 
 	priceBook := &product.PriceBook{
-		PowerModel: powermodel.PowerModel{
+		PowerModel: powerModel.PowerModel{
 			Id: req.Id,
 		},
 		IsStandard:  req.IsStandard,

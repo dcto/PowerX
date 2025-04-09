@@ -1,7 +1,7 @@
 package test
 
 import (
-	"PowerX/internal/model/crm/customerdomain"
+	"PowerX/internal/model/crm/customerDomain"
 	"context"
 	"github.com/brianvoe/gofakeit/v6"
 	"testing"
@@ -54,7 +54,7 @@ func TestConsumerCreateConsumer(t *testing.T) {
 		}
 	}()
 
-	err := svcCtx.PowerX.Customer.CreateCustomer(context.TODO(), &customerdomain.Customer{
+	err := svcCtx.PowerX.Customer.CreateCustomer(context.TODO(), &customerDomain.Customer{
 		Name:        gofakeit.Name(),
 		Mobile:      gofakeit.Phone(),
 		Email:       gofakeit.Email(),

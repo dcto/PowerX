@@ -2,11 +2,11 @@ package operation
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 )
 
 type TicketRecord struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	CustomerId          int64   `gorm:"comment:客户Id; index" json:"customerId"`
 	TemplateId          int64   `gorm:"comment:模板Id" json:"templateId"`
@@ -28,4 +28,4 @@ func (mdl *TicketRecord) GetTableName(needFull bool) string {
 	return tableName
 }
 
-const TicketRecordUniqueId = powermodel.UniqueId
+const TicketRecordUniqueId = powerModel.UniqueId

@@ -3,12 +3,12 @@ package organization
 import (
 	"PowerX/internal/model"
 	"PowerX/internal/model/permission"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 )
 
 // Position 职位
 type Position struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	Name  string                  `gorm:"comment:职位名称;column:name" json:"name"`
 	Desc  string                  `gorm:"comment:描述;column:desc" json:"desc"`

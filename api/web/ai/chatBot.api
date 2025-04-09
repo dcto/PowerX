@@ -1,0 +1,45 @@
+syntax = "v1"
+
+
+info(
+    title: "WebAI ChatBot模块"
+    desc: "WebAI ChatBot模块接口集合"
+    registeror: "MichaelHu"
+    email: "matrix-x@artisan-cloud.com"
+    version: "v1"
+)
+
+@server(
+    group: web/ai/chatBot
+    prefix: /sse/v1/web/chat-bot
+    middleware: WebCustomerJWTAuth, WebCustomerGet
+)
+
+
+service PowerX {
+    @doc "AI ChatBot对话"
+    @handler Chat
+    post /chat (ChatRequest)
+
+    @doc "AI ChatBot Agent对话"
+    @handler AgentChat
+    post /agent/chat (ChatRequest)
+}
+
+type (
+
+    Message{
+        ReplyToMessageUuid string `json:"reply_to_message_uuid,optional"`
+        Content string `json:"content,optional"`
+        Role string `json:"role,optional"`
+        Type string `json:"type,optional"`
+    }
+
+    ChatRequest {
+        Llm string `json:"llm,optional"`
+        ConversationUUID string `json:"conversationUUID,optional"`
+        AppUUID string `json:"appUUID,optional"`
+        Messages []Message `json:"messages,optional"`
+        Images []string `json:"images,optional"`
+    }
+)

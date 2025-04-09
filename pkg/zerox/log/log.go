@@ -49,6 +49,11 @@ func MustSetupLog(conf *LogConf) {
 		logx.SetWriter(lokiWriter)
 	}
 
+	// 终端输出
+	if conf.Console {
+		logx.SetWriter(logx.NewWriter(os.Stdout))
+	}
+
 	// // 如果有额外 writer，则组合为 MultiWriter
 	// if len(writers) > 0 {
 	// 	multiWriter := io.MultiWriter(writers...)

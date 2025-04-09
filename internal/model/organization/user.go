@@ -2,7 +2,7 @@ package organization
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/pkg/securityx"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
@@ -12,10 +12,10 @@ import (
 )
 
 type User struct {
-	powermodel.PowerUUIDModel
+	powerModel.PowerUUIDModel
 
 	TenantOwnerUUID uuid.UUID `gorm:"type:uuid;foreignKey:TenantOwnerUUID;references:UUID"  json:"tenant_owner_uuid"`
-	Account         string    `gorm:"comment:账户;column:account unique;type:varchar" json:"account"`
+	Account         string    `gorm:"comment:账户;column:account;unique;type:varchar" json:"account"`
 	Name            string    `gorm:"comment:名称;column:name;type:varchar" json:"name"`
 	NickName        string    `gorm:"comment:别称;column:nick_name;type:varchar" json:"nick_name"`
 	Desc            string    `gorm:"comment:描述;column:desc" json:"desc"`

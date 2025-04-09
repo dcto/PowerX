@@ -47,19 +47,6 @@ service PowerX {
     delete /skus/:id (DeleteSKURequest) returns (DeleteSKUReply)
 }
 
-type (
-    SKU {
-        Id int64 `json:"id,optional"`
-        UniqueId string `json:"uniqueId,optional"`
-        SkuNo string `json:"skuNo,optional"`
-        ProductId int64 `json:"productId,optional"`
-        Inventory int `json:"inventory,optional"`
-        UnitPrice float64 `json:"unitPrice,optional"`
-        ListPrice float64 `json:"listPrice,optional"`
-        IsActive bool `json:"isActive,optional"`
-        OptionsIds []int64 `json:"optionsIds,optional"`
-    }
-)
 
 type (
     ListSKUPageRequest {

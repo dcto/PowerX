@@ -2,13 +2,13 @@ package organization
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
 
 type WeWorkDepartment struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	// Leader         *WeWorkUser `gorm:"foreignKey:LeaderId"`
 	WeWorkDepId      int    `gorm:"comment:部门ID;column:we_work_dep_id;unique" json:"we_work_dep_id"`

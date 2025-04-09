@@ -5,6 +5,8 @@ import (
 	"PowerX/pkg/zerox"
 	"context"
 	"errors"
+	"github.com/zeromicro/go-zero/core/logx"
+	"strings"
 
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
@@ -32,7 +34,11 @@ func (r *BaseRepository[T]) Create(ctx context.Context, obj *T) (*T, error) {
 
 	result := query.Create(obj)
 	if result.Error != nil {
-		return nil, result.Error
+		logx.Error(result.Error.Error())
+		if strings.Contains(result.Error.Error(), "duplicated") {
+			return nil, errors.New("关键名称信息不能重复")
+		}
+		return nil, errors.New("inner db error, pls check the log")
 	}
 	return obj, nil
 }
@@ -112,7 +118,7 @@ func (r *BaseRepository[T]) Update(ctx context.Context, obj *T) (*T, error) {
 }
 
 // Patch 部分更新记录
-func (r *BaseRepository[T]) Patch(ctx context.Context, uuid string, fields map[string]interface{}) (*T, error) {
+func (r *BaseRepository[T]) Patch(ctx context.Context, where map[string]interface{}, fields map[string]interface{}) (*T, error) {
 	var obj T
 	query := r.db.WithContext(ctx).Model(&obj)
 
@@ -122,29 +128,55 @@ func (r *BaseRepository[T]) Patch(ctx context.Context, uuid string, fields map[s
 		query = query.Debug()
 	}
 
-	result := query.Where("uuid = ?", uuid).Updates(fields)
+	for key, value := range where {
+		query = query.Where(key+" = ?", value)
+	}
+
+	result := query.Updates(fields)
 	if result.RowsAffected == 0 {
 		return nil, errors.New("record not found")
 	}
 	return &obj, result.Error
 }
 
-// Delete 删除记录，并返回删除的对象
-func (r *BaseRepository[T]) Delete(ctx context.Context, obj *T) (*T, error) {
-	query := r.db.WithContext(ctx)
+// Delete 删除记录，支持传入查询条件或对象，并返回删除的对象
+func (r *BaseRepository[T]) Delete(ctx context.Context, where map[string]interface{}, obj *T, softDelete bool) (*T, error) {
+	var mdl T
+	query := r.db.WithContext(ctx).Model(&mdl)
 
-	debug, ok := ctx.Value(zerox.DebugKey).(bool)
-	// print(debug, ok)
-	if ok && debug {
+	// 启用 Debug 模式
+	if debug, ok := ctx.Value(zerox.DebugKey).(bool); ok && debug {
 		query = query.Debug()
 	}
 
-	result := query.Delete(obj)
-
-	if result.RowsAffected == 0 {
-		return nil, errors.New("record not found")
+	// 如果 `where` 不为空，则按条件删除
+	if where != nil {
+		for key, value := range where {
+			query = query.Where(key+" = ?", value)
+		}
+		if !softDelete {
+			query = query.Unscoped()
+		}
+		result := query.Delete(&mdl)
+		if result.RowsAffected == 0 {
+			return nil, errors.New("record not found")
+		}
+		return nil, result.Error
 	}
-	return obj, result.Error
+
+	// 直接删除传入的 obj
+	if obj != nil {
+		if !softDelete {
+			query = query.Unscoped()
+		}
+		result := query.Delete(obj)
+		if result.RowsAffected == 0 {
+			return nil, errors.New("record not found")
+		}
+		return obj, result.Error
+	}
+
+	return nil, errors.New("no delete condition provided")
 }
 
 // FindByCondition 根据条件查询并返回分页结果（指针数组）
@@ -155,7 +187,7 @@ func (r *BaseRepository[T]) FindByCondition(
 	callback func(db *gorm.DB, opt interface{}) *gorm.DB,
 	opt interface{},
 ) (*types.Page[*T], error) {
-	var results []*T
+	var objects []*T
 	var obj T
 
 	// 构造查询条件
@@ -184,13 +216,13 @@ func (r *BaseRepository[T]) FindByCondition(
 
 	// 分页查询
 	query = query.Limit(pageSize).Offset((page - 1) * pageSize)
-	result := query.Find(&results)
+	result := query.Find(&objects)
 	if result.Error != nil {
 		return nil, result.Error
 	}
 
 	return &types.Page[*T]{
-		List:      results,
+		List:      objects,
 		PageIndex: page,
 		PageSize:  pageSize,
 		Total:     totalCount,
@@ -291,3 +323,51 @@ func (r *BaseRepository[T]) GetByCondition(ctx context.Context, conditions map[s
 
 	return &obj, nil
 }
+
+//func (r *BaseRepository[T]) ListTree(
+//	ctx context.Context, conditions map[string]interface{}, pId int64,
+//	callback func(db *gorm.DB, opt interface{}) *gorm.DB, opt interface{},
+//) ([]*T, error) {
+//	if pId < 0 {
+//		panic(errors.New("find object pId invalid"))
+//	}
+//	var obj T
+//	var objects []*T
+//
+//	query := r.db.WithContext(ctx)
+//	for key, value := range conditions {
+//		query = query.Where(key, value)
+//	}
+//
+//	// 调用回调函数，让调用方自定义查询逻辑
+//	if callback != nil {
+//		query = callback(query, opt)
+//	}
+//
+//	debug, ok := ctx.Value(zerox.DebugKey).(bool)
+//	// print(debug, ok)
+//	if ok && debug {
+//		query = query.Debug()
+//	}
+//
+//	err := query.Model(&obj).
+//		Where("p_id", pId).
+//		//Debug().
+//		Find(objects).
+//		Error
+//	if err != nil {
+//		return nil, err
+//	}
+//	var children []*T
+//	for i, object := range objects {
+//
+//		children, err = r.ListTree(ctx, conditions, object.Id, callback, opt, opt)
+//		if err != nil {
+//			return nil, err
+//		}
+//		if len(children) > 0 {
+//			objects[i].Children = children
+//		}
+//	}
+//	return objects, nil
+//}

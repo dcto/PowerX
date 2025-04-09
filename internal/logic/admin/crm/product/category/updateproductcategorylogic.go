@@ -1,7 +1,7 @@
 package category
 
 import (
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"context"
 
 	"PowerX/internal/svc"
@@ -26,7 +26,7 @@ func NewUpdateProductCategoryLogic(ctx context.Context, svcCtx *svc.ServiceConte
 
 func (l *UpdateProductCategoryLogic) UpdateProductCategory(req *types.UpdateProductCategoryRequest) (resp *types.UpdateProductCategoryReply, err error) {
 	productCategory := TransformRequestToProductCategory(&req.ProductCategory)
-	productCategory.PowerModel = powermodel.PowerModel{
+	productCategory.PowerModel = powerModel.PowerModel{
 		Id: req.Id,
 	}
 

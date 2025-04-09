@@ -47,31 +47,6 @@ service PowerX {
 }
 
 type (
-
-    Artisan {
-        Id int64 `json:"id,optional"`
-        UserId int64 `json:"userId,optional"`
-        Name string `json:"name,optional"`
-        Level int8 `json:"level"`
-        Gender bool `json:"gender,optional"`
-        Birthday string `json:"birthday,optional"`
-        PhoneNumber string `json:"phoneNumber,optional"`
-        WorkNo string `json:"workNo"`
-        Email string `json:"email,optional"`
-        Experience string `json:"experience,optional"`
-        Specialty string `json:"specialty,optional"`
-        Certificate string `json:"certificate,optional"`
-        Address string `json:"address,optional"`
-        CreatedAt string `json:"createdAt,optional"`
-
-        CoverImageId int64 `json:"coverImageId,optional"`
-        CoverImage *MediaResource `json:"coverImage,optional"`
-        DetailImageIds []int64 `json:"detailImageIds,optional"`
-        DetailImages []*MediaResource `json:"detailIOmages,optional"`
-        StoreIds []int64 `json:"storeIds,optional"`
-    }
-)
-type (
     ListArtisansPageRequest {
         Ids []int64 `form:"ids,optional"`
         StoreIds []int64 `form:"storeIds,optional"`

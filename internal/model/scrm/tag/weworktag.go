@@ -2,14 +2,14 @@ package tag
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 	"time"
 )
 
 type WeWorkTag struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	WeWorkGroup *WeWorkTagGroup `gorm:"foreignKey:GroupId;references:group_id" json:"WeWorkGroup"`
 	//

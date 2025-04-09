@@ -2,7 +2,7 @@ package product
 
 import (
 	"PowerX/internal/model/crm/product"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
 	"context"
@@ -114,7 +114,7 @@ func (uc *PriceBookUseCase) UpsertPriceBook(ctx context.Context, priceBook *prod
 
 func (uc *PriceBookUseCase) UpsertPriceBooks(ctx context.Context, priceBooks []*product.PriceBook) ([]*product.PriceBook, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &product.PriceBook{}, product.PriceBookUniqueId, priceBooks, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &product.PriceBook{}, product.PriceBookUniqueId, priceBooks, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert priceBooks failed"))

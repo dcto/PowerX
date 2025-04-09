@@ -1,0 +1,110 @@
+syntax = "v1"
+
+info(
+    title: "媒资管理"
+    desc: "媒资管理"
+    author: "MichaelHu"
+    email: "matrix-x@artisa-cloud.com"
+    version: "v1"
+)
+
+@server(
+    group: admin/mediaResource
+    prefix: /api/v1/admin/media
+    middleware: UserJWTAuth
+)
+
+service PowerX {
+    @doc "查询媒资列表"
+    @handler ListMediaResources
+    get /resources/page-list (ListMediaResourcesPageRequest) returns (ListMediaResourcesPageReply)
+
+    @doc "创建媒资"
+    @handler CreateMediaResource
+    post /resources returns (CreateMediaResourceReply)
+
+    @doc "创建媒资-Base64"
+    @handler CreateMediaResourceByBase64
+    post /resources/base64 (CreateMediaResourceByBase64Request) returns (CreateMediaResourceReply)
+
+
+    @doc "获取媒资详情"
+    @handler GetMediaResource
+    get /resources/:id (GetMediaResourceRequest) returns (GetMediaResourceReply)
+
+    @doc "删除媒资"
+    @handler DeleteMediaResource
+    delete /resources/:id (DeleteMediaResourceRequest) returns (DeleteMediaResourceReply)
+}
+
+type (
+
+    SortIdItem {
+        Id int64 `json:"id,optional"`
+        SortIndex  int  `json:"sortIndex,optional"`
+    }
+
+    MediaResource {
+        Id int64 `json:"id,optional"`
+        CustomerId int64 `json:"customerId,optional"`
+        Filename string `json:"filename,optional"`
+        Size int64 `json:"size,optional"`
+        Url string `json:"url,optional"`
+        BucketName string `json:"bucketName,optional"`
+        IsLocalStored bool `json:"isLocalStored,optional"`
+        ContentType string `json:"contentType,optional"`
+        ResourceType string `json:"resourceType,optional"`
+        SortIndex int `json:"sortIndex,optional"`
+    }
+
+    CreateMediaResourceByBase64Request {
+        MediaName string `json:"mediaName"`
+        BucketName string `json:"bucketName"`
+        Base64Data string `json:"base64Data"`
+    }
+
+    CreateMediaResourceReply {
+        *MediaResource
+        isOSS bool `json:"isOSS"`
+    }
+)
+
+
+
+type (
+    GetMediaResourceRequest {
+        Id int64 `path:"id"`
+    }
+
+    GetMediaResourceReply {
+        MediaResource *MediaResource `json:"mediaResource"`
+    }
+)
+
+type (
+    ListMediaResourcesPageRequest {
+        LikeName string `form:"likeName,optional"`
+        OrderBy string `form:"orderBy,optional"`
+        PageIndex int `form:"pageIndex,optional"`
+        PageSize int `form:"pageSize,optional"`
+    }
+
+    ListMediaResourcesPageReply {
+        List []MediaResource `json:"list,optional"`
+        PageIndex int `json:"pageIndex,optional"`
+        PageSize int `json:"pageSize,optional"`
+        Total int64 `json:"total,optional"`
+    }
+)
+
+
+
+type (
+    DeleteMediaResourceRequest {
+        Id int64 `path:"id"`
+    }
+
+    DeleteMediaResourceReply {
+        MediaResourceId int64 `json:"id"`
+    }
+)

@@ -2,12 +2,12 @@ package trade
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 )
 
 // 仓库
 type Inventory struct {
-	*powermodel.PowerModel
+	*powerModel.PowerModel
 
 	WarehouseID int64 `gorm:"comment:仓库ID" json:"warehouseId"`
 	ProductID   int64 `gorm:"comment:商品ID" json:"productId"`

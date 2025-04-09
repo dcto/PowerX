@@ -9,9 +9,9 @@ import (
 	adminauth "PowerX/internal/handler/admin/auth"
 	admincommon "PowerX/internal/handler/admin/common"
 	admincrmbusinessopportunity "PowerX/internal/handler/admin/crm/business/opportunity"
-	admincrmcustomerdomaincustomer "PowerX/internal/handler/admin/crm/customerdomain/customer"
-	admincrmcustomerdomainleader "PowerX/internal/handler/admin/crm/customerdomain/leader"
-	admincrmcustomerdomainregistercode "PowerX/internal/handler/admin/crm/customerdomain/registercode"
+	admincrmcustomerDomaincustomer "PowerX/internal/handler/admin/crm/customerDomain/customer"
+	admincrmcustomerDomainleader "PowerX/internal/handler/admin/crm/customerDomain/leader"
+	admincrmcustomerDomainregisterCode "PowerX/internal/handler/admin/crm/customerDomain/registerCode"
 	admincrmmarketmedia "PowerX/internal/handler/admin/crm/market/media"
 	admincrmmarketmgm "PowerX/internal/handler/admin/crm/market/mgm"
 	admincrmmarketstore "PowerX/internal/handler/admin/crm/market/store"
@@ -32,8 +32,8 @@ import (
 	admincrmtradetoken "PowerX/internal/handler/admin/crm/trade/token"
 	admindepartment "PowerX/internal/handler/admin/department"
 	admindictionary "PowerX/internal/handler/admin/dictionary"
-	admininfoorganizationcategory "PowerX/internal/handler/admin/infoorganization/category"
-	adminmediaresource "PowerX/internal/handler/admin/mediaresource"
+	admininfoOrganizationcategory "PowerX/internal/handler/admin/infoOrganization/category"
+	adminmediaResource "PowerX/internal/handler/admin/mediaResource"
 	adminpermission "PowerX/internal/handler/admin/permission"
 	adminposition "PowerX/internal/handler/admin/position"
 	adminscrmapp "PowerX/internal/handler/admin/scrm/app"
@@ -65,15 +65,16 @@ import (
 	mpcrmtradepayment "PowerX/internal/handler/mp/crm/trade/payment"
 	mpcrmtradetoken "PowerX/internal/handler/mp/crm/trade/token"
 	mpdictionary "PowerX/internal/handler/mp/dictionary"
-	mpinfoorganizationcategory "PowerX/internal/handler/mp/infoorganization/category"
+	mpinfoOrganizationcategory "PowerX/internal/handler/mp/infoOrganization/category"
 	openapi "PowerX/internal/handler/openapi"
 	openapiauth "PowerX/internal/handler/openapi/auth"
 	openapiproviderbrainx "PowerX/internal/handler/openapi/provider/brainx"
 	plugin "PowerX/internal/handler/plugin"
 	systemhealth "PowerX/internal/handler/system/health"
+	webaichatBot "PowerX/internal/handler/web/ai/chatBot"
 	webcustomerauth "PowerX/internal/handler/web/customer/auth"
 	webcustomerauthoa "PowerX/internal/handler/web/customer/auth/oa"
-	webinfoorganizationcategory "PowerX/internal/handler/web/infoorganization/category"
+	webinfoOrganizationcategory "PowerX/internal/handler/web/infoOrganization/category"
 	webscene "PowerX/internal/handler/web/scene"
 	"PowerX/internal/svc"
 
@@ -190,47 +191,47 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					// 创建客户
 					Method:  http.MethodPost,
 					Path:    "/customers",
-					Handler: admincrmcustomerdomaincustomer.CreateCustomerHandler(serverCtx),
+					Handler: admincrmcustomerDomaincustomer.CreateCustomerHandler(serverCtx),
 				},
 				{
 					// 查询客户
 					Method:  http.MethodGet,
 					Path:    "/customers/:id",
-					Handler: admincrmcustomerdomaincustomer.GetCustomerHandler(serverCtx),
+					Handler: admincrmcustomerDomaincustomer.GetCustomerHandler(serverCtx),
 				},
 				{
 					// 全量客户
 					Method:  http.MethodPut,
 					Path:    "/customers/:id",
-					Handler: admincrmcustomerdomaincustomer.PutCustomerHandler(serverCtx),
+					Handler: admincrmcustomerDomaincustomer.PutCustomerHandler(serverCtx),
 				},
 				{
 					// 增量客户
 					Method:  http.MethodPatch,
 					Path:    "/customers/:id",
-					Handler: admincrmcustomerdomaincustomer.PatchCustomerHandler(serverCtx),
+					Handler: admincrmcustomerDomaincustomer.PatchCustomerHandler(serverCtx),
 				},
 				{
 					// 删除客户
 					Method:  http.MethodDelete,
 					Path:    "/customers/:id",
-					Handler: admincrmcustomerdomaincustomer.DeleteCustomerHandler(serverCtx),
+					Handler: admincrmcustomerDomaincustomer.DeleteCustomerHandler(serverCtx),
 				},
 				{
 					// 为客户分配员工
 					Method:  http.MethodPost,
 					Path:    "/customers/:id/actions/users",
-					Handler: admincrmcustomerdomaincustomer.AssignCustomerToUserHandler(serverCtx),
+					Handler: admincrmcustomerDomaincustomer.AssignCustomerToUserHandler(serverCtx),
 				},
 				{
 					// 获取客户分页列表
 					Method:  http.MethodGet,
 					Path:    "/customers/page-list",
-					Handler: admincrmcustomerdomaincustomer.ListCustomersPageHandler(serverCtx),
+					Handler: admincrmcustomerDomaincustomer.ListCustomersPageHandler(serverCtx),
 				},
 			}...,
 		),
-		rest.WithPrefix("/api/v1/admin/customerdomain"),
+		rest.WithPrefix("/api/v1/admin/customer-domain"),
 	)
 
 	server.AddRoutes(
@@ -241,47 +242,47 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					// 创建线索
 					Method:  http.MethodPost,
 					Path:    "/leads",
-					Handler: admincrmcustomerdomainleader.CreateLeadHandler(serverCtx),
+					Handler: admincrmcustomerDomainleader.CreateLeadHandler(serverCtx),
 				},
 				{
 					// 查询线索
 					Method:  http.MethodGet,
 					Path:    "/leads/:id",
-					Handler: admincrmcustomerdomainleader.GetLeadHandler(serverCtx),
+					Handler: admincrmcustomerDomainleader.GetLeadHandler(serverCtx),
 				},
 				{
 					// 全量线索
 					Method:  http.MethodPut,
 					Path:    "/leads/:id",
-					Handler: admincrmcustomerdomainleader.PutLeadHandler(serverCtx),
+					Handler: admincrmcustomerDomainleader.PutLeadHandler(serverCtx),
 				},
 				{
 					// 增量线索
 					Method:  http.MethodPatch,
 					Path:    "/leads/:id",
-					Handler: admincrmcustomerdomainleader.PatchLeadHandler(serverCtx),
+					Handler: admincrmcustomerDomainleader.PatchLeadHandler(serverCtx),
 				},
 				{
 					// 删除线索
 					Method:  http.MethodDelete,
 					Path:    "/leads/:id",
-					Handler: admincrmcustomerdomainleader.DeleteLeadHandler(serverCtx),
+					Handler: admincrmcustomerDomainleader.DeleteLeadHandler(serverCtx),
 				},
 				{
 					// 为线索分配员工
 					Method:  http.MethodPost,
 					Path:    "/leads/:id/actions/users",
-					Handler: admincrmcustomerdomainleader.AssignLeadToUserHandler(serverCtx),
+					Handler: admincrmcustomerDomainleader.AssignLeadToUserHandler(serverCtx),
 				},
 				{
 					// 获取线索分页列表
 					Method:  http.MethodGet,
 					Path:    "/leads/page-list",
-					Handler: admincrmcustomerdomainleader.ListLeadsPageHandler(serverCtx),
+					Handler: admincrmcustomerDomainleader.ListLeadsPageHandler(serverCtx),
 				},
 			}...,
 		),
-		rest.WithPrefix("/api/v1/admin/customerdomain"),
+		rest.WithPrefix("/api/v1/admin/customer-domain"),
 	)
 
 	server.AddRoutes(
@@ -292,47 +293,47 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					// 创建注册码
 					Method:  http.MethodPost,
 					Path:    "/register-codes",
-					Handler: admincrmcustomerdomainregistercode.CreateRegisterCodeHandler(serverCtx),
+					Handler: admincrmcustomerDomainregisterCode.CreateRegisterCodeHandler(serverCtx),
 				},
 				{
 					// 查询注册码
 					Method:  http.MethodGet,
 					Path:    "/register-codes/:id",
-					Handler: admincrmcustomerdomainregistercode.GetRegisterCodeHandler(serverCtx),
+					Handler: admincrmcustomerDomainregisterCode.GetRegisterCodeHandler(serverCtx),
 				},
 				{
 					// 全量注册码
 					Method:  http.MethodPut,
 					Path:    "/register-codes/:id",
-					Handler: admincrmcustomerdomainregistercode.PutRegisterCodeHandler(serverCtx),
+					Handler: admincrmcustomerDomainregisterCode.PutRegisterCodeHandler(serverCtx),
 				},
 				{
 					// 增量注册码
 					Method:  http.MethodPatch,
 					Path:    "/register-codes/:id",
-					Handler: admincrmcustomerdomainregistercode.PatchRegisterCodeHandler(serverCtx),
+					Handler: admincrmcustomerDomainregisterCode.PatchRegisterCodeHandler(serverCtx),
 				},
 				{
 					// 删除注册码
 					Method:  http.MethodDelete,
 					Path:    "/register-codes/:id",
-					Handler: admincrmcustomerdomainregistercode.DeleteRegisterCodeHandler(serverCtx),
+					Handler: admincrmcustomerDomainregisterCode.DeleteRegisterCodeHandler(serverCtx),
 				},
 				{
 					// 批量创建注册码
 					Method:  http.MethodPost,
 					Path:    "/register-codes/generate",
-					Handler: admincrmcustomerdomainregistercode.GenerateRegisterCodeHandler(serverCtx),
+					Handler: admincrmcustomerDomainregisterCode.GenerateRegisterCodeHandler(serverCtx),
 				},
 				{
 					// 获取注册码分页列表
 					Method:  http.MethodGet,
 					Path:    "/register-codes/page-list",
-					Handler: admincrmcustomerdomainregistercode.ListRegisterCodesPageHandler(serverCtx),
+					Handler: admincrmcustomerDomainregisterCode.ListRegisterCodesPageHandler(serverCtx),
 				},
 			}...,
 		),
-		rest.WithPrefix("/api/v1/admin/customerdomain"),
+		rest.WithPrefix("/api/v1/admin/customer-domain"),
 	)
 
 	server.AddRoutes(
@@ -1237,37 +1238,37 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					// 创新类别
 					Method:  http.MethodPost,
 					Path:    "/categories",
-					Handler: admininfoorganizationcategory.CreateCategoryHandler(serverCtx),
+					Handler: admininfoOrganizationcategory.CreateCategoryHandler(serverCtx),
 				},
 				{
 					// 查询类别详情
 					Method:  http.MethodGet,
 					Path:    "/categories/:id",
-					Handler: admininfoorganizationcategory.GetCategoryHandler(serverCtx),
+					Handler: admininfoOrganizationcategory.GetCategoryHandler(serverCtx),
 				},
 				{
 					// 修改类别
 					Method:  http.MethodPut,
 					Path:    "/categories/:id",
-					Handler: admininfoorganizationcategory.UpdateCategoryHandler(serverCtx),
+					Handler: admininfoOrganizationcategory.UpdateCategoryHandler(serverCtx),
 				},
 				{
 					// 修改类别父级
 					Method:  http.MethodPatch,
 					Path:    "/categories/:id",
-					Handler: admininfoorganizationcategory.PatchCategoryHandler(serverCtx),
+					Handler: admininfoOrganizationcategory.PatchCategoryHandler(serverCtx),
 				},
 				{
 					// 删除类别
 					Method:  http.MethodDelete,
 					Path:    "/categories/:id",
-					Handler: admininfoorganizationcategory.DeleteCategoryHandler(serverCtx),
+					Handler: admininfoOrganizationcategory.DeleteCategoryHandler(serverCtx),
 				},
 				{
 					// 查询类别列表
 					Method:  http.MethodGet,
 					Path:    "/category-tree",
-					Handler: admininfoorganizationcategory.ListCategoryTreeHandler(serverCtx),
+					Handler: admininfoOrganizationcategory.ListCategoryTreeHandler(serverCtx),
 				},
 			}...,
 		),
@@ -1282,31 +1283,31 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					// 创建媒资
 					Method:  http.MethodPost,
 					Path:    "/resources",
-					Handler: adminmediaresource.CreateMediaResourceHandler(serverCtx),
+					Handler: adminmediaResource.CreateMediaResourceHandler(serverCtx),
 				},
 				{
 					// 获取媒资详情
 					Method:  http.MethodGet,
 					Path:    "/resources/:id",
-					Handler: adminmediaresource.GetMediaResourceHandler(serverCtx),
+					Handler: adminmediaResource.GetMediaResourceHandler(serverCtx),
 				},
 				{
 					// 删除媒资
 					Method:  http.MethodDelete,
 					Path:    "/resources/:id",
-					Handler: adminmediaresource.DeleteMediaResourceHandler(serverCtx),
+					Handler: adminmediaResource.DeleteMediaResourceHandler(serverCtx),
 				},
 				{
 					// 创建媒资-Base64
 					Method:  http.MethodPost,
 					Path:    "/resources/base64",
-					Handler: adminmediaresource.CreateMediaResourceByBase64Handler(serverCtx),
+					Handler: adminmediaResource.CreateMediaResourceByBase64Handler(serverCtx),
 				},
 				{
 					// 查询媒资列表
 					Method:  http.MethodGet,
 					Path:    "/resources/page-list",
-					Handler: adminmediaresource.ListMediaResourcesHandler(serverCtx),
+					Handler: adminmediaResource.ListMediaResourcesHandler(serverCtx),
 				},
 			}...,
 		),
@@ -1543,16 +1544,16 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			[]rest.Middleware{serverCtx.UserJWTAuth},
 			[]rest.Route{
 				{
-					// 所有客户列表/page
+					// 客户群列表/limit
 					Method:  http.MethodPost,
-					Path:    "/page",
-					Handler: adminscrmcustomer.ListWeWorkCustomerPageHandler(serverCtx),
+					Path:    "/group/list",
+					Handler: adminscrmcustomer.ListWeWorkCustomerGroupLimitHandler(serverCtx),
 				},
 				{
-					// 批量同步客户信息(根据员工ID同步/节流)
+					// 客户群发信息
 					Method:  http.MethodPost,
-					Path:    "/sync",
-					Handler: adminscrmcustomer.SyncWeWorkCustomerOptionHandler(serverCtx),
+					Path:    "/group/message/template",
+					Handler: adminscrmcustomer.SendWeWorkCustomerGroupMessageHandler(serverCtx),
 				},
 			}...,
 		),
@@ -1564,16 +1565,16 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			[]rest.Middleware{serverCtx.UserJWTAuth},
 			[]rest.Route{
 				{
-					// 客户群列表/limit
+					// 所有客户列表/page
 					Method:  http.MethodPost,
-					Path:    "/group/list",
-					Handler: adminscrmcustomer.ListWeWorkCustomerGroupLimitHandler(serverCtx),
+					Path:    "/page",
+					Handler: adminscrmcustomer.ListWeWorkCustomerPageHandler(serverCtx),
 				},
 				{
-					// 客户群发信息
+					// 批量同步客户信息(根据员工ID同步/节流)
 					Method:  http.MethodPost,
-					Path:    "/group/message/template",
-					Handler: adminscrmcustomer.SendWeWorkCustomerGroupMessageHandler(serverCtx),
+					Path:    "/sync",
+					Handler: adminscrmcustomer.SyncWeWorkCustomerOptionHandler(serverCtx),
 				},
 			}...,
 		),
@@ -2057,24 +2058,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
 			{
-				// 查询产品品类列表
-				Method:  http.MethodGet,
-				Path:    "/product-categories",
-				Handler: mpcrmproduct.ListProductCategoriesHandler(serverCtx),
-			},
-			{
-				// 查询产品品类树形表
-				Method:  http.MethodGet,
-				Path:    "/product-category-tree",
-				Handler: mpcrmproduct.ListProductCategoryTreeHandler(serverCtx),
-			},
-		},
-		rest.WithPrefix("/api/v1/mp/product"),
-	)
-
-	server.AddRoutes(
-		[]rest.Route{
-			{
 				// 查询产品详情
 				Method:  http.MethodGet,
 				Path:    "/products/:id",
@@ -2085,6 +2068,24 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Method:  http.MethodGet,
 				Path:    "/products/page-list",
 				Handler: mpcrmproduct.ListProductsPageHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/api/v1/mp/product"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				// 查询产品品类列表
+				Method:  http.MethodGet,
+				Path:    "/product-categories",
+				Handler: mpcrmproduct.ListProductCategoriesHandler(serverCtx),
+			},
+			{
+				// 查询产品品类树形表
+				Method:  http.MethodGet,
+				Path:    "/product-category-tree",
+				Handler: mpcrmproduct.ListProductCategoryTreeHandler(serverCtx),
 			},
 		},
 		rest.WithPrefix("/api/v1/mp/product"),
@@ -2464,37 +2465,37 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				// 创新类别
 				Method:  http.MethodPost,
 				Path:    "/categories",
-				Handler: mpinfoorganizationcategory.CreateCategoryHandler(serverCtx),
+				Handler: mpinfoOrganizationcategory.CreateCategoryHandler(serverCtx),
 			},
 			{
 				// 查询类别详情
 				Method:  http.MethodGet,
 				Path:    "/categories/:id",
-				Handler: mpinfoorganizationcategory.GetCategoryHandler(serverCtx),
+				Handler: mpinfoOrganizationcategory.GetCategoryHandler(serverCtx),
 			},
 			{
 				// 修改类别
 				Method:  http.MethodPut,
 				Path:    "/categories/:id",
-				Handler: mpinfoorganizationcategory.UpdateCategoryHandler(serverCtx),
+				Handler: mpinfoOrganizationcategory.UpdateCategoryHandler(serverCtx),
 			},
 			{
 				// 修改类别父级
 				Method:  http.MethodPatch,
 				Path:    "/categories/:id",
-				Handler: mpinfoorganizationcategory.PatchCategoryHandler(serverCtx),
+				Handler: mpinfoOrganizationcategory.PatchCategoryHandler(serverCtx),
 			},
 			{
 				// 删除类别
 				Method:  http.MethodDelete,
 				Path:    "/categories/:id",
-				Handler: mpinfoorganizationcategory.DeleteCategoryHandler(serverCtx),
+				Handler: mpinfoOrganizationcategory.DeleteCategoryHandler(serverCtx),
 			},
 			{
 				// 查询类别列表
 				Method:  http.MethodGet,
 				Path:    "/category-tree",
-				Handler: mpinfoorganizationcategory.ListCategoryTreeHandler(serverCtx),
+				Handler: mpinfoOrganizationcategory.ListCategoryTreeHandler(serverCtx),
 			},
 		},
 		rest.WithPrefix("/api/v1/mp/info-organization"),
@@ -2591,6 +2592,27 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	)
 
 	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.WebCustomerJWTAuth, serverCtx.WebCustomerGet},
+			[]rest.Route{
+				{
+					// AI ChatBot Agent对话
+					Method:  http.MethodPost,
+					Path:    "/agent/chat",
+					Handler: webaichatBot.AgentChatHandler(serverCtx),
+				},
+				{
+					// AI ChatBot对话
+					Method:  http.MethodPost,
+					Path:    "/chat",
+					Handler: webaichatBot.ChatHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithPrefix("/sse/v1/web/chat-bot"),
+	)
+
+	server.AddRoutes(
 		[]rest.Route{
 			{
 				// 微信Web登录
@@ -2667,43 +2689,43 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 
 	server.AddRoutes(
 		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.WebCustomerJWTAuth},
+			[]rest.Middleware{serverCtx.WebCustomerJWTAuth, serverCtx.WebCustomerGet},
 			[]rest.Route{
 				{
 					// 创新类别
 					Method:  http.MethodPost,
 					Path:    "/categories",
-					Handler: webinfoorganizationcategory.CreateCategoryHandler(serverCtx),
+					Handler: webinfoOrganizationcategory.CreateCategoryHandler(serverCtx),
 				},
 				{
 					// 查询类别详情
 					Method:  http.MethodGet,
 					Path:    "/categories/:id",
-					Handler: webinfoorganizationcategory.GetCategoryHandler(serverCtx),
+					Handler: webinfoOrganizationcategory.GetCategoryHandler(serverCtx),
 				},
 				{
 					// 修改类别
 					Method:  http.MethodPut,
 					Path:    "/categories/:id",
-					Handler: webinfoorganizationcategory.UpdateCategoryHandler(serverCtx),
+					Handler: webinfoOrganizationcategory.UpdateCategoryHandler(serverCtx),
 				},
 				{
 					// 修改类别父级
 					Method:  http.MethodPatch,
 					Path:    "/categories/:id",
-					Handler: webinfoorganizationcategory.PatchCategoryHandler(serverCtx),
+					Handler: webinfoOrganizationcategory.PatchCategoryHandler(serverCtx),
 				},
 				{
 					// 删除类别
 					Method:  http.MethodDelete,
 					Path:    "/categories/:id",
-					Handler: webinfoorganizationcategory.DeleteCategoryHandler(serverCtx),
+					Handler: webinfoOrganizationcategory.DeleteCategoryHandler(serverCtx),
 				},
 				{
 					// 查询类别列表
 					Method:  http.MethodGet,
 					Path:    "/category-tree",
-					Handler: webinfoorganizationcategory.ListCategoryTreeHandler(serverCtx),
+					Handler: webinfoOrganizationcategory.ListCategoryTreeHandler(serverCtx),
 				},
 			}...,
 		),

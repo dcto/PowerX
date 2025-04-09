@@ -1,9 +1,9 @@
 package market
 
 import (
-	"PowerX/internal/model/crm/customerdomain"
+	"PowerX/internal/model/crm/customerDomain"
 	model "PowerX/internal/model/crm/market"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
 	"context"
@@ -122,7 +122,7 @@ func (uc *MGMRuleUseCase) UpsertMGMRule(ctx context.Context, m *model.MGMRule) (
 
 func (uc *MGMRuleUseCase) UpsertMGMRules(ctx context.Context, medias []*model.MGMRule) ([]*model.MGMRule, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &model.MGMRule{}, model.MGMRuleUniqueId, medias, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &model.MGMRule{}, model.MGMRuleUniqueId, medias, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert medias failed"))
@@ -178,7 +178,7 @@ func (uc *MGMRuleUseCase) ClearAssociations(db *gorm.DB, media *model.MGMRule) (
 }
 
 func (uc *MGMRuleUseCase) CreateInviteRecord(ctx context.Context,
-	inviter *customerdomain.Customer, invitee *customerdomain.Customer,
+	inviter *customerDomain.Customer, invitee *customerDomain.Customer,
 	inviteCode string, sceneId int,
 ) (*model.InviteRecord, error) {
 	record := &model.InviteRecord{

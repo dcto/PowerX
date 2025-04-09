@@ -2,7 +2,7 @@ package tag
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/pkg/securityx"
 	"fmt"
 	"gorm.io/gorm"
@@ -10,7 +10,7 @@ import (
 
 // 数据表结构
 type PivotObjectToTag struct {
-	powermodel.PowerPivot
+	powerModel.PowerPivot
 
 	Tag *Tag `gorm:"foreignKey:TagId,DataDictionaryKey;references:Id" json:"tag"`
 
@@ -77,7 +77,7 @@ func (mdl *PivotObjectToTag) GetPivotComposedUniqueID() string {
 func (mdl *PivotObjectToTag) GetMorphPivots(db *gorm.DB, where *map[string]interface{}) ([]*PivotObjectToTag, error) {
 	pivots := []*PivotObjectToTag{}
 
-	db = powermodel.SelectMorphPivot(db, mdl, where)
+	db = powerModel.SelectMorphPivot(db, mdl, where)
 
 	result := db.Find(&pivots)
 
@@ -86,7 +86,7 @@ func (mdl *PivotObjectToTag) GetMorphPivots(db *gorm.DB, where *map[string]inter
 }
 
 // --------------------------------------------------------------------
-func (mdl *PivotObjectToTag) MakeMorphPivotsFromObjectToDDs(obj powermodel.ModelInterface, tags []*Tag) ([]*PivotObjectToTag, error) {
+func (mdl *PivotObjectToTag) MakeMorphPivotsFromObjectToDDs(obj powerModel.ModelInterface, tags []*Tag) ([]*PivotObjectToTag, error) {
 	pivots := []*PivotObjectToTag{}
 	for _, tag := range tags {
 		pivot := &PivotObjectToTag{

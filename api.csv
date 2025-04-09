@@ -9,27 +9,27 @@ admin/crm/business/opportunity,/api/v1/admin/business/opportunities,post,创建�
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id/assign-user,put,为商机分配员工
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,put,修改商机信息
 admin/crm/business/opportunity,/api/v1/admin/business/opportunities/:id,delete,删除商机
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,get,查询客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/page-list,get,获取客户分页列表
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers,post,创建客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,put,全量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,patch,增量客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id,delete,删除客户
-admin/crm/customerdomain/customer,/api/v1/admin/customerdomain/customers/:id/actions/users,post,为客户分配员工
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,get,查询线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/page-list,get,获取线索分页列表
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads,post,创建线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,put,全量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,patch,增量线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id,delete,删除线索
-admin/crm/customerdomain/leader,/api/v1/admin/customerdomain/leads/:id/actions/users,post,为线索分配员工
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,get,查询注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/page-list,get,获取注册码分页列表
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes,post,创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/generate,post,批量创建注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,put,全量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,patch,增量注册码
-admin/crm/customerdomain/registercode,/api/v1/admin/customerdomain/register-codes/:id,delete,删除注册码
+admin/crm/customerDomain/customer,/api/v1/admin/customer-domain/customers/:id,get,查询客户
+admin/crm/customerDomain/customer,/api/v1/admin/customer-domain/customers/page-list,get,获取客户分页列表
+admin/crm/customerDomain/customer,/api/v1/admin/customer-domain/customers,post,创建客户
+admin/crm/customerDomain/customer,/api/v1/admin/customer-domain/customers/:id,put,全量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customer-domain/customers/:id,patch,增量客户
+admin/crm/customerDomain/customer,/api/v1/admin/customer-domain/customers/:id,delete,删除客户
+admin/crm/customerDomain/customer,/api/v1/admin/customer-domain/customers/:id/actions/users,post,为客户分配员工
+admin/crm/customerDomain/leader,/api/v1/admin/customer-domain/leads/:id,get,查询线索
+admin/crm/customerDomain/leader,/api/v1/admin/customer-domain/leads/page-list,get,获取线索分页列表
+admin/crm/customerDomain/leader,/api/v1/admin/customer-domain/leads,post,创建线索
+admin/crm/customerDomain/leader,/api/v1/admin/customer-domain/leads/:id,put,全量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customer-domain/leads/:id,patch,增量线索
+admin/crm/customerDomain/leader,/api/v1/admin/customer-domain/leads/:id,delete,删除线索
+admin/crm/customerDomain/leader,/api/v1/admin/customer-domain/leads/:id/actions/users,post,为线索分配员工
+admin/crm/customerDomain/registerCode,/api/v1/admin/customer-domain/register-codes/:id,get,查询注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customer-domain/register-codes/page-list,get,获取注册码分页列表
+admin/crm/customerDomain/registerCode,/api/v1/admin/customer-domain/register-codes,post,创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customer-domain/register-codes/generate,post,批量创建注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customer-domain/register-codes/:id,put,全量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customer-domain/register-codes/:id,patch,增量注册码
+admin/crm/customerDomain/registerCode,/api/v1/admin/customer-domain/register-codes/:id,delete,删除注册码
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/page-list,get,查询品牌故事列表
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories/:id,get,查询品牌故事详情
 admin/crm/market/brandstory,/api/v1/admin/market/brand-stories,post,创建品牌故事
@@ -172,29 +172,29 @@ admin/dictionary,/api/v1/admin/dictionary/items/:type/:key,get,获取字典项
 admin/dictionary,/api/v1/admin/dictionary/items,post,创建字典项
 admin/dictionary,/api/v1/admin/dictionary/items/:type/:key,put,更新字典项
 admin/dictionary,/api/v1/admin/dictionary/items/:type/:key,delete,删除字典项
-admin/infoorganization/category,/api/v1/admin/info-organization/category-tree,get,查询类别列表
-admin/infoorganization/category,/api/v1/admin/info-organization/categories/:id,get,查询类别详情
-admin/infoorganization/category,/api/v1/admin/info-organization/categories,post,创新类别
-admin/infoorganization/category,/api/v1/admin/info-organization/categories/:id,put,修改类别
-admin/infoorganization/category,/api/v1/admin/info-organization/categories/:id,patch,修改类别父级
-admin/infoorganization/category,/api/v1/admin/info-organization/categories/:id,delete,删除类别
-admin/infoorganization/label,/api/v1/admin/info-organization/label-tree,get,查询框架标签列表
-admin/infoorganization/label,/api/v1/admin/info-organization/labels/:id,get,查询框架标签详情
-admin/infoorganization/label,/api/v1/admin/info-organization/labels,post,创新框架标签
-admin/infoorganization/label,/api/v1/admin/info-organization/labels/:id,put,修改框架标签
-admin/infoorganization/label,/api/v1/admin/info-organization/labels/:id,patch,修改框架标签父级
-admin/infoorganization/label,/api/v1/admin/info-organization/labels/:id,delete,删除框架标签
-admin/infoorganization/tag,/api/v1/admin/info-organization/tag-tree,get,查询碎片标签列表
-admin/infoorganization/tag,/api/v1/admin/info-organization/tags/:id,get,查询碎片标签详情
-admin/infoorganization/tag,/api/v1/admin/info-organization/tags,post,创新碎片标签
-admin/infoorganization/tag,/api/v1/admin/info-organization/tags/:id,put,修改碎片标签
-admin/infoorganization/tag,/api/v1/admin/info-organization/tags/:id,patch,修改碎片标签父级
-admin/infoorganization/tag,/api/v1/admin/info-organization/tags/:id,delete,删除碎片标签
-admin/mediaresource,/api/v1/admin/media/resources/page-list,get,查询媒资列表
-admin/mediaresource,/api/v1/admin/media/resources,post,创建媒资
-admin/mediaresource,/api/v1/admin/media/resources/base64,post,创建媒资-Base64
-admin/mediaresource,/api/v1/admin/media/resources/:id,get,获取媒资详情
-admin/mediaresource,/api/v1/admin/media/resources/:id,delete,删除媒资
+admin/infoOrganization/category,/api/v1/admin/info-organization/category-tree,get,查询类别列表
+admin/infoOrganization/category,/api/v1/admin/info-organization/categories/:id,get,查询类别详情
+admin/infoOrganization/category,/api/v1/admin/info-organization/categories,post,创新类别
+admin/infoOrganization/category,/api/v1/admin/info-organization/categories/:id,put,修改类别
+admin/infoOrganization/category,/api/v1/admin/info-organization/categories/:id,patch,修改类别父级
+admin/infoOrganization/category,/api/v1/admin/info-organization/categories/:id,delete,删除类别
+admin/infoOrganization/label,/api/v1/admin/info-organization/label-tree,get,查询框架标签列表
+admin/infoOrganization/label,/api/v1/admin/info-organization/labels/:id,get,查询框架标签详情
+admin/infoOrganization/label,/api/v1/admin/info-organization/labels,post,创新框架标签
+admin/infoOrganization/label,/api/v1/admin/info-organization/labels/:id,put,修改框架标签
+admin/infoOrganization/label,/api/v1/admin/info-organization/labels/:id,patch,修改框架标签父级
+admin/infoOrganization/label,/api/v1/admin/info-organization/labels/:id,delete,删除框架标签
+admin/infoOrganization/tag,/api/v1/admin/info-organization/tag-tree,get,查询碎片标签列表
+admin/infoOrganization/tag,/api/v1/admin/info-organization/tags/:id,get,查询碎片标签详情
+admin/infoOrganization/tag,/api/v1/admin/info-organization/tags,post,创新碎片标签
+admin/infoOrganization/tag,/api/v1/admin/info-organization/tags/:id,put,修改碎片标签
+admin/infoOrganization/tag,/api/v1/admin/info-organization/tags/:id,patch,修改碎片标签父级
+admin/infoOrganization/tag,/api/v1/admin/info-organization/tags/:id,delete,删除碎片标签
+admin/mediaResource,/api/v1/admin/media/resources/page-list,get,查询媒资列表
+admin/mediaResource,/api/v1/admin/media/resources,post,创建媒资
+admin/mediaResource,/api/v1/admin/media/resources/base64,post,创建媒资-Base64
+admin/mediaResource,/api/v1/admin/media/resources/:id,get,获取媒资详情
+admin/mediaResource,/api/v1/admin/media/resources/:id,delete,删除媒资
 admin/permission,/api/v1/admin/permission/roles,get,查询角色列表
 admin/permission,/api/v1/admin/permission/roles,post,创建角色
 admin/permission,/api/v1/admin/permission/roles/:roleCode,get,获取角色详情
@@ -289,24 +289,24 @@ mp/dictionary,/api/v1/mp/dictionary/types/page-list,get,获取字典类型列表
 mp/dictionary,/api/v1/mp/dictionary/types/:type,get,获取字典类型
 mp/dictionary,/api/v1/mp/dictionary/items,get,获取字典项列表
 mp/dictionary,/api/v1/mp/dictionary/items/:type/:key,get,获取字典项
-mp/infoorganization/category,/api/v1/mp/info-organization/category-tree,get,查询类别列表
-mp/infoorganization/category,/api/v1/mp/info-organization/categories/:id,get,查询类别详情
-mp/infoorganization/category,/api/v1/mp/info-organization/categories,post,创新类别
-mp/infoorganization/category,/api/v1/mp/info-organization/categories/:id,put,修改类别
-mp/infoorganization/category,/api/v1/mp/info-organization/categories/:id,patch,修改类别父级
-mp/infoorganization/category,/api/v1/mp/info-organization/categories/:id,delete,删除类别
-web/infoorganization/label,/api/v1/web/info-organization/label-tree,get,查询框架标签列表
-web/infoorganization/label,/api/v1/web/info-organization/labels/:id,get,查询框架标签详情
-web/infoorganization/label,/api/v1/web/info-organization/labels,post,创新框架标签
-web/infoorganization/label,/api/v1/web/info-organization/labels/:id,put,修改框架标签
-web/infoorganization/label,/api/v1/web/info-organization/labels/:id,patch,修改框架标签父级
-web/infoorganization/label,/api/v1/web/info-organization/labels/:id,delete,删除框架标签
-web/infoorganization/tag,/api/v1/web/info-organization/tag-tree,get,查询碎片标签列表
-web/infoorganization/tag,/api/v1/web/info-organization/tags/:id,get,查询碎片标签详情
-web/infoorganization/tag,/api/v1/web/info-organization/tags,post,创新碎片标签
-web/infoorganization/tag,/api/v1/web/info-organization/tags/:id,put,修改碎片标签
-web/infoorganization/tag,/api/v1/web/info-organization/tags/:id,patch,修改碎片标签父级
-web/infoorganization/tag,/api/v1/web/info-organization/tags/:id,delete,删除碎片标签
+mp/infoOrganization/category,/api/v1/mp/info-organization/category-tree,get,查询类别列表
+mp/infoOrganization/category,/api/v1/mp/info-organization/categories/:id,get,查询类别详情
+mp/infoOrganization/category,/api/v1/mp/info-organization/categories,post,创新类别
+mp/infoOrganization/category,/api/v1/mp/info-organization/categories/:id,put,修改类别
+mp/infoOrganization/category,/api/v1/mp/info-organization/categories/:id,patch,修改类别父级
+mp/infoOrganization/category,/api/v1/mp/info-organization/categories/:id,delete,删除类别
+web/infoOrganization/label,/api/v1/web/info-organization/label-tree,get,查询框架标签列表
+web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,get,查询框架标签详情
+web/infoOrganization/label,/api/v1/web/info-organization/labels,post,创新框架标签
+web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,put,修改框架标签
+web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,patch,修改框架标签父级
+web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,delete,删除框架标签
+web/infoOrganization/tag,/api/v1/web/info-organization/tag-tree,get,查询碎片标签列表
+web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,get,查询碎片标签详情
+web/infoOrganization/tag,/api/v1/web/info-organization/tags,post,创新碎片标签
+web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,put,修改碎片标签
+web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,patch,修改碎片标签父级
+web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,delete,删除碎片标签
 mp/crm/market/media,/api/v1/mp/market/medias/page-list,get,查询媒资列表
 mp/crm/market/store,/api/v1/mp/market/stores/page-list,get,店铺列表
 mp/crm/membership,/api/v1/mp/membership/customer,get,查询会籍
@@ -363,6 +363,8 @@ plugin,/api/v1/plugin/v1/plugins,get,插件列表拉取
 plugin,/api/v1/plugin/v1/frontend-routes,get,插件路由拉取
 openapi/provider/brainx,/openapi/v1/provider/brainx/hello-world,get,hello world api for provider demo
 openapi/provider/brainx,/openapi/v1/provider/brainx/echo-long-time,post,timeout api for provider demo
+web/ai/chatBot,/sse/v1/web/chat-bot/chat,post,AI ChatBot对话
+web/ai/chatBot,/sse/v1/web/chat-bot/agent/chat,post,AI ChatBot Agent对话
 web/customer/auth,/api/v1/web/customer/login,post,微信Web登录
 web/customer/auth,/api/v1/web/customer/registerByPhone,post,客户手机注册
 web/customer/auth,/api/v1/web/customer/registerByPhone/invite/:code,post,客户手机注册，邀请码机制
@@ -376,22 +378,22 @@ mp/dictionary,/api/v1/web/dictionary/types/page-list,get,获取字典类型列�
 mp/dictionary,/api/v1/web/dictionary/types/:type,get,获取字典类型
 mp/dictionary,/api/v1/web/dictionary/items,get,获取字典项列表
 mp/dictionary,/api/v1/web/dictionary/items/:type/:key,get,获取字典项
-web/infoorganization/category,/api/v1/web/info-organization/category-tree,get,查询类别列表
-web/infoorganization/category,/api/v1/web/info-organization/categories/:id,get,查询类别详情
-web/infoorganization/category,/api/v1/web/info-organization/categories,post,创新类别
-web/infoorganization/category,/api/v1/web/info-organization/categories/:id,put,修改类别
-web/infoorganization/category,/api/v1/web/info-organization/categories/:id,patch,修改类别父级
-web/infoorganization/category,/api/v1/web/info-organization/categories/:id,delete,删除类别
-web/infoorganization/label,/api/v1/web/info-organization/label-tree,get,查询框架标签列表
-web/infoorganization/label,/api/v1/web/info-organization/labels/:id,get,查询框架标签详情
-web/infoorganization/label,/api/v1/web/info-organization/labels,post,创新框架标签
-web/infoorganization/label,/api/v1/web/info-organization/labels/:id,put,修改框架标签
-web/infoorganization/label,/api/v1/web/info-organization/labels/:id,patch,修改框架标签父级
-web/infoorganization/label,/api/v1/web/info-organization/labels/:id,delete,删除框架标签
-web/infoorganization/tag,/api/v1/web/info-organization/tag-tree,get,查询碎片标签列表
-web/infoorganization/tag,/api/v1/web/info-organization/tags/:id,get,查询碎片标签详情
-web/infoorganization/tag,/api/v1/web/info-organization/tags,post,创新碎片标签
-web/infoorganization/tag,/api/v1/web/info-organization/tags/:id,put,修改碎片标签
-web/infoorganization/tag,/api/v1/web/info-organization/tags/:id,patch,修改碎片标签父级
-web/infoorganization/tag,/api/v1/web/info-organization/tags/:id,delete,删除碎片标签
+web/infoOrganization/category,/api/v1/web/info-organization/category-tree,get,查询类别列表
+web/infoOrganization/category,/api/v1/web/info-organization/categories/:id,get,查询类别详情
+web/infoOrganization/category,/api/v1/web/info-organization/categories,post,创新类别
+web/infoOrganization/category,/api/v1/web/info-organization/categories/:id,put,修改类别
+web/infoOrganization/category,/api/v1/web/info-organization/categories/:id,patch,修改类别父级
+web/infoOrganization/category,/api/v1/web/info-organization/categories/:id,delete,删除类别
+web/infoOrganization/label,/api/v1/web/info-organization/label-tree,get,查询框架标签列表
+web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,get,查询框架标签详情
+web/infoOrganization/label,/api/v1/web/info-organization/labels,post,创新框架标签
+web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,put,修改框架标签
+web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,patch,修改框架标签父级
+web/infoOrganization/label,/api/v1/web/info-organization/labels/:id,delete,删除框架标签
+web/infoOrganization/tag,/api/v1/web/info-organization/tag-tree,get,查询碎片标签列表
+web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,get,查询碎片标签详情
+web/infoOrganization/tag,/api/v1/web/info-organization/tags,post,创新碎片标签
+web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,put,修改碎片标签
+web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,patch,修改碎片标签父级
+web/infoOrganization/tag,/api/v1/web/info-organization/tags/:id,delete,删除碎片标签
 web/scene,/api/v1/web/scene/qrcode/detail/:qid(SceneRequest),get,获取场景落地页详情

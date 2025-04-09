@@ -2,9 +2,9 @@ package trade
 
 import (
 	"PowerX/internal/config"
-	customerdomain2 "PowerX/internal/model/crm/customerdomain"
+	customerDomain2 "PowerX/internal/model/crm/customerDomain"
 	"PowerX/internal/model/crm/trade"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types"
 	"PowerX/internal/types/errorx"
 	"PowerX/internal/uc/powerx"
@@ -126,7 +126,7 @@ func (uc *PaymentUseCase) FindManyPayments(ctx context.Context, opt *FindManyPay
 }
 
 func (uc *PaymentUseCase) CreatePaymentFromOrderByWechat(ctx context.Context,
-	customer *customerdomain2.Customer, order *trade.Order,
+	customer *customerDomain2.Customer, order *trade.Order,
 	openId string, paymentType int,
 ) (payment *trade.Payment, data interface{}, err error) {
 
@@ -164,7 +164,7 @@ func (uc *PaymentUseCase) CreatePaymentFromOrderByWechat(ctx context.Context,
 	return payment, data, err
 }
 
-func (uc *PaymentUseCase) MakePaymentFromOrder(customer *customerdomain2.Customer, order *trade.Order, paymentType int, paymentStatus int) (payment *trade.Payment) {
+func (uc *PaymentUseCase) MakePaymentFromOrder(customer *customerDomain2.Customer, order *trade.Order, paymentType int, paymentStatus int) (payment *trade.Payment) {
 	payment = &trade.Payment{
 		OrderId:       order.Id,
 		PaymentType:   paymentType,
@@ -251,7 +251,7 @@ func (uc *PaymentUseCase) UpsertPayment(ctx context.Context, payment *trade.Paym
 
 func (uc *PaymentUseCase) UpsertPayments(ctx context.Context, payments []*trade.Payment) ([]*trade.Payment, error) {
 
-	err := powermodel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &trade.Payment{}, trade.OrderUniqueId, payments, nil, false)
+	err := powerModel.UpsertModelsOnUniqueID(uc.db.WithContext(ctx), &trade.Payment{}, trade.OrderUniqueId, payments, nil, false)
 
 	if err != nil {
 		panic(errors.Wrap(err, "batch upsert payments failed"))

@@ -2,7 +2,7 @@ package user
 
 import (
 	"PowerX/internal/model/organization"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"PowerX/internal/types"
 	"context"
 	"github.com/google/uuid"
@@ -34,7 +34,7 @@ func (l *UpdateUserLogic) UpdateUser(req *types.UpdateUserRequest) (resp *types.
 		return nil, err
 	}
 	user := organization.User{
-		PowerUUIDModel: powermodel.PowerUUIDModel{
+		PowerUUIDModel: powerModel.PowerUUIDModel{
 			UUID: userUuid,
 		},
 		Name:          req.Name,

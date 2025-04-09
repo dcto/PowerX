@@ -2,13 +2,13 @@ package customer
 
 import (
 	"PowerX/internal/model"
-	"PowerX/internal/model/powermodel"
+	"PowerX/internal/model/powerModel"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
 
 type WeWorkExternalContact struct {
-	powermodel.PowerModel
+	powerModel.PowerModel
 
 	WeWorkExternalContactFollow WeWorkExternalContactFollow `gorm:"foreignKey:ExternalUserId;references:external_user_id" json:"WeWorkExternalContactFollow"`
 	ExternalUserId              string                      `gorm:"comment:客户ID;unique;not null;" json:"externalUserId"`

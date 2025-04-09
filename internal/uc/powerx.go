@@ -2,15 +2,17 @@ package uc
 
 import (
 	"PowerX/internal/config"
+	"PowerX/internal/uc/ai"
 	"PowerX/internal/uc/powerx"
-	customerDomainUC "PowerX/internal/uc/powerx/crm/customerdomain"
-	"PowerX/internal/uc/powerx/crm/infoorganization"
+	customerDomainUC "PowerX/internal/uc/powerx/crm/customerDomain"
+	"PowerX/internal/uc/powerx/crm/infoOrganization"
 	"PowerX/internal/uc/powerx/crm/market"
 	"PowerX/internal/uc/powerx/crm/operation"
 	productUC "PowerX/internal/uc/powerx/crm/product"
 	tradeUC "PowerX/internal/uc/powerx/crm/trade"
 	"PowerX/internal/uc/powerx/scrm"
 	"PowerX/internal/uc/powerx/wechat"
+
 	"github.com/ArtisanCloud/PowerLibs/v3/cache"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel"
 	"github.com/pkg/errors"
@@ -30,10 +32,11 @@ type PowerXUseCase struct {
 
 	Organization *powerx.OrganizationUseCase
 
-	Label    *infoorganization.LabelUseCase
-	Tag      *infoorganization.TagUseCase
-	Category *infoorganization.CategoryUseCase
+	Label    *infoOrganization.LabelUseCase
+	Tag      *infoOrganization.TagUseCase
+	Category *infoOrganization.CategoryUseCase
 
+	// CRM
 	CustomerAuthorization *customerDomainUC.AuthorizationCustomerDomainUseCase
 	Customer              *customerDomainUC.CustomerUseCase
 	Lead                  *customerDomainUC.LeadUseCase
@@ -56,13 +59,20 @@ type PowerXUseCase struct {
 	Logistics             *tradeUC.LogisticsUseCase
 	RefundOrder           *tradeUC.RefundOrderUseCase
 	Token                 *tradeUC.TokenUseCase
-	WechatMP              *wechat.WechatMiniProgramUseCase
-	WechatOA              *wechat.WechatOfficialAccountUseCase
+
+	// SCRM
+	WechatMP *wechat.WechatMiniProgramUseCase
+	WechatOA *wechat.WechatOfficialAccountUseCase
 	//WeWork                *powerx.WeWorkUseCase
 	SCRM          *scrm.SCRMUseCase
 	MediaResource *powerx.MediaResourceUseCase
-	Media         *market.MediaUseCase
-	Scene         *scrm.SceneUseCase
+
+	// Media
+	Media *market.MediaUseCase
+	Scene *scrm.SceneUseCase
+
+	// chatBot
+	ChatBot *ai.ChatBotUseCase
 }
 
 func NewPowerXUseCase(conf *config.Config) (uc *PowerXUseCase, clean func()) {
@@ -114,9 +124,9 @@ func NewPowerXUseCase(conf *config.Config) (uc *PowerXUseCase, clean func()) {
 	uc.AdminAuthorization = powerx.NewAdminPermsUseCase(conf, db, uc.Organization)
 
 	// 加载信息组织UseCase
-	uc.Label = infoorganization.NewLabelUseCase(db)
-	uc.Tag = infoorganization.NewTagUseCase(db)
-	uc.Category = infoorganization.NewCategoryUseCase(db)
+	uc.Label = infoOrganization.NewLabelUseCase(db)
+	uc.Tag = infoOrganization.NewTagUseCase(db)
+	uc.Category = infoOrganization.NewCategoryUseCase(db)
 
 	// 加载客域UseCase
 	uc.CustomerAuthorization = customerDomainUC.NewAuthorizationCustomerDomainUseCase(db)
@@ -167,6 +177,9 @@ func NewPowerXUseCase(conf *config.Config) (uc *PowerXUseCase, clean func()) {
 
 	// 加载Scene
 	uc.Scene = scrm.NewSceneUseCase(db, uc.redis)
+
+	// 加载Chatbot UseCase
+	uc.ChatBot = ai.NewChatBotUseCase(conf, db)
 
 	return uc, func() {
 		_ = sqlDB.Close()

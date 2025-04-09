@@ -14,7 +14,7 @@ etc/powerx-*
 etc/powerx.yaml
 .deploy/*
 .build
-powerx.go
+./powerx.go
 powerxctl
 powerx
 /data/*
@@ -22,4 +22,4 @@ powerx
 !internal/uc/powerx
 !cmd/server/powerx.go
 /plugins
-wechat
+./wechat
