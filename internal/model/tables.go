@@ -92,19 +92,19 @@ const TableNameTag = "tags"
 const TableNameWeComAppGroup = "wecom_app_groups"
 
 // scrm customer
-const TableNameWeComExternalContact = "we_work_external_contacts"
-const TableNameWeComExternalContactFollow = "we_work_external_contact_follows"
+const TableNameWeComExternalContact = "wecom_external_contacts"
+const TableNameWeComExternalContactFollow = "wecom_external_contact_follows"
 
 // scrm organization
-const TableNameWeComDepartment = "we_work_departments"
-const TableNameWeComUser = "we_work_users"
+const TableNameWeComDepartment = "wecom_departments"
+const TableNameWeComUser = "wecom_users"
 
 // scrm resource
-const TableNameWeComResource = "we_work_resources"
+const TableNameWeComResource = "wecom_resources"
 
 // scrm tag
-const TableNameWeComTagGroup = "we_work_tag_groups"
-const TableNameWeComTag = "we_work_tags"
+const TableNameWeComTagGroup = "wecom_tag_groups"
+const TableNameWeComTag = "wecom_tags"
 
 // wechat
 const TableNameWechatMPCustomer = "wechat_mp_customers"

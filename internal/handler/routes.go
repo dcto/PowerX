@@ -1718,7 +1718,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					// 部门列表/page
 					Method:  http.MethodPost,
 					Path:    "/department/page",
-					Handler: adminscrmwechatwecomorganization.ListWeComDepartMentPageHandler(serverCtx),
+					Handler: adminscrmwechatwecomorganization.ListWeComDepartmentPageHandler(serverCtx),
 				},
 			}...,
 		),

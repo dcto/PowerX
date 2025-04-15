@@ -170,7 +170,7 @@ type FindManyWeComDepartmentsOption struct {
 // FindManyWeComUsersOption
 // @Description:
 type FindManyWeComUsersOption struct {
-	WeComUserId           string `json:"we_work_user_id"` //员工唯一ID
+	WeComUserId           string `json:"wecom_user_id"` //员工唯一ID
 	Ids                   []int64
 	Names                 []string
 	Alias                 []string

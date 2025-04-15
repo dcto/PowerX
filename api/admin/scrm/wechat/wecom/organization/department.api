@@ -16,7 +16,7 @@ info(
 
 service PowerX {
     @doc "部门列表/page"
-    @handler ListWeComDepartMentPage
+    @handler ListWeComDepartmentPage
     post /department/page (ListWeComDepartmentReqeust) returns (ListWeComDepartmentReply)
 }
 

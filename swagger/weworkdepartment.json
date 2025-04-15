@@ -19,7 +19,7 @@
     "/api/v1/admin/scrm/organization/wechat/partment/page": {
       "post": {
         "summary": "部门列表/page",
-        "operationId": "ListWeComDepartMentPage",
+        "operationId": "ListWeComDepartmentPage",
         "responses": {
           "200": {
             "description": "A successful response.",

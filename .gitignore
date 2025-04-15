@@ -11,6 +11,7 @@ temp
 
 resource/static
 etc/powerx-*
+!etc/powerx-example.yaml
 etc/powerx.yaml
 .deploy/*
 .build

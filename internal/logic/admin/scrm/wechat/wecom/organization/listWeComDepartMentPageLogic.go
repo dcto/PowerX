@@ -12,22 +12,22 @@ import (
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-type ListWeComDepartMentPageLogic struct {
+type ListWeComDepartmentPageLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 }
 
 // 部门列表/page
-func NewListWeComDepartMentPageLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ListWeComDepartMentPageLogic {
-	return &ListWeComDepartMentPageLogic{
+func NewListWeComDepartmentPageLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ListWeComDepartmentPageLogic {
+	return &ListWeComDepartmentPageLogic{
 		Logger: logx.WithContext(ctx),
 		ctx:    ctx,
 		svcCtx: svcCtx,
 	}
 }
 
-func (l *ListWeComDepartMentPageLogic) ListWeComDepartMentPage(req *types.ListWeComDepartmentReqeust) (resp *types.ListWeComDepartmentReply, err error) {
+func (l *ListWeComDepartmentPageLogic) ListWeComDepartmentPage(req *types.ListWeComDepartmentReqeust) (resp *types.ListWeComDepartmentReply, err error) {
 	data, err := l.svcCtx.PowerX.SCRM.WeCom.FindManyWeComDepartmentsPage(l.ctx, l.OPT(req))
 
 	return &types.ListWeComDepartmentReply{
@@ -45,7 +45,7 @@ func (l *ListWeComDepartMentPageLogic) ListWeComDepartMentPage(req *types.ListWe
 //	@receiver depart
 //	@param opt
 //	@return *types.PageOption[wechat.FindManyWeComDepartmentsOption]
-func (l *ListWeComDepartMentPageLogic) OPT(opt *types.ListWeComDepartmentReqeust) *types.PageOption[wecom.FindManyWeComDepartmentsOption] {
+func (l *ListWeComDepartmentPageLogic) OPT(opt *types.ListWeComDepartmentReqeust) *types.PageOption[wecom.FindManyWeComDepartmentsOption] {
 
 	option := types.PageOption[wecom.FindManyWeComDepartmentsOption]{
 		Option:    wecom.FindManyWeComDepartmentsOption{},
@@ -70,7 +70,7 @@ func (l *ListWeComDepartMentPageLogic) OPT(opt *types.ListWeComDepartmentReqeust
 //	@receiver depart
 //	@param data
 //	@return departments
-func (l *ListWeComDepartMentPageLogic) DTO(data []*organization.WeComDepartment) (departments []*types.WeComDepartment) {
+func (l *ListWeComDepartmentPageLogic) DTO(data []*organization.WeComDepartment) (departments []*types.WeComDepartment) {
 
 	for _, val := range data {
 		departments = append(departments, l.dto(val))
@@ -85,7 +85,7 @@ func (l *ListWeComDepartMentPageLogic) DTO(data []*organization.WeComDepartment)
 //	@receiver depart
 //	@param val
 //	@return *types.WeComDepartment
-func (l *ListWeComDepartMentPageLogic) dto(val *organization.WeComDepartment) *types.WeComDepartment {
+func (l *ListWeComDepartmentPageLogic) dto(val *organization.WeComDepartment) *types.WeComDepartment {
 	var leader []string
 	if val.DepartmentLeader != `` {
 		leader = strings.Split(val.DepartmentLeader, `,`)

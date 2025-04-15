@@ -10,7 +10,7 @@ import (
 )
 
 // 部门列表/page
-func ListWeComDepartMentPageHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
+func ListWeComDepartmentPageHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.ListWeComDepartmentReqeust
 		if err := httpx.Parse(r, &req); err != nil {
@@ -18,8 +18,8 @@ func ListWeComDepartMentPageHandler(svcCtx *svc.ServiceContext) http.HandlerFunc
 			return
 		}
 
-		l := organization.NewListWeComDepartMentPageLogic(r.Context(), svcCtx)
-		resp, err := l.ListWeComDepartMentPage(&req)
+		l := organization.NewListWeComDepartmentPageLogic(r.Context(), svcCtx)
+		resp, err := l.ListWeComDepartmentPage(&req)
 		if err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 		} else {

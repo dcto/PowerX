@@ -213,7 +213,7 @@ func buildFindManyUsersQueryNoPage(query *gorm.DB, opt *FindManyWeComUsersOption
 		query.Where("open_user_id in ?", opt.OpenUserId)
 	}
 	if len(opt.WeComMainDepartmentId) > 0 {
-		query.Where("we_work_main_department_id in ? ", opt.WeComMainDepartmentId)
+		query.Where("wecom_main_department_id in ? ", opt.WeComMainDepartmentId)
 	}
 	if len(opt.Status) > 0 {
 		query.Where("status in ?", opt.Status)

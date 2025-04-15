@@ -10,7 +10,7 @@ import (
 type WeComUser struct {
 	powerModel.PowerModel
 
-	WeComUserId           string `gorm:"comment:员工ID;column:we_work_user_id;unique" json:"we_work_user_id"`
+	WeComUserId           string `gorm:"comment:员工ID;column:wecom_user_id;unique" json:"wecom_user_id"`
 	Name                  string `gorm:"comment:员工名称;column:name" json:"name"`
 	Position              string `gorm:"comment:员工位置;column:position" json:"position"`
 	Mobile                string `gorm:"comment:员工电话;column:mobile" json:"mobile"`
@@ -23,7 +23,7 @@ type WeComUser struct {
 	Alias                 string `gorm:"comment:别称;column:alias" json:"alias"`
 	Address               string `gorm:"comment:地址;column:address" json:"address"`
 	OpenUserId            string `gorm:"comment:开放ID;column:open_user_id" json:"open_user_id"`
-	WeComMainDepartmentId int    `gorm:"comment:部门ID;column:we_work_main_department_id" json:"we_work_main_department_id"`
+	WeComMainDepartmentId int    `gorm:"comment:部门ID;column:wecom_main_department_id" json:"wecom_main_department_id"`
 	Status                int    `gorm:"comment:状态;column:status" json:"status"`
 	QrCode                string `gorm:"comment:二维码;column:qr_code" json:"qr_code"`
 	Department            string `gorm:"comment:部门;column:department" json:"department"`
@@ -72,7 +72,7 @@ func (e WeComUser) Action(db *gorm.DB, users []*WeComUser) {
 
 	err := db.Table(e.TableName()).
 		//Debug().
-		Clauses(clause.OnConflict{Columns: []clause.Column{{Name: "we_work_user_id"}}, UpdateAll: true}).CreateInBatches(&users, 100).Error
+		Clauses(clause.OnConflict{Columns: []clause.Column{{Name: "wecom_user_id"}}, UpdateAll: true}).CreateInBatches(&users, 100).Error
 	if err != nil {
 		panic(err)
 	}

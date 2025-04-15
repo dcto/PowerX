@@ -76,7 +76,7 @@ func (uc *WeComUseCase) FindManyWeComDepartmentsPage(ctx context.Context, option
 	query := uc.db.WithContext(ctx).Model(organization.WeComDepartment{})
 
 	if len(option.Option.WeComDepId) > 0 {
-		query.Where(`we_work_dep_id in ?`, option.Option.WeComDepId)
+		query.Where(`wecom_dep_id in ?`, option.Option.WeComDepId)
 	}
 
 	if v := option.Option.Name; v == `` {
