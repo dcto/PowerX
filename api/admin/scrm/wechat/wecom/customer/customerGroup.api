@@ -1,0 +1,115 @@
+syntax = "v1"
+
+info(
+    title: "企业微信客户管理"
+    desc: "企业微信客户管理"
+    author: "Eros"
+    email: "smoke.mvp@gmail.com"
+    version: "v1"
+)
+
+@server(
+    group: admin/scrm/wechat/wecom/customer
+    prefix: /api/v1/admin/scrm/wechat/wecom/customer/wechat
+    middleware: UserJWTAuth
+)
+
+service PowerX {
+    @doc "客户群列表/limit"
+    @handler ListWeComCustomerGroupLimit
+    post /group/list (WeComCustomerGroupRequest) returns (WeComListCustomerGroupReply)
+
+    @doc "客户群发信息"
+    @handler SendWeComCustomerGroupMessage
+    post /group/message/template (WeComAddMsgTemplateRequest) returns (WeComAddMsgTemplateResponse)
+}
+
+
+
+
+type (
+    WeComCustomerGroupRequest {
+        StatusFilter int `json:"statusFilter,optional"` // https://developer.work.weixin.qq.com/document/path/92120
+        OwnerFilter OwnerFilter `json:"ownerFilter,optional"`
+        Cursor string `json:"cursor,optional"`
+        Limit int `json:"limit,optional"`
+    }
+    OwnerFilter {
+        UseridList []string `json:"useridList,optional"`
+    }
+)
+
+
+type (
+    WeComListCustomerGroupReply {
+        List []WechatCustomerGroup `json:"list"` //https://developer.work.weixin.qq.com/document/path/92122
+    }
+    WechatCustomerGroup {
+        ChatId string `json:"chatId"`
+        Name string `json:"name"`
+        Owner string `json:"owner"`
+        CreateTime int `json:"createTime"`
+        Notice string `json:"notice"`
+        MemberList []*WechatCustomerGroupMemberList `json:"memberList"`
+        AdminList []*WechatCustomerGroupAdminList `json:"adminList"`
+    }
+    WechatCustomerGroupAdminList {
+        UserId string `json:"userId"`
+    }
+
+    WechatCustomerGroupMemberList {
+        UserId string `json:"userId"`
+        Type int `json:"type"`
+        JoinTime int `json:"joinTime"`
+        JoinScene int `json:"joinScene"`
+        Invitor WechatCustomerGroupMemberListInvitor `json:"invitor"`
+        GroupNickname string `json:"groupNickname"`
+        Name string `json:"name"`
+        UnionId string `json:"unionId,omitempty"`
+    }
+    WechatCustomerGroupMemberListInvitor {
+        UserId string `json:"userId"`
+    }
+)
+
+
+type (
+    WeComAddMsgTemplateRequest {
+
+        ChatType string `json:"chatType,optional,options=single|group"`               // 群发任务的类型，默认为single，表示发送给客户，group表示发送给客户群
+        ExternalUserId []string `json:"externalUserId,optional"`                      // chat_type为single时有效，不可与sender同时为空
+        Sender string `json:"sender,optional"`                                        // 发送企业群发消息的成员userid，当类型为发送给客户群时必填
+        Text *WeComTextOfMessage `json:"text"`
+        Attachments []Content `json:"attachments,optional"`
+        SendTime int64 `json:"sendTime,optional"` // 定时发送，不填默认立刻发送// 附件， 当前仅支持图片
+    }
+
+    WeComTextOfMessage {
+        Content string `json:"content"` // "内容"
+    }
+
+    Content {
+        Link Link `json:"link,optional"`
+        //Image Image `json:"image,optional"`
+    }
+
+    Link {
+        MsgType string `json:"msgType,optional"` // 默认:link
+        Title string `json:"title"`              //  "消息标题",
+        PicURL string `json:"picUrl"`            //  "https://example.pic.com/path",
+        Desc string `json:"desc"`                //  "消息描述",
+        URL string `json:"url"`                  //  "https://example.link.com/path"
+    }
+
+    Image {
+        MediaId string `json:"mediaId,optional"` // 不填
+        PicUrl string `json:"picUrl,optional"`   // 图片地址
+    }
+
+
+    WeComAddMsgTemplateResponse {
+        FailList []string `json:"failList"`
+        MsgId string `json:"msgId"`
+    }
+)
+

@@ -1,0 +1,216 @@
+syntax = "v1"
+
+info(
+    title: "企业微信客户管理"
+    desc: "企业微信客户管理"
+    author: "Eros"
+    email: "smoke.mvp@gmail.com"
+    version: "v1"
+)
+
+@server(
+    group: admin/scrm/wechat/wecom/customer
+    prefix: /api/v1/admin/scrm/wechat/wecom
+    middleware: UserJWTAuth
+)
+
+service PowerX {
+    @doc "批量同步客户信息(根据员工ID同步/节流)"
+    @handler SyncWeComCustomerOption
+    post /customers/sync (WeComCustomersRequest) returns (WeComListCustomersReply)
+
+
+    @doc "所有客户列表/page"
+    @handler ListWeComCustomerPage
+    post /customers/page (WeComCustomersRequest) returns (WeComListCustomersReply)
+
+    @doc "查询客户详情"
+    @handler GetWeComCustomer
+    get /customers/:id (GetWeComCustomerRequest) returns (GetWeComCustomerReply)
+
+    @doc "查询客户详情列表"
+    @handler ListWeComCustomers
+    get /customers (ListWeComCustomersRequest) returns (ListWeComCustomersReply)
+
+    @doc "修改客户信息"
+    @handler PatchWeComCustomer
+    patch /customers/:id (PatchWeComCustomerRequest) returns (PatchWeComCustomerReply)
+
+    @doc "同步客户"
+    @handler SyncWeComCustomer
+    post /customers/actions/sync returns (SyncWeComCustomerReply)
+}
+
+
+
+type (
+    WeComCustomersRequest {
+        UserId string `json:"userId,optional"` //https://developer.work.weixin.qq.com/document/path/92113
+        Name string `json:"name,optional"`
+        UnionId string `json:"unionId,optional"`
+        TagId string `json:"tagId,optional"`
+        Sync int `form:"sync,optional"`        // 是否同步(所有客户列表生效，场景：前端复选框勾选后，请求数据都会自动同步)
+        PageIndex int `form:"pageIndex,optional"`
+        PageSize int `form:"pageSize,optional"`
+    }
+
+    WeComListCustomersReply {
+        List []*WeComCustomer `json:"list"`
+        PageIndex int `json:"pageIndex"`
+        PageSize int `json:"pageSize"`
+        Total int64 `json:"total"`
+    }
+)
+
+
+type (
+    WeComSyncCustomerReply {
+        Status string `json:"status"`
+    }
+)
+
+
+
+type ExternalContact {
+    Name string `json:"name"`
+    AdderId int64 `json:"adderId"`
+    AddTime string `json:"addTime"`
+    PatchTime string `json:"updateTime"`
+    AddChannel string `json:"addChannel"`
+    TagGroupIdList []int64 `json:"tagGroupIdList"`
+    TagIdList []int64 `json:"tagIdList"`
+    PersonalTagList []string `json:"personalTagList"`
+    Age int `json:"age"`
+    Email string `json:"email"`
+    PhoneNumber string `json:"phoneNumber"`
+    Address string `json:"address"`
+    Birthday string `json:"birthday"`
+    Remark string `json:"remark"`
+    GroupChatId int64 `json:"groupChatId"`
+}
+
+type (
+    WeComCustomer {
+        ExternalContact WeComCustomersWithExternalContactExternalProfile `json:"externalContact"`
+        FollowUser *WeComCustomersWithFollowUser `json:"followUser,omitempty"`
+
+        NextCursor string `json:"nextCursor,omitempty"`
+    }
+
+
+    WeComCustomersWithExternalContactExternalProfile {
+        ExternalUserId string `json:"externalUserId"`
+        Name string `json:"name"`
+        Position string `json:"position"`
+        Avatar string `json:"avatar"`
+        CorpName string `json:"corpName"`
+        CorpFullName string `json:"corpFullName"`
+        Type int `json:"type"`
+        Gender int `json:"gender"`
+        UnionId string `json:"unionId"`
+        UserId string `json:"userId"`
+        ExternalProfile ExternalContactExternalProfileWithExternalProfile `json:"externalProfile"`
+    }
+
+    ExternalContactExternalProfileWithExternalProfile {
+        ExternalAttr []*ExternalContactExternalProfileExternalProfileWithExternalAttr `json:"externalAttr"`
+    }
+
+    ExternalContactExternalProfileExternalProfileWithExternalAttr {
+        Type int `json:"type"`
+        Name string `json:"name"`
+        Text ExternalContactExternalProfileExternalProfileExternalAttrWithText `json:"text"`
+        Web ExternalContactExternalProfileExternalProfileExternalAttrWithWeb `json:"web"`
+        Miniprogram ExternalContactExternalProfileExternalProfileExternalAttrWithMiniprogram `json:"miniprogram"`
+    }
+    ExternalContactExternalProfileExternalProfileExternalAttrWithText {
+        Value string `json:"value"`
+    }
+
+    ExternalContactExternalProfileExternalProfileExternalAttrWithWeb {
+        Url string `json:"url"`
+        Title string `json:"title"`
+    }
+    ExternalContactExternalProfileExternalProfileExternalAttrWithMiniprogram {
+        Appid string `json:"appid"`
+        Pagepath string `json:"pagepath"`
+        Title string `json:"title"`
+    }
+
+    WeComCustomersWithFollowUser {
+        UserId string `json:"userId"`
+        Remark string `json:"remark"`
+        Description string `json:"description"`
+        CreatedTime int `json:"createtime"`
+        Tags []WeComCustomersFollowUserWithTags `json:"tags"`
+        TagIds []string `json:"tagIds"`
+        WeComChannels WeComCustomersFollowUserWithWeComChannels `json:"wechatChannels"`
+        RemarkCorpName string `json:"remarkCorpName,omitempty"`
+        RemarkMobiles []string `json:"remarkMobiles,omitempty"`
+        OpenUserId string `json:"openUserId"`
+        AddWay int `json:"addWay"`
+        State string `json:"state,omitempty"`
+    }
+    WeComCustomersFollowUserWithTags {
+        GroupName string `json:"groupName"`
+        TagName string `json:"tagName"`
+        TagId string `json:"tagId,omitempty"`
+        Type int `json:"type"`
+    }
+    WeComCustomersFollowUserWithWeComChannels {
+        Nickname string `json:"nickname"`
+        Source int `json:"source"`
+    }
+)
+
+
+type (
+    GetWeComCustomerRequest {
+        Id string `path:"id"`
+    }
+
+    GetWeComCustomerReply {
+        WeComCustomer
+    }
+)
+
+type (
+    ListWeComCustomersRequest {
+        LikeName string `form:"likeName,optional"`
+        FollowUserId string `form:"followUserId,optional"`
+        AddWay int `form:"addWay,optional"`
+        PageIndex int `form:"pageIndex,optional"`
+        PageSize int `form:"pageSize,optional"`
+    }
+
+    ListWeComCustomersReply {
+        List []GetWeComCustomerReply `json:"list"`
+        PageIndex int `json:"pageIndex"`
+        PageSize int `json:"pageSize"`
+        Total int64 `json:"total"`
+    }
+)
+
+type (
+    PatchWeComCustomerRequest {
+        Id string `path:"id"`
+        Name string `json:"name,optional"`
+        Age int `json:"age,optional"`
+        Email string `json:"email,optional"`
+        PhoneNumber string `json:"phoneNumber,optional"`
+        Address string `json:"address,optional"`
+        Birthday string `json:"birthday,optional"`
+        Remark string `json:"remark,optional"`
+        GroupChatId int64 `json:"groupChatId,optional"`
+    }
+
+    PatchWeComCustomerReply {
+        WeComCustomer
+    }
+)
+
+type (
+    SyncWeComCustomerReply {
+        Status string `json:"status"`
+    }
+)
