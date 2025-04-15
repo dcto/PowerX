@@ -19,7 +19,7 @@
     "/api/v1/admin/scrm/customer/wechat/page": {
       "post": {
         "summary": "所有客户列表/page",
-        "operationId": "ListWeWorkCustomerPage",
+        "operationId": "ListWeComCustomerPage",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -34,7 +34,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/WeWorkCustomersRequest"
+              "$ref": "#/definitions/WeComCustomersRequest"
             }
           }
         ],
@@ -47,7 +47,7 @@
     "/api/v1/admin/scrm/customer/wechat/sync": {
       "post": {
         "summary": "批量同步客户信息(根据员工ID同步/节流)",
-        "operationId": "SyncWeWorkCustomerOption",
+        "operationId": "SyncWeComCustomerOption",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -62,7 +62,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/WeWorkCustomersRequest"
+              "$ref": "#/definitions/WeComCustomersRequest"
             }
           }
         ],
@@ -166,7 +166,7 @@
         "externalAttr"
       ]
     },
-    "WeWorkCustomersRequest": {
+    "WeComCustomersRequest": {
       "type": "object",
       "properties": {
         "userId": {
@@ -196,29 +196,29 @@
           "format": "int32"
         }
       },
-      "title": "WeWorkCustomersRequest"
+      "title": "WeComCustomersRequest"
     },
-    "WechatCustomer": {
+    "WeComCustomer": {
       "type": "object",
       "properties": {
         "externalContact": {
-          "$ref": "#/definitions/WechatCustomersWithExternalContactExternalProfile"
+          "$ref": "#/definitions/WeComCustomersWithExternalContactExternalProfile"
         },
         "followUser": {
-          "$ref": "#/definitions/WechatCustomersWithFollowUser"
+          "$ref": "#/definitions/WeComCustomersWithFollowUser"
         },
         "nextCursor": {
           "type": "string"
         }
       },
-      "title": "WechatCustomer",
+      "title": "WeComCustomer",
       "required": [
         "externalContact",
         "followUser",
         "nextCursor"
       ]
     },
-    "WechatCustomersFollowUserWithTags": {
+    "WeComCustomersFollowUserWithTags": {
       "type": "object",
       "properties": {
         "groupName": {
@@ -235,7 +235,7 @@
           "format": "int32"
         }
       },
-      "title": "WechatCustomersFollowUserWithTags",
+      "title": "WeComCustomersFollowUserWithTags",
       "required": [
         "groupName",
         "tagName",
@@ -243,7 +243,7 @@
         "type"
       ]
     },
-    "WechatCustomersFollowUserWithWechatChannels": {
+    "WeComCustomersFollowUserWithWeComChannels": {
       "type": "object",
       "properties": {
         "nickname": {
@@ -254,13 +254,13 @@
           "format": "int32"
         }
       },
-      "title": "WechatCustomersFollowUserWithWechatChannels",
+      "title": "WeComCustomersFollowUserWithWeComChannels",
       "required": [
         "nickname",
         "source"
       ]
     },
-    "WechatCustomersWithExternalContactExternalProfile": {
+    "WeComCustomersWithExternalContactExternalProfile": {
       "type": "object",
       "properties": {
         "externalUserId": {
@@ -299,7 +299,7 @@
           "$ref": "#/definitions/ExternalContactExternalProfileWithExternalProfile"
         }
       },
-      "title": "WechatCustomersWithExternalContactExternalProfile",
+      "title": "WeComCustomersWithExternalContactExternalProfile",
       "required": [
         "externalUserId",
         "name",
@@ -314,7 +314,7 @@
         "externalProfile"
       ]
     },
-    "WechatCustomersWithFollowUser": {
+    "WeComCustomersWithFollowUser": {
       "type": "object",
       "properties": {
         "userId": {
@@ -333,7 +333,7 @@
         "tags": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/WechatCustomersFollowUserWithTags"
+            "$ref": "#/definitions/WeComCustomersFollowUserWithTags"
           }
         },
         "tagIds": {
@@ -342,8 +342,8 @@
             "type": "string"
           }
         },
-        "wechatChannels": {
-          "$ref": "#/definitions/WechatCustomersFollowUserWithWechatChannels"
+        "weComChannels": {
+          "$ref": "#/definitions/WeComCustomersFollowUserWithWeComChannels"
         },
         "remarkCorpName": {
           "type": "string"
@@ -365,7 +365,7 @@
           "type": "string"
         }
       },
-      "title": "WechatCustomersWithFollowUser",
+      "title": "WeComCustomersWithFollowUser",
       "required": [
         "userId",
         "remark",
@@ -373,7 +373,7 @@
         "createtime",
         "tags",
         "tagIds",
-        "wechatChannels",
+        "weComChannels",
         "remarkCorpName",
         "remarkMobiles",
         "openUserId",
@@ -387,7 +387,7 @@
         "list": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/WechatCustomer"
+            "$ref": "#/definitions/WeComCustomer"
           }
         },
         "pageIndex": {

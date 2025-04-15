@@ -1,7 +1,7 @@
 package wecom
 
 import (
-	"PowerX/internal/model/scrm/organization"
+	"PowerX/internal/model/scrm/wechat/wecom/organization"
 	"PowerX/internal/types"
 	"context"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/work/department/request"
@@ -69,7 +69,7 @@ func (uc *WeComUseCase) UpdateWeComDepartmentRequest(ctx context.Context, dep *o
 //	@param option
 //	@return *types.Page[*organization.WeComDepartment]
 //	@return error
-func (uc *WeComUseCase) FindManyWeComDepartmentsPage(ctx context.Context, option *types.PageOption[FindManyWechatDepartmentsOption]) (*types.Page[*organization.WeComDepartment], error) {
+func (uc *WeComUseCase) FindManyWeComDepartmentsPage(ctx context.Context, option *types.PageOption[FindManyWeComDepartmentsOption]) (*types.Page[*organization.WeComDepartment], error) {
 
 	var deps []*organization.WeComDepartment
 	var count int64

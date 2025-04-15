@@ -1,6 +1,6 @@
 package wechat
 
-type WeWorkExternalContact struct {
+type WeComExternalContact struct {
 	//model.Model
 	//CorpId         object.NullString `gorm:"index:idx_corp_id;column:corp_id" json:"corpId"`
 	//AppId          object.NullString `gorm:"index:idx_app_id;column:app_id" json:"appId"`

@@ -59,7 +59,7 @@ WechatMP:
   AESKey: PBcwPOp0e6tFou      # 微信小程序AES密钥
   HttpDebug: true           # 是否启用HTTP调试模式
 
-WeWork:
+WeCom:
   CropId: wx93607xxxxxxxxxx  # 企业微信CropID
   AgentId: 1000005           # 企业微信应用AgentID
   Secret: 6ZwxxxtFouxxxxxxxxxxxxxxxxxxx0tgXYw4oh7KI  # 企业微信应用Secret

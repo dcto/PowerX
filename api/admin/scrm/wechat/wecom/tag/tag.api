@@ -9,8 +9,8 @@ info(
 )
 
 @server(
-    group: admin/scrm/tag
-    prefix: /api/v1/admin/scrm/wechat/wecom/tag/wechat
+    group: admin/scrm/wechat/wecom/tag
+    prefix: /api/v1/admin/scrm/wechat/wecom/tags
     middleware: UserJWTAuth
 )
 

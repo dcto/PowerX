@@ -2,8 +2,8 @@ package wecom
 
 import (
 	organization2 "PowerX/internal/model/organization"
-	"PowerX/internal/model/powermodel"
-	"PowerX/internal/model/scrm/organization"
+	"PowerX/internal/model/powerModel"
+	organization3 "PowerX/internal/model/scrm/wechat/wecom/organization"
 	"PowerX/internal/types"
 	"context"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/work/department/response"
@@ -19,7 +19,7 @@ import (
 //	@param ctx
 //	@param dep
 //	@return error
-func (uc *WeComUseCase) CreateWeComUserRequest(ctx context.Context, user *organization.WeComUser) (err error) {
+func (uc *WeComUseCase) CreateWeComUserRequest(ctx context.Context, user *organization3.WeComUser) (err error) {
 
 	create, err := uc.Client.User.Create(ctx, uc.userModelToWeComRequest(user))
 	if err != nil {
@@ -29,7 +29,7 @@ func (uc *WeComUseCase) CreateWeComUserRequest(ctx context.Context, user *organi
 	}
 
 	if err == nil {
-		uc.modelWeComOrganization.user.Action(uc.db, []*organization.WeComUser{user})
+		uc.modelWeComOrganization.user.Action(uc.db, []*organization3.WeComUser{user})
 	}
 
 	return err
@@ -43,7 +43,7 @@ func (uc *WeComUseCase) CreateWeComUserRequest(ctx context.Context, user *organi
 //	@param ctx
 //	@param dep
 //	@return err
-func (uc *WeComUseCase) UpdateWeComUserRequest(ctx context.Context, user *organization.WeComUser) (err error) {
+func (uc *WeComUseCase) UpdateWeComUserRequest(ctx context.Context, user *organization3.WeComUser) (err error) {
 
 	update, err := uc.Client.User.Update(ctx, uc.userModelToWeComRequest(user))
 
@@ -54,7 +54,7 @@ func (uc *WeComUseCase) UpdateWeComUserRequest(ctx context.Context, user *organi
 	}
 
 	if err == nil {
-		uc.modelWeComOrganization.user.Action(uc.db, []*organization.WeComUser{user})
+		uc.modelWeComOrganization.user.Action(uc.db, []*organization3.WeComUser{user})
 	}
 	return err
 
@@ -65,7 +65,7 @@ func (uc *WeComUseCase) UpdateWeComUserRequest(ctx context.Context, user *organi
 //	@Description:
 //	@param user
 //	@return *request.RequestUserDetail
-func (uc *WeComUseCase) userModelToWeComRequest(user *organization.WeComUser) *request.RequestUserDetail {
+func (uc *WeComUseCase) userModelToWeComRequest(user *organization3.WeComUser) *request.RequestUserDetail {
 
 	return &request.RequestUserDetail{
 		Userid:         user.WeComUserId,
@@ -130,7 +130,7 @@ func (uc *WeComUseCase) deparment(val response.DepartmentID) {
 
 	if err == nil && department.Department != nil {
 
-		uc.modelWeComOrganization.department.Action(uc.db, []*organization.WeComDepartment{
+		uc.modelWeComOrganization.department.Action(uc.db, []*organization3.WeComDepartment{
 			{
 				WeComDepId:       department.Department.ID,
 				Name:             department.Department.Name,
@@ -160,11 +160,11 @@ func (uc *WeComUseCase) user(val response.DepartmentID) {
 	}
 
 	if err == nil && len(users.UserList) > 0 {
-		users := []*organization.WeComUser{}
+		users := []*organization3.WeComUser{}
 		for _, user := range users {
 			if user != nil {
 				open, _ := uc.Client.User.UserIdToOpenID(uc.ctx, user.WeComUserId)
-				users = append(users, &organization.WeComUser{
+				users = append(users, &organization3.WeComUser{
 					WeComUserId:           user.WeComUserId,
 					Name:                  user.Name,
 					Position:              user.Position,
@@ -193,7 +193,7 @@ func (uc *WeComUseCase) user(val response.DepartmentID) {
 //	@param query
 //	@param opt
 //	@return *gorm.DB
-func buildFindManyUsersQueryNoPage(query *gorm.DB, opt *FindManyWechatUsersOption) *gorm.DB {
+func buildFindManyUsersQueryNoPage(query *gorm.DB, opt *FindManyWeComUsersOption) *gorm.DB {
 	if len(opt.Ids) > 0 {
 		query.Where("id in ?", opt.Ids)
 	}
@@ -229,9 +229,9 @@ func buildFindManyUsersQueryNoPage(query *gorm.DB, opt *FindManyWechatUsersOptio
 //	@param opt
 //	@return *types.Page[*organization.WeComUser]
 //	@return error
-func (uc *WeComUseCase) FindManyWechatUsersPage(ctx context.Context, opt *types.PageOption[FindManyWechatUsersOption]) (*types.Page[*organization.WeComUser], error) {
+func (uc *WeComUseCase) FindManyWechatUsersPage(ctx context.Context, opt *types.PageOption[FindManyWeComUsersOption]) (*types.Page[*organization3.WeComUser], error) {
 
-	var users []*organization.WeComUser
+	var users []*organization3.WeComUser
 	var count int64
 
 	query := uc.db.WithContext(ctx).Table(uc.modelWeComOrganization.user.TableName())
@@ -240,7 +240,7 @@ func (uc *WeComUseCase) FindManyWechatUsersPage(ctx context.Context, opt *types.
 		opt.PageIndex = 1
 	}
 	if opt.PageSize == 0 {
-		opt.PageSize = powermodel.PageDefaultSize
+		opt.PageSize = powerModel.PageDefaultSize
 	}
 	query = buildFindManyUsersQueryNoPage(query, &opt.Option)
 
@@ -253,7 +253,7 @@ func (uc *WeComUseCase) FindManyWechatUsersPage(ctx context.Context, opt *types.
 
 	err := query.Find(&users).Error
 
-	return &types.Page[*organization.WeComUser]{
+	return &types.Page[*organization3.WeComUser]{
 		List:      users,
 		PageIndex: opt.PageIndex,
 		PageSize:  opt.PageSize,
@@ -271,7 +271,7 @@ func (uc *WeComUseCase) FindManyWechatUsersPage(ctx context.Context, opt *types.
 //	@return error
 func (uc *WeComUseCase) getWechatUserIDs(ctx context.Context) (ids []string, err error) {
 
-	ids = organization.AdapterUserSliceUserIDs(func(users []*organization.WeComUser) (ids []string) {
+	ids = organization3.AdapterUserSliceUserIDs(func(users []*organization3.WeComUser) (ids []string) {
 		for _, user := range users {
 			ids = append(ids, user.WeComUserId)
 		}
@@ -288,7 +288,7 @@ func (uc *WeComUseCase) getWechatUserIDs(ctx context.Context) (ids []string, err
 //	@receiver this
 //	@param fromUser
 //	@return toUser
-func (uc *WeComUseCase) userFromWeComSyncToLocal(fromUser []*organization.WeComUser) (toUser []*organization2.User) {
+func (uc *WeComUseCase) userFromWeComSyncToLocal(fromUser []*organization3.WeComUser) (toUser []*organization2.User) {
 
 	if fromUser != nil {
 		password, _ := organization2.HashPassword(`123456`)

@@ -7,13 +7,13 @@ import (
 	"time"
 )
 
-// CreateWeComCustomerGroupQrcodeRequest
+// CreateWeComCustomerGroupQRCodeRequest
 //
 //	@Description: 创建客户群活码
 //	@receiver this
 //	@param opt
 //	@return error
-func (uc *WeComUseCase) CreateWeComCustomerGroupQrcodeRequest(opt *types.QrcodeActiveRequest) (err error) {
+func (uc *WeComUseCase) CreateWeComCustomerGroupQRCodeRequest(opt *types.QRCodeActiveRequest) (err error) {
 
 	uc.qrcode.Action(uc.db, []*scene.SceneQRCode{
 		{
@@ -21,7 +21,7 @@ func (uc *WeComUseCase) CreateWeComCustomerGroupQrcodeRequest(opt *types.QrcodeA
 			Name:               opt.Name,
 			Desc:               opt.Desc,
 			Owner:              strings.Join(opt.Owner, `,`),
-			RealQrcodeLink:     opt.RealQrcodeLink,
+			RealQRCodeLink:     opt.RealQRCodeLink,
 			Platform:           1,
 			Classify:           1,
 			SceneLink:          opt.SceneLink,
@@ -35,19 +35,19 @@ func (uc *WeComUseCase) CreateWeComCustomerGroupQrcodeRequest(opt *types.QrcodeA
 	return err
 }
 
-// UpdateWeComCustomerGroupQrcodeRequest
+// UpdateWeComCustomerGroupQRCodeRequest
 //
 //	@Description: 更新客户群活码
 //	@receiver this
 //	@param opt
 //	@return error
-func (uc *WeComUseCase) UpdateWeComCustomerGroupQrcodeRequest(opt *types.QrcodeActiveRequest) (err error) {
+func (uc *WeComUseCase) UpdateWeComCustomerGroupQRCodeRequest(opt *types.QRCodeActiveRequest) (err error) {
 
 	qrcode := uc.qrcode.FindByQid(uc.db, opt.Qid)
 	if qrcode != nil {
 
 		qrcode.Name = opt.Name
-		qrcode.RealQrcodeLink = opt.RealQrcodeLink
+		qrcode.RealQRCodeLink = opt.RealQRCodeLink
 		qrcode.Desc = opt.Desc
 		qrcode.Owner = strings.Join(opt.Owner, `,`)
 		qrcode.SceneLink = opt.SceneLink
@@ -60,14 +60,14 @@ func (uc *WeComUseCase) UpdateWeComCustomerGroupQrcodeRequest(opt *types.QrcodeA
 	return err
 }
 
-// FindWeComCustomerGroupQrcodePage
+// FindWeComCustomerGroupQRCodePage
 //
 //	@Description: 客户群活码
 //	@receiver this
 //	@param opt
 //	@return reply
 //	@return error
-func (uc *WeComUseCase) FindWeComCustomerGroupQrcodePage(option *types.PageOption[types.ListWeComGroupQrcodeActiveReqeust]) (reply *types.Page[*scene.SceneQRCode], err error) {
+func (uc *WeComUseCase) FindWeComCustomerGroupQRCodePage(option *types.PageOption[types.ListWeComGroupQRCodeActiveReqeust]) (reply *types.Page[*scene.SceneQRCode], err error) {
 
 	var code []*scene.SceneQRCode
 	var count int64
@@ -101,19 +101,19 @@ func (uc *WeComUseCase) FindWeComCustomerGroupQrcodePage(option *types.PageOptio
 	}, err
 }
 
-// ActionCustomerGroupQrcode
+// ActionCustomerGroupQRCode
 //
 //	@Description:
 //	@receiver this
 //	@param qid
 //	@return error
-func (uc *WeComUseCase) ActionCustomerGroupQrcode(qid string, action int) error {
+func (uc *WeComUseCase) ActionCustomerGroupQRCode(qid string, action int) error {
 	column := make(map[string]interface{})
 	column[`state`] = action
 	if action == 3 {
 		column[`deleted_at`] = time.Now()
 	}
-	uc.modelWeComQrcode.qrcode.UpdateColumn(uc.db, qid, column)
+	uc.modelWeComQRCode.qrcode.UpdateColumn(uc.db, qid, column)
 
 	return nil
 }
@@ -129,7 +129,7 @@ func (uc *WeComUseCase) UpdateSceneQRCodeLink(qid string, link string) error {
 
 	column := make(map[string]interface{})
 	column[`active_qrcode_link`] = link
-	uc.modelWeComQrcode.qrcode.UpdateColumn(uc.db, qid, column)
+	uc.modelWeComQRCode.qrcode.UpdateColumn(uc.db, qid, column)
 
 	return nil
 }

@@ -22,7 +22,7 @@ type Department struct {
 	Remark      string        `gorm:"comment:备注;column:remark" json:"remark"`
 	IsReserved  bool          `gorm:"comment:保留;column:is_reserved" json:"is_reserved"`
 	//
-	IsWeWorkArchitecture bool `gorm:"comment:是否启用企微架构;column:is_we_work_architecture" json:"is_we_work_architecture"`
+	IsWeComArchitecture bool `gorm:"comment:是否启用企微架构;column:is_we_work_architecture" json:"is_we_work_architecture"`
 }
 
 func (mdl *Department) TableName() string {

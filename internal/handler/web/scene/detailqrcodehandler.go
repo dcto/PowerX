@@ -9,7 +9,7 @@ import (
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 
-func DetailQrcodeHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
+func DetailQRCodeHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.SceneRequest
 		if err := httpx.Parse(r, &req); err != nil {
@@ -17,8 +17,8 @@ func DetailQrcodeHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		l := scene.NewDetailQrcodeLogic(r.Context(), svcCtx)
-		resp, err := l.DetailQrcode(&req)
+		l := scene.NewDetailQRCodeLogic(r.Context(), svcCtx)
+		resp, err := l.DetailQRCode(&req)
 		if err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 		} else {

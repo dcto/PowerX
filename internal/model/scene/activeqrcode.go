@@ -13,7 +13,7 @@ type SceneQRCode struct {
 	Name               string `gorm:"comment:活码名称;column:name" json:"name"`
 	Desc               string `gorm:"comment:描述;column:desc" json:"desc"`
 	Owner              string `gorm:"comment:所属人(userId逗号隔开);column:owner" json:"owner"`
-	RealQrcodeLink     string `gorm:"comment:真实二维码图片;column:real_qrcode_link" json:"real_qrcode_link"`
+	RealQRCodeLink     string `gorm:"comment:真实二维码图片;column:real_qrcode_link" json:"real_qrcode_link"`
 	Platform           int    `gorm:"comment:平台:1:企业微信;column:platform" json:"platform"`
 	Classify           int    `gorm:"comment:分类:1:群活码,2:客户活码,3:渠道活码;column:classify" json:"classify"`
 	SceneLink          string `gorm:"comment:场景落地页;column:scene_link" json:"scene_link"`
@@ -23,7 +23,7 @@ type SceneQRCode struct {
 	Cpa                int    `gorm:"comment:打开次数;column:cpa" json:"cpa"`
 
 	//
-	ActiveQrcodeLink string `gorm:"comment:活码图,方便后续嵌入媒资文章;column:active_qrcode_link" json:"active_qrcode_link"`
+	ActiveQRCodeLink string `gorm:"comment:活码图,方便后续嵌入媒资文章;column:active_qrcode_link" json:"active_qrcode_link"`
 	State            int    `gorm:"comment:状态1:启用 2:禁用 3:删除;column:state" json:"state"`
 }
 
@@ -62,7 +62,7 @@ func (e *SceneQRCode) Query(db *gorm.DB) (qrcode []*SceneQRCode) {
 //	@receiver this
 //	@param db
 //	@param group
-//	@return []*WeWorkAppGroup
+//	@return []*WeComAppGroup
 func (e *SceneQRCode) Action(db *gorm.DB, qrcode []*SceneQRCode) {
 
 	err := db.Table(e.TableName()).Clauses(clause.OnConflict{Columns: []clause.Column{{Name: "qid"}}, UpdateAll: true}).Create(&qrcode).Error

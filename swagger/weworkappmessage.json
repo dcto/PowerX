@@ -19,7 +19,7 @@
     "/api/v1/admin/scrm/app/wechat/message/articles": {
       "post": {
         "summary": "App发送图文信息",
-        "operationId": "SendWeWorkAppArticleMessage",
+        "operationId": "SendWeComAppArticleMessage",
         "responses": {
           "200": {
             "description": "A successful response.",

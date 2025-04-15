@@ -2,46 +2,29 @@ package scrm
 
 import (
 	"PowerX/internal/config"
-	"PowerX/internal/uc/powerx/scrm/wechat"
-	"fmt"
-	"github.com/ArtisanCloud/PowerWeChat/v3/src/work"
+	"PowerX/internal/uc/powerx/scrm/wechat/wecom"
 	"github.com/robfig/cron/v3"
-	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/core/stores/redis"
 	"gorm.io/gorm"
-	"time"
 )
 
 type SCRMUseCase struct {
-	db     *gorm.DB
-	kv     *redis.Redis
-	Cron   *cron.Cron
-	Wework *work.Work
-	Wechat wechat.IWechatInterface
+	db   *gorm.DB
+	kv   *redis.Redis
+	Cron *cron.Cron
+	// Wechat
+	WeCom *wecom.WeComUseCase
+
 	//DTalk
 }
 
 func NewSCRMUseCase(db *gorm.DB, conf *config.Config, c *cron.Cron, kv *redis.Redis) *SCRMUseCase {
-	wework, err := work.NewWork(&work.UserConfig{
-		CorpID:  conf.WeWork.CropId,
-		AgentID: conf.WeWork.AgentId,
-		Secret:  conf.WeWork.Secret,
-		OAuth: work.OAuth{
-			Callback: conf.WeWork.OAuth.Callback,
-			Scopes:   conf.WeWork.OAuth.Scopes,
-		},
-		Token:     conf.WeWork.Token,
-		AESKey:    conf.WeWork.EncodingAESKey,
-		HttpDebug: conf.WeWork.Debug,
-	})
-	if err != nil {
-		panic(err)
-	}
+	work := wecom.NewWeComUseCase(db, conf)
+
 	return &SCRMUseCase{
-		db:     db,
-		Cron:   c,
-		Wework: wework,
-		Wechat: wechat.Repo(db, wework, kv),
+		db:    db,
+		Cron:  c,
+		WeCom: work,
 	}
 }
 
@@ -49,31 +32,31 @@ func NewSCRMUseCase(db *gorm.DB, conf *config.Config, c *cron.Cron, kv *redis.Re
 //
 //	@Description:
 //	@receiver this
-func (this *SCRMUseCase) Schedule() {
+func (uc *SCRMUseCase) Schedule() {
 
-	sl := []wechat.TimerTypeByte{
-		// customer message
-		wechat.AppGroupCustomerMessageTimerTypeByte,
-		// app group organization message
-		wechat.AppGroupOrganizationMessageTimerTypeByte,
-		// app message
-		wechat.AppMessageTimerTypeByte,
-	}
-
-	_, _ = this.Cron.AddFunc(`*/1 * * * *`, func() {
-		var err error
-		//  timer 1 minute
-		unix := time.Now()
-
-		for _, val := range sl {
-			err = this.Wechat.InvokeTimerMessageGrabUniteSend(val, unix.Unix())
-			if err != nil {
-				logx.Info(fmt.Sprintf(`--- [%s] cron.schedule.call.message.%d.error, %v.`, unix.String(), val, err))
-			}
-		}
-
-	})
-
-	go this.Cron.Start()
+	//sl := []wecom.TimerTypeByte{
+	//	// customer message
+	//	wecom.AppGroupCustomerMessageTimerTypeByte,
+	//	// app group organization message
+	//	wecom.AppGroupOrganizationMessageTimerTypeByte,
+	//	// app message
+	//	wecom.AppMessageTimerTypeByte,
+	//}
+	//
+	//_, _ = uc.Cron.AddFunc(`*/1 * * * *`, func() {
+	//	var err error
+	//	//  timer 1 minute
+	//	unix := time.Now()
+	//
+	//	for _, val := range sl {
+	//		err = uc.WeCom.InvokeTimerMessageGrabUniteSend(val, unix.Unix())
+	//		if err != nil {
+	//			logx.Info(fmt.Sprintf(`--- [%s] cron.schedule.call.message.%d.error, %v.`, unix.String(), val, err))
+	//		}
+	//	}
+	//
+	//})
+	//
+	//go uc.Cron.Start()
 
 }

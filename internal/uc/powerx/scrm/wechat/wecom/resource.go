@@ -1,8 +1,8 @@
 package wecom
 
 import (
-	"PowerX/internal/model/powermodel"
-	"PowerX/internal/model/scrm/resource"
+	"PowerX/internal/model/powerModel"
+	"PowerX/internal/model/scrm/wechat/wecom/resource"
 	"PowerX/internal/types"
 	"bytes"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/power"
@@ -113,7 +113,7 @@ func (uc *WeComUseCase) FindWeComResourceListFromLocalPage(opt *types.ListWeComR
 		opt.PageIndex = 1
 	}
 	if opt.PageSize == 0 {
-		opt.PageSize = powermodel.PageDefaultSize
+		opt.PageSize = powerModel.PageDefaultSize
 	}
 	if v := opt.ResourceType; v != `` {
 		query.Where(`resource_type = ?`, v)

@@ -2,10 +2,10 @@ package wecom
 
 import (
 	"PowerX/internal/model/scene"
-	"PowerX/internal/model/scrm/customer"
-	"PowerX/internal/model/scrm/organization"
-	"PowerX/internal/model/scrm/resource"
-	"PowerX/internal/model/scrm/tag"
+	"PowerX/internal/model/scrm/wechat/wecom/customer"
+	organization2 "PowerX/internal/model/scrm/wechat/wecom/organization"
+	"PowerX/internal/model/scrm/wechat/wecom/resource"
+	tag2 "PowerX/internal/model/scrm/wechat/wecom/tag"
 	"PowerX/internal/types"
 	"context"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/power"
@@ -66,7 +66,7 @@ type IWechatInterface interface {
 	//
 	//  @Description: qrcode
 	//
-	iQrcodeInterface
+	iQRCodeInterface
 	//
 	//  @Description: tag
 	//
@@ -92,7 +92,7 @@ type iWeComDepartmentInterface interface {
 	//  @param option
 	//  @return *types.Page[*organization.Department]
 	//
-	FindManyWeComDepartmentsPage(ctx context.Context, option *types.PageOption[FindManyWechatDepartmentsOption]) (*types.Page[*organization.WeComDepartment], error)
+	FindManyWeComDepartmentsPage(ctx context.Context, option *types.PageOption[FindManyWeComDepartmentsOption]) (*types.Page[*organization2.WeComDepartment], error)
 }
 
 // iWeComUserInterface
@@ -112,7 +112,7 @@ type iWeComUserInterface interface {
 	//  @param opt
 	//  @return *types.Page[*organization.WeComUser]
 	//
-	FindManyWechatUsersPage(ctx context.Context, opt *types.PageOption[FindManyWechatUsersOption]) (*types.Page[*organization.WeComUser], error)
+	FindManyWechatUsersPage(ctx context.Context, opt *types.PageOption[FindManyWeComUsersOption]) (*types.Page[*organization2.WeComUser], error)
 }
 
 // iWeComCustomerInterface
@@ -136,7 +136,7 @@ type iWeComCustomerInterface interface {
 	PullListWeComCustomerGroupRequest(opt *customerGroupReq.RequestGroupChatList) (list []*customerGroupResp.ResponseGroupChatGet, err error)
 
 	//
-	// FindManyWechatCustomerPage
+	// FindManyWeComCustomerPage
 	//  @Description: 所有客户
 	//  @param ctx
 	//  @param opt
@@ -144,7 +144,7 @@ type iWeComCustomerInterface interface {
 	//  @return *types.Page[*customer.WeComExternalContact]
 	//  @return error
 	//
-	FindManyWeComCustomerPage(ctx context.Context, opt *types.PageOption[FindManyWechatCustomerOption], sync int) (*types.Page[*customer.WeComExternalContact], error)
+	FindManyWeComCustomerPage(ctx context.Context, opt *types.PageOption[FindManyWeComCustomerOption], sync int) (*types.Page[*customer.WeComExternalContact], error)
 
 	//
 	// PushWoWorkCustomerTemplateRequest
@@ -267,41 +267,41 @@ type iCommonInterface interface {
 	FindWeComResourceListFromLocalPage(opt *types.ListWeComResourceImageRequest) (*types.Page[*resource.WeComResource], error)
 }
 
-// iQrcodeInterface
+// iQRCodeInterface
 // @Description: 活码
-type iQrcodeInterface interface {
+type iQRCodeInterface interface {
 
 	//
-	// CreateWeComCustomerGroupQrcodeRequest
+	// CreateWeComCustomerGroupQRCodeRequest
 	//  @Description: 创建群活码
 	//  @param opt
 	//  @return err
 	//
-	CreateWeComCustomerGroupQrcodeRequest(opt *types.QrcodeActiveRequest) (err error)
+	CreateWeComCustomerGroupQRCodeRequest(opt *types.QRCodeActiveRequest) (err error)
 	//
-	// UpdateWeComCustomerGroupQrcodeRequest
+	// UpdateWeComCustomerGroupQRCodeRequest
 	//  @Description: 更新群活码
 	//  @param opt
 	//  @return err
 	//
-	UpdateWeComCustomerGroupQrcodeRequest(opt *types.QrcodeActiveRequest) (err error)
+	UpdateWeComCustomerGroupQRCodeRequest(opt *types.QRCodeActiveRequest) (err error)
 	//
-	// FindWeComCustomerGroupQrcodePage
+	// FindWeComCustomerGroupQRCodePage
 	//  @Description: 客户群活码
 	//  @param opt
 	//  @return reply
 	//  @return err
 	//
-	FindWeComCustomerGroupQrcodePage(opt *types.PageOption[types.ListWeComGroupQrcodeActiveReqeust]) (reply *types.Page[*scene.SceneQRCode], err error)
+	FindWeComCustomerGroupQRCodePage(opt *types.PageOption[types.ListWeComGroupQRCodeActiveReqeust]) (reply *types.Page[*scene.SceneQRCode], err error)
 
 	//
-	// ActionCustomerGroupQrcode
+	// ActionCustomerGroupQRCode
 	//  @Description: 启用，禁用，删除
 	//  @param qid
 	//  @param action
 	//  @return error
 	//
-	ActionCustomerGroupQrcode(qid string, action int) error
+	ActionCustomerGroupQRCode(qid string, action int) error
 
 	//
 	// UpdateSceneQRCodeLink
@@ -322,7 +322,7 @@ type iTagInterface interface {
 	//  @return reply
 	//  @return err
 	//
-	FindListWeComTagGroupOption() (reply []*tag.WeComTagGroup, err error)
+	FindListWeComTagGroupOption() (reply []*tag2.WeComTagGroup, err error)
 	//
 	// FindListWeComTagGroupPage
 	//  @Description: 标签组分页
@@ -330,7 +330,7 @@ type iTagInterface interface {
 	//  @return reply
 	//  @return err
 	//
-	FindListWeComTagGroupPage(option *types.PageOption[types.ListWeComTagGroupPageRequest]) (reply *types.Page[*tag.WeComTagGroup], err error)
+	FindListWeComTagGroupPage(option *types.PageOption[types.ListWeComTagGroupPageRequest]) (reply *types.Page[*tag2.WeComTagGroup], err error)
 
 	//
 	// ActionWeComCorpTagGroupRequest
@@ -347,7 +347,7 @@ type iTagInterface interface {
 	//  @return reply
 	//  @return err
 	//
-	FindListWeComTagOption() (reply []*tag.WeComTag, err error)
+	FindListWeComTagOption() (reply []*tag2.WeComTag, err error)
 	//
 	// FindListWeComTagPage
 	//  @Description: 企业标签查询
@@ -355,7 +355,7 @@ type iTagInterface interface {
 	//  @return reply
 	//  @return err
 	//
-	FindListWeComTagPage(option *types.PageOption[types.ListWeComTagReqeust]) (reply *types.Page[*tag.WeComTag], err error)
+	FindListWeComTagPage(option *types.PageOption[types.ListWeComTagReqeust]) (reply *types.Page[*tag2.WeComTag], err error)
 	//
 	// PullListWeComCorpTagRequest
 	//  @Description: 企业标签

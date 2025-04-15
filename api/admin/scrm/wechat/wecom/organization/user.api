@@ -9,15 +9,15 @@ info(
 )
 
 @server(
-    group: admin/scrm/organization
-    prefix: /api/v1/admin/scrm/wechat/wecom/organization/wechat
+    group: admin/scrm/wechat/wecom/organization
+    prefix: /api/v1/admin/scrm/wechat/wecom/organization/users
     middleware: UserJWTAuth
 )
 
 service PowerX {
     @doc "员工列表/page"
     @handler ListWeComUserPage
-    post /user/page (ListWeComUserReqeust) returns (ListWeComUserReply)
+    post /page (ListWeComUserReqeust) returns (ListWeComUserReply)
 
     @doc "同步组织架构/department&user"
     @handler SyncWeComUser
@@ -43,7 +43,7 @@ type (
         Email string `json:"email,optional"`                                  // 微信员工Email
         Mobile string `json:"mobile,optional"`                                // 微信员工手机号
         OpenUserId string `json:"openUserId,optional"`                        // openID
-        WeComMainDepartmentId int64 `json:"weWorkMainDepartmentId,optional"` // 微信员工所属部门
+        WeComMainDepartmentId int64 `json:"weComMainDepartmentId,optional"` // 微信员工所属部门
         Status int `json:"status,optional"`                                   // 状态
         PageIndex int `form:"pageIndex,optional"`
         PageSize int `form:"pageSize,optional"`
@@ -58,7 +58,7 @@ type (
         //
     WechatUser {
 
-        WeComUserId string `json:"weWorkUserId"`
+        WeComUserId string `json:"weComUserId"`
         Name string `json:"name"`
         Position string `json:"position"`
         Mobile string `gorm:"unique"`
@@ -71,7 +71,7 @@ type (
         Alias string `json:"alias"`
         Address string `json:"address"`
         OpenUserId string `json:"openUserId"`
-        WeComMainDepartmentId int `json:"weWorkMainDepartmentId"`
+        WeComMainDepartmentId int `json:"weComMainDepartmentId"`
         Status int `json:"status"`
         QrCode string `json:"qrCode"`
     }

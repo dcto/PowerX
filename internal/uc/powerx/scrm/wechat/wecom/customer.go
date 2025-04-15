@@ -1,9 +1,9 @@
 package wecom
 
 import (
-	"PowerX/internal/model/powermodel"
-	"PowerX/internal/model/scrm/customer"
-	"PowerX/internal/model/scrm/organization"
+	"PowerX/internal/model/powerModel"
+	customer2 "PowerX/internal/model/scrm/wechat/wecom/customer"
+	"PowerX/internal/model/scrm/wechat/wecom/organization"
 	"PowerX/internal/types"
 	"context"
 	"encoding/json"
@@ -25,22 +25,22 @@ import (
 //	@param sync
 //	@return *types.Page[*customer.WeComExternalContact]
 //	@return error
-func (uc *WeComUseCase) FindManyWeComCustomerPage(ctx context.Context, opt *types.PageOption[FindManyWechatCustomerOption], sync int) (*types.Page[*customer.WeComExternalContact], error) {
+func (uc *WeComUseCase) FindManyWeComCustomerPage(ctx context.Context, opt *types.PageOption[FindManyWeComCustomerOption], sync int) (*types.Page[*customer2.WeComExternalContact], error) {
 
 	if sync > 0 {
 		uc.pullSyncWeComCustomerRequest(opt.Option.UserId)
 	}
 
-	var customers []*customer.WeComExternalContact
+	var customers []*customer2.WeComExternalContact
 	var count int64
-	query := uc.db.WithContext(ctx).Table(new(customer.WeComExternalContact).TableName() + ` AS a`).
-		Joins(fmt.Sprintf(`LEFT JOIN %s AS b ON a.external_user_id=b.external_user_id`, new(customer.WeComExternalContactFollow).TableName()))
+	query := uc.db.WithContext(ctx).Table(new(customer2.WeComExternalContact).TableName() + ` AS a`).
+		Joins(fmt.Sprintf(`LEFT JOIN %s AS b ON a.external_user_id=b.external_user_id`, new(customer2.WeComExternalContactFollow).TableName()))
 
 	if opt.PageIndex == 0 {
 		opt.PageIndex = 1
 	}
 	if opt.PageSize == 0 {
-		opt.PageSize = powermodel.PageDefaultSize
+		opt.PageSize = powerModel.PageDefaultSize
 	}
 	query = buildFindManyCustomerQueryNoPage(query, &opt.Option)
 
@@ -53,7 +53,7 @@ func (uc *WeComUseCase) FindManyWeComCustomerPage(ctx context.Context, opt *type
 
 	err := query.Preload(`WeComExternalContactFollow`).Find(&customers).Error
 
-	return &types.Page[*customer.WeComExternalContact]{
+	return &types.Page[*customer2.WeComExternalContact]{
 		List:      customers,
 		PageIndex: opt.PageIndex,
 		PageSize:  opt.PageSize,
@@ -67,7 +67,7 @@ func (uc *WeComUseCase) FindManyWeComCustomerPage(ctx context.Context, opt *type
 //	@param query
 //	@param opt
 //	@return *gorm.DB
-func buildFindManyCustomerQueryNoPage(query *gorm.DB, opt *FindManyWechatCustomerOption) *gorm.DB {
+func buildFindManyCustomerQueryNoPage(query *gorm.DB, opt *FindManyWeComCustomerOption) *gorm.DB {
 
 	if v := opt.UserId; v != `` {
 		query.Where("a.user_id = ?", v)
@@ -114,8 +114,8 @@ func (uc *WeComUseCase) PullListWeComCustomerRequest(userID ...string) ([]*respo
 		err = uc.help.error(`scrm.pull.wecom.customer.list.error`, info.ResponseWork)
 
 	}
-	contacts := []customer.WeComExternalContact{}
-	follows := []customer.WeComExternalContactFollow{}
+	contacts := []customer2.WeComExternalContact{}
+	follows := []customer2.WeComExternalContactFollow{}
 
 	for _, val := range info.ExternalContactList {
 		contacts = append(contacts, transferExternalContactToModel(val.ExternalContact, val.FollowInfo.UserID))
@@ -141,8 +141,8 @@ func (uc *WeComUseCase) PullListWeComCustomerRequest(userID ...string) ([]*respo
 //	@Description:
 //	@param contact
 //	@return *customer.WeComExternalContact
-func transferExternalContactToModel(contact *models.ExternalContact, userID string) customer.WeComExternalContact {
-	return customer.WeComExternalContact{
+func transferExternalContactToModel(contact *models.ExternalContact, userID string) customer2.WeComExternalContact {
+	return customer2.WeComExternalContact{
 
 		ExternalUserId:  contact.ExternalUserID,
 		AppId:           ``,
@@ -170,11 +170,11 @@ func transferExternalContactToModel(contact *models.ExternalContact, userID stri
 //	@param follow
 //	@param externalUserID
 //	@return customer.WeComExternalContactFollow
-func transferExternalContactFollowToModel(follow *models.FollowUser, externalUserID string) customer.WeComExternalContactFollow {
+func transferExternalContactFollowToModel(follow *models.FollowUser, externalUserID string) customer2.WeComExternalContactFollow {
 
 	tags, _ := json.Marshal(follow.Tags)
 	remarkMobiles, _ := json.Marshal(follow.RemarkMobiles)
-	return customer.WeComExternalContactFollow{
+	return customer2.WeComExternalContactFollow{
 		ExternalUserId: externalUserID,
 		UserId:         follow.UserID,
 		Remark:         follow.Remark,
@@ -182,7 +182,7 @@ func transferExternalContactFollowToModel(follow *models.FollowUser, externalUse
 		CreatedTime:    follow.CreateTime,
 		Tags:           string(tags),
 		TagIds:         strings.Join(follow.TagIDs, `,`),
-		WechatChannels: string(remarkMobiles),
+		WeComChannels:  string(remarkMobiles),
 		RemarkCorpName: follow.RemarkCorpName,
 		RemarkMobiles:  ``,
 		OpenUserId:     follow.OperUserID,

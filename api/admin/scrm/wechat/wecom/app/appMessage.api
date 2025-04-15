@@ -10,7 +10,7 @@ info(
 
 @server(
     group: admin/scrm/wechat/wecom/app
-    prefix: /api/v1/admin/scrm/wechat/wecom/app/wechat
+    prefix: /api/v1/admin/scrm/wechat/wecom/app
     middleware: UserJWTAuth
 )
 

@@ -1,7 +1,7 @@
 package wecom
 
 import (
-	"PowerX/internal/model/scrm/app"
+	"PowerX/internal/model/scrm/wechat/wecom/app"
 	"encoding/json"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/power"
 	kresp "github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/response"

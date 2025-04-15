@@ -11,28 +11,28 @@ import (
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-type DetailQrcodeLogic struct {
+type DetailQRCodeLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 }
 
-func NewDetailQrcodeLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DetailQrcodeLogic {
-	return &DetailQrcodeLogic{
+func NewDetailQRCodeLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DetailQRCodeLogic {
+	return &DetailQRCodeLogic{
 		Logger: logx.WithContext(ctx),
 		ctx:    ctx,
 		svcCtx: svcCtx,
 	}
 }
 
-// DetailQrcode
+// DetailQRCode
 //
 //	@Description:
 //	@receiver qrcode
 //	@param opt
 //	@return resp
 //	@return err
-func (qrcode *DetailQrcodeLogic) DetailQrcode(opt *types.SceneRequest) (resp *types.SceneQRCodeActiveReply, err error) {
+func (qrcode *DetailQRCodeLogic) DetailQRCode(opt *types.SceneRequest) (resp *types.SceneQRCodeActiveReply, err error) {
 	if opt.Qid == `` {
 		return nil, fmt.Errorf(`Qid error`)
 	}
@@ -45,14 +45,14 @@ func (qrcode *DetailQrcodeLogic) DetailQrcode(opt *types.SceneRequest) (resp *ty
 		Name:               detail.Name,
 		Desc:               detail.Desc,
 		Owner:              strings.Split(detail.Owner, `,`),
-		RealQrcodeLink:     detail.RealQrcodeLink,
+		RealQRCodeLink:     detail.RealQRCodeLink,
 		Platform:           detail.Platform,
 		Classify:           detail.Classify,
 		SceneLink:          detail.SceneLink,
 		SafeThresholdValue: detail.SafeThresholdValue,
 		ExpiryDate:         detail.ExpiryDate,
 		State:              detail.State,
-		ActiveQrcodeLink:   detail.ActiveQrcodeLink,
+		ActiveQRCodeLink:   detail.ActiveQRCodeLink,
 		CPA:                detail.Cpa,
 	}, err
 }

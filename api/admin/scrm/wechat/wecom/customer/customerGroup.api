@@ -10,7 +10,7 @@ info(
 
 @server(
     group: admin/scrm/wechat/wecom/customer
-    prefix: /api/v1/admin/scrm/wechat/wecom/customer/wechat
+    prefix: /api/v1/admin/scrm/wechat/wecom/customers
     middleware: UserJWTAuth
 )
 
@@ -42,32 +42,32 @@ type (
 
 type (
     WeComListCustomerGroupReply {
-        List []WechatCustomerGroup `json:"list"` //https://developer.work.weixin.qq.com/document/path/92122
+        List []WeComCustomerGroup `json:"list"` //https://developer.work.weixin.qq.com/document/path/92122
     }
-    WechatCustomerGroup {
+    WeComCustomerGroup {
         ChatId string `json:"chatId"`
         Name string `json:"name"`
         Owner string `json:"owner"`
         CreateTime int `json:"createTime"`
         Notice string `json:"notice"`
-        MemberList []*WechatCustomerGroupMemberList `json:"memberList"`
-        AdminList []*WechatCustomerGroupAdminList `json:"adminList"`
+        MemberList []*WeComCustomerGroupMemberList `json:"memberList"`
+        AdminList []*WeComCustomerGroupAdminList `json:"adminList"`
     }
-    WechatCustomerGroupAdminList {
+    WeComCustomerGroupAdminList {
         UserId string `json:"userId"`
     }
 
-    WechatCustomerGroupMemberList {
+    WeComCustomerGroupMemberList {
         UserId string `json:"userId"`
         Type int `json:"type"`
         JoinTime int `json:"joinTime"`
         JoinScene int `json:"joinScene"`
-        Invitor WechatCustomerGroupMemberListInvitor `json:"invitor"`
+        Invitor WeComCustomerGroupMemberListInvitor `json:"invitor"`
         GroupNickname string `json:"groupNickname"`
         Name string `json:"name"`
         UnionId string `json:"unionId,omitempty"`
     }
-    WechatCustomerGroupMemberListInvitor {
+    WeComCustomerGroupMemberListInvitor {
         UserId string `json:"userId"`
     }
 )

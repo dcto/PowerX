@@ -1,21 +1,21 @@
-import "admin/scrm/contactway.api"
-//import "admin/scrm/customer.api"
-//import "admin/scrm/contact.api"
-// organzation
-import "admin/scrm/organization/weworkUser.api"
-import "admin/scrm/organization/weworkDepartment.api"
-// app
-import "admin/scrm/app/weworkGroup.api"
-import "admin/scrm/app/weworkApp.api"
-import "admin/scrm/app/weworkAppMessage.api"
-// wechat.customer
-import "admin/scrm/customer/weworkCustomer.api"
-import "admin/scrm/customer/weworkCustomerGroup.api"
-// bot
-import "admin/scrm/bot/weworkBot.api"
-// resource
-import "admin/scrm/resource/weworkResource.api"
-// qrcode
-import "admin/scrm/qrcode/weworkCustomerGroupQRCode.api"
-// tag
-import "admin/scrm/tag/weworkTag.api"
+import "admin/scrm/wechat/wecom/contactway.api"
+    //import "admin/scrm/wechat/wecom/customer.api"
+    //import "admin/scrm/wechat/wecom/contact.api"
+    // organzation
+import "admin/scrm/wechat/wecom/organization/user.api"
+import "admin/scrm/wechat/wecom/organization/department.api"
+    // app
+import "admin/scrm/wechat/wecom/app/group.api"
+import "admin/scrm/wechat/wecom/app/app.api"
+import "admin/scrm/wechat/wecom/app/appMessage.api"
+    // wechat.customer
+import "admin/scrm/wechat/wecom/customer/customer.api"
+import "admin/scrm/wechat/wecom/customer/customerGroup.api"
+    // bot
+import "admin/scrm/wechat/wecom/bot/bot.api"
+    // resource
+import "admin/scrm/wechat/wecom/resource/resource.api"
+    // qrcode
+import "admin/scrm/wechat/wecom/qrcode/customerGroupQRCode.api"
+    // tag
+import "admin/scrm/wechat/wecom/tag/tag.api"

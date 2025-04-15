@@ -10,35 +10,35 @@ info(
 
 @server(
     group: admin/scrm/wechat/wecom/customer
-    prefix: /api/v1/admin/scrm/wechat/wecom
+    prefix: /api/v1/admin/scrm/wechat/wecom/customers
     middleware: UserJWTAuth
 )
 
 service PowerX {
     @doc "批量同步客户信息(根据员工ID同步/节流)"
     @handler SyncWeComCustomerOption
-    post /customers/sync (WeComCustomersRequest) returns (WeComListCustomersReply)
+    post /sync (WeComCustomersRequest) returns (WeComListCustomersReply)
 
 
     @doc "所有客户列表/page"
     @handler ListWeComCustomerPage
-    post /customers/page (WeComCustomersRequest) returns (WeComListCustomersReply)
+    post /page (WeComCustomersRequest) returns (WeComListCustomersReply)
 
     @doc "查询客户详情"
     @handler GetWeComCustomer
-    get /customers/:id (GetWeComCustomerRequest) returns (GetWeComCustomerReply)
+    get /:id (GetWeComCustomerRequest) returns (GetWeComCustomerReply)
 
     @doc "查询客户详情列表"
     @handler ListWeComCustomers
-    get /customers (ListWeComCustomersRequest) returns (ListWeComCustomersReply)
+    get / (ListWeComCustomersRequest) returns (ListWeComCustomersReply)
 
     @doc "修改客户信息"
     @handler PatchWeComCustomer
-    patch /customers/:id (PatchWeComCustomerRequest) returns (PatchWeComCustomerReply)
+    patch /:id (PatchWeComCustomerRequest) returns (PatchWeComCustomerReply)
 
     @doc "同步客户"
     @handler SyncWeComCustomer
-    post /customers/actions/sync returns (SyncWeComCustomerReply)
+    post /actions/sync returns (SyncWeComCustomerReply)
 }
 
 
@@ -144,7 +144,7 @@ type (
         CreatedTime int `json:"createtime"`
         Tags []WeComCustomersFollowUserWithTags `json:"tags"`
         TagIds []string `json:"tagIds"`
-        WeComChannels WeComCustomersFollowUserWithWeComChannels `json:"wechatChannels"`
+        WeComChannels WeComCustomersFollowUserWithWeComChannels `json:"weComChannels"`
         RemarkCorpName string `json:"remarkCorpName,omitempty"`
         RemarkMobiles []string `json:"remarkMobiles,omitempty"`
         OpenUserId string `json:"openUserId"`

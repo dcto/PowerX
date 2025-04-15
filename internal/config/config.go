@@ -37,6 +37,6 @@ type Config struct {
 	WechatOA      WechatOA
 	WechatMP      WechatMP
 	WechatPay     WechatPay
-	WeWork        WeWork
+	WeCom         WeCom
 	MediaResource MediaResource
 }

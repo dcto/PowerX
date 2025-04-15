@@ -9,24 +9,24 @@ info(
 )
 
 @server(
-    group: admin/scrm/organization
-    prefix: /api/v1/admin/scrm/wechat/wecom/organization/wechat
+    group: admin/scrm/wechat/wecom/organization
+    prefix: /api/v1/admin/scrm/wechat/wecom/organization
     middleware: UserJWTAuth
 )
 
 service PowerX {
     @doc "部门列表/page"
     @handler ListWeComDepartMentPage
-    post /partment/page (ListWeComDepartmentReqeust) returns (ListWeComDepartmentReply)
+    post /department/page (ListWeComDepartmentReqeust) returns (ListWeComDepartmentReply)
 }
 
 
 type (
     ListWeComDepartmentReqeust {
-        WeComDepId int `json:"weWorkDepId,optional"`
+        WeComDepId int `json:"weComDepId,optional"`
         Name string `json:"name,optional"`
         NameEn string `json:"nameEn,optional"`
-        WeComParentId int `json:"weWorkParentId,optional"`
+        WeComParentId int `json:"weComParentId,optional"`
         Order int `json:"order,optional"`
 
         PageIndex int `form:"pageIndex,optional"`
@@ -42,10 +42,10 @@ type (
         //
     WeComDepartment {
 
-        WeComDepId int `json:"weWorkDepId"`
+        WeComDepId int `json:"weComDepId"`
         Name string `json:"name"`
         NameEn string `json:"nameEn"`
-        WeComParentId int `json:"weWorkParentId"`
+        WeComParentId int `json:"weComParentId"`
         Order int `json:"order"`
         DepartmentLeader []string `json:"departmentLeader"`
         RefDepartmentId int64 `json:"refDepartmentId"`

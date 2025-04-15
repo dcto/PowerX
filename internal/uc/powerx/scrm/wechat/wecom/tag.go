@@ -1,9 +1,9 @@
 package wecom
 
 import (
-	"PowerX/internal/model/powermodel"
-	"PowerX/internal/model/scrm/customer"
-	"PowerX/internal/model/scrm/tag"
+	"PowerX/internal/model/powerModel"
+	"PowerX/internal/model/scrm/wechat/wecom/customer"
+	tag2 "PowerX/internal/model/scrm/wechat/wecom/tag"
 	"PowerX/internal/types"
 	baseResp "github.com/ArtisanCloud/PowerWeChat/v3/src/kernel/response"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/work/externalContact/tag/request"
@@ -19,7 +19,7 @@ import (
 //	@param option
 //	@return reply
 //	@return err
-func (uc *WeComUseCase) FindListWeComTagGroupOption() (reply []*tag.WeComTagGroup, err error) {
+func (uc *WeComUseCase) FindListWeComTagGroupOption() (reply []*tag2.WeComTagGroup, err error) {
 
 	reply = uc.modelWeComTag.group.Query(uc.db)
 
@@ -34,11 +34,11 @@ func (uc *WeComUseCase) FindListWeComTagGroupOption() (reply []*tag.WeComTagGrou
 //	@param option
 //	@return reply
 //	@return err
-func (uc *WeComUseCase) FindListWeComTagGroupPage(option *types.PageOption[types.ListWeComTagGroupPageRequest]) (reply *types.Page[*tag.WeComTagGroup], err error) {
+func (uc *WeComUseCase) FindListWeComTagGroupPage(option *types.PageOption[types.ListWeComTagGroupPageRequest]) (reply *types.Page[*tag2.WeComTagGroup], err error) {
 
-	var tagGroups []*tag.WeComTagGroup
+	var tagGroups []*tag2.WeComTagGroup
 	var count int64
-	query := uc.db.WithContext(uc.ctx).Model(tag.WeComTagGroup{}).Where(`is_delete = ?`, false)
+	query := uc.db.WithContext(uc.ctx).Model(tag2.WeComTagGroup{}).Where(`is_delete = ?`, false)
 
 	if v := option.Option.GroupId; v != `` {
 		query.Where(`group_id = ?`, v)
@@ -57,7 +57,7 @@ func (uc *WeComUseCase) FindListWeComTagGroupPage(option *types.PageOption[types
 
 	err = query.Preload(`WeComGroupTags`).Find(&tagGroups).Error
 
-	return &types.Page[*tag.WeComTagGroup]{
+	return &types.Page[*tag2.WeComTagGroup]{
 		List:      tagGroups,
 		PageIndex: option.PageIndex,
 		PageSize:  option.PageSize,
@@ -72,7 +72,7 @@ func (uc *WeComUseCase) FindListWeComTagGroupPage(option *types.PageOption[types
 //	@receiver this
 //	@return reply
 //	@return err
-func (uc *WeComUseCase) FindListWeComTagOption() (reply []*tag.WeComTag, err error) {
+func (uc *WeComUseCase) FindListWeComTagOption() (reply []*tag2.WeComTag, err error) {
 
 	reply = uc.modelWeComTag.tag.Query(uc.db)
 
@@ -87,13 +87,13 @@ func (uc *WeComUseCase) FindListWeComTagOption() (reply []*tag.WeComTag, err err
 //	@param option
 //	@return reply
 //	@return err
-func (uc *WeComUseCase) FindListWeComTagPage(option *types.PageOption[types.ListWeComTagReqeust]) (reply *types.Page[*tag.WeComTag], err error) {
+func (uc *WeComUseCase) FindListWeComTagPage(option *types.PageOption[types.ListWeComTagReqeust]) (reply *types.Page[*tag2.WeComTag], err error) {
 
-	var tags []*tag.WeComTag
+	var tags []*tag2.WeComTag
 	var count int64
 	query := uc.db.WithContext(uc.ctx).
 		//Debug().
-		Model(tag.WeComTag{}).Where(`is_delete = ?`, false)
+		Model(tag2.WeComTag{}).Where(`is_delete = ?`, false)
 
 	if v := option.Option.TagIds; len(v) > 0 {
 		query.Where(`tag_id in ?`, v)
@@ -114,7 +114,7 @@ func (uc *WeComUseCase) FindListWeComTagPage(option *types.PageOption[types.List
 
 	err = query.Preload(`WeComGroup`).Find(&tags).Error
 
-	return &types.Page[*tag.WeComTag]{
+	return &types.Page[*tag2.WeComTag]{
 		List:      tags,
 		PageIndex: option.PageIndex,
 		PageSize:  option.PageSize,
@@ -165,12 +165,12 @@ func (uc *WeComUseCase) PullListWeComCorpTagRequest(tagIds []string, groupIds []
 //	@param agentId
 //	@return groups
 //	@return tags
-func (uc *WeComUseCase) transferWeComToModel(data []*response.CorpTagGroup, agentId *int64, isSelf int) (groups []*tag.WeComTagGroup, tags []*tag.WeComTag) {
+func (uc *WeComUseCase) transferWeComToModel(data []*response.CorpTagGroup, agentId *int64, isSelf int) (groups []*tag2.WeComTagGroup, tags []*tag2.WeComTag) {
 
 	if data != nil {
 		for _, val := range data {
-			groups = append(groups, &tag.WeComTagGroup{
-				PowerModel: powermodel.PowerModel{
+			groups = append(groups, &tag2.WeComTagGroup{
+				PowerModel: powerModel.PowerModel{
 					CreatedAt: time.Unix(int64(val.CreateTime), 0),
 				},
 				//AgentId:  int(*agentId),
@@ -181,8 +181,8 @@ func (uc *WeComUseCase) transferWeComToModel(data []*response.CorpTagGroup, agen
 			})
 			if val.Tags != nil {
 				for _, value := range val.Tags {
-					tags = append(tags, &tag.WeComTag{
-						PowerModel: powermodel.PowerModel{
+					tags = append(tags, &tag2.WeComTag{
+						PowerModel: powerModel.PowerModel{
 							CreatedAt: time.Unix(int64(value.CreateTime), 0),
 						},
 						Type:     1,
@@ -312,7 +312,7 @@ func (uc *WeComUseCase) UpdateWeComCorpTagRequest(options *request.RequestTagEdi
 		if info != nil {
 			info.Name = options.Name
 			info.Sort = options.Order
-			uc.modelWeComTag.tag.Action(uc.db, []*tag.WeComTag{info})
+			uc.modelWeComTag.tag.Action(uc.db, []*tag2.WeComTag{info})
 		}
 	}
 

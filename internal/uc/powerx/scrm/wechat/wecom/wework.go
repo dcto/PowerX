@@ -4,11 +4,11 @@ import (
 	"PowerX/internal/config"
 	organization2 "PowerX/internal/model/organization"
 	"PowerX/internal/model/scene"
-	"PowerX/internal/model/scrm/app"
-	"PowerX/internal/model/scrm/customer"
-	"PowerX/internal/model/scrm/organization"
-	"PowerX/internal/model/scrm/resource"
-	"PowerX/internal/model/scrm/tag"
+	"PowerX/internal/model/scrm/wechat/wecom/app"
+	"PowerX/internal/model/scrm/wechat/wecom/customer"
+	organization3 "PowerX/internal/model/scrm/wechat/wecom/organization"
+	"PowerX/internal/model/scrm/wechat/wecom/resource"
+	tag2 "PowerX/internal/model/scrm/wechat/wecom/tag"
 	"PowerX/internal/types"
 	"context"
 	"encoding/json"
@@ -75,10 +75,10 @@ type WeComUseCase struct {
 	//
 	modelWeComResource
 	//
-	//  modelWeComQrcode
+	//  modelWeComQRCode
 	//  @Description:
 	//
-	modelWeComQrcode
+	modelWeComQRCode
 	//
 	//  modelWeComTag
 	//  @Description:
@@ -102,18 +102,18 @@ type (
 		group app.WeComAppGroup
 	}
 	modelWeComOrganization struct {
-		user       organization.WeComUser
-		department organization.WeComDepartment
+		user       organization3.WeComUser
+		department organization3.WeComDepartment
 	}
 	modelWeComResource struct {
 		resource resource.WeComResource
 	}
-	modelWeComQrcode struct {
+	modelWeComQRCode struct {
 		qrcode scene.SceneQRCode
 	}
 	modelWeComTag struct {
-		tag   tag.WeComTag
-		group tag.WeComTagGroup
+		tag   tag2.WeComTag
+		group tag2.WeComTagGroup
 	}
 	modelWeComCustomer struct {
 		follow customer.WeComExternalContactFollow
@@ -160,16 +160,16 @@ const (
 	AppGroupCustomerMessageTimerTypeByte
 )
 
-// FindManyWechatDepartmentsOption
+// FindManyWeComDepartmentsOption
 // @Description:
-type FindManyWechatDepartmentsOption struct {
+type FindManyWeComDepartmentsOption struct {
 	WeComDepId []int
 	Name       string
 }
 
-// FindManyWechatUsersOption
+// FindManyWeComUsersOption
 // @Description:
-type FindManyWechatUsersOption struct {
+type FindManyWeComUsersOption struct {
 	WeComUserId           string `json:"we_work_user_id"` //员工唯一ID
 	Ids                   []int64
 	Names                 []string
@@ -209,10 +209,10 @@ type (
 type (
 
 	//
-	//  FindManyWechatCustomerOption
+	//  FindManyWeComCustomerOption
 	//  @Description:
 	//
-	FindManyWechatCustomerOption struct {
+	FindManyWeComCustomerOption struct {
 		UserId string `json:"user_id"`
 		Name   string `gorm:"column:name" json:"name"`
 		TagId  string `json:"tag_id"`
