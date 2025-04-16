@@ -1,6 +1,7 @@
 package main
 
 import (
+	"PowerX/internal/bootstrap"
 	"PowerX/internal/middleware/recovery"
 	"PowerX/internal/model"
 	"PowerX/pkg/pluginx"
@@ -104,6 +105,10 @@ func main() {
 	httpx.SetErrorHandler(handler.ErrorHandle)
 	httpx.SetErrorHandlerCtx(handler.ErrorHandleCtx)
 
+	// 添加这段：打印所有路由
+	if c.API.ShowRouteList {
+		bootstrap.PrintRoutes(server)
+	}
 	// ---------- 启动服务器 ----------
 	logx.Infof("Starting server at %s:%d...\n", c.Server.Host, c.Server.Port)
 	server.Start()

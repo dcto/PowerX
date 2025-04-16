@@ -6,6 +6,12 @@ Server:
   Host: 0.0.0.0             # 服务器地址
   Port: 8888                # 服务器端口
   Timeout: 30000            # 超时时间
+  ShowRouteList : true      # 是否显示路由列表
+  MaxBytes: 10485760        # 最大请求大小（单位：字节）
+
+API:
+  Prefix: /api/v1            # API前缀
+  ShowRouteList : true      # 是否显示路由列表
 
 Cors:
   AllowAll: true
