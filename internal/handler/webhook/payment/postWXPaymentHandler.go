@@ -1,7 +1,7 @@
 package payment
 
 import (
-	paymentLogic "PowerX/internal/logic/wx/payment"
+	paymentLogic "PowerX/internal/logic/webhook/wx/payment"
 	"net/http"
 
 	"PowerX/internal/svc"

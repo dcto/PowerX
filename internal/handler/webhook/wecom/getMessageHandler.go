@@ -1,7 +1,7 @@
 package wecom
 
 import (
-	wecomLogic "PowerX/internal/logic/wecom"
+	wecomLogic "PowerX/internal/logic/webhook/wecom"
 	"net/http"
 
 	"PowerX/internal/svc"
