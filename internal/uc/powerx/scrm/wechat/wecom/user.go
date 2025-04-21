@@ -81,13 +81,13 @@ func (uc *WeComUseCase) userModelToWeComRequest(user *organization3.WeComUser) *
 	}
 }
 
-// PullSyncDepartmentsAndUsersRequest
+// PullSyncDepartmentsAndUsers
 //
 //	@Description:
 //	@receiver uc
 //	@param ctx
 //	@return error
-func (uc *WeComUseCase) PullSyncDepartmentsAndUsersRequest(ctx context.Context) error {
+func (uc *WeComUseCase) PullSyncDepartmentsAndUsers(ctx context.Context) error {
 
 	list, err := uc.Client.Department.SimpleList(ctx, 1)
 	if err != nil {
@@ -104,8 +104,8 @@ func (uc *WeComUseCase) PullSyncDepartmentsAndUsersRequest(ctx context.Context) 
 	for _, val := range list.DepartmentIDs {
 		go func(val response.DepartmentID) {
 			defer uc.gLock.Done()
-			uc.deparment(val)
-			uc.user(val)
+			uc.syncDepartment(val)
+			uc.syncDepartmentUsers(val)
 
 		}(val)
 
@@ -114,12 +114,12 @@ func (uc *WeComUseCase) PullSyncDepartmentsAndUsersRequest(ctx context.Context) 
 	return err
 }
 
-// deparment
+// syncDepartment
 //
 //	@Description:
 //	@receiver this
 //	@param val
-func (uc *WeComUseCase) deparment(val response.DepartmentID) {
+func (uc *WeComUseCase) syncDepartment(val response.DepartmentID) {
 
 	department, err := uc.Client.Department.Get(uc.ctx, val.ID)
 	if err != nil {
@@ -150,7 +150,7 @@ func (uc *WeComUseCase) deparment(val response.DepartmentID) {
 //	@Description:
 //	@receiver this
 //	@param val
-func (uc *WeComUseCase) user(val response.DepartmentID) {
+func (uc *WeComUseCase) syncDepartmentUsers(val response.DepartmentID) {
 
 	users, err := uc.Client.User.GetDetailedDepartmentUsers(uc.ctx, val.ID, 0)
 	if err != nil {

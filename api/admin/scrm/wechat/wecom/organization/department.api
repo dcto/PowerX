@@ -15,6 +15,10 @@ info(
 )
 
 service PowerX {
+    @doc "查询组织架构"
+    @handler GetWeComDepartmentTree
+    get /department/tree (GetWecomDepartmentTreeRequest) returns (GetWecomDepartmentTreeReply)
+
     @doc "部门列表/page"
     @handler ListWeComDepartmentPage
     post /department/page (ListWeComDepartmentReqeust) returns (ListWeComDepartmentReply)
@@ -22,6 +26,14 @@ service PowerX {
 
 
 type (
+    GetWecomDepartmentTreeRequest {
+        DepartmentId int64 `path:"departmentId"`
+    }
+
+    GetWecomDepartmentTreeReply {
+        TreeList WeComDepartment `json:"treeList"`
+    }
+
     ListWeComDepartmentReqeust {
         WeComDepId int `json:"weComDepId,optional"`
         Name string `json:"name,optional"`
@@ -49,5 +61,7 @@ type (
         Order int `json:"order"`
         DepartmentLeader []string `json:"departmentLeader"`
         RefDepartmentId int64 `json:"refDepartmentId"`
+        Children []WeComDepartment `json:"children"`
+
     }
 )

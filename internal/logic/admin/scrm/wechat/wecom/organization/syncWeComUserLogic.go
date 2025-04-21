@@ -26,7 +26,7 @@ func NewSyncWeComUserLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Syn
 
 func (l *SyncWeComUserLogic) SyncWeComUser() (resp *types.SyncWeComOrganizationReply, err error) {
 
-	err = l.svcCtx.PowerX.SCRM.WeCom.PullSyncDepartmentsAndUsersRequest(l.ctx)
+	err = l.svcCtx.PowerX.SCRM.WeCom.PullSyncDepartmentsAndUsers(l.ctx)
 
 	return &types.SyncWeComOrganizationReply{
 		Status: `success`,

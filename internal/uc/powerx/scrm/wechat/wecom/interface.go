@@ -99,12 +99,12 @@ type iWeComDepartmentInterface interface {
 // @Description: 员工
 type iWeComUserInterface interface {
 	//
-	// PullSyncDepartmentsAndUsersRequest
+	// PullSyncDepartmentsAndUsers
 	//  @Description: 同步组织架构
 	//  @param ctx
 	//  @return error
 	//
-	PullSyncDepartmentsAndUsersRequest(ctx context.Context) error
+	PullSyncDepartmentsAndUsers(ctx context.Context) error
 	//
 	// FindManyWechatUsersPage
 	//  @Description: 查询员工

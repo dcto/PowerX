@@ -9,6 +9,7 @@ import (
 	organization3 "PowerX/internal/model/scrm/wechat/wecom/organization"
 	"PowerX/internal/model/scrm/wechat/wecom/resource"
 	tag2 "PowerX/internal/model/scrm/wechat/wecom/tag"
+	"PowerX/internal/repository"
 	"PowerX/internal/types"
 	"context"
 	"encoding/json"
@@ -29,6 +30,27 @@ type WeComUseCase struct {
 	//  @Description:
 	//
 	help
+	//
+	//  WeComUserRepository
+	//  @Description:
+	//
+	WeComUserRepository *repository.BaseRepository[organization3.WeComUser] `inject:""`
+	//
+	//  WeComDepartmentRepository
+	//  @Description:
+	//
+	WeComDepartmentRepository *repository.BaseRepository[organization3.WeComDepartment] `inject:""`
+	//
+	//  WeComTagRepository
+	//  @Description:
+	//
+	WeComTagRepository *repository.BaseRepository[tag2.WeComTag] `inject:""`
+	//
+	//  WeComGroupTagRepository
+	//  @Description:
+	//
+	WeComTagGroupRepository *repository.BaseRepository[tag2.WeComTagGroup] `inject:""`
+
 	//
 	//  db
 	//  @Description:
@@ -146,7 +168,7 @@ func NewWeComUseCase(db *gorm.DB, conf *config.Config) *WeComUseCase {
 }
 
 var (
-	HRedisScrmGroupMessageKey = `scrm:app:group:%d`
+	HRedisSCRMGroupMessageKey = `scrm:app:group:%d`
 )
 
 type TimerTypeByte int

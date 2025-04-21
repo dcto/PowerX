@@ -19,7 +19,7 @@ import (
 func (uc *WeComUseCase) pushTimerMessageToKV(ttp TimerTypeByte, sendTime int64, message interface{}) {
 
 	val := make(map[string]string)
-	key := fmt.Sprintf(HRedisScrmGroupMessageKey, ttp)
+	key := fmt.Sprintf(HRedisSCRMGroupMessageKey, ttp)
 	msg, _ := json.Marshal(message)
 	val[strconv.Itoa(int(sendTime))] = string(msg)
 
@@ -39,7 +39,7 @@ func (uc *WeComUseCase) pushTimerMessageToKV(ttp TimerTypeByte, sendTime int64, 
 //	@return error
 func (uc *WeComUseCase) InvokeTimerMessageGrabUniteSend(ttp TimerTypeByte, sendTime int64) (err error) {
 
-	key := fmt.Sprintf(HRedisScrmGroupMessageKey, ttp)
+	key := fmt.Sprintf(HRedisSCRMGroupMessageKey, ttp)
 
 	vals, _ := uc.kv.Hget(key, strconv.Itoa(int(sendTime)))
 	if vals == `` {

@@ -1682,6 +1682,14 @@ type GetWeComCustomerRequest struct {
 	Id string `path:"id"`
 }
 
+type GetWecomDepartmentTreeReply struct {
+	TreeList WeComDepartment `json:"treeList"`
+}
+
+type GetWecomDepartmentTreeRequest struct {
+	DepartmentId int64 `path:"departmentId"`
+}
+
 type GroupRobotMsgNewsArticlesReply struct {
 	Messaage string `json:"messaage"`
 }
@@ -3731,13 +3739,14 @@ type WeComCustomersWithFollowUser struct {
 }
 
 type WeComDepartment struct {
-	WeComDepId       int      `json:"weComDepId"`
-	Name             string   `json:"name"`
-	NameEn           string   `json:"nameEn"`
-	WeComParentId    int      `json:"weComParentId"`
-	Order            int      `json:"order"`
-	DepartmentLeader []string `json:"departmentLeader"`
-	RefDepartmentId  int64    `json:"refDepartmentId"`
+	WeComDepId       int               `json:"weComDepId"`
+	Name             string            `json:"name"`
+	NameEn           string            `json:"nameEn"`
+	WeComParentId    int               `json:"weComParentId"`
+	Order            int               `json:"order"`
+	DepartmentLeader []string          `json:"departmentLeader"`
+	RefDepartmentId  int64             `json:"refDepartmentId"`
+	Children         []WeComDepartment `json:"children"`
 }
 
 type WeComListCustomerGroupReply struct {

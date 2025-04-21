@@ -100,6 +100,64 @@ func (uc *WeComUseCase) FindManyWeComDepartmentsPage(ctx context.Context, option
 
 }
 
+// GetDepartment
+//
+// @Description: Retrieve a department and its child nodes based on the specified level.
+// @receiver uc
+// @param ctx
+// @param id Department ID
+// @param level The depth of child nodes to retrieve, 0 means only the root node.
+// @return *organization.WeComDepartment
+// @return error
+func (uc *WeComUseCase) GetDepartmentBy(ctx context.Context, id int64, level int) (*organization.WeComDepartment, error) {
+	var rootDepartment *organization.WeComDepartment
+	// Retrieve the root department
+	err := uc.db.WithContext(ctx).First(&rootDepartment, id).Error
+	if err != nil {
+		return nil, err
+	}
+
+	if level > 0 {
+		err = uc.loadChildDepartments(ctx, rootDepartment, level)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	return rootDepartment, nil
+}
+
+// loadChildDepartments
+//
+// @Description: Recursively load child departments up to the specified level.
+// @receiver uc
+// @param ctx
+// @param parent The parent department
+// @param level The remaining depth to load child nodes
+// @return error
+func (uc *WeComUseCase) loadChildDepartments(ctx context.Context, parent *organization.WeComDepartment, level int) error {
+	if level == 0 {
+		return nil
+	}
+
+	var childDepartments []*organization.WeComDepartment
+	err := uc.db.WithContext(ctx).Where("wecom_parent_id = ?", parent.Id).Find(&childDepartments).Error
+	if err != nil {
+		return err
+	}
+
+	parent.Children = childDepartments
+
+	for _, child := range childDepartments {
+		err = uc.loadChildDepartments(ctx, child, level-1)
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
 // FindAllWechatDepartments
 //
 //	@Description:
