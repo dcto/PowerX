@@ -65,7 +65,7 @@ func (l *DetailWeComAppLogic) allowUserInfos(infos response.ResponseAgentAllowUs
 
 	for _, user := range infos.User {
 		infox.User = append(infox.User, types.WeComUser{
-			Userid: user.UserID,
+			UserId: user.UserID,
 		})
 	}
 	return infox

@@ -31,7 +31,7 @@ func (l *ListWeComDepartmentPageLogic) ListWeComDepartmentPage(req *types.ListWe
 	data, err := l.svcCtx.PowerX.SCRM.WeCom.FindManyWeComDepartmentsPage(l.ctx, l.OPT(req))
 
 	return &types.ListWeComDepartmentReply{
-		List:      l.DTO(data.List),
+		List:      TransformWeComDepartmentsToReply(data.List),
 		PageIndex: data.PageIndex,
 		PageSize:  data.PageSize,
 		Total:     data.Total,
@@ -64,28 +64,19 @@ func (l *ListWeComDepartmentPageLogic) OPT(opt *types.ListWeComDepartmentReqeust
 
 }
 
-// DTO
-//
-//	@Description:
-//	@receiver depart
-//	@param data
-//	@return departments
-func (l *ListWeComDepartmentPageLogic) DTO(data []*organization.WeComDepartment) (departments []*types.WeComDepartment) {
+func TransformWeComDepartmentsToReply(data []*organization.WeComDepartment) (departments []*types.WeComDepartment) {
+	if data == nil || len(data) == 0 {
+		return nil
+	}
 
 	for _, val := range data {
-		departments = append(departments, l.dto(val))
+		departments = append(departments, TransformWeComDepartmentToReply(val))
 	}
 	return departments
 
 }
 
-// dto
-//
-//	@Description:
-//	@receiver depart
-//	@param val
-//	@return *types.WeComDepartment
-func (l *ListWeComDepartmentPageLogic) dto(val *organization.WeComDepartment) *types.WeComDepartment {
+func TransformWeComDepartmentToReply(val *organization.WeComDepartment) *types.WeComDepartment {
 	var leader []string
 	if val.DepartmentLeader != `` {
 		leader = strings.Split(val.DepartmentLeader, `,`)
@@ -98,5 +89,6 @@ func (l *ListWeComDepartmentPageLogic) dto(val *organization.WeComDepartment) *t
 		Order:            val.Order,
 		RefDepartmentId:  val.RefDepartmentId,
 		DepartmentLeader: leader,
+		Children:         TransformWeComDepartmentsToReply(val.Children),
 	}
 }

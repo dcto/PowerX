@@ -164,6 +164,7 @@ func NewWeComUseCase(db *gorm.DB, conf *config.Config) *WeComUseCase {
 	return &WeComUseCase{
 		Client: c,
 		db:     db,
+		gLock:  new(sync.WaitGroup),
 	}
 }
 
@@ -192,7 +193,7 @@ type FindManyWeComDepartmentsOption struct {
 // FindManyWeComUsersOption
 // @Description:
 type FindManyWeComUsersOption struct {
-	WeComUserId           string `json:"wecom_user_id"` //员工唯一ID
+	UserId                string `json:"wecom_user_id"` //员工唯一ID
 	Ids                   []int64
 	Names                 []string
 	Alias                 []string

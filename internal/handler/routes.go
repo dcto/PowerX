@@ -1505,6 +1505,33 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			[]rest.Middleware{serverCtx.UserJWTAuth},
 			[]rest.Route{
 				{
+					// App创建企业群
+					Method:  http.MethodPost,
+					Path:    "/group/create",
+					Handler: adminscrmwechatwecomapp.CreateWeComAppGroupHandler(serverCtx),
+				},
+				{
+					// App企业群列表/list
+					Method:  http.MethodGet,
+					Path:    "/group/list",
+					Handler: adminscrmwechatwecomapp.ListWeComAppGroupHandler(serverCtx),
+				},
+				{
+					// App企业群推送图文信息
+					Method:  http.MethodPost,
+					Path:    "/group/message/articles",
+					Handler: adminscrmwechatwecomapp.SendWeComAppGroupArticleMessageHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithPrefix("/api/v1/admin/scrm/wechat/wecom/app"),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.UserJWTAuth},
+			[]rest.Route{
+				{
 					// App详情
 					Method:  http.MethodGet,
 					Path:    "/detail",
@@ -1530,33 +1557,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Method:  http.MethodPost,
 					Path:    "/message/articles",
 					Handler: adminscrmwechatwecomapp.SendWeComAppArticleMessageHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithPrefix("/api/v1/admin/scrm/wechat/wecom/app"),
-	)
-
-	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.UserJWTAuth},
-			[]rest.Route{
-				{
-					// App创建企业群
-					Method:  http.MethodPost,
-					Path:    "/group/create",
-					Handler: adminscrmwechatwecomapp.CreateWeComAppGroupHandler(serverCtx),
-				},
-				{
-					// App企业群列表/list
-					Method:  http.MethodGet,
-					Path:    "/group/list",
-					Handler: adminscrmwechatwecomapp.ListWeComAppGroupHandler(serverCtx),
-				},
-				{
-					// App企业群推送图文信息
-					Method:  http.MethodPost,
-					Path:    "/group/message/articles",
-					Handler: adminscrmwechatwecomapp.SendWeComAppGroupArticleMessageHandler(serverCtx),
 				},
 			}...,
 		),
@@ -1694,6 +1694,33 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			[]rest.Middleware{serverCtx.UserJWTAuth},
 			[]rest.Route{
 				{
+					// 部门列表/page
+					Method:  http.MethodPost,
+					Path:    "/departments/page",
+					Handler: adminscrmwechatwecomorganization.ListWeComDepartmentPageHandler(serverCtx),
+				},
+				{
+					// 查询组织架构
+					Method:  http.MethodPost,
+					Path:    "/departments/tree",
+					Handler: adminscrmwechatwecomorganization.GetWeComDepartmentTreeHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithPrefix("/api/v1/admin/scrm/wechat/wecom/organization"),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.UserJWTAuth},
+			[]rest.Route{
+				{
+					// 获取员工列表
+					Method:  http.MethodPost,
+					Path:    "/list",
+					Handler: adminscrmwechatwecomorganization.ListWeComUserHandler(serverCtx),
+				},
+				{
 					// 员工列表/page
 					Method:  http.MethodPost,
 					Path:    "/page",
@@ -1708,27 +1735,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			}...,
 		),
 		rest.WithPrefix("/api/v1/admin/scrm/wechat/wecom/organization/users"),
-	)
-
-	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.UserJWTAuth},
-			[]rest.Route{
-				{
-					// 部门列表/page
-					Method:  http.MethodPost,
-					Path:    "/department/page",
-					Handler: adminscrmwechatwecomorganization.ListWeComDepartmentPageHandler(serverCtx),
-				},
-				{
-					// 查询组织架构
-					Method:  http.MethodGet,
-					Path:    "/department/tree",
-					Handler: adminscrmwechatwecomorganization.GetWeComDepartmentTreeHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithPrefix("/api/v1/admin/scrm/wechat/wecom/organization"),
 	)
 
 	server.AddRoutes(
@@ -2088,24 +2094,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
 			{
-				// 查询产品详情
-				Method:  http.MethodGet,
-				Path:    "/products/:id",
-				Handler: mpcrmproduct.GetProductHandler(serverCtx),
-			},
-			{
-				// 产品列表
-				Method:  http.MethodGet,
-				Path:    "/products/page-list",
-				Handler: mpcrmproduct.ListProductsPageHandler(serverCtx),
-			},
-		},
-		rest.WithPrefix("/api/v1/mp/product"),
-	)
-
-	server.AddRoutes(
-		[]rest.Route{
-			{
 				// 查询产品品类列表
 				Method:  http.MethodGet,
 				Path:    "/product-categories",
@@ -2116,6 +2104,24 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Method:  http.MethodGet,
 				Path:    "/product-category-tree",
 				Handler: mpcrmproduct.ListProductCategoryTreeHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/api/v1/mp/product"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				// 查询产品详情
+				Method:  http.MethodGet,
+				Path:    "/products/:id",
+				Handler: mpcrmproduct.GetProductHandler(serverCtx),
+			},
+			{
+				// 产品列表
+				Method:  http.MethodGet,
+				Path:    "/products/page-list",
+				Handler: mpcrmproduct.ListProductsPageHandler(serverCtx),
 			},
 		},
 		rest.WithPrefix("/api/v1/mp/product"),

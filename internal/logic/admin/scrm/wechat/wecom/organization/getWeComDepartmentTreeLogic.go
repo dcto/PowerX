@@ -25,7 +25,12 @@ func NewGetWeComDepartmentTreeLogic(ctx context.Context, svcCtx *svc.ServiceCont
 }
 
 func (l *GetWeComDepartmentTreeLogic) GetWeComDepartmentTree(req *types.GetWecomDepartmentTreeRequest) (resp *types.GetWecomDepartmentTreeReply, err error) {
-	_, err = l.svcCtx.PowerX.SCRM.WeCom.GetDepartmentBy(l.ctx, req.DepartmentId, 5)
+	res, err := l.svcCtx.PowerX.SCRM.WeCom.GetDepartmentBy(l.ctx, req.DepartmentId, 5)
+	if err != nil {
+		return nil, err
+	}
 
-	return nil, nil
+	return &types.GetWecomDepartmentTreeReply{
+		Department: TransformWeComDepartmentToReply(res),
+	}, nil
 }

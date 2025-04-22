@@ -106,13 +106,13 @@ type iWeComUserInterface interface {
 	//
 	PullSyncDepartmentsAndUsers(ctx context.Context) error
 	//
-	// FindManyWechatUsersPage
+	// FindManyWeComUsersPage
 	//  @Description: 查询员工
 	//  @param ctx
 	//  @param opt
 	//  @return *types.Page[*organization.WeComUser]
 	//
-	FindManyWechatUsersPage(ctx context.Context, opt *types.PageOption[FindManyWeComUsersOption]) (*types.Page[*organization2.WeComUser], error)
+	FindManyWeComUsersPage(ctx context.Context, opt *types.PageOption[FindManyWeComUsersOption]) (*types.Page[*organization2.WeComUser], error)
 }
 
 // iWeComCustomerInterface

@@ -26,10 +26,10 @@ func NewListWeComUserPageLogic(ctx context.Context, svcCtx *svc.ServiceContext) 
 	}
 }
 
-func (l *ListWeComUserPageLogic) ListWeComUserPage(req *types.ListWeComUserReqeust) (resp *types.ListWeComUserReply, err error) {
-	data, err := l.svcCtx.PowerX.SCRM.WeCom.FindManyWechatUsersPage(l.ctx, l.OPT(req))
+func (l *ListWeComUserPageLogic) ListWeComUserPage(req *types.ListWeComUserPageReqeust) (resp *types.ListWeComUserPageReply, err error) {
+	data, err := l.svcCtx.PowerX.SCRM.WeCom.FindManyWeComUsersPage(l.ctx, l.OPT(req))
 
-	return &types.ListWeComUserReply{
+	return &types.ListWeComUserPageReply{
 		List:      l.DTO(data.List),
 		PageIndex: data.PageIndex,
 		PageSize:  data.PageSize,
@@ -43,7 +43,7 @@ func (l *ListWeComUserPageLogic) ListWeComUserPage(req *types.ListWeComUserReqeu
 //	@receiver user
 //	@param opt
 //	@return *types.PageOption[wechat.FindManyWeComUsersOption]
-func (l *ListWeComUserPageLogic) OPT(opt *types.ListWeComUserReqeust) *types.PageOption[wecom.FindManyWeComUsersOption] {
+func (l *ListWeComUserPageLogic) OPT(opt *types.ListWeComUserPageReqeust) *types.PageOption[wecom.FindManyWeComUsersOption] {
 
 	option := types.PageOption[wecom.FindManyWeComUsersOption]{
 		Option:    wecom.FindManyWeComUsersOption{},
@@ -86,7 +86,7 @@ func (l *ListWeComUserPageLogic) OPT(opt *types.ListWeComUserReqeust) *types.Pag
 //	@receiver user
 //	@param data
 //	@return users
-func (l *ListWeComUserPageLogic) DTO(data []*organization.WeComUser) (users []*types.WechatUser) {
+func (l *ListWeComUserPageLogic) DTO(data []*organization.WeComUser) (users []*types.WeComUser) {
 
 	for _, val := range data {
 		users = append(users, l.dto(val))
@@ -100,10 +100,10 @@ func (l *ListWeComUserPageLogic) DTO(data []*organization.WeComUser) (users []*t
 //	@Description:
 //	@receiver user
 //	@param val
-//	@return *types.WechatUser
-func (l *ListWeComUserPageLogic) dto(val *organization.WeComUser) *types.WechatUser {
-	return &types.WechatUser{
-		WeComUserId:           val.WeComUserId,
+//	@return *types.WeComUser
+func (l *ListWeComUserPageLogic) dto(val *organization.WeComUser) *types.WeComUser {
+	return &types.WeComUser{
+		UserId:                val.UserId,
 		Name:                  val.Name,
 		Position:              val.Position,
 		Mobile:                val.Mobile,

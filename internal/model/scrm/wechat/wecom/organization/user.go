@@ -10,7 +10,7 @@ import (
 type WeComUser struct {
 	powerModel.PowerModel
 
-	WeComUserId           string `gorm:"comment:员工ID;column:wecom_user_id;unique" json:"wecom_user_id"`
+	UserId                string `gorm:"comment:员工ID;column:wecom_user_id;unique" json:"wecom_user_id"`
 	Name                  string `gorm:"comment:员工名称;column:name" json:"name"`
 	Position              string `gorm:"comment:员工位置;column:position" json:"position"`
 	Mobile                string `gorm:"comment:员工电话;column:mobile" json:"mobile"`
@@ -62,13 +62,13 @@ func (e WeComUser) Query(db *gorm.DB) (users []*WeComUser) {
 
 }
 
-// Action
+// BatchUpsert
 //
 //	@Description:
 //	@receiver e
 //	@param db
 //	@param users
-func (e WeComUser) Action(db *gorm.DB, users []*WeComUser) {
+func (e WeComUser) BatchUpsert(db *gorm.DB, users []*WeComUser) {
 
 	err := db.Table(e.TableName()).
 		//Debug().

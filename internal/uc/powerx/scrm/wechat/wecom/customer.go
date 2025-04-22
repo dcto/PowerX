@@ -202,7 +202,7 @@ func (uc *WeComUseCase) pullSyncWeComCustomerRequest(ids ...string) {
 		workUsers := uc.modelWeComOrganization.user.Query(uc.db)
 		ids = organization.AdapterUserSliceUserIDs(func(users []*organization.WeComUser) (ids []string) {
 			for _, user := range users {
-				ids = append(ids, user.WeComUserId)
+				ids = append(ids, user.UserId)
 			}
 			return ids
 		})(workUsers)

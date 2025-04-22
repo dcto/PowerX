@@ -1683,11 +1683,11 @@ type GetWeComCustomerRequest struct {
 }
 
 type GetWecomDepartmentTreeReply struct {
-	TreeList WeComDepartment `json:"treeList"`
+	Department *WeComDepartment `json:"department"`
 }
 
 type GetWecomDepartmentTreeRequest struct {
-	DepartmentId int64 `path:"departmentId"`
+	DepartmentId int64 `json:"departmentId"`
 }
 
 type GroupRobotMsgNewsArticlesReply struct {
@@ -2301,14 +2301,14 @@ type ListWeComTagReqeust struct {
 	PageSize  int      `form:"pageSize,optional"`
 }
 
-type ListWeComUserReply struct {
-	List      []*WechatUser `json:"list"`
-	PageIndex int           `json:"pageIndex"`
-	PageSize  int           `json:"pageSize"`
-	Total     int64         `json:"total"`
+type ListWeComUserPageReply struct {
+	List      []*WeComUser `json:"list"`
+	PageIndex int          `json:"pageIndex"`
+	PageSize  int          `json:"pageSize"`
+	Total     int64        `json:"total"`
 }
 
-type ListWeComUserReqeust struct {
+type ListWeComUserPageReqeust struct {
 	Id                    int64  `json:"id,optional"`                    // 微信员工ID
 	Name                  string `json:"name,optional"`                  // 微信员工名称
 	Alias                 string `json:"alias,optional"`                 // 微信员工别称
@@ -2319,6 +2319,14 @@ type ListWeComUserReqeust struct {
 	Status                int    `json:"status,optional"`                // 状态
 	PageIndex             int    `form:"pageIndex,optional"`
 	PageSize              int    `form:"pageSize,optional"`
+}
+
+type ListWeComUserReply struct {
+	List []*WeComUser `json:"list"`
+}
+
+type ListWeComUserReqeust struct {
+	DepartmentId int64 `json:"departmentId"`
 }
 
 type LoginReply struct {
@@ -3739,14 +3747,14 @@ type WeComCustomersWithFollowUser struct {
 }
 
 type WeComDepartment struct {
-	WeComDepId       int               `json:"weComDepId"`
-	Name             string            `json:"name"`
-	NameEn           string            `json:"nameEn"`
-	WeComParentId    int               `json:"weComParentId"`
-	Order            int               `json:"order"`
-	DepartmentLeader []string          `json:"departmentLeader"`
-	RefDepartmentId  int64             `json:"refDepartmentId"`
-	Children         []WeComDepartment `json:"children"`
+	WeComDepId       int                `json:"weComDepId"`
+	Name             string             `json:"name"`
+	NameEn           string             `json:"nameEn"`
+	WeComParentId    int                `json:"weComParentId"`
+	Order            int                `json:"order"`
+	DepartmentLeader []string           `json:"departmentLeader"`
+	RefDepartmentId  int64              `json:"refDepartmentId"`
+	Children         []*WeComDepartment `json:"children"`
 }
 
 type WeComListCustomerGroupReply struct {
@@ -3801,18 +3809,7 @@ type WeComTextOfMessage struct {
 }
 
 type WeComUser struct {
-	Userid string `json:"userId"`
-}
-
-type WebToken struct {
-	TokenType    string `json:"tokenType"`
-	ExpiresIn    string `json:"expiresIn"`
-	AccessToken  string `json:"accessToken"`
-	RefreshToken string `json:"refreshToken"`
-}
-
-type WechatUser struct {
-	WeComUserId           string `json:"weComUserId"`
+	UserId                string `json:"userId"`
 	Name                  string `json:"name"`
 	Position              string `json:"position"`
 	Mobile                string `gorm:"unique"`
@@ -3828,4 +3825,11 @@ type WechatUser struct {
 	WeComMainDepartmentId int    `json:"weComMainDepartmentId"`
 	Status                int    `json:"status"`
 	QrCode                string `json:"qrCode"`
+}
+
+type WebToken struct {
+	TokenType    string `json:"tokenType"`
+	ExpiresIn    string `json:"expiresIn"`
+	AccessToken  string `json:"accessToken"`
+	RefreshToken string `json:"refreshToken"`
 }

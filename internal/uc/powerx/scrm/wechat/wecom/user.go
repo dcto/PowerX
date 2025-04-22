@@ -12,14 +12,14 @@ import (
 	"strings"
 )
 
-// CreateWeComUserRequest
+// CreateWeComUser
 //
 //	@Description:
 //	@receiver uc
 //	@param ctx
 //	@param dep
 //	@return error
-func (uc *WeComUseCase) CreateWeComUserRequest(ctx context.Context, user *organization3.WeComUser) (err error) {
+func (uc *WeComUseCase) CreateWeComUser(ctx context.Context, user *organization3.WeComUser) (err error) {
 
 	create, err := uc.Client.User.Create(ctx, uc.userModelToWeComRequest(user))
 	if err != nil {
@@ -29,21 +29,21 @@ func (uc *WeComUseCase) CreateWeComUserRequest(ctx context.Context, user *organi
 	}
 
 	if err == nil {
-		uc.modelWeComOrganization.user.Action(uc.db, []*organization3.WeComUser{user})
+		uc.modelWeComOrganization.user.BatchUpsert(uc.db, []*organization3.WeComUser{user})
 	}
 
 	return err
 
 }
 
-// UpdateWeComUserRequest
+// UpdateWeComUser
 //
 //	@Description:
 //	@receiver this
 //	@param ctx
 //	@param dep
 //	@return err
-func (uc *WeComUseCase) UpdateWeComUserRequest(ctx context.Context, user *organization3.WeComUser) (err error) {
+func (uc *WeComUseCase) UpdateWeComUser(ctx context.Context, user *organization3.WeComUser) (err error) {
 
 	update, err := uc.Client.User.Update(ctx, uc.userModelToWeComRequest(user))
 
@@ -54,7 +54,7 @@ func (uc *WeComUseCase) UpdateWeComUserRequest(ctx context.Context, user *organi
 	}
 
 	if err == nil {
-		uc.modelWeComOrganization.user.Action(uc.db, []*organization3.WeComUser{user})
+		uc.modelWeComOrganization.user.BatchUpsert(uc.db, []*organization3.WeComUser{user})
 	}
 	return err
 
@@ -68,7 +68,7 @@ func (uc *WeComUseCase) UpdateWeComUserRequest(ctx context.Context, user *organi
 func (uc *WeComUseCase) userModelToWeComRequest(user *organization3.WeComUser) *request.RequestUserDetail {
 
 	return &request.RequestUserDetail{
-		Userid:         user.WeComUserId,
+		Userid:         user.UserId,
 		Name:           user.Name,
 		Alias:          user.Alias,
 		Mobile:         user.Mobile,
@@ -104,8 +104,8 @@ func (uc *WeComUseCase) PullSyncDepartmentsAndUsers(ctx context.Context) error {
 	for _, val := range list.DepartmentIDs {
 		go func(val response.DepartmentID) {
 			defer uc.gLock.Done()
-			uc.syncDepartment(val)
-			uc.syncDepartmentUsers(val)
+			uc.syncDepartment(ctx, val)
+			uc.syncDepartmentUsers(ctx, val)
 
 		}(val)
 
@@ -119,9 +119,9 @@ func (uc *WeComUseCase) PullSyncDepartmentsAndUsers(ctx context.Context) error {
 //	@Description:
 //	@receiver this
 //	@param val
-func (uc *WeComUseCase) syncDepartment(val response.DepartmentID) {
+func (uc *WeComUseCase) syncDepartment(ctx context.Context, val response.DepartmentID) {
 
-	department, err := uc.Client.Department.Get(uc.ctx, val.ID)
+	department, err := uc.Client.Department.Get(ctx, val.ID)
 	if err != nil {
 		panic(err)
 	} else {
@@ -150,36 +150,43 @@ func (uc *WeComUseCase) syncDepartment(val response.DepartmentID) {
 //	@Description:
 //	@receiver this
 //	@param val
-func (uc *WeComUseCase) syncDepartmentUsers(val response.DepartmentID) {
+func (uc *WeComUseCase) syncDepartmentUsers(ctx context.Context, val response.DepartmentID) {
 
-	users, err := uc.Client.User.GetDetailedDepartmentUsers(uc.ctx, val.ID, 0)
+	resUsers, err := uc.Client.User.GetDetailedDepartmentUsers(ctx, val.ID, 0)
+	//fmt.Dump(val, resUsers)
 	if err != nil {
 		panic(err)
 	} else {
-		err = uc.help.error(`scrm.wecom.sync.organization.user.error`, users.ResponseWork)
+		err = uc.help.error(`scrm.wecom.sync.organization.user.error`, resUsers.ResponseWork)
 	}
 
-	if err == nil && len(users.UserList) > 0 {
+	if err == nil && len(resUsers.UserList) > 0 {
 		users := []*organization3.WeComUser{}
-		for _, user := range users {
-			if user != nil {
-				open, _ := uc.Client.User.UserIdToOpenID(uc.ctx, user.WeComUserId)
+		for _, employee := range resUsers.UserList {
+			if employee != nil {
+				open, err := uc.Client.User.UserIdToOpenID(ctx, employee.UserID)
+				if err != nil {
+					panic(err)
+				} else {
+					err = uc.help.error(`scrm.wecom.sync.organization.user.error`, open.ResponseWork)
+				}
 				users = append(users, &organization3.WeComUser{
-					WeComUserId:           user.WeComUserId,
-					Name:                  user.Name,
-					Position:              user.Position,
-					Mobile:                user.WeComUserId,
-					Email:                 user.Email,
-					Alias:                 user.Alias,
+					UserId:                employee.UserID,
+					Name:                  employee.Name,
+					Position:              employee.Position,
+					Mobile:                employee.Mobile,
+					Email:                 employee.Email,
+					Alias:                 employee.Alias,
 					OpenUserId:            open.OpenID,
-					WeComMainDepartmentId: user.WeComMainDepartmentId,
-					Status:                user.Status,
-					QrCode:                user.QrCode,
+					WeComMainDepartmentId: employee.MainDepartment,
+					Status:                employee.Status,
+					QrCode:                employee.QrCode,
 					RefUserId:             0,
 				})
 			}
 		}
-		uc.modelWeComOrganization.user.Action(uc.db, users)
+		//fmt.Dump(users)
+		uc.modelWeComOrganization.user.BatchUpsert(uc.db, users)
 		// sync to local
 		//uc.modelOrganization.user.Action(uc.db, uc.userFromWeComSyncToLocal(users))
 
@@ -221,7 +228,7 @@ func buildFindManyUsersQueryNoPage(query *gorm.DB, opt *FindManyWeComUsersOption
 	return query
 }
 
-// FindManyWechatUsersPage
+// FindManyWeComUsersPage
 //
 //	@Description:
 //	@receiver uc
@@ -229,7 +236,7 @@ func buildFindManyUsersQueryNoPage(query *gorm.DB, opt *FindManyWeComUsersOption
 //	@param opt
 //	@return *types.Page[*organization.WeComUser]
 //	@return error
-func (uc *WeComUseCase) FindManyWechatUsersPage(ctx context.Context, opt *types.PageOption[FindManyWeComUsersOption]) (*types.Page[*organization3.WeComUser], error) {
+func (uc *WeComUseCase) FindManyWeComUsersPage(ctx context.Context, opt *types.PageOption[FindManyWeComUsersOption]) (*types.Page[*organization3.WeComUser], error) {
 
 	var users []*organization3.WeComUser
 	var count int64
@@ -261,7 +268,7 @@ func (uc *WeComUseCase) FindManyWechatUsersPage(ctx context.Context, opt *types.
 	}, err
 }
 
-// getWechatUserIDs
+// getWeComUserIDs
 //
 //	@Description:
 //	@receiver uc
@@ -269,11 +276,11 @@ func (uc *WeComUseCase) FindManyWechatUsersPage(ctx context.Context, opt *types.
 //	@param opt
 //	@return *types.Page[*organization.WeComUser]
 //	@return error
-func (uc *WeComUseCase) getWechatUserIDs(ctx context.Context) (ids []string, err error) {
+func (uc *WeComUseCase) getWeComUserIDs(ctx context.Context) (ids []string, err error) {
 
 	ids = organization3.AdapterUserSliceUserIDs(func(users []*organization3.WeComUser) (ids []string) {
 		for _, user := range users {
-			ids = append(ids, user.WeComUserId)
+			ids = append(ids, user.UserId)
 		}
 		return ids
 	})(uc.modelWeComOrganization.user.Query(uc.db))
@@ -294,7 +301,7 @@ func (uc *WeComUseCase) userFromWeComSyncToLocal(fromUser []*organization3.WeCom
 		password, _ := organization2.HashPassword(`123456`)
 		for _, user := range fromUser {
 			toUser = append(toUser, &organization2.User{
-				Account:  user.WeComUserId,
+				Account:  user.UserId,
 				Name:     user.Name,
 				NickName: user.Name,
 				// todo Position 关联
@@ -305,7 +312,7 @@ func (uc *WeComUseCase) userFromWeComSyncToLocal(fromUser []*organization3.WeCom
 				ExternalEmail: user.Email,
 				Avatar:        user.Avatar,
 				Password:      password,
-				WeComUserId:   user.WeComUserId,
+				WeComUserId:   user.UserId,
 			})
 		}
 	}

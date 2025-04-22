@@ -70,7 +70,7 @@
         "list": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/WechatUser"
+            "$ref": "#/definitions/WeComUser"
           }
         },
         "pageIndex": {
@@ -155,7 +155,7 @@
         "status"
       ]
     },
-    "WechatUser": {
+    "WeComUser": {
       "type": "object",
       "properties": {
         "weComUserId": {
@@ -209,7 +209,7 @@
           "type": "string"
         }
       },
-      "title": "WechatUser",
+      "title": "WeComUser",
       "required": [
         "weComUserId",
         "name",

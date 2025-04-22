@@ -9,17 +9,17 @@ import (
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 
-// 员工列表/page
-func ListWeComUserPageHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
+// 获取员工列表
+func ListWeComUserHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var req types.ListWeComUserPageReqeust
+		var req types.ListWeComUserReqeust
 		if err := httpx.Parse(r, &req); err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 			return
 		}
 
-		l := organization.NewListWeComUserPageLogic(r.Context(), svcCtx)
-		resp, err := l.ListWeComUserPage(&req)
+		l := organization.NewListWeComUserLogic(r.Context(), svcCtx)
+		resp, err := l.ListWeComUser(&req)
 		if err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 		} else {

@@ -44,10 +44,6 @@ type (
         CustomizedPublishStatus int `json:"customizedPublishStatus"`
     }
 
-    WeComUser {
-        Userid string `json:"userId"`
-    }
-
     AllowUserinfos {
         User []WeComUser `json:"user"`
     }
