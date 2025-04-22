@@ -8,6 +8,7 @@ import (
 	"context"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/work/department/response"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/work/user/request"
+	"github.com/zeromicro/go-zero/core/logx"
 	"gorm.io/gorm"
 	"strings"
 )
@@ -23,7 +24,7 @@ func (uc *WeComUseCase) CreateWeComUser(ctx context.Context, user *organization3
 
 	create, err := uc.Client.User.Create(ctx, uc.userModelToWeComRequest(user))
 	if err != nil {
-		panic(err)
+		return err
 	} else {
 		err = uc.help.error(`scrm.create.wecom.user.error`, *create)
 	}
@@ -48,7 +49,7 @@ func (uc *WeComUseCase) UpdateWeComUser(ctx context.Context, user *organization3
 	update, err := uc.Client.User.Update(ctx, uc.userModelToWeComRequest(user))
 
 	if err != nil {
-		panic(err)
+		return nil
 	} else {
 		err = uc.help.error(`scrm.update.wecom.organization.user.error`, *update)
 	}
@@ -91,7 +92,7 @@ func (uc *WeComUseCase) PullSyncDepartmentsAndUsers(ctx context.Context) error {
 
 	list, err := uc.Client.Department.SimpleList(ctx, 1)
 	if err != nil {
-		panic(err)
+		return err
 	} else {
 		err = uc.help.error(`scrm.pull.wecom.sync.organization.list.error`, list.ResponseWork)
 	}
@@ -104,9 +105,16 @@ func (uc *WeComUseCase) PullSyncDepartmentsAndUsers(ctx context.Context) error {
 	for _, val := range list.DepartmentIDs {
 		go func(val response.DepartmentID) {
 			defer uc.gLock.Done()
-			uc.syncDepartment(ctx, val)
-			uc.syncDepartmentUsers(ctx, val)
-
+			err = uc.syncDepartment(ctx, val)
+			if err != nil {
+				logx.Errorf("sync department id:%d, err: %s", val, err.Error())
+				return
+			}
+			err = uc.syncDepartmentUsers(ctx, val)
+			if err != nil {
+				logx.Errorf("sync department id:%d, users err: %s", val, err.Error())
+				return
+			}
 		}(val)
 
 	}
@@ -119,11 +127,11 @@ func (uc *WeComUseCase) PullSyncDepartmentsAndUsers(ctx context.Context) error {
 //	@Description:
 //	@receiver this
 //	@param val
-func (uc *WeComUseCase) syncDepartment(ctx context.Context, val response.DepartmentID) {
+func (uc *WeComUseCase) syncDepartment(ctx context.Context, val response.DepartmentID) (err error) {
 
 	department, err := uc.Client.Department.Get(ctx, val.ID)
 	if err != nil {
-		panic(err)
+		return err
 	} else {
 		err = uc.help.error(`scrm.wechat.sync.organization.department.error`, department.ResponseWork)
 	}
@@ -143,6 +151,8 @@ func (uc *WeComUseCase) syncDepartment(ctx context.Context, val response.Departm
 
 	}
 
+	return nil
+
 }
 
 // user
@@ -150,12 +160,12 @@ func (uc *WeComUseCase) syncDepartment(ctx context.Context, val response.Departm
 //	@Description:
 //	@receiver this
 //	@param val
-func (uc *WeComUseCase) syncDepartmentUsers(ctx context.Context, val response.DepartmentID) {
+func (uc *WeComUseCase) syncDepartmentUsers(ctx context.Context, val response.DepartmentID) (err error) {
 
 	resUsers, err := uc.Client.User.GetDetailedDepartmentUsers(ctx, val.ID, 0)
 	//fmt.Dump(val, resUsers)
 	if err != nil {
-		panic(err)
+		return err
 	} else {
 		err = uc.help.error(`scrm.wecom.sync.organization.user.error`, resUsers.ResponseWork)
 	}
@@ -191,7 +201,7 @@ func (uc *WeComUseCase) syncDepartmentUsers(ctx context.Context, val response.De
 		//uc.modelOrganization.user.Action(uc.db, uc.userFromWeComSyncToLocal(users))
 
 	}
-
+	return nil
 }
 
 // buildFindManyUsersQueryNoPage
