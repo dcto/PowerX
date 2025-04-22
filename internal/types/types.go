@@ -2217,15 +2217,15 @@ type ListWeComCustomersRequest struct {
 	PageSize     int    `form:"pageSize,optional"`
 }
 
-type ListWeComDepartmentReply struct {
+type ListWeComDepartmentPageReply struct {
 	List      []*WeComDepartment `json:"list"`
 	PageIndex int                `json:"pageIndex"`
 	PageSize  int                `json:"pageSize"`
 	Total     int64              `json:"total"`
 }
 
-type ListWeComDepartmentReqeust struct {
-	WeComDepId    int    `json:"weComDepId,optional"`
+type ListWeComDepartmentPageReqeust struct {
+	DepartmentId  int    `json:"departmentId,optional"`
 	Name          string `json:"name,optional"`
 	NameEn        string `json:"nameEn,optional"`
 	WeComParentId int    `json:"weComParentId,optional"`
@@ -2309,16 +2309,17 @@ type ListWeComUserPageReply struct {
 }
 
 type ListWeComUserPageReqeust struct {
-	Id                    int64  `json:"id,optional"`                    // 微信员工ID
-	Name                  string `json:"name,optional"`                  // 微信员工名称
-	Alias                 string `json:"alias,optional"`                 // 微信员工别称
-	Email                 string `json:"email,optional"`                 // 微信员工Email
-	Mobile                string `json:"mobile,optional"`                // 微信员工手机号
-	OpenUserId            string `json:"openUserId,optional"`            // openID
-	WeComMainDepartmentId int64  `json:"weComMainDepartmentId,optional"` // 微信员工所属部门
-	Status                int    `json:"status,optional"`                // 状态
-	PageIndex             int    `form:"pageIndex,optional"`
-	PageSize              int    `form:"pageSize,optional"`
+	Id            int64   `json:"id,optional"`            // 微信员工ID
+	Name          string  `json:"name,optional"`          // 微信员工名称
+	Alias         string  `json:"alias,optional"`         // 微信员工别称
+	Email         string  `json:"email,optional"`         // 微信员工Email
+	Mobile        string  `json:"mobile,optional"`        // 微信员工手机号
+	OpenUserId    string  `json:"openUserId,optional"`    // openID
+	DepartmentId  int64   `json:"departmentId,optional"`  // 微信员工所属部门
+	DepartmentIds []int64 `json:"departmentIds,optional"` // 微信员工所属部门
+	Status        int     `json:"status,optional"`        // 状态
+	PageIndex     int     `form:"pageIndex,optional"`
+	PageSize      int     `form:"pageSize,optional"`
 }
 
 type ListWeComUserReply struct {

@@ -1505,6 +1505,27 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			[]rest.Middleware{serverCtx.UserJWTAuth},
 			[]rest.Route{
 				{
+					// App详情
+					Method:  http.MethodGet,
+					Path:    "/detail",
+					Handler: adminscrmwechatwecomapp.DetailWeComAppHandler(serverCtx),
+				},
+				{
+					// App列表/options
+					Method:  http.MethodGet,
+					Path:    "/options",
+					Handler: adminscrmwechatwecomapp.ListWeComAppOptionHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithPrefix("/api/v1/admin/scrm/wechat/wecom/app"),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.UserJWTAuth},
+			[]rest.Route{
+				{
 					// App创建企业群
 					Method:  http.MethodPost,
 					Path:    "/group/create",
@@ -1521,27 +1542,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Method:  http.MethodPost,
 					Path:    "/group/message/articles",
 					Handler: adminscrmwechatwecomapp.SendWeComAppGroupArticleMessageHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithPrefix("/api/v1/admin/scrm/wechat/wecom/app"),
-	)
-
-	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.UserJWTAuth},
-			[]rest.Route{
-				{
-					// App详情
-					Method:  http.MethodGet,
-					Path:    "/detail",
-					Handler: adminscrmwechatwecomapp.DetailWeComAppHandler(serverCtx),
-				},
-				{
-					// App列表/options
-					Method:  http.MethodGet,
-					Path:    "/options",
-					Handler: adminscrmwechatwecomapp.ListWeComAppOptionHandler(serverCtx),
 				},
 			}...,
 		),
@@ -1628,6 +1628,27 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			[]rest.Middleware{serverCtx.UserJWTAuth},
 			[]rest.Route{
 				{
+					// 客户群列表/limit
+					Method:  http.MethodPost,
+					Path:    "/group/list",
+					Handler: adminscrmwechatwecomcustomer.ListWeComCustomerGroupLimitHandler(serverCtx),
+				},
+				{
+					// 客户群发信息
+					Method:  http.MethodPost,
+					Path:    "/group/message/template",
+					Handler: adminscrmwechatwecomcustomer.SendWeComCustomerGroupMessageHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithPrefix("/api/v1/admin/scrm/wechat/wecom/customers"),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.UserJWTAuth},
+			[]rest.Route{
+				{
 					// 查询客户详情列表
 					Method:  http.MethodGet,
 					Path:    "/",
@@ -1673,20 +1694,26 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			[]rest.Middleware{serverCtx.UserJWTAuth},
 			[]rest.Route{
 				{
-					// 客户群列表/limit
+					// 获取员工列表
 					Method:  http.MethodPost,
-					Path:    "/group/list",
-					Handler: adminscrmwechatwecomcustomer.ListWeComCustomerGroupLimitHandler(serverCtx),
+					Path:    "/list",
+					Handler: adminscrmwechatwecomorganization.ListWeComUserHandler(serverCtx),
 				},
 				{
-					// 客户群发信息
+					// 员工列表/page
 					Method:  http.MethodPost,
-					Path:    "/group/message/template",
-					Handler: adminscrmwechatwecomcustomer.SendWeComCustomerGroupMessageHandler(serverCtx),
+					Path:    "/page",
+					Handler: adminscrmwechatwecomorganization.ListWeComUserPageHandler(serverCtx),
+				},
+				{
+					// 同步组织架构/department&user
+					Method:  http.MethodGet,
+					Path:    "/sync",
+					Handler: adminscrmwechatwecomorganization.SyncWeComUserHandler(serverCtx),
 				},
 			}...,
 		),
-		rest.WithPrefix("/api/v1/admin/scrm/wechat/wecom/customers"),
+		rest.WithPrefix("/api/v1/admin/scrm/wechat/wecom/organization/users"),
 	)
 
 	server.AddRoutes(
@@ -1708,33 +1735,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			}...,
 		),
 		rest.WithPrefix("/api/v1/admin/scrm/wechat/wecom/organization"),
-	)
-
-	server.AddRoutes(
-		rest.WithMiddlewares(
-			[]rest.Middleware{serverCtx.UserJWTAuth},
-			[]rest.Route{
-				{
-					// 获取员工列表
-					Method:  http.MethodPost,
-					Path:    "/list",
-					Handler: adminscrmwechatwecomorganization.ListWeComUserHandler(serverCtx),
-				},
-				{
-					// 员工列表/page
-					Method:  http.MethodPost,
-					Path:    "/page",
-					Handler: adminscrmwechatwecomorganization.ListWeComUserPageHandler(serverCtx),
-				},
-				{
-					// 同步组织架构/department&user
-					Method:  http.MethodGet,
-					Path:    "/sync",
-					Handler: adminscrmwechatwecomorganization.SyncWeComUserHandler(serverCtx),
-				},
-			}...,
-		),
-		rest.WithPrefix("/api/v1/admin/scrm/wechat/wecom/organization/users"),
 	)
 
 	server.AddRoutes(

@@ -55,7 +55,8 @@ type (
         Email string `json:"email,optional"`                                  // 微信员工Email
         Mobile string `json:"mobile,optional"`                                // 微信员工手机号
         OpenUserId string `json:"openUserId,optional"`                        // openID
-        WeComMainDepartmentId int64 `json:"weComMainDepartmentId,optional"` // 微信员工所属部门
+        departmentId int64 `json:"departmentId,optional"` // 微信员工所属部门
+        departmentIds []int64 `json:"departmentIds,optional"` // 微信员工所属部门
         Status int `json:"status,optional"`                                   // 状态
         PageIndex int `form:"pageIndex,optional"`
         PageSize int `form:"pageSize,optional"`

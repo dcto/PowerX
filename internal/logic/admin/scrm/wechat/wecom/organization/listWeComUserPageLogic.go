@@ -28,7 +28,10 @@ func NewListWeComUserPageLogic(ctx context.Context, svcCtx *svc.ServiceContext) 
 
 func (l *ListWeComUserPageLogic) ListWeComUserPage(req *types.ListWeComUserPageReqeust) (resp *types.ListWeComUserPageReply, err error) {
 	data, err := l.svcCtx.PowerX.SCRM.WeCom.FindManyWeComUsersPage(l.ctx, l.OPT(req))
-
+	if err != nil {
+		logx.Error("list wecom user page failed: %v", err)
+		return nil, err
+	}
 	return &types.ListWeComUserPageReply{
 		List:      l.DTO(data.List),
 		PageIndex: data.PageIndex,
@@ -68,12 +71,16 @@ func (l *ListWeComUserPageLogic) OPT(opt *types.ListWeComUserPageReqeust) *types
 	if opt.OpenUserId != `` {
 		option.Option.OpenUserId = []string{opt.OpenUserId}
 	}
-	if opt.WeComMainDepartmentId > 0 {
-		option.Option.WeComMainDepartmentId = []int64{opt.WeComMainDepartmentId}
+	if opt.DepartmentId > 0 {
+		option.Option.DepartmentId = opt.DepartmentId
+	}
+	if len(opt.DepartmentIds) > 0 {
+		option.Option.DepartmentIds = opt.DepartmentIds
 	}
 	if opt.Status > 0 {
 		option.Option.Status = []int{opt.Status}
 	}
+	//fmt.Dump(option)
 	option.DefaultPageIfNotSet()
 
 	return &option

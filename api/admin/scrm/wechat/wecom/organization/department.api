@@ -21,7 +21,7 @@ service PowerX {
 
     @doc "部门列表/page"
     @handler ListWeComDepartmentPage
-    post /departments/page (ListWeComDepartmentReqeust) returns (ListWeComDepartmentReply)
+    post /departments/page (ListWeComDepartmentPageReqeust) returns (ListWeComDepartmentPageReply)
 }
 
 
@@ -34,8 +34,8 @@ type (
         department *WeComDepartment `json:"department"`
     }
 
-    ListWeComDepartmentReqeust {
-        WeComDepId int `json:"weComDepId,optional"`
+    ListWeComDepartmentPageReqeust {
+        DepartmentId int `json:"departmentId,optional"`
         Name string `json:"name,optional"`
         NameEn string `json:"nameEn,optional"`
         WeComParentId int `json:"weComParentId,optional"`
@@ -45,7 +45,7 @@ type (
         PageSize int `form:"pageSize,optional"`
     }
 
-    ListWeComDepartmentReply {
+    ListWeComDepartmentPageReply {
         List []*WeComDepartment `json:"list"`
         PageIndex int `json:"pageIndex"`
         PageSize int `json:"pageSize"`

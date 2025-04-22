@@ -6,9 +6,13 @@ import (
 	organization3 "PowerX/internal/model/scrm/wechat/wecom/organization"
 	"PowerX/internal/types"
 	"context"
+	"encoding/json"
+	"fmt"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/work/department/response"
 	"github.com/ArtisanCloud/PowerWeChat/v3/src/work/user/request"
+	"github.com/lib/pq"
 	"github.com/zeromicro/go-zero/core/logx"
+	"gorm.io/datatypes"
 	"gorm.io/gorm"
 	"strings"
 )
@@ -176,9 +180,13 @@ func (uc *WeComUseCase) syncDepartmentUsers(ctx context.Context, val response.De
 			if employee != nil {
 				open, err := uc.Client.User.UserIdToOpenID(ctx, employee.UserID)
 				if err != nil {
-					panic(err)
+					return err
 				} else {
 					err = uc.help.error(`scrm.wecom.sync.organization.user.error`, open.ResponseWork)
+				}
+				bufDepartment, err := json.Marshal(employee.Department)
+				if err != nil {
+					return err
 				}
 				users = append(users, &organization3.WeComUser{
 					UserId:                employee.UserID,
@@ -191,12 +199,16 @@ func (uc *WeComUseCase) syncDepartmentUsers(ctx context.Context, val response.De
 					WeComMainDepartmentId: employee.MainDepartment,
 					Status:                employee.Status,
 					QrCode:                employee.QrCode,
+					Department:            datatypes.JSON(bufDepartment),
 					RefUserId:             0,
 				})
 			}
 		}
 		//fmt.Dump(users)
-		uc.modelWeComOrganization.user.BatchUpsert(uc.db, users)
+		err = uc.modelWeComOrganization.user.BatchUpsert(uc.db, users)
+		if err != nil {
+			return err
+		}
 		// sync to local
 		//uc.modelOrganization.user.Action(uc.db, uc.userFromWeComSyncToLocal(users))
 
@@ -229,8 +241,18 @@ func buildFindManyUsersQueryNoPage(query *gorm.DB, opt *FindManyWeComUsersOption
 	if len(opt.OpenUserId) > 0 {
 		query.Where("open_user_id in ?", opt.OpenUserId)
 	}
-	if len(opt.WeComMainDepartmentId) > 0 {
-		query.Where("wecom_main_department_id in ? ", opt.WeComMainDepartmentId)
+	if opt.DepartmentId > 1 {
+		query.Where("wecom_main_department_id = ? ", opt.DepartmentId)
+		query.Or("department::jsonb @> ?", fmt.Sprintf("[%d]", opt.DepartmentId))
+	}
+	if len(opt.DepartmentIds) > 0 {
+		query.Where(
+			"wecom_main_department_id IN (?)"+
+				" OR EXISTS (SELECT 1 FROM jsonb_array_elements_text(department::jsonb) AS dept_id "+
+				"WHERE dept_id::int = ANY(?))",
+			opt.DepartmentIds,
+			pq.Array(opt.DepartmentIds), // 传入的数组
+		)
 	}
 	if len(opt.Status) > 0 {
 		query.Where("status in ?", opt.Status)
@@ -268,7 +290,9 @@ func (uc *WeComUseCase) FindManyWeComUsersPage(ctx context.Context, opt *types.P
 		query.Offset((opt.PageIndex - 1) * opt.PageSize).Limit(opt.PageSize)
 	}
 
-	err := query.Find(&users).Error
+	err := query.
+		//Debug().
+		Find(&users).Error
 
 	return &types.Page[*organization3.WeComUser]{
 		List:      users,

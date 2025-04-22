@@ -27,10 +27,10 @@ func NewListWeComDepartmentPageLogic(ctx context.Context, svcCtx *svc.ServiceCon
 	}
 }
 
-func (l *ListWeComDepartmentPageLogic) ListWeComDepartmentPage(req *types.ListWeComDepartmentReqeust) (resp *types.ListWeComDepartmentReply, err error) {
+func (l *ListWeComDepartmentPageLogic) ListWeComDepartmentPage(req *types.ListWeComDepartmentPageReqeust) (resp *types.ListWeComDepartmentPageReply, err error) {
 	data, err := l.svcCtx.PowerX.SCRM.WeCom.FindManyWeComDepartmentsPage(l.ctx, l.OPT(req))
 
-	return &types.ListWeComDepartmentReply{
+	return &types.ListWeComDepartmentPageReply{
 		List:      TransformWeComDepartmentsToReply(data.List),
 		PageIndex: data.PageIndex,
 		PageSize:  data.PageSize,
@@ -45,14 +45,14 @@ func (l *ListWeComDepartmentPageLogic) ListWeComDepartmentPage(req *types.ListWe
 //	@receiver depart
 //	@param opt
 //	@return *types.PageOption[wechat.FindManyWeComDepartmentsOption]
-func (l *ListWeComDepartmentPageLogic) OPT(opt *types.ListWeComDepartmentReqeust) *types.PageOption[wecom.FindManyWeComDepartmentsOption] {
+func (l *ListWeComDepartmentPageLogic) OPT(opt *types.ListWeComDepartmentPageReqeust) *types.PageOption[wecom.FindManyWeComDepartmentsOption] {
 
 	option := types.PageOption[wecom.FindManyWeComDepartmentsOption]{
 		Option:    wecom.FindManyWeComDepartmentsOption{},
 		PageIndex: opt.PageIndex,
 		PageSize:  opt.PageSize,
 	}
-	if v := opt.WeComDepId; v > 0 {
+	if v := opt.DepartmentId; v > 0 {
 		option.Option.WeComDepId = []int{v}
 	}
 	if v := opt.Name; v != `` {

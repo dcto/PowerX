@@ -193,15 +193,16 @@ type FindManyWeComDepartmentsOption struct {
 // FindManyWeComUsersOption
 // @Description:
 type FindManyWeComUsersOption struct {
-	UserId                string `json:"wecom_user_id"` //员工唯一ID
-	Ids                   []int64
-	Names                 []string
-	Alias                 []string
-	Emails                []string
-	Mobile                []string
-	OpenUserId            []string
-	WeComMainDepartmentId []int64
-	Status                []int
+	UserId        string `json:"wecom_user_id"` //员工唯一ID
+	Ids           []int64
+	Names         []string
+	Alias         []string
+	Emails        []string
+	Mobile        []string
+	OpenUserId    []string
+	DepartmentIds []int64
+	DepartmentId  int64
+	Status        []int
 	types.PageEmbedOption
 }
 

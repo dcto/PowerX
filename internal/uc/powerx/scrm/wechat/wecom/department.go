@@ -112,7 +112,9 @@ func (uc *WeComUseCase) FindManyWeComDepartmentsPage(ctx context.Context, option
 func (uc *WeComUseCase) GetDepartmentBy(ctx context.Context, id int64, level int) (*organization.WeComDepartment, error) {
 	var rootDepartment *organization.WeComDepartment
 	// Retrieve the root department
-	err := uc.db.WithContext(ctx).First(&rootDepartment, id).Error
+	err := uc.db.WithContext(ctx).
+		Where("wecom_dep_id", id).
+		First(&rootDepartment).Error
 	if err != nil {
 		return nil, err
 	}
@@ -123,7 +125,6 @@ func (uc *WeComUseCase) GetDepartmentBy(ctx context.Context, id int64, level int
 			return nil, err
 		}
 	}
-
 	return rootDepartment, nil
 }
 
@@ -141,13 +142,16 @@ func (uc *WeComUseCase) loadChildDepartments(ctx context.Context, parent *organi
 	}
 
 	var childDepartments []*organization.WeComDepartment
-	err := uc.db.WithContext(ctx).Where("wecom_parent_id = ?", parent.Id).Find(&childDepartments).Error
+	err := uc.db.WithContext(ctx).
+		//Debug().
+		Where("wecom_parent_id = ?", parent.WeComDepId).
+		Order("wecom_dep_id asc").
+		Find(&childDepartments).Error
 	if err != nil {
 		return err
 	}
 
 	parent.Children = childDepartments
-
 	for _, child := range childDepartments {
 		err = uc.loadChildDepartments(ctx, child, level-1)
 		if err != nil {
