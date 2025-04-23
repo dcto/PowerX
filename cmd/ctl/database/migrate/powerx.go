@@ -15,11 +15,11 @@ import (
 	"PowerX/internal/model/organization"
 	"PowerX/internal/model/permission"
 	"PowerX/internal/model/scene"
-	"PowerX/internal/model/scrm/app"
-	"PowerX/internal/model/scrm/customer"
-	organization2 "PowerX/internal/model/scrm/organization"
-	"PowerX/internal/model/scrm/resource"
-	"PowerX/internal/model/scrm/tag"
+	"PowerX/internal/model/scrm/wechat/wecom/app"
+	customer2 "PowerX/internal/model/scrm/wechat/wecom/customer"
+	organization3 "PowerX/internal/model/scrm/wechat/wecom/organization"
+	"PowerX/internal/model/scrm/wechat/wecom/resource"
+	tag2 "PowerX/internal/model/scrm/wechat/wecom/tag"
 	"PowerX/internal/model/wechat"
 	"fmt"
 	"gorm.io/driver/mysql"
@@ -129,15 +129,15 @@ func (m *PowerMigrator) AutoMigrate() {
 	migrate.AutoMigrateCustom(m.db)
 
 	// wechat organization
-	_ = m.db.AutoMigrate(&organization2.WeWorkUser{}, &organization2.WeWorkDepartment{})
+	_ = m.db.AutoMigrate(&organization3.WeComUser{}, &organization3.WeComDepartment{})
 	// wechat customer
-	_ = m.db.AutoMigrate(&customer.WeWorkExternalContact{}, &customer.WeWorkExternalContactFollow{})
+	_ = m.db.AutoMigrate(&customer2.WeComExternalContact{}, &customer2.WeComExternalContactFollow{})
 	// wechat resource
-	_ = m.db.AutoMigrate(&resource.WeWorkResource{})
+	_ = m.db.AutoMigrate(&resource.WeComResource{})
 	// wechat app
-	_ = m.db.AutoMigrate(&app.WeWorkAppGroup{})
+	_ = m.db.AutoMigrate(&app.WeComAppGroup{})
 	// wechat tag
-	_ = m.db.AutoMigrate(&tag.WeWorkTag{}, &tag.WeWorkTagGroup{})
+	_ = m.db.AutoMigrate(&tag2.WeComTag{}, &tag2.WeComTagGroup{})
 	// qrcode
 	_ = m.db.AutoMigrate(&scene.SceneQRCode{})
 }

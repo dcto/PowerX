@@ -89,22 +89,22 @@ const TableNamePivotObjectToTag = "pivot_object_to_tag"
 const TableNameTag = "tags"
 
 // scrm app
-const TableNameWeWorkAppGroup = "wework_app_groups"
+const TableNameWeComAppGroup = "wecom_app_groups"
 
 // scrm customer
-const TableNameWeWorkExternalContact = "we_work_external_contacts"
-const TableNameWeWorkExternalContactFollow = "we_work_external_contact_follows"
+const TableNameWeComExternalContact = "wecom_external_contacts"
+const TableNameWeComExternalContactFollow = "wecom_external_contact_follows"
 
 // scrm organization
-const TableNameWeWorkDepartment = "we_work_departments"
-const TableNameWeWorkUser = "we_work_users"
+const TableNameWeComDepartment = "wecom_departments"
+const TableNameWeComUser = "wecom_users"
 
 // scrm resource
-const TableNameWeWorkResource = "we_work_resources"
+const TableNameWeComResource = "wecom_resources"
 
 // scrm tag
-const TableNameWeWorkTagGroup = "we_work_tag_groups"
-const TableNameWeWorkTag = "we_work_tags"
+const TableNameWeComTagGroup = "wecom_tag_groups"
+const TableNameWeComTag = "wecom_tags"
 
 // wechat
 const TableNameWechatMPCustomer = "wechat_mp_customers"

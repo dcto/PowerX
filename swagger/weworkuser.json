@@ -19,12 +19,12 @@
     "/api/v1/admin/scrm/organization/wechat/user/page": {
       "post": {
         "summary": "员工列表/page",
-        "operationId": "ListWeWorkUserPage",
+        "operationId": "ListWeComUserPage",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/ListWeWorkUserReply"
+              "$ref": "#/definitions/ListWeComUserReply"
             }
           }
         },
@@ -34,7 +34,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ListWeWorkUserReqeust"
+              "$ref": "#/definitions/ListWeComUserReqeust"
             }
           }
         ],
@@ -47,12 +47,12 @@
     "/api/v1/admin/scrm/organization/wechat/sync": {
       "get": {
         "summary": "同步组织架构/department\u0026user",
-        "operationId": "SyncWeWorkUser",
+        "operationId": "SyncWeComUser",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/SyncWeWorkOrganizationReply"
+              "$ref": "#/definitions/SyncWeComOrganizationReply"
             }
           }
         },
@@ -64,13 +64,13 @@
     }
   },
   "definitions": {
-    "ListWeWorkUserReply": {
+    "ListWeComUserReply": {
       "type": "object",
       "properties": {
         "list": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/WechatUser"
+            "$ref": "#/definitions/WeComUser"
           }
         },
         "pageIndex": {
@@ -86,7 +86,7 @@
           "format": "int64"
         }
       },
-      "title": "ListWeWorkUserReply",
+      "title": "ListWeComUserReply",
       "required": [
         "list",
         "pageIndex",
@@ -94,7 +94,7 @@
         "total"
       ]
     },
-    "ListWeWorkUserReqeust": {
+    "ListWeComUserReqeust": {
       "type": "object",
       "properties": {
         "id": {
@@ -122,7 +122,7 @@
           "type": "string",
           "description": " openID"
         },
-        "weWorkMainDepartmentId": {
+        "weComMainDepartmentId": {
           "type": "integer",
           "format": "int64",
           "description": " 微信员工所属部门"
@@ -141,24 +141,24 @@
           "format": "int32"
         }
       },
-      "title": "ListWeWorkUserReqeust"
+      "title": "ListWeComUserReqeust"
     },
-    "SyncWeWorkOrganizationReply": {
+    "SyncWeComOrganizationReply": {
       "type": "object",
       "properties": {
         "status": {
           "type": "string"
         }
       },
-      "title": "SyncWeWorkOrganizationReply",
+      "title": "SyncWeComOrganizationReply",
       "required": [
         "status"
       ]
     },
-    "WechatUser": {
+    "WeComUser": {
       "type": "object",
       "properties": {
-        "weWorkUserId": {
+        "weComUserId": {
           "type": "string"
         },
         "name": {
@@ -197,7 +197,7 @@
         "openUserId": {
           "type": "string"
         },
-        "weWorkMainDepartmentId": {
+        "weComMainDepartmentId": {
           "type": "integer",
           "format": "int32"
         },
@@ -209,9 +209,9 @@
           "type": "string"
         }
       },
-      "title": "WechatUser",
+      "title": "WeComUser",
       "required": [
-        "weWorkUserId",
+        "weComUserId",
         "name",
         "position",
         "unique",
@@ -223,7 +223,7 @@
         "alias",
         "address",
         "openUserId",
-        "weWorkMainDepartmentId",
+        "weComMainDepartmentId",
         "status",
         "qrCode"
       ]

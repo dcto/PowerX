@@ -1,0 +1,73 @@
+syntax = "v1"
+
+info(
+    title: "企业应用App"
+    desc: "企业应用App"
+    author: "Eros"
+    email: "smoke.mvp@gmail.com"
+    version: "v1"
+)
+
+@server(
+    group: admin/scrm/wechat/wecom/app
+    prefix: /api/v1/admin/scrm/wechat/wecom/app
+    middleware: UserJWTAuth
+)
+
+service PowerX {
+    @doc "App详情"
+    @handler DetailWeComApp
+    get /detail (ApplicationRequest) returns (ApplicationReply)
+
+    @doc "App列表/options"
+    @handler ListWeComAppOption
+    get /options returns (AppWeComListReply)
+}
+
+type (
+    ApplicationRequest {
+        AgentId int `form:"agentId"`
+    }
+    ApplicationReply {
+        Agentid int `json:"agentId"`
+        Name string `json:"name"`
+        SquareLogoUrl string `json:"squareLogoUrl"`
+        Description string `json:"description"`
+        AllowUserinfos AllowUserinfos `json:"allowUserInfos"`
+        AllowPartys AllowPartys `json:"allowPartys"`
+        AllowTags AllowTags `json:"allowTags"`
+        Close int `json:"close"`
+        RedirectDomain string `json:"redirectDomain"`
+        ReportLocationFlag int `json:"reportLocationFlag"`
+        Isreportenter int `json:"isreportenter"`
+        HomeUrl string `json:"homeUrl"`
+        CustomizedPublishStatus int `json:"customizedPublishStatus"`
+    }
+
+    AllowUserinfos {
+        User []WeComUser `json:"user"`
+    }
+
+    AllowPartys {
+        Partyid []int `json:"partyId"`
+    }
+    AllowTags {
+        Tagid []int `json:"tagId"`
+    }
+)
+
+type (
+    AppWeComListReply {
+        List []*AppWechat `json:"list"`
+        //PageIndex int `json:"pageIndex"`
+        //PageSize int `json:"pageSize"`
+        //Total int64 `json:"total"`
+    }
+
+
+    AppWechat {
+        Agentid int `json:"agentId"`
+        Name string `json:"name"`
+        SquareLogoUrl string `json:"squareLogoUrl"`
+    }
+)

@@ -1,0 +1,104 @@
+syntax = "v1"
+
+info(
+    title: "菜单管理"
+    desc: "菜单管理"
+    author: "MichaelHu"
+    email: "matrix-x@artisan-cloud.com"
+    version: "v1"
+)
+
+@server(
+    group: admin/scrm/wechat/officialAccount/media
+    prefix: /api/v1/admin/scrm/wechat/official-account
+    middleware: UserJWTAuth
+)
+
+service PowerX {
+    @doc "查询菜单列表"
+    @handler GetOAMediaList
+    post /medias/page-list (GetOAMediaListRequest) returns (GetOAMediaListReply)
+
+    @doc "查询菜单列表"
+    @handler GetOAMediaNewsList
+    get /media/news/list returns (GetOAMediaNewsListReply)
+
+    @doc "请求菜单上传链接"
+    @handler GetOAMedia
+    get /medias/:mediaId (GetOAMediaRequest) returns (GetOAMediaReply)
+
+    @doc "根据媒体key获取媒体"
+    @handler GetOAMediaByVideo
+    get /medias/video/:mediaId (GetOAMediaRequest) returns (GetOAMediaByVideoReply)
+
+
+    @doc "创建菜单"
+    @handler UploadOAMedia
+    post /medias/upload returns (CreateOAMediaReply)
+
+
+    @doc "创建菜单"
+    @handler CreateOAMedia
+    post /medias (CreateOAMediaRequest) returns (CreateOAMediaReply)
+
+    @doc "删除菜单"
+    @handler DeleteOAMedia
+    delete /medias/:mediaId (DeleteOAMediaRequest) returns (DeleteOAMediaReply)
+}
+
+
+type (
+    GetOAMediaListRequest {
+        Offset int64 `json:"offset,optional"`
+        Count int64 `json:"count,optional"`
+        MediaType string `json:"type"`
+    }
+    GetOAMediaListReply {
+        TotalCount interface{} `json:"total_count"`
+        ItemCount  interface{} `json:"item_count"`
+        Item       interface{} `json:"item"`
+    }
+
+    GetOAMediaNewsListReply {
+        NewsItem interface{} `json:"news_item"`
+    }
+)
+
+type (
+    CreateOAMediaRequest {
+        OAMedia interface{} `json:"media"`
+    }
+
+    CreateOAMediaReply {
+        Success bool `json:"success,optional"`
+        Data interface{} `json:"data"`
+    }
+)
+
+type (
+    GetOAMediaRequest {
+        MediaId string `path:"mediaId"`
+    }
+
+    GetOAMediaReply {
+        OAMedia interface{} `json:"media"`
+    }
+
+    GetOAMediaByVideoReply {
+        Title string `json:"title"`
+        Description string `json:"description"`
+        DownUrl string `json:"down_url"`
+    }
+)
+
+
+type (
+    DeleteOAMediaRequest {
+        MediaId string `path:"mediaId"`
+    }
+
+    DeleteOAMediaReply {
+        Success bool `json:"success"`
+        Data interface{} `json:"data"`
+    }
+)

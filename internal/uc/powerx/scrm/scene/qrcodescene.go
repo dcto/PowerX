@@ -9,7 +9,7 @@ import (
 //	@Description:
 //	@receiver this
 //	@param qid
-//	@return *qrcode.QrcodeActive
+//	@return *qrcode.QRCodeActive
 func (this *sceneUseCase) FindOneSceneQRCodeDetail(qid string) *scene.SceneQRCode {
 
 	qrcode := this.modelSceneQRCode.qrcode.FindEnableSceneQRCodeByQid(this.db, qid)

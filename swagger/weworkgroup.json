@@ -19,7 +19,7 @@
     "/api/v1/admin/scrm/app/wechat/group/create": {
       "post": {
         "summary": "App创建企业群",
-        "operationId": "CreateWeWorkAppGroup",
+        "operationId": "CreateWeComAppGroup",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -47,7 +47,7 @@
     "/api/v1/admin/scrm/app/wechat/group/list": {
       "get": {
         "summary": "App企业群列表/list",
-        "operationId": "ListWeWorkAppGroup",
+        "operationId": "ListWeComAppGroup",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -73,7 +73,7 @@
     "/api/v1/admin/scrm/app/wechat/group/message/articles": {
       "post": {
         "summary": "App企业群推送图文信息",
-        "operationId": "SendWeWorkAppGroupArticleMessage",
+        "operationId": "SendWeComAppGroupArticleMessage",
         "responses": {
           "200": {
             "description": "A successful response.",

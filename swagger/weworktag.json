@@ -19,12 +19,12 @@
     "/api/v1/admin/scrm/tag/wechat/corp/option": {
       "get": {
         "summary": "标签列表对象/key=\u003eval",
-        "operationId": "ListWeWorkTagOption",
+        "operationId": "ListWeComTagOption",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/ListWeWorkTagOptionReply"
+              "$ref": "#/definitions/ListWeComTagOptionReply"
             }
           }
         },
@@ -37,12 +37,12 @@
     "/api/v1/admin/scrm/tag/wechat/corp/page": {
       "post": {
         "summary": "标签列表/page",
-        "operationId": "ListWeWorkTagPage",
+        "operationId": "ListWeComTagPage",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/ListWeWorkTagReply"
+              "$ref": "#/definitions/ListWeComTagReply"
             }
           }
         },
@@ -52,7 +52,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ListWeWorkTagReqeust"
+              "$ref": "#/definitions/ListWeComTagReqeust"
             }
           }
         ],
@@ -65,12 +65,12 @@
     "/api/v1/admin/scrm/tag/wechat/crop/create": {
       "post": {
         "summary": "创建企业标签",
-        "operationId": "CreateWeWorkCropTag",
+        "operationId": "CreateWeComCropTag",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/StatusWeWorkReply"
+              "$ref": "#/definitions/StatusWeComReply"
             }
           }
         },
@@ -93,12 +93,12 @@
     "/api/v1/admin/scrm/tag/wechat/crop/delete": {
       "delete": {
         "summary": "@批量删除企业标签",
-        "operationId": "DeleteWeWorkCropTag",
+        "operationId": "DeleteWeComCropTag",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/StatusWeWorkReply"
+              "$ref": "#/definitions/StatusWeComReply"
             }
           }
         },
@@ -121,12 +121,12 @@
     "/api/v1/admin/scrm/tag/wechat/crop/update": {
       "patch": {
         "summary": "@编辑企业标签",
-        "operationId": "UpdateWeWorkCropTag",
+        "operationId": "UpdateWeComCropTag",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/StatusWeWorkReply"
+              "$ref": "#/definitions/StatusWeComReply"
             }
           }
         },
@@ -149,12 +149,12 @@
     "/api/v1/admin/scrm/tag/wechat/customer/action": {
       "post": {
         "summary": "编辑/删除客户标签",
-        "operationId": "ActionWeWorkCustomerTag",
+        "operationId": "ActionWeComCustomerTag",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/StatusWeWorkReply"
+              "$ref": "#/definitions/StatusWeComReply"
             }
           }
         },
@@ -177,12 +177,12 @@
     "/api/v1/admin/scrm/tag/wechat/group/action": {
       "post": {
         "summary": "添加、删除标签组内的标签",
-        "operationId": "ActionWeWorkCropTagGroup",
+        "operationId": "ActionWeComCropTagGroup",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/StatusWeWorkReply"
+              "$ref": "#/definitions/StatusWeComReply"
             }
           }
         },
@@ -205,12 +205,12 @@
     "/api/v1/admin/scrm/tag/wechat/group/option": {
       "get": {
         "summary": "标签组列表/option",
-        "operationId": "ListWeWorkTagGroupOption",
+        "operationId": "ListWeComTagGroupOption",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/ListWeWorkTagGroupReply"
+              "$ref": "#/definitions/ListWeComTagGroupReply"
             }
           }
         },
@@ -223,12 +223,12 @@
     "/api/v1/admin/scrm/tag/wechat/group/page": {
       "post": {
         "summary": "标签组分页/page",
-        "operationId": "ListWeWorkTagGroupPage",
+        "operationId": "ListWeComTagGroupPage",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/ListWeWorkTagGroupPageReply"
+              "$ref": "#/definitions/ListWeComTagGroupPageReply"
             }
           }
         },
@@ -238,7 +238,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ListWeWorkTagGroupPageRequest"
+              "$ref": "#/definitions/ListWeComTagGroupPageRequest"
             }
           }
         ],
@@ -251,12 +251,12 @@
     "/api/v1/admin/scrm/tag/wechat/sync": {
       "put": {
         "summary": "全量同步标签/sync",
-        "operationId": "SyncWeWorkGroupTag",
+        "operationId": "SyncWeComGroupTag",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/StatusWeWorkReply"
+              "$ref": "#/definitions/StatusWeComReply"
             }
           }
         },
@@ -408,7 +408,7 @@
         "tags"
       ]
     },
-    "ListWeWorkTagGroupPageReply": {
+    "ListWeComTagGroupPageReply": {
       "type": "object",
       "properties": {
         "list": {
@@ -430,7 +430,7 @@
           "format": "int64"
         }
       },
-      "title": "ListWeWorkTagGroupPageReply",
+      "title": "ListWeComTagGroupPageReply",
       "required": [
         "list",
         "pageIndex",
@@ -438,7 +438,7 @@
         "total"
       ]
     },
-    "ListWeWorkTagGroupPageRequest": {
+    "ListWeComTagGroupPageRequest": {
       "type": "object",
       "properties": {
         "groupId": {
@@ -456,9 +456,9 @@
           "format": "int32"
         }
       },
-      "title": "ListWeWorkTagGroupPageRequest"
+      "title": "ListWeComTagGroupPageRequest"
     },
-    "ListWeWorkTagGroupReply": {
+    "ListWeComTagGroupReply": {
       "type": "object",
       "properties": {
         "list": {
@@ -468,24 +468,24 @@
           }
         }
       },
-      "title": "ListWeWorkTagGroupReply",
+      "title": "ListWeComTagGroupReply",
       "required": [
         "list"
       ]
     },
-    "ListWeWorkTagOptionReply": {
+    "ListWeComTagOptionReply": {
       "type": "object",
       "properties": {
         "list": {
           "type": "object"
         }
       },
-      "title": "ListWeWorkTagOptionReply",
+      "title": "ListWeComTagOptionReply",
       "required": [
         "list"
       ]
     },
-    "ListWeWorkTagReply": {
+    "ListWeComTagReply": {
       "type": "object",
       "properties": {
         "list": {
@@ -507,7 +507,7 @@
           "format": "int64"
         }
       },
-      "title": "ListWeWorkTagReply",
+      "title": "ListWeComTagReply",
       "required": [
         "list",
         "pageIndex",
@@ -515,7 +515,7 @@
         "total"
       ]
     },
-    "ListWeWorkTagReqeust": {
+    "ListWeComTagReqeust": {
       "type": "object",
       "properties": {
         "tagIds": {
@@ -546,16 +546,16 @@
           "format": "int32"
         }
       },
-      "title": "ListWeWorkTagReqeust"
+      "title": "ListWeComTagReqeust"
     },
-    "StatusWeWorkReply": {
+    "StatusWeComReply": {
       "type": "object",
       "properties": {
         "status": {
           "type": "string"
         }
       },
-      "title": "StatusWeWorkReply",
+      "title": "StatusWeComReply",
       "required": [
         "status"
       ]

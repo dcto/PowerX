@@ -1,0 +1,67 @@
+syntax = "v1"
+
+info(
+    title: "企业微信部门管理"
+    desc: "企业微信部门管理"
+    author: "Eros"
+    email: "smoke.mvp@gmail.com"
+    version: "v1"
+)
+
+@server(
+    group: admin/scrm/wechat/wecom/organization
+    prefix: /api/v1/admin/scrm/wechat/wecom/organization
+    middleware: UserJWTAuth
+)
+
+service PowerX {
+    @doc "查询组织架构"
+    @handler GetWeComDepartmentTree
+    post /departments/tree (GetWecomDepartmentTreeRequest) returns (GetWecomDepartmentTreeReply)
+
+    @doc "部门列表/page"
+    @handler ListWeComDepartmentPage
+    post /departments/page (ListWeComDepartmentPageReqeust) returns (ListWeComDepartmentPageReply)
+}
+
+
+type (
+    GetWecomDepartmentTreeRequest {
+        DepartmentId int64 `json:"departmentId"`
+    }
+
+    GetWecomDepartmentTreeReply {
+        department *WeComDepartment `json:"department"`
+    }
+
+    ListWeComDepartmentPageReqeust {
+        DepartmentId int `json:"departmentId,optional"`
+        Name string `json:"name,optional"`
+        NameEn string `json:"nameEn,optional"`
+        WeComParentId int `json:"weComParentId,optional"`
+        Order int `json:"order,optional"`
+
+        PageIndex int `form:"pageIndex,optional"`
+        PageSize int `form:"pageSize,optional"`
+    }
+
+    ListWeComDepartmentPageReply {
+        List []*WeComDepartment `json:"list"`
+        PageIndex int `json:"pageIndex"`
+        PageSize int `json:"pageSize"`
+        Total int64 `json:"total"`
+    }
+        //
+    WeComDepartment {
+
+        WeComDepId int `json:"weComDepId"`
+        Name string `json:"name"`
+        NameEn string `json:"nameEn"`
+        WeComParentId int `json:"weComParentId"`
+        Order int `json:"order"`
+        DepartmentLeader []string `json:"departmentLeader"`
+        RefDepartmentId int64 `json:"refDepartmentId"`
+        Children []*WeComDepartment `json:"children"`
+
+    }
+)

@@ -22,7 +22,7 @@ type Department struct {
 	Remark      string        `gorm:"comment:备注;column:remark" json:"remark"`
 	IsReserved  bool          `gorm:"comment:保留;column:is_reserved" json:"is_reserved"`
 	//
-	IsWeWorkArchitecture bool `gorm:"comment:是否启用企微架构;column:is_we_work_architecture" json:"is_we_work_architecture"`
+	IsWeComArchitecture bool `gorm:"comment:是否启用企微架构;column:is_wecom_architecture" json:"is_wecom_architecture"`
 }
 
 func (mdl *Department) TableName() string {
@@ -39,7 +39,7 @@ func (mdl *Department) GetTableName(needFull bool) string {
 
 func (mdl *Department) Action(db *gorm.DB, departments []*Department) {
 
-	err := db.Table(mdl.TableName()).Clauses(clause.OnConflict{Columns: []clause.Column{{Name: "we_work_user_id"}}, UpdateAll: true}).CreateInBatches(&departments, 100).Error
+	err := db.Table(mdl.TableName()).Clauses(clause.OnConflict{Columns: []clause.Column{{Name: "wecom_user_id"}}, UpdateAll: true}).CreateInBatches(&departments, 100).Error
 	if err != nil {
 		panic(err)
 	}

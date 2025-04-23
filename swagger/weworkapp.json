@@ -19,7 +19,7 @@
     "/api/v1/admin/scrm/app/wechat/detail": {
       "get": {
         "summary": "App详情",
-        "operationId": "DetailWeWorkApp",
+        "operationId": "DetailWeComApp",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -46,12 +46,12 @@
     "/api/v1/admin/scrm/app/wechat/options": {
       "get": {
         "summary": "App列表/options",
-        "operationId": "ListWeWorkAppOption",
+        "operationId": "ListWeComAppOption",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/AppWeWorkListReply"
+              "$ref": "#/definitions/AppWeComListReply"
             }
           }
         },
@@ -110,7 +110,7 @@
         "user"
       ]
     },
-    "AppWeWorkListReply": {
+    "AppWeComListReply": {
       "type": "object",
       "properties": {
         "list": {
@@ -120,7 +120,7 @@
           }
         }
       },
-      "title": "AppWeWorkListReply",
+      "title": "AppWeComListReply",
       "required": [
         "list"
       ]

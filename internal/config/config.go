@@ -20,10 +20,14 @@ type Config struct {
 	Env     string
 	Region  string
 	Server  rest.RestConf
-	EtcDir  string `json:",optional"`
-	Log     log.LogConf
-	Cors    Cors
-	JWT     struct {
+	API     struct {
+		Prefix        string
+		ShowRouteList bool
+	}
+	EtcDir string `json:",optional"`
+	Log    log.LogConf
+	Cors   Cors
+	JWT    struct {
 		JWTSecret    string
 		MPJWTSecret  string
 		WebJWTSecret string
@@ -37,6 +41,6 @@ type Config struct {
 	WechatOA      WechatOA
 	WechatMP      WechatMP
 	WechatPay     WechatPay
-	WeWork        WeWork
+	WeCom         WeCom
 	MediaResource MediaResource
 }

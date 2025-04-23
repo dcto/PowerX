@@ -19,7 +19,7 @@
     "/api/v1/admin/scrm/bot/wechat/message/articles": {
       "post": {
         "summary": "机器人发送图文信息",
-        "operationId": "BotWeWorkArticles",
+        "operationId": "BotWeComArticles",
         "responses": {
           "200": {
             "description": "A successful response.",

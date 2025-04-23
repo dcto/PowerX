@@ -19,12 +19,12 @@
     "/api/v1/admin/scrm/customer/wechat/group/list": {
       "post": {
         "summary": "客户群列表/limit",
-        "operationId": "ListWeWorkCustomerGroupLimit",
+        "operationId": "ListWeComCustomerGroupLimit",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/WeWorkListCustomerGroupReply"
+              "$ref": "#/definitions/WeComListCustomerGroupReply"
             }
           }
         },
@@ -34,7 +34,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/WeWorkCustomerGroupRequest"
+              "$ref": "#/definitions/WeComCustomerGroupRequest"
             }
           }
         ],
@@ -47,12 +47,12 @@
     "/api/v1/admin/scrm/customer/wechat/group/message/template": {
       "post": {
         "summary": "客户群发信息",
-        "operationId": "SendWeWorkCustomerGroupMessage",
+        "operationId": "SendWeComCustomerGroupMessage",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/WeWorkAddMsgTemplateResponse"
+              "$ref": "#/definitions/WeComAddMsgTemplateResponse"
             }
           }
         },
@@ -62,7 +62,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/WeWorkAddMsgTemplateRequest"
+              "$ref": "#/definitions/WeComAddMsgTemplateRequest"
             }
           }
         ],
@@ -141,7 +141,7 @@
       },
       "title": "OwnerFilter"
     },
-    "WeWorkAddMsgTemplateRequest": {
+    "WeComAddMsgTemplateRequest": {
       "type": "object",
       "properties": {
         "chatType": {
@@ -160,7 +160,7 @@
           "description": " 发送企业群发消息的成员userid，当类型为发送给客户群时必填"
         },
         "text": {
-          "$ref": "#/definitions/WeWorkTextOfMessage"
+          "$ref": "#/definitions/WeComTextOfMessage"
         },
         "attachments": {
           "type": "array",
@@ -174,13 +174,13 @@
           "description": " 定时发送，不填默认立刻发送 附件， 当前仅支持图片"
         }
       },
-      "title": "WeWorkAddMsgTemplateRequest",
+      "title": "WeComAddMsgTemplateRequest",
       "required": [
         "chatType",
         "text"
       ]
     },
-    "WeWorkAddMsgTemplateResponse": {
+    "WeComAddMsgTemplateResponse": {
       "type": "object",
       "properties": {
         "failList": {
@@ -193,13 +193,13 @@
           "type": "string"
         }
       },
-      "title": "WeWorkAddMsgTemplateResponse",
+      "title": "WeComAddMsgTemplateResponse",
       "required": [
         "failList",
         "msgId"
       ]
     },
-    "WeWorkCustomerGroupRequest": {
+    "WeComCustomerGroupRequest": {
       "type": "object",
       "properties": {
         "statusFilter": {
@@ -218,25 +218,25 @@
           "format": "int32"
         }
       },
-      "title": "WeWorkCustomerGroupRequest"
+      "title": "WeComCustomerGroupRequest"
     },
-    "WeWorkListCustomerGroupReply": {
+    "WeComListCustomerGroupReply": {
       "type": "object",
       "properties": {
         "list": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/WechatCustomerGroup"
+            "$ref": "#/definitions/WeComCustomerGroup"
           },
           "description": "https:developer.work.weixin.qq.com/document/path/92122"
         }
       },
-      "title": "WeWorkListCustomerGroupReply",
+      "title": "WeComListCustomerGroupReply",
       "required": [
         "list"
       ]
     },
-    "WeWorkTextOfMessage": {
+    "WeComTextOfMessage": {
       "type": "object",
       "properties": {
         "content": {
@@ -244,12 +244,12 @@
           "description": " \"内容\""
         }
       },
-      "title": "WeWorkTextOfMessage",
+      "title": "WeComTextOfMessage",
       "required": [
         "content"
       ]
     },
-    "WechatCustomerGroup": {
+    "WeComCustomerGroup": {
       "type": "object",
       "properties": {
         "chatId": {
@@ -271,17 +271,17 @@
         "memberList": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/WechatCustomerGroupMemberList"
+            "$ref": "#/definitions/WeComCustomerGroupMemberList"
           }
         },
         "adminList": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/WechatCustomerGroupAdminList"
+            "$ref": "#/definitions/WeComCustomerGroupAdminList"
           }
         }
       },
-      "title": "WechatCustomerGroup",
+      "title": "WeComCustomerGroup",
       "required": [
         "chatId",
         "name",
@@ -292,19 +292,19 @@
         "adminList"
       ]
     },
-    "WechatCustomerGroupAdminList": {
+    "WeComCustomerGroupAdminList": {
       "type": "object",
       "properties": {
         "userId": {
           "type": "string"
         }
       },
-      "title": "WechatCustomerGroupAdminList",
+      "title": "WeComCustomerGroupAdminList",
       "required": [
         "userId"
       ]
     },
-    "WechatCustomerGroupMemberList": {
+    "WeComCustomerGroupMemberList": {
       "type": "object",
       "properties": {
         "userId": {
@@ -323,7 +323,7 @@
           "format": "int32"
         },
         "invitor": {
-          "$ref": "#/definitions/WechatCustomerGroupMemberListInvitor"
+          "$ref": "#/definitions/WeComCustomerGroupMemberListInvitor"
         },
         "groupNickname": {
           "type": "string"
@@ -335,7 +335,7 @@
           "type": "string"
         }
       },
-      "title": "WechatCustomerGroupMemberList",
+      "title": "WeComCustomerGroupMemberList",
       "required": [
         "userId",
         "type",
@@ -347,14 +347,14 @@
         "unionId"
       ]
     },
-    "WechatCustomerGroupMemberListInvitor": {
+    "WeComCustomerGroupMemberListInvitor": {
       "type": "object",
       "properties": {
         "userId": {
           "type": "string"
         }
       },
-      "title": "WechatCustomerGroupMemberListInvitor",
+      "title": "WeComCustomerGroupMemberListInvitor",
       "required": [
         "userId"
       ]

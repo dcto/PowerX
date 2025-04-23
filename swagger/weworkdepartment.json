@@ -19,12 +19,12 @@
     "/api/v1/admin/scrm/organization/wechat/partment/page": {
       "post": {
         "summary": "部门列表/page",
-        "operationId": "ListWeWorkDepartMentPage",
+        "operationId": "ListWeComDepartmentPage",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/ListWeWorkDepartmentReply"
+              "$ref": "#/definitions/ListWeComDepartmentReply"
             }
           }
         },
@@ -34,7 +34,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ListWeWorkDepartmentReqeust"
+              "$ref": "#/definitions/ListWeComDepartmentReqeust"
             }
           }
         ],
@@ -46,13 +46,13 @@
     }
   },
   "definitions": {
-    "ListWeWorkDepartmentReply": {
+    "ListWeComDepartmentReply": {
       "type": "object",
       "properties": {
         "list": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/WeWorkDepartment"
+            "$ref": "#/definitions/WeComDepartment"
           }
         },
         "pageIndex": {
@@ -68,7 +68,7 @@
           "format": "int64"
         }
       },
-      "title": "ListWeWorkDepartmentReply",
+      "title": "ListWeComDepartmentReply",
       "required": [
         "list",
         "pageIndex",
@@ -76,10 +76,10 @@
         "total"
       ]
     },
-    "ListWeWorkDepartmentReqeust": {
+    "ListWeComDepartmentReqeust": {
       "type": "object",
       "properties": {
-        "weWorkDepId": {
+        "weComDepId": {
           "type": "integer",
           "format": "int32"
         },
@@ -89,7 +89,7 @@
         "nameEn": {
           "type": "string"
         },
-        "weWorkParentId": {
+        "weComParentId": {
           "type": "integer",
           "format": "int32"
         },
@@ -106,12 +106,12 @@
           "format": "int32"
         }
       },
-      "title": "ListWeWorkDepartmentReqeust"
+      "title": "ListWeComDepartmentReqeust"
     },
-    "WeWorkDepartment": {
+    "WeComDepartment": {
       "type": "object",
       "properties": {
-        "weWorkDepId": {
+        "weComDepId": {
           "type": "integer",
           "format": "int32"
         },
@@ -121,7 +121,7 @@
         "nameEn": {
           "type": "string"
         },
-        "weWorkParentId": {
+        "weComParentId": {
           "type": "integer",
           "format": "int32"
         },
@@ -140,12 +140,12 @@
           "format": "int64"
         }
       },
-      "title": "WeWorkDepartment",
+      "title": "WeComDepartment",
       "required": [
-        "weWorkDepId",
+        "weComDepId",
         "name",
         "nameEn",
-        "weWorkParentId",
+        "weComParentId",
         "order",
         "departmentLeader",
         "refDepartmentId"

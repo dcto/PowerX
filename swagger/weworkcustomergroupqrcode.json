@@ -19,12 +19,12 @@
     "/api/v1/admin/scrm/qrcode/wechat/group/create": {
       "post": {
         "summary": "创建场景码",
-        "operationId": "CreateWeWorkQrcode",
+        "operationId": "CreateWeComQRCode",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/ActionWeWorkGroupQrcodeActiveReply"
+              "$ref": "#/definitions/ActionWeComGroupQRCodeActiveReply"
             }
           }
         },
@@ -34,7 +34,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/QrcodeActiveRequest"
+              "$ref": "#/definitions/QRCodeActiveRequest"
             }
           }
         ],
@@ -47,12 +47,12 @@
     "/api/v1/admin/scrm/qrcode/wechat/group/disable/{qid}": {
       "patch": {
         "summary": "禁用场景码",
-        "operationId": "DisableWeWorkQrcode",
+        "operationId": "DisableWeComQRCode",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/ActionWeWorkGroupQrcodeActiveReply"
+              "$ref": "#/definitions/ActionWeComGroupQRCodeActiveReply"
             }
           }
         },
@@ -81,12 +81,12 @@
     "/api/v1/admin/scrm/qrcode/wechat/group/enable/{qid}": {
       "patch": {
         "summary": "启用场景码",
-        "operationId": "EnableWeWorkQrcode",
+        "operationId": "EnableWeComQRCode",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/ActionWeWorkGroupQrcodeActiveReply"
+              "$ref": "#/definitions/ActionWeComGroupQRCodeActiveReply"
             }
           }
         },
@@ -115,12 +115,12 @@
     "/api/v1/admin/scrm/qrcode/wechat/group/page": {
       "post": {
         "summary": "场景码列表/page",
-        "operationId": "ListWeWorkQrcodePage",
+        "operationId": "ListWeComQRCodePage",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/ListWeWorkQrcodeActiveReply"
+              "$ref": "#/definitions/ListWeComQRCodeActiveReply"
             }
           }
         },
@@ -130,7 +130,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ListWeWorkGroupQrcodeActiveReqeust"
+              "$ref": "#/definitions/ListWeComGroupQRCodeActiveReqeust"
             }
           }
         ],
@@ -143,12 +143,12 @@
     "/api/v1/admin/scrm/qrcode/wechat/group/update/{qid}": {
       "patch": {
         "summary": "更新场景码",
-        "operationId": "UpdateWeWorkQrcode",
+        "operationId": "UpdateWeComQRCode",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/ActionWeWorkGroupQrcodeActiveReply"
+              "$ref": "#/definitions/ActionWeComGroupQRCodeActiveReply"
             }
           }
         },
@@ -164,7 +164,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/QrcodeActiveRequest"
+              "$ref": "#/definitions/QRCodeActiveRequest"
             }
           }
         ],
@@ -177,12 +177,12 @@
     "/api/v1/admin/scrm/qrcode/wechat/group/{qid}": {
       "delete": {
         "summary": "删除场景码",
-        "operationId": "DeleteWeWorkQrcode",
+        "operationId": "DeleteWeComQRCode",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/ActionWeWorkGroupQrcodeActiveReply"
+              "$ref": "#/definitions/ActionWeComGroupQRCodeActiveReply"
             }
           }
         },
@@ -211,12 +211,12 @@
     "/api/v1/admin/scrm/qrcode/wechat/qrcode/{qid}": {
       "patch": {
         "summary": "下载场景码/upload",
-        "operationId": "UpdateActiveQrcodeLink",
+        "operationId": "UpdateActiveQRCodeLink",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/ActionWeWorkGroupQrcodeActiveReply"
+              "$ref": "#/definitions/ActionWeComGroupQRCodeActiveReply"
             }
           }
         },
@@ -251,7 +251,7 @@
           "type": "string",
           "description": " 唯一标识"
         },
-        "sceneQrcodeLink": {
+        "sceneQRCodeLink": {
           "type": "string"
         }
       },
@@ -260,19 +260,19 @@
         "qid"
       ]
     },
-    "ActionWeWorkGroupQrcodeActiveReply": {
+    "ActionWeComGroupQRCodeActiveReply": {
       "type": "object",
       "properties": {
         "status": {
           "type": "string"
         }
       },
-      "title": "ActionWeWorkGroupQrcodeActiveReply",
+      "title": "ActionWeComGroupQRCodeActiveReply",
       "required": [
         "status"
       ]
     },
-    "ListWeWorkGroupQrcodeActiveReqeust": {
+    "ListWeComGroupQRCodeActiveReqeust": {
       "type": "object",
       "properties": {
         "userId": {
@@ -301,15 +301,15 @@
           "format": "int32"
         }
       },
-      "title": "ListWeWorkGroupQrcodeActiveReqeust"
+      "title": "ListWeComGroupQRCodeActiveReqeust"
     },
-    "ListWeWorkQrcodeActiveReply": {
+    "ListWeComQRCodeActiveReply": {
       "type": "object",
       "properties": {
         "list": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/WeWorkQrcodeActive"
+            "$ref": "#/definitions/WeComQRCodeActive"
           }
         },
         "pageIndex": {
@@ -325,7 +325,7 @@
           "format": "int64"
         }
       },
-      "title": "ListWeWorkQrcodeActiveReply",
+      "title": "ListWeComQRCodeActiveReply",
       "required": [
         "list",
         "pageIndex",
@@ -333,7 +333,7 @@
         "total"
       ]
     },
-    "QrcodeActiveRequest": {
+    "QRCodeActiveRequest": {
       "type": "object",
       "properties": {
         "qid": {
@@ -355,7 +355,7 @@
           },
           "description": " 所属人"
         },
-        "RealQrcodeLink": {
+        "RealQRCodeLink": {
           "type": "string",
           "description": " 真实二维码地址"
         },
@@ -374,17 +374,17 @@
           "description": " 有效期截止日(时间戳)"
         }
       },
-      "title": "QrcodeActiveRequest",
+      "title": "QRCodeActiveRequest",
       "required": [
         "name",
         "desc",
         "owner",
-        "RealQrcodeLink",
+        "RealQRCodeLink",
         "sceneLink",
         "expiryDate"
       ]
     },
-    "WeWorkQrcodeActive": {
+    "WeComQRCodeActive": {
       "type": "object",
       "properties": {
         "qid": {
@@ -406,7 +406,7 @@
           },
           "description": " 所属人"
         },
-        "RealQrcodeLink": {
+        "RealQRCodeLink": {
           "type": "string",
           "description": " 真实二维码地址"
         },
@@ -444,7 +444,7 @@
           "format": "int32",
           "description": " 状态1：启用 2：禁用 3：删除"
         },
-        "activeQrcodeLink": {
+        "activeQRCodeLink": {
           "type": "string",
           "description": " 群活码图片地址(可以载入任意媒资文章)"
         },
@@ -454,13 +454,13 @@
           "description": " 活码打开次数"
         }
       },
-      "title": "WeWorkQrcodeActive",
+      "title": "WeComQRCodeActive",
       "required": [
         "qid",
         "name",
         "desc",
         "owner",
-        "RealQrcodeLink",
+        "RealQRCodeLink",
         "platform",
         "classify",
         "sceneLink",
@@ -468,7 +468,7 @@
         "expiryDate",
         "expiryState",
         "state",
-        "activeQrcodeLink",
+        "activeQRCodeLink",
         "cpa"
       ]
     }

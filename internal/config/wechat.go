@@ -1,6 +1,6 @@
 package config
 
-type WeWork struct {
+type WeCom struct {
 	CropId         string
 	AgentId        int
 	Secret         string

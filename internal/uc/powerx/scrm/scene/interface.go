@@ -7,17 +7,17 @@ type IsceneInterface interface {
 	//
 	//  @Description: qrcode
 	//
-	iQrcodeInterface
+	iQRCodeInterface
 }
 
-// iQrcodeInterface
+// iQRCodeInterface
 // @Description:
-type iQrcodeInterface interface {
+type iQRCodeInterface interface {
 	//
 	// FindOneSceneQRCodeDetail
 	//  @Description: 场景码详情
 	//  @param qid
-	//  @return *qrcode.QrcodeActive
+	//  @return *qrcode.QRCodeActive
 	//
 	FindOneSceneQRCodeDetail(qid string) *scene.SceneQRCode
 	//

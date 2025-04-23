@@ -34,7 +34,7 @@ type User struct {
 	IsActivated     bool   `gorm:"comment:活跃;column:is_activated" json:"is_activated"`
 	Department      *Department
 	// comment f9280798048e034c1f4118a2220ade5f847d94b4 该字段不能设置为unique，否则没有关联企业微信账户的员工将会添加失败（null duplicate key)
-	WeWorkUserId string `gorm:"comment:微信账户;column:we_work_user_id;type:varchar" json:"we_work_user_id"`
+	WeComUserId string `gorm:"comment:微信账户;column:wecom_user_id;type:varchar" json:"wecom_user_id"`
 }
 
 func (mdl *User) TableName() string {
@@ -94,7 +94,7 @@ func (mdl *User) Action(db *gorm.DB, users []*User) {
 	err := db.Table(mdl.TableName()).
 		//Debug().
 		Clauses(
-			clause.OnConflict{Columns: []clause.Column{{Name: `we_work_user_id`}},
+			clause.OnConflict{Columns: []clause.Column{{Name: `wecom_user_id`}},
 				DoUpdates: clause.AssignmentColumns([]string{
 					`name`, `nick_name`, `desc`, `position`, `department_id`, `mobile_phone`, `gender`, `email`, `external_email`, `avatar`}),
 			}).CreateInBatches(&users, 100).Error

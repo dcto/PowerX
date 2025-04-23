@@ -19,12 +19,12 @@
     "/api/v1/admin/scrm/resource/wechat/image/page": {
       "post": {
         "summary": "微信素材库/page",
-        "operationId": "ListWeWorkImage",
+        "operationId": "ListWeComImage",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/ListWeWorkResourceImageReply"
+              "$ref": "#/definitions/ListWeComResourceImageReply"
             }
           }
         },
@@ -34,7 +34,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/ListWeWorkResourceImageRequest"
+              "$ref": "#/definitions/ListWeComResourceImageRequest"
             }
           }
         ],
@@ -47,12 +47,12 @@
     "/api/v1/admin/scrm/resource/wechat/image/upload": {
       "post": {
         "summary": "上传图片到微信",
-        "operationId": "CreateWeWorkImage",
+        "operationId": "CreateWeComImage",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/CreateWeWorkSourceImageReply"
+              "$ref": "#/definitions/CreateWeComSourceImageReply"
             }
           }
         },
@@ -64,19 +64,19 @@
     }
   },
   "definitions": {
-    "CreateWeWorkSourceImageReply": {
+    "CreateWeComSourceImageReply": {
       "type": "object",
       "properties": {
         "link": {
           "type": "string"
         }
       },
-      "title": "CreateWeWorkSourceImageReply",
+      "title": "CreateWeComSourceImageReply",
       "required": [
         "link"
       ]
     },
-    "ListWeWorkResourceImageReply": {
+    "ListWeComResourceImageReply": {
       "type": "object",
       "properties": {
         "list": {
@@ -98,7 +98,7 @@
           "format": "int64"
         }
       },
-      "title": "ListWeWorkResourceImageReply",
+      "title": "ListWeComResourceImageReply",
       "required": [
         "list",
         "pageIndex",
@@ -106,7 +106,7 @@
         "total"
       ]
     },
-    "ListWeWorkResourceImageRequest": {
+    "ListWeComResourceImageRequest": {
       "type": "object",
       "properties": {
         "resourceType": {
@@ -121,7 +121,7 @@
           "format": "int32"
         }
       },
-      "title": "ListWeWorkResourceImageRequest"
+      "title": "ListWeComResourceImageRequest"
     },
     "Resource": {
       "type": "object",

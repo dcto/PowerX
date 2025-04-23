@@ -63,7 +63,7 @@ type PowerXUseCase struct {
 	// SCRM
 	WechatMP *wechat.WechatMiniProgramUseCase
 	WechatOA *wechat.WechatOfficialAccountUseCase
-	//WeWork                *powerx.WeWorkUseCase
+	//WeCom                *powerx.WeComUseCase
 	SCRM          *scrm.SCRMUseCase
 	MediaResource *powerx.MediaResourceUseCase
 
@@ -158,7 +158,7 @@ func NewPowerXUseCase(conf *config.Config) (uc *PowerXUseCase, clean func()) {
 	uc.Token = tradeUC.NewTokenUseCase(db)
 
 	// 加载微信UseCase
-	//uc.WeWork = powerx.NewWeWorkUseCase(db, conf)
+	//uc.WeCom = powerx.NewWeComUseCase(db, conf)
 	uc.WechatMP = wechat.NewWechatMiniProgramUseCase(db, conf)
 	uc.WechatOA = wechat.NewWechatOfficialAccountUseCase(db, conf)
 

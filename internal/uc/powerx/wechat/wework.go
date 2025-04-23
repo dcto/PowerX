@@ -7,31 +7,31 @@ import (
 	"gorm.io/gorm"
 )
 
-type WeWorkUseCase struct {
+type WeComUseCase struct {
 	API *work.Work
 	db  *gorm.DB
 }
 
-func NewWeWorkUseCase(db *gorm.DB, conf *config.Config) *WeWorkUseCase {
+func NewWeComUseCase(db *gorm.DB, conf *config.Config) *WeComUseCase {
 	// 初始化企业微信API SDK
 	api, err := work.NewWork(&work.UserConfig{
-		CorpID:  conf.WeWork.CropId,
-		AgentID: conf.WeWork.AgentId,
-		Secret:  conf.WeWork.Secret,
+		CorpID:  conf.WeCom.CropId,
+		AgentID: conf.WeCom.AgentId,
+		Secret:  conf.WeCom.Secret,
 		OAuth: work.OAuth{
 			Callback: "https://wecom.artisan-cloud.com/callback",
 			Scopes:   nil,
 		},
-		Token:     conf.WeWork.Token,
-		AESKey:    conf.WeWork.EncodingAESKey,
+		Token:     conf.WeCom.Token,
+		AESKey:    conf.WeCom.EncodingAESKey,
 		HttpDebug: true,
 	})
 
 	if err != nil {
-		panic(errors.Wrap(err, "wework init failed"))
+		panic(errors.Wrap(err, "wecom init failed"))
 	}
 
-	return &WeWorkUseCase{
+	return &WeComUseCase{
 		API: api,
 		db:  db,
 	}
